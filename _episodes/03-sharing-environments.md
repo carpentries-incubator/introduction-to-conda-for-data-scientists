@@ -1,9 +1,10 @@
 ---
-title: "Introduction"
-teaching: 0
-exercises: 0
+title: "Sharing Environments"
+teaching: 15
+exercises: 5
 questions:
-- "Key question (FIXME)"
+- "How do I share my Conda environment with others?"
+- "Why should I share my Conda environment with others?"
 objectives:
 - "First learning objective. (FIXME)"
 keypoints:
