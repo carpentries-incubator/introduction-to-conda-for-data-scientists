@@ -1,7 +1,7 @@
 ---
 title: "Getting Started with Conda"
 teaching: 15
-exercises: 5
+exercises: 15
 questions:
 - "What is Conda?"
 - "Why should I use Conda as part of my research workflow?"
