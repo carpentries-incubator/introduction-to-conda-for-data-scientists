@@ -1,9 +1,12 @@
 ---
-title: "Introduction"
-teaching: 0
-exercises: 0
+title: "Getting Started with Conda"
+teaching: 15
+exercises: 5
 questions:
-- "Key question (FIXME)"
+- "What is Conda?"
+- "Why should I use Conda as part of my research workflow?"
+- "How do I install Conda?"
+- "How do I make sure Conda is updated to the most recent version?"
 objectives:
 - "First learning objective. (FIXME)"
 keypoints:
