@@ -11,7 +11,8 @@ objectives:
 - "Deactivate the current environment."
 - "Delete an entire environment."
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "A Conda environment is a directory that contains a specific collection of Conda packages that you have installed."
+- "Project specific software environments facilitate reproducibility of research workflows."
 ---
 FIXME
 
