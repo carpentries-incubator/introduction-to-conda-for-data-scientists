@@ -12,7 +12,8 @@ objectives:
 - "Export an environment with exact package versions for your OS."
 - "Create an environment based on exact package versions."
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "Sharing Conda environments with other researchers facilitates the reprodicibility of your research."
+- "Use Conda to create an`environment.yml` file that describes your project's software environment."
 ---
 FIXME
 
