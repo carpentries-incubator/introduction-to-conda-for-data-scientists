@@ -8,7 +8,10 @@ questions:
 - "How do I install Conda?"
 - "How do I make sure Conda is updated to the most recent version?"
 objectives:
-- "First learning objective. (FIXME)"
+- "Explain why you should use Conda as part of your research workflow?"
+- "Install Conda for your OS."
+- "Verify your Conda installation."
+- "Update the base Conda installation to the most recent version."
 keypoints:
 - "First key point. Brief Answer to questions. (FIXME)"
 ---
