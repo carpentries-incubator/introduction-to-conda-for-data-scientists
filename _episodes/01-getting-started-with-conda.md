@@ -4,8 +4,8 @@ teaching: 15
 exercises: 5
 questions:
 - "Why should I use a package and environment management system as part of my research workflow?"
+- "Why Conda and not pip+virtualenv or Pipenv?"
 - "What is Conda?"
-- "Why Conda and not pip (or something else)?"
 objectives:
 - "Explain why you should use Conda as part of your research workflow?"
 - "Install Conda for your OS."
@@ -15,7 +15,27 @@ keypoints:
 - "Conda is a platform agnostic, open source package and environment management system."
 - "Using a package and enviroment management tool, such as Conda, facilitates reproducibility of research workflows."
 ---
+
 ## Why should I use a package and environment managment system?
+
+Package management...
+
+An environment managment system solve a number of problems commonly encountered by (data) scientists.
+
+* An application you need for a research project requires different versions of Python or different versions of various Python packages from the versions that you are currently using.
+* An application you developed as part of a previous research project worked fine on your system when you submitted the project for review but now no longer works on your current system.
+* You need to make sure that the code for a joint research project works on your collaborator's computer.
+* You need to make sure that a machine learning application that you are developing on your local machine works properly on your remote cluster.
+
+As we will see an environment management system that enables you to set up a new environment 
+containing the Python version and the versions of packages that are completely compatible for each 
+research project is a good solution to these problems.
+
+## Why Conda and not pip+virtualenv or Pipenv?
+
+### Conda and pip can be used together
+
+### Performance
 
 ## What is Conda?
 
@@ -23,10 +43,10 @@ From the [official Conda documentation](https://conda.io/projects/conda/en/lates
 Conda is an open source package and environment management system that runs on Windows, macOS and 
 Linux. 
 * Conda can quickly install, run, and update packages and their dependencies.
-* Conda can create, save, load, and switche between project specific software environments on your local computer. 
+* Conda can create, save, load, and switch between project specific software environments on your local computer. 
 * Although Conda was created for Python programs, Conda can package and distribute software for any language such as R, Ruby, Lua, Scala, Java, JavaScript, C/ C++, FORTRAN.
 
-Conda as a package manager that helps you find and install packages. If you need a package that requires a different version of Python, you do not need to switch to a different environment manager, because conda is also an environment manager. With just a few commands, you can set up a totally separate environment to run that different version of Python, while continuing to run your usual version of Python in your normal environment. 
+Conda as a *package manager* helps you find and install packages. If you need a package that requires a different version of Python, you do not need to switch to a different environment manager, because Conda is also an *environment manager*. With just a few commands, you can set up a totally separate environment to run that different version of Python, while continuing to run your usual version of Python in your normal environment. 
 
 ## Installing Conda
 
@@ -47,6 +67,9 @@ $ conda init
 ~~~
 {: .language-bash}
 
+**After running `conda init` you will need to close and restart your shell for changes to take 
+effect.**
+
 If Conda has not been installed on your machine, then install the Python 3 version of 
 [Miniconda](https://docs.conda.io/en/latest/miniconda.html) from Anaconda for your OS. Miniconda 
 is mini version of the [Anaconda Python distribution](https://www.anaconda.com/distribution/) 
@@ -58,6 +81,18 @@ $ conda update -y conda
 $ conda init
 ~~~
 {: .language-bash}
+
+**Again, after running `conda init` you will need to close and restart your shell for changes to take 
+effect.**
+
+> ## Initializing Conda
+>
+> Conda 4.4 introduced new scripts that make activation behavior uniform across operating systems. 
+> Where previously you once had `source activate envname` on unix, and just `activate envname` on 
+> windows, Conda 4.4 allowed `conda activate envname`.  Setting up your shell to use this new 
+> feature was tricky. Conda 4.6 added extensive initialization support so that more shells can use 
+> the new `conda activate` command. For more information, read the output from `conda init –-help`. 
+{: .callout}
 
 > ## Verifying your Conda installation
 >
@@ -148,13 +183,6 @@ $ conda init
 > >
 > {: .solution}
 {: .challenge}
-
-## Why Conda and not pip (or something else)?
-
-### Conda and pip can be used together
-
-### Performance
-
 
 {% include links.md %}
 
