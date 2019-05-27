@@ -31,7 +31,25 @@ As we will see an environment management system that enables you to set up a new
 containing the Python version and the versions of packages that are completely compatible for each 
 research project is a good solution to these problems.
 
+Environment management systems help resolve dependency issues by allowing you to use different versions of a package for different projects.
+
+Make your project self-contained and reproducible by capturing all package dependencies in a single requirements file.
+
+Install packages on a host on which you do not have admin privileges.
+
+Keep your global site-packages/ directory tidy by removing the need to install packages system-wide which you might only need for one project.
+
+A virtual environment is a Python tool for dependency management and project isolation. They allow Python site packages (third party libraries) to be installed locally in an isolated directory for a particular project, as opposed to being installed globally (i.e. as part of a system-wide Python).
+
+[guide to Python virtual environments](https://towardsdatascience.com/virtual-environments-104c62d48c54)
+
+Conda environments are like cousins of Python’s virtual environments. Both serve to help manage dependencies and isolate projects, and they function in a similar way, with one key distinction: conda environments are language agnostic. That is, they support languages other than Python.
+
 ## Why Conda and not pip+virtualenv or Pipenv?
+
+I’m glad you asked. We can’t put it any better than this: `pip` is a package manager for Python. `venv` is an environment manager for Python. `Pipenv` is a package and environment manager for Python. `conda` is both a package and environment manager and is language agnostic.
+
+[Pipenv](https://docs.pipenv.org/en/latest/)
 
 ### Conda and pip can be used together
 
