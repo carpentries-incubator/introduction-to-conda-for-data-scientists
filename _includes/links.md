@@ -4,6 +4,8 @@
 [coc-reporting]: https://docs.carpentries.org/topic_folders/policies/incident-reporting.html
 [coc]: https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html
 [concept-maps]: https://carpentries.github.io/instructor-training/05-memory/
+[conda-docs]: https://conda.io/projects/conda/en/latest/user-guide/configuration/index.html
+[conda-env-docs]: https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/environments.html
 [contrib-covenant]: https://contributor-covenant.org/
 [contributing]: {{ repo_url }}/blob/{{ source_branch }}/CONTRIBUTING.md
 [cran-checkpoint]: https://cran.r-project.org/package=checkpoint
