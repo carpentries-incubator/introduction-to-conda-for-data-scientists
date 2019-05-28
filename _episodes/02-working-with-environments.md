@@ -257,32 +257,18 @@ environments in your `~/miniconda3/env/` folder, you’ll have to give each of t
 
 > ## Conda environment sub-directory naming convention
 > 
-> I recommend using `conda-env` as the name of the sub-directory of my project directory that 
-> contains my Conda environment as it clearly indicates that I am using Conda as my package and 
-> environment management tool (as opposed to `pip`+`venv` or `Pipenv`, etc). Whatever you choose 
-> as a naming convention please be consistent! 
+> In order to be consistent with the convention used by tools such as `venv` and `Pipenv`, I 
+> recommend using `env` as the name of the sub-directory of your project directory that contains 
+> your Conda environment. A benefit of maintaining the convention is that your environment 
+> sub-directory will be automatically ignored by the default Python `.gitignore` file used on 
+> [GitHub](https://github.com/github/gitignore/blob/master/Python.gitignore). 
 >
-> Using the same name for all of your Conda environments allows you to use the same `activate` 
-> command as well.
+> Whatever naming convention you adopt be consistent! Using the same name for all of your Conda 
+> environments allows you to use the same `activate` command as well.
 > 
 > ~~~ 
 > $ cd my-project/
-> $ conda activate conda-env
-> ~~~
-> {: .language-bash}
-{: .callout}
-
-> ## Don't version control your project's `conda-env` sub-directory
-> 
-> Be sure to avoid adding your `conda-env` directory to your version control system. Version 
-> controlling the `conda-env` folder is unnecessary and will *dramatically* increase the size of 
-> your repository.
->
-> If you are using the Git version control system, then the following command will append the 
-> `conda-env` directory to your `.gitignore` file.
->
-> ~~~
-> $ echo conda-env/ >> .gitignore
+> $ conda activate ./env
 > ~~~
 > {: .language-bash}
 {: .callout}
@@ -298,13 +284,13 @@ environments in your `~/miniconda3/env/` folder, you’ll have to give each of t
 > {: .language-bash}
 >
 > Next, create a new environment inside the newly created `project-dir` in a sub-directory called 
-> `conda-env` an install Python 3.6, version 0.35.5 of JupyterLab, version 3.0.3 of Matplotlib, 
-> version 0.24.2 of Pandas, and version 0.21.1 of Scikit-Learn.
+> `env` an install Python 3.6, version 0.35.5 of JupyterLab, version 3.0.3 of Matplotlib, version 
+> 0.24.2 of Pandas, and version 0.21.1 of Scikit-Learn.
 > 
 > > ## Solution
 > > 
 > > ~~~
-> > project-dir $ conda create --prefix ./conda-env \
+> > project-dir $ conda create --prefix ./env \
 > > > python=3.6 \
 > > > jupyterlab=0.35.5 \
 > > > matplotlib=3.0.3 \
@@ -316,7 +302,7 @@ environments in your `~/miniconda3/env/` folder, you’ll have to give each of t
 > {: .solution}
 {: .challenge}
 
-Placing Conda environments outside of the default `~/miniconda3/env/` folder comes with a couple  
+Placing Conda environments outside of the default `~/miniconda3/envs/` folder comes with a couple  
 of minor drawbacks. First `conda` can no longer find your environment with the `--name` flag. 
 Instead, you’ll generally need to pass the `--prefix` flag along with the environment’s full path 
 to find the environment.
@@ -332,7 +318,7 @@ to find the environment.
 > > instead of the environment name when using the `conda activate` command as follows.
 > > 
 > > ~~~
-> > $ conda activate ./conda-env
+> > $ conda activate ./env
 > > ~~~
 > > {: .language-bash}
 > >
@@ -347,13 +333,13 @@ path rather than the environment's name. After activating an environment using i
 prompt will look similar to the following.
 
 ~~~
-(/absolute/path/to/conda-env) $
+(/absolute/path/to/env) $
 ~~~
 
 As you can imagine, this can quickly get out of hand.
 
 ~~~
-(/Users/USER_NAME/research/data-science/PROJECT_NAME/conda-env) $
+(/Users/USER_NAME/research/data-science/PROJECT_NAME/env) $
 ~~~
 
 If (like me!) you find this long prefix to your shell prompt annoying, then there is a quick fix: 
@@ -370,7 +356,7 @@ you do not. Now your command prompt will display the active environment’s name
  
 ~~~
 $ cd project-directory
-$ conda activate ./conda-env
+$ conda activate ./env
 (conda-env) project-directory $
 ~~~
 {: .language-bash}
