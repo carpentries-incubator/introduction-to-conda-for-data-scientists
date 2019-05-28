@@ -4,8 +4,8 @@ teaching: 15
 exercises: 5
 questions:
 - "Why should I use a package and environment management system as part of my research workflow?"
-- "Why Conda and not pip+virtualenv or Pipenv?"
 - "What is Conda?"
+- "Why Conda and not pip+virtualenv or Pipenv?"
 objectives:
 - "Explain why you should use Conda as part of your research workflow?"
 - "Install Conda for your OS."
@@ -18,26 +18,37 @@ keypoints:
 
 ## Why should I use a package and environment managment system?
 
+Installing software is hard. Installing scientific software (including all required dependencies of said software!) is often even more challenging. A good package management system greatly simplifies the process of installing software by automatically identifying and installing compatible versions of desired software and all required dependencies. Most package managers will also handle the process of updating software as more recent versions become available.
+
+If you use some flavor of Linux, then you are probably familiar with the package manager for your Linux distribution (i.e., `apt` on Ubuntu, `yum` on CentOS); if you are a Mac OS user then you might be familiar with the [Home Brew Project](https://brew.sh/) which brings a Linux-like package management system to Mac OS X; if you are a Windows OS user, then you may not be terribly familiar with package managers as there isn't really a standard package manager for Windows (although there is the [Chocolatey Project](https://chocolatey.org/)).  These tools are great but actually solve a more general problem than we face as (data) scientists.
+
+The Python and R communities are awash with third-party packages that provide additional functionality not found in the standard libraries of these programming languages. However the ever-growing number of third party packages places a great straing on users: installing these these third-party packages and required dependencies is hard. 
+
+The R community has standardized The `pip` package is probably the most widely used package management tool in Python.
+
 Package management...
 
-An environment managment system solve a number of problems commonly encountered by (data) scientists.
+An environment managment system solves a number of problems commonly encountered by (data) 
+scientists.
 
-* An application you need for a research project requires different versions of Python or different versions of various Python packages from the versions that you are currently using.
-* An application you developed as part of a previous research project worked fine on your system when you submitted the project for review but now no longer works on your current system.
-* You need to make sure that the code for a joint research project works on your collaborator's computer.
-* You need to make sure that a machine learning application that you are developing on your local machine works properly on your remote cluster.
+*   An application you need for a research project requires different versions of Python (R) or 
+    different versions of various Python (R) packages from the versions that you are currently using.
+*   An application you developed as part of a previous research project that worked fine on your 
+    system six months ago now no longer works.
+*   Code that have written for a joint research project works on your machine but not on your 
+    collaborators' machines.
+*   A machine learning application that you are developing on your local machine doesn't provide 
+    the same results when run on your remote cluster.
 
-As we will see an environment management system that enables you to set up a new environment 
-containing the Python version and the versions of packages that are completely compatible for each 
-research project is a good solution to these problems.
+As we will see, an environment management system that enables you to set up a new, project specific 
+environment containing specific Python (R) versions as well as the versions of packages and 
+required dependencies that are all mutually compatible is a good solution to these problems.
 
-Environment management systems help resolve dependency issues by allowing you to use different versions of a package for different projects.
-
-Make your project self-contained and reproducible by capturing all package dependencies in a single requirements file.
-
-Install packages on a host on which you do not have admin privileges.
-
-Keep your global site-packages/ directory tidy by removing the need to install packages system-wide which you might only need for one project.
+*   Environment management systems help resolve dependency issues by allowing you to use different 
+    versions of a package for different projects.
+*   Make your projects self-contained and reproducible by capturing all package dependencies in a 
+    single requirements file.
+*   Often allow you to install packages on a host on which you do not have admin privileges.
 
 A virtual environment is a Python tool for dependency management and project isolation. They allow Python site packages (third party libraries) to be installed locally in an isolated directory for a particular project, as opposed to being installed globally (i.e. as part of a system-wide Python).
 
@@ -45,26 +56,43 @@ A virtual environment is a Python tool for dependency management and project iso
 
 Conda environments are like cousins of Python’s virtual environments. Both serve to help manage dependencies and isolate projects, and they function in a similar way, with one key distinction: conda environments are language agnostic. That is, they support languages other than Python.
 
-## Why Conda and not pip+virtualenv or Pipenv?
-
-I’m glad you asked. We can’t put it any better than this: `pip` is a package manager for Python. `venv` is an environment manager for Python. `Pipenv` is a package and environment manager for Python. `conda` is both a package and environment manager and is language agnostic.
-
-[Pipenv](https://docs.pipenv.org/en/latest/)
-
-### Conda and pip can be used together
-
-### Performance
-
 ## What is Conda?
 
 From the [official Conda documentation](https://conda.io/projects/conda/en/latest/index.html). 
-Conda is an open source package and environment management system that runs on Windows, macOS and 
-Linux. 
-* Conda can quickly install, run, and update packages and their dependencies.
-* Conda can create, save, load, and switch between project specific software environments on your local computer. 
-* Although Conda was created for Python programs, Conda can package and distribute software for any language such as R, Ruby, Lua, Scala, Java, JavaScript, C/ C++, FORTRAN.
+Conda is an open source package and environment management system that runs on Windows, Mac OS and 
+Linux.
 
-Conda as a *package manager* helps you find and install packages. If you need a package that requires a different version of Python, you do not need to switch to a different environment manager, because Conda is also an *environment manager*. With just a few commands, you can set up a totally separate environment to run that different version of Python, while continuing to run your usual version of Python in your normal environment. 
+*   Conda can quickly install, run, and update packages and their dependencies.
+*   Conda can create, save, load, and switch between project specific software environments on 
+    your local computer. 
+*   Although Conda was created for Python programs, Conda can package and distribute software for 
+    any language such as R, Ruby, Lua, Scala, Java, JavaScript, C/ C++, FORTRAN.
+
+Conda as a *package manager* helps you find and install packages. If you need a package that 
+requires a different version of Python, you do not need to switch to a different environment 
+manager, because Conda is also an *environment manager*. With just a few commands, you can set up 
+a totally separate environment to run that different version of Python, while continuing to run 
+your usual version of Python in your normal environment. 
+
+## Why Conda and not pip + virtualenv or Pipenv?
+
+Conda solves both *package management* and *environment management* problems discussed above and 
+Conda is language agnostic (although Conda does targets users in the Python and R (data) science 
+communities). Other open source tools solve either package management or environment management 
+problems, or target only Python or R users. 
+
+* [`pip`](https://pip.pypa.io/en/stable/) is a package manager for Python only.
+* [`venv`](https://docs.python.org/3/library/venv.html) is an environment manager for Python only.
+* [`Pipenv`](https://docs.pipenv.org/en/latest/) is a package and environment manager for Python packages only and targets general Python community.
+* [`Packrat`](https://rstudio.github.io/packrat/) is a pakcage and environment mangager for R packages only.
+
+### Conda and pip can be used together
+
+Conda and pip can also be used together: one can use `conda` to install a specific verion of `pip` and then use that version of `pip` to install third-party Python packages not directly available via `conda`. You will see some examples of how to do this in future episodes.
+
+### Performance
+
+When installed using `conda`, most of the core (data) science Python packages, inlcuding NumPy, SciPy, Scikit-learn, Tensorflow, et al, are compiled and linked against Intel's Math Kernel Libraries (MKL) which means that these core libraries will be significanly more performant than the exact same version of those libraries that are installed via `pip` and compiled and linked against against less performant core math libraries.  For detailed benchmarks of the performance of TensorFlow installed vis `conda` vs TensorFlow installed via `pip` see this excellent [blog post](https://towardsdatascience.com/stop-installing-tensorflow-using-pip-for-performance-sake-5854f9d9eb0c) on *Medium*.
 
 ## Installing Conda
 
