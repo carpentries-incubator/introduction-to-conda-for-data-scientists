@@ -19,6 +19,9 @@ keypoints:
 
 ## Why should I use a package and environment managment system?
 
+Want to encourage users to adopt project-specific workflows.
+* Instead of installing software system-wide, install software for each project separately.
+
 ### Package managment
 
 Installing software is hard. Installing scientific software (including all required dependencies of said software!) is often even more challenging. A good package management system greatly simplifies the process of installing software by 
