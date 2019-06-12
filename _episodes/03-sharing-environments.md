@@ -216,7 +216,12 @@ dependencies:
   - scikit-learn
 ~~~
 
-This `environment.yml` file would create an environment called `machine-learning-env` with the most current and mutually compatible versions of the listed packages (including all required dependecies). The newly created environment would be installed inside the `~/miniconda3/envs/` directory. Alternatively, if we intended this environment file to be used to create an environment inside a sub-directory call `./env` of the project directory we could define the enviroment file as follows.
+This `environment.yml` file would create an environment called `machine-learning-env` with the 
+most current and mutually compatible versions of the listed packages (including all required 
+dependencies). The newly created environment would be installed inside the `~/miniconda3/envs/` 
+directory. Alternatively, if we intended this environment file to be used to create an environment 
+inside a sub-directory call `./env` of the project directory we could define the environment file 
+as follows.
 
 ~~~
 name: null

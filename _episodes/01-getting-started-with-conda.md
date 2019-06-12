@@ -12,28 +12,37 @@ objectives:
 - "Verify your Conda installation."
 - "Update the base Conda installation to the most recent version."
 keypoints:
-- "Using a package and enviroment management tool, such as Conda, facilitates reproducibility of research workflows."
-- "Conda is a platform agnostic, open source package and environment management system."
-- "Other open source tools solve either package or environment management problems, or target only a particular language."
+-   "Using a package and environment management tool, such as Conda, facilitates reproducibility of 
+    research workflows."
+-   "Conda is a platform agnostic, open source package and environment management system."
+-   "Other open source tools solve either package or environment management problems, or target only 
+    a particular language."
 ---
 
 ## Why should I use a package and environment management system?
 
-Installing software is hard. Installing scientific software (including all required dependencies of said software!) is often even more challenging. In order to minimize the burden of installing and updating software (data) scientists often install software pacakges that they need for their various projects system-wide. 
+Installing software is hard. Installing scientific software (including all required dependencies 
+of said software!) is often even more challenging. In order to minimize the burden of installing 
+and updating software (data) scientists often install software packages that they need for their 
+various projects system-wide. 
 
 Installing software system-wide has a number of drawbacks:
 
-* can be difficult to figure out what software is required for any particular research project
-* often impossible to install different versions of the same software package at the same time
-* updating software required for one project can often "break" the sofware installed for another project
+*   can be difficult to figure out what software is required for any particular research project
+*   often impossible to install different versions of the same software package at the same time
+*   updating software required for one project can often "break" the software installed for another 
+    project
 
-Put differently, installing software system-wide creates complex dependencies between your reearch projects that shouldn't really exist!
+Put differently, installing software system-wide creates complex dependencies between your reearch 
+projects that shouldn't really exist!
 
-Rather than installing software system-wide, wouldn't it be great if we could install software separately for each research project?
+Rather than installing software system-wide, wouldn't it be great if we could install software 
+separately for each research project?
 
 > ## Discussion
 > 
-> What are some of the _potential_ benefits from installing software separately for each project? What are some of the _potential_ costs?
+> What are some of the _potential_ benefits from installing software separately for each project? 
+> What are some of the _potential_ costs?
 > 
 > > ## Solution
 > > 
@@ -51,9 +60,20 @@ A good package management system greatly simplifies the process of installing so
 1.  identifying and installing compatible versions of software and all required dependencies. 
 2.  handling the process of updating software as more recent versions become available.
 
-If you use some flavor of Linux, then you are probably familiar with the package manager for your Linux distribution (i.e., `apt` on Ubuntu, `yum` on CentOS); if you are a Mac OS user then you might be familiar with the [Home Brew Project](https://brew.sh/) which brings a Linux-like package management system to Mac OS; if you are a Windows OS user, then you may not be terribly familiar with package managers as there isn't really a standard package manager for Windows (although there is the [Chocolatey Project](https://chocolatey.org/)).  
+If you use some flavor of Linux, then you are probably familiar with the package manager for your 
+Linux distribution (i.e., `apt` on Ubuntu, `yum` on CentOS); if you are a Mac OS user then you 
+might be familiar with the [Home Brew Project](https://brew.sh/) which brings a Linux-like package 
+management system to Mac OS; if you are a Windows OS user, then you may not be terribly familiar 
+with package managers as there isn't really a standard package manager for Windows (although there 
+is the [Chocolatey Project](https://chocolatey.org/)).  
 
-Operating system package management tools are great but these tools actually solve a more general problem than you often face as a (data) scientist.  As a (data) scientist you typically use one or two core scripting languages (i.e.,  Python, R, SQL). Each scripting language has multiple versions that can potentially be installed and each scripting lanaguage will also have a large number of third-party packages (and additional dependencies) that will need to be installed. The exact version of your core scripting language(s) and additional, third-party packages will also probably change from project to project.
+Operating system package management tools are great but these tools actually solve a more general 
+problem than you often face as a (data) scientist.  As a (data) scientist you typically use one or 
+two core scripting languages (i.e.,  Python, R, SQL). Each scripting language has multiple 
+versions that can potentially be installed and each scripting language will also have a large 
+number of third-party packages (and additional dependencies) that will need to be installed. The 
+exact version of your core scripting language(s) and additional, third-party packages will also 
+probably change from project to project.
 
 Both the Python and R communities have their own "default" package management systems.
 
@@ -129,14 +149,16 @@ users.
     (included as part of the standard library).
 *   [Pipenv](https://docs.pipenv.org/en/latest/) is a package and environment manager for Python 
     packages only and targets general Python community.
-*   [Packrat](https://rstudio.github.io/packrat/) is a package and environment mangager for R 
+*   [Packrat](https://rstudio.github.io/packrat/) is a package and environment managager for R 
     packages only.
 
 **Any R users who feel that I have missed an important R specific tool please let me know!**
 
 ### Conda and pip can be used together (if necessary!)
 
-Conda and pip can also be used together: one can use `conda` to install a specific verion of `pip` and then use that version of `pip` to install third-party Python packages not directly available via `conda`. You will see some examples of how to do this in future episodes.
+Conda and pip can also be used together: one can use `conda` to install a specific version of 
+`pip` and then use that version of `pip` to install third-party Python packages not directly 
+available via `conda`. You will see some examples of how to do this in future episodes.
 
 > ## Stop installing TensorFlow using `pip` for performance sake!
 > 
@@ -191,8 +213,8 @@ $ conda init
 ~~~
 {: .language-bash}
 
-**Again, after running `conda init` you will need to close and restart your shell for changes to take 
-effect.**
+**Again, after running `conda init` you will need to close and restart your shell for changes to 
+take effect.**
 
 > ## Initializing Conda
 >
@@ -263,7 +285,7 @@ effect.**
 > > 
 > > In order to verify that you have installed Conda correctly run the `conda update -y conda` 
 > > command. The output of the command will differ depending on whether or not your current 
-> > version of Conda needs to be updated. If you already have the most upto date version, then the 
+> > version of Conda needs to be updated. If you already have the most up to date version, then the 
 > > output of the command should looks as follows.
 > > 
 > > ~~~

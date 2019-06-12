@@ -126,7 +126,7 @@ because it is a required dependency of at least one of the listed packages.
 >
 > Conda insures that there are no conflicts between versions of packages and their required 
 > dependencies at install time. Installing *all* the packages that you want to include in a 
-> particular `conda` environment at the same time eliminates hard to debug depedency conflicts. 
+> particular `conda` environment at the same time eliminates hard to debug dependency conflicts. 
 {: .callout}
 
 ## Activating an existing environment
@@ -192,7 +192,7 @@ $
 > To simply return to the `base` Conda environment, it's better to call `conda activate` with no 
 > environment specified, rather than to use `deactivate`. If you run `conda deactivate` from your 
 > `base` environment, you may lose the ability to run `conda` commands at all. **Don't worry if 
-> you encounter this undesireable state! Just start a new shell.**
+> you encounter this undesirable state! Just start a new shell.**
 {: .callout}
 
 > ## Deactivate the active environment

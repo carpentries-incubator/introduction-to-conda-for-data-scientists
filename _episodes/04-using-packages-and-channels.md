@@ -31,7 +31,7 @@ identical across platforms and operating systems.
 
 All conda packages have a specific sub-directory structure inside the tarball file. There is a 
 `bin` directory that contains any binaries for the package; a `lib` directory containing the 
-relevant library files (i.e., the `.py` files); and an `info` directoy containing package metadata. 
+relevant library files (i.e., the `.py` files); and an `info` directory containing package metadata. 
 For a more details of the conda package specification, including discussions of the various 
 metadata files, see the [docs][conda-pkg-spec-docs].
 
