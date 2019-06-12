@@ -29,10 +29,11 @@ and I can use environment files to re-create Conda environments on other compute
 remote clusters. Sounds like environment files are really useful. How exactly do I create an 
 environment file for an existing Conda environment?
 
-> ## YAML Ain't Markup Language (YAML)
-> 
-> TODO
-{: .callout}
+### Exporting an existing environment to a YAML file
+
+In order to make sure that your environment is truly shareable, you need to make sure that 
+that the contents of your environment are described in such a way that the resulting 
+`enviroment.yml` file can be used to re-create your environment on Linux, Mac OS, and Windows. 
 
 > ## Default `environment.yml` file
 > 
@@ -42,22 +43,118 @@ environment file for an existing Conda environment?
 > file with that name can not be found.
 {: .callout}
 
-### Exporting an existing environment to a YAML file
-
-In order to make sure that your environment is truly shareable, you need to make sure that 
-that the contents of your environment are described in such a way that the resulting 
-`enviroment.yml` file can be used to re-create your environment on Linux, Mac OS, and Windows. The 
-`conda` command to accomplish this is the following.
+The `conda` command to export an existing environment is the following.
 
 ~~~
 $ conda env export --name explicit-conda-env
 ~~~
 {: .language-bash}
 
-If you run this command, you will see the resulting YAML formatted representation of your Conda 
-environment streamed to the terminal. You *could* copy and paste the output into a text file and 
-save it as `environment.yml` but a *better* approach is to re-direct the output of the 
-`conda env export` sub-command directly into an `environment.yml` file!
+When you run this command, you will see the resulting YAML formatted representation of your Conda 
+environment streamed to the terminal. Recall that we only listed five packages when we 
+originally created `explicit-conda-env` yet from the output of the `conda env export` command 
+we see that these five packages result in an environment with over 80 dependencies!
+
+~~~
+name: explicit-conda-env
+channels:
+  - defaults
+dependencies:
+  - appnope=0.1.0=py36hf537a9a_0
+  - attrs=19.1.0=py36_1
+  - backcall=0.1.0=py36_0
+  - blas=1.0=mkl
+  - bleach=3.1.0=py36_0
+  - ca-certificates=2019.5.15=0
+  - certifi=2019.3.9=py36_0
+  - cycler=0.10.0=py36hfc81398_0
+  - decorator=4.4.0=py36_1
+  - defusedxml=0.6.0=py_0
+  - entrypoints=0.3=py36_0
+  - freetype=2.9.1=hb4e5f40_0
+  - intel-openmp=2019.4=233
+  - ipykernel=5.1.1=py36h39e3cac_0
+  - ipython=7.5.0=py36h39e3cac_0
+  - ipython_genutils=0.2.0=py36h241746c_0
+  - jedi=0.13.3=py36_0
+  - jinja2=2.10.1=py36_0
+  - joblib=0.13.2=py36_0
+  - jsonschema=3.0.1=py36_0
+  - jupyter_client=5.2.4=py36_0
+  - jupyter_core=4.4.0=py36_0
+  - jupyterlab=0.35.5=py36hf63ae98_0
+  - jupyterlab_server=0.2.0=py36_0
+  - kiwisolver=1.1.0=py36h0a44026_0
+  - libcxx=4.0.1=hcfea43d_1
+  - libcxxabi=4.0.1=hcfea43d_1
+  - libedit=3.1.20181209=hb402a30_0
+  - libffi=3.2.1=h475c297_4
+  - libgfortran=3.0.1=h93005f0_2
+  - libpng=1.6.37=ha441bb4_0
+  - libsodium=1.0.16=h3efe00b_0
+  - llvm-openmp=4.0.1=hcfea43d_1
+  - markupsafe=1.1.1=py36h1de35cc_0
+  - matplotlib=3.0.3=py36h54f8f79_0
+  - mistune=0.8.4=py36h1de35cc_0
+  - mkl=2019.4=233
+  - mkl_fft=1.0.12=py36h5e564d8_0
+  - mkl_random=1.0.2=py36h27c97d8_0
+  - nbconvert=5.5.0=py_0
+  - nbformat=4.4.0=py36h827af21_0
+  - ncurses=6.1=h0a44026_1
+  - notebook=5.7.8=py36_0
+  - numpy=1.16.4=py36hacdab7b_0
+  - numpy-base=1.16.4=py36h6575580_0
+  - openssl=1.1.1c=h1de35cc_1
+  - pandas=0.24.2=py36h0a44026_0
+  - pandoc=2.2.3.2=0
+  - pandocfilters=1.4.2=py36_1
+  - parso=0.4.0=py_0
+  - pexpect=4.7.0=py36_0
+  - pickleshare=0.7.5=py36_0
+  - pip=19.1.1=py36_0
+  - prometheus_client=0.6.0=py36_0
+  - prompt_toolkit=2.0.9=py36_0
+  - ptyprocess=0.6.0=py36_0
+  - pygments=2.4.2=py_0
+  - pyparsing=2.4.0=py_0
+  - pyrsistent=0.14.11=py36h1de35cc_0
+  - python=3.6.8=haf84260_0
+  - python-dateutil=2.8.0=py36_0
+  - pytz=2019.1=py_0
+  - pyzmq=18.0.0=py36h0a44026_0
+  - readline=7.0=h1de35cc_5
+  - scikit-learn=0.21.1=py36h27c97d8_0
+  - scipy=1.2.1=py36h1410ff5_0
+  - send2trash=1.5.0=py36_0
+  - setuptools=41.0.1=py36_0
+  - six=1.12.0=py36_0
+  - sqlite=3.28.0=ha441bb4_0
+  - terminado=0.8.2=py36_0
+  - testpath=0.4.2=py36_0
+  - tk=8.6.8=ha441bb4_0
+  - tornado=6.0.2=py36h1de35cc_0
+  - traitlets=4.3.2=py36h65bd3ce_0
+  - wcwidth=0.1.7=py36h8c6ec74_0
+  - webencodings=0.5.1=py36_1
+  - wheel=0.33.4=py36_0
+  - xz=5.2.4=h1de35cc_4
+  - zeromq=4.3.1=h0a44026_3
+  - zlib=1.2.11=h1de35cc_3
+prefix: /Users/pughdr/miniconda3/envs/explicit-conda-env
+~~~
+{: .language-bash}
+
+> ## YAML Ain't Markup Language (YAML)
+> 
+> YAML ("YAML Ain't Markup Language") is a human-readable data-serialization language that is 
+> commonly used for configuration files that uses Python-style indentation to indicate nesting. 
+> 
+{: .callout}
+
+Now you *could* copy and paste the output into a text file and save it as `environment.yml` but a 
+*better* approach is to re-direct the output of the `conda env export` sub-command directly into 
+an `environment.yml` file!
 
 ~~~
 $ conda env export --name explicit-conda-env > environment.yml
