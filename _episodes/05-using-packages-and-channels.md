@@ -9,8 +9,8 @@ questions:
 objectives:
 - "Install a package from a specific channel."
 keypoints:
-- "A Conda channel is a URL to a directory containing a Conda package(s)."
 - "A package is a tarball containing system-level libraries, Python or other modules, executable programs and other components, and associated metadata."
+- "A Conda channel is a URL to a directory containing a Conda package(s)."
 - "Explicitly including the channels (and their priority!) in a project's environment file is necessary for another researcher to completely re-create that project's software environment." 
 ---
 
