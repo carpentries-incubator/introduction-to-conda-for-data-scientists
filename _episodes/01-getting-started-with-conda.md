@@ -1,7 +1,7 @@
 ---
 title: "Getting Started with Conda"
 teaching: 15
-exercises: 5
+exercises: 10
 questions:
 - "Why should I use a package and environment management system as part of my research workflow?"
 - "What is Conda?"
@@ -17,14 +17,36 @@ keypoints:
 - "Other open source tools solve either package or environment management problems, or target only a particular language."
 ---
 
-## Why should I use a package and environment managment system?
+## Why should I use a package and environment management system?
 
-Want to encourage users to adopt project-specific workflows.
-* Instead of installing software system-wide, install software for each project separately.
+Installing software is hard. Installing scientific software (including all required dependencies of said software!) is often even more challenging. In order to minimize the burden of installing and updating software (data) scientists often install software pacakges that they need for their various projects system-wide. 
 
-### Package managment
+Installing software system-wide has a number of drawbacks:
 
-Installing software is hard. Installing scientific software (including all required dependencies of said software!) is often even more challenging. A good package management system greatly simplifies the process of installing software by 
+* can be difficult to figure out what software is required for any particular research project
+* often impossible to install different versions of the same software package at the same time
+* updating software required for one project can often "break" the sofware installed for another project
+
+Put differently, installing software system-wide creates complex dependencies between your reearch projects that shouldn't really exist!
+
+Rather than installing software system-wide, wouldn't it be great if we could install software separately for each research project?
+
+> ## Discussion
+> 
+> What are some of the _potential_ benefits from installing software separately for each project? What are some of the _potential_ costs?
+> 
+> > ## Solution
+> > 
+> > Notice that many of the potential benefits from installing software separately for each 
+> > project require the ability to isolate the projects' software environments from one another. 
+> > Also, once you have figured out how to isolate project-specific software environments, you 
+> > will still need to have some way to manage software packages appropriately.
+> {: .solution} 
+{: .challenge}
+
+### Package management
+
+A good package management system greatly simplifies the process of installing software by 
 
 1.  identifying and installing compatible versions of software and all required dependencies. 
 2.  handling the process of updating software as more recent versions become available.
@@ -41,7 +63,7 @@ Both the Python and R communities have their own "default" package management sy
 
 ### Environment management
 
-An environment managment system solves a number of problems commonly encountered by (data) 
+An environment management system solves a number of problems commonly encountered by (data) 
 scientists.
 
 *   An application you need for a research project requires different versions of Python (R) or 
@@ -81,7 +103,18 @@ manager, because Conda is also an *environment manager*. With just a few command
 a totally separate environment to run that different version of Python, while continuing to run 
 your usual version of Python in your normal environment. 
 
-## Why Conda and not pip + virtualenv or Pipenv?
+<p align="center">
+   <img alt="Conda vs. Miniconda vs. Anaconda" src="../fig/miniconda_vs_anaconda.png" width="500">
+</p>
+
+> ## Conda vs. Miniconda vs. Anaconda
+> 
+> Users are often confused about the differences between Conda, Miniconda, and Anaconda. Miniconda 
+> (which we will install below!) combines Conda with Python 3 and a small number of core packages; 
+> Anaconda includes Miniconda as well as over 150 of the most widely used Python packages. 
+{: .callout}
+
+## Why Conda and not `pip` + `virtualenv` or `Pipenv`?
 
 ### Conda solves both *package management* and *environment management* problems
 
@@ -90,27 +123,44 @@ Conda does targets users in the Python and R (data) science communities). Other 
 solve either package management or environment management problems, or target only Python or R 
 users. 
 
-* [`pip`](https://pip.pypa.io/en/stable/) is a package manager for Python only.
-* [`venv`](https://docs.python.org/3/library/venv.html) is an environment manager for Python only.
-* [`Pipenv`](https://docs.pipenv.org/en/latest/) is a package and environment manager for Python packages only and targets general Python community.
-* [`Packrat`](https://rstudio.github.io/packrat/) is a package and environment mangager for R packages only.
+*   [pip](https://pip.pypa.io/en/stable/) is a package manager for Python only.
+*   [virtualenv](https://virtualenv.pypa.io/en/latest/) is an environment manager for Python only.
+*   [venv](https://docs.python.org/3/library/venv.html) is an environment manager for Python only 
+    (included as part of the standard library).
+*   [Pipenv](https://docs.pipenv.org/en/latest/) is a package and environment manager for Python 
+    packages only and targets general Python community.
+*   [Packrat](https://rstudio.github.io/packrat/) is a package and environment mangager for R 
+    packages only.
+
+**Any R users who feel that I have missed an important R specific tool please let me know!**
 
 ### Conda and pip can be used together (if necessary!)
 
 Conda and pip can also be used together: one can use `conda` to install a specific verion of `pip` and then use that version of `pip` to install third-party Python packages not directly available via `conda`. You will see some examples of how to do this in future episodes.
 
-### Key (data) science packages installed with `conda` have better performance
-
-When installed using `conda`, most of the core (data) science Python packages, inlcuding NumPy, SciPy, Scikit-learn, Tensorflow, et al, are compiled and linked against Intel's Math Kernel Libraries (MKL) which means that these libraries will be significanly more performant than the exact same version of those libraries that are installed via `pip` and compiled and linked against against less performant core math libraries.  For detailed benchmarks of the performance of TensorFlow installed vis `conda` vs TensorFlow installed via `pip` see this excellent [blog post](https://towardsdatascience.com/stop-installing-tensorflow-using-pip-for-performance-sake-5854f9d9eb0c) on *Medium*.
-
-Now that I have motivated why package and environment management systems like Conda are useful, 
-and hopefully convinced you that Conda is the best package and environment management system 
-available. Let's install Conda!
+> ## Stop installing TensorFlow using `pip` for performance sake!
+> 
+> The performance of the `conda` installation of TensorFlow can give over 8X the speed boost 
+> compared to the `pip` installation. How? The `conda` Tensorflow packages leverage the 
+> [Intel Math Kernel Library for Deep Neural Networks (MKL-DNN)](https://github.com/intel/mkl-dnn) 
+> starting with version 1.9.0. This library gives a huge performance boost.
+>
+> <p align="center">
+>    <img alt="TensorFlow Performance: Conda vs. Pip" src="../fig/tf-perf-conda-vs-pip-install.png" width="400">
+> </p>
+>
+> Not only does the MKL library speed up your Tensorflow packages, it also speeds up other widely 
+> used libraries like NumPy, NumpyExr, SciPy, and Scikit-Learn. For more details see this excellent 
+> [blog post](https://towardsdatascience.com/stop-installing-tensorflow-using-pip-for-performance-sake-5854f9d9eb0c) 
+> on *Medium*.
+{: .callout}
 
 ## Installing Conda
 
-First check whether Conda has already been installed on your local machine by running the 
-following command in a terminal if you are running macOS or Linux.
+Now that I have motivated why package and environment management systems like Conda are useful, 
+and hopefully convinced you that Conda is the best package and environment management system 
+available. Let's install Conda! First check whether Conda has already been installed on your 
+local machine by running the following command in a terminal if you are running macOS or Linux.
 
 ~~~
 $ which conda
