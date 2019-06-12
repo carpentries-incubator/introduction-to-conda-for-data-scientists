@@ -1,7 +1,7 @@
 ---
 title: "Sharing Environments"
-teaching: 15
-exercises: 5
+teaching: 25
+exercises: 10
 questions:
 - "Why should I share my Conda environment with others?"
 - "How do I share my Conda environment with others?"
