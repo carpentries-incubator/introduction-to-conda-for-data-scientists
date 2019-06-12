@@ -28,17 +28,17 @@ keypoints:
 ---
 ## What is a Conda environment
 
-From the official [Conda documentation][conda-env-docs] a Conda environment is a directory that 
-contains a specific collection of Conda packages that you have installed. For example, you may 
-be working on a research project that requires NumPy 1.16 and its dependencies, while another 
-environment associated with an finished project has NumPy 1.12 (because version 1.12 was the most 
-current version of NumPy at the time the project wrapped). If you change one environment, your 
-other environments are not affected. You can easily activate or deactivate environments, which is 
-how you switch between them.
+A [Conda environment][conda-env-docs] is a directory that contains a specific collection of Conda 
+packages that you have installed. For example, you may be working on a research project that 
+requires NumPy 1.16 and its dependencies, while another environment associated with an finished 
+project has NumPy 1.12 (perhaps because version 1.12 was the most current version of NumPy at the 
+time the project finished). If you change one environment, your other environments are not 
+affected. You can easily activate or deactivate environments, which is how you switch between them.
 
 ## Creating environments
 
-To create a new environment for Python development using `conda` you should use the `create` command as follows.
+To create a new environment for Python development using `conda` you should use the `create` 
+command as follows.
 
 ~~~
 $ conda create --name my-first-conda-env python
@@ -302,30 +302,10 @@ environments in your `~/miniconda3/env/` folder, you’ll have to give each of t
 > {: .solution}
 {: .challenge}
 
-Placing Conda environments outside of the default `~/miniconda3/envs/` folder comes with a couple  
-of minor drawbacks. First `conda` can no longer find your environment with the `--name` flag. 
-Instead, you’ll generally need to pass the `--prefix` flag along with the environment’s full path 
-to find the environment.
-
-> ## Activate an existing environment by path
->
-> Activate the environment created in a previous challenge using the path to the 
-> environment directory.
-> 
-> > ## Solution
-> > 
-> > You can activate an existing environment by providing the path the the environment directory 
-> > instead of the environment name when using the `conda activate` command as follows.
-> > 
-> > ~~~
-> > $ conda activate ./env
-> > ~~~
-> > {: .language-bash}
-> >
-> > Note that the provided path can either be absolute or relative. If the path is a relative path 
-> > then it must start with `./` on Unix systems and `.\` on Windows.
-> {: .solution}
-{: .challenge}
+Placing Conda environments outside of the default `~/miniconda3/envs/` folder comes with a couple 
+of minor drawbacks. First, `conda` can no longer find your environment with the `--name` flag; 
+you’ll generally need to pass the `--prefix` flag along with the environment’s full path to 
+find the environment.
 
 Second, an annoying side-effect of specifying an install path when creating your Conda 
 environments is that your command prompt is now prefixed with the active environment’s absolute 
@@ -352,16 +332,36 @@ $ conda config --set env_prompt '({name})'
 {: .language-bash}
  
 This will either edit your `.condarc` file if you already have one or create a `condarc` file if 
-you do not. Now your command prompt will display the active environment’s name.
+you do not. Now your command prompt will display the active environment’s generic name.
  
 ~~~
 $ cd project-directory
 $ conda activate ./env
-(conda-env) project-directory $
+(env) project-directory $
 ~~~
 {: .language-bash}
 
 For more on modifying your `.condarc` file, see [the docs][conda-docs].
+
+> ## Activate an existing environment by path
+>
+> Activate the environment created in a previous challenge using the path to the 
+> environment directory.
+> 
+> > ## Solution
+> > 
+> > You can activate an existing environment by providing the path the the environment directory 
+> > instead of the environment name when using the `conda activate` command as follows.
+> > 
+> > ~~~
+> > $ conda activate ./env
+> > ~~~
+> > {: .language-bash}
+> >
+> > Note that the provided path can either be absolute or relative. If the path is a relative path 
+> > then it must start with `./` on Unix systems and `.\` on Windows.
+> {: .solution}
+{: .challenge}
 
 ## Listing existing environments
 
