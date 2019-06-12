@@ -5,7 +5,11 @@
 [coc]: https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html
 [concept-maps]: https://carpentries.github.io/instructor-training/05-memory/
 [conda-docs]: https://conda.io/projects/conda/en/latest/user-guide/configuration/index.html
+[conda-pkg-docs]: https://conda.io/projects/conda/en/latest/user-guide/concepts/packages.html
+[conda-pkg-spec-docs]: https://conda.io/projects/conda/en/latest/user-guide/concepts/pkg-specs.html
 [conda-env-docs]: https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/environments.html
+[conda-channels-docs]: https://conda.io/projects/conda/en/latest/user-guide/concepts/channels.html#what-is-a-conda-channel
+[conda-install-docs]: https://conda.io/projects/conda/en/latest/user-guide/concepts/installing-with-conda.html
 [contrib-covenant]: https://contributor-covenant.org/
 [contributing]: {{ repo_url }}/blob/{{ source_branch }}/CONTRIBUTING.md
 [cran-checkpoint]: https://cran.r-project.org/package=checkpoint
