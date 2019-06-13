@@ -159,6 +159,123 @@ $ conda install r-tidyverse --prefix ./env
 > checkout the project's [GitHub](https://bioconda.github.io/) page.
 {: .callout}
 
+## My package isn't available on the `defaults` channel! What should I do?
+ 
+It may very well be the case that packages (or often more recent versions of packages!) that you need to 
+install for your project are not available on the `defaults` channel.  In this case you should try the 
+following.
+
+1.  `conda-forge`: the `conda-forge` channel contains a large number of community curated conda 
+    packages. Typically the most recent versions of packages that are generally available via the 
+    `defaults` channel are available on `conda-forge` first.
+2.  `pip`: only if a package is not otherwise available via `conda-forge` (or some 
+    domain-specific channel like `bioconda`) should a package be installed into a conda 
+    environment from PyPI using `pip`.
+
+For example, [Kaggle](https://www.kaggle.com/) publishes a Python 3 API that can be used to interact with Kaggle datasets, kernels and competition submissions. You can search for the package on the `defaults` channels but you will not find it!
+
+~~~
+$ conda search kaggle
+Loading channels: done
+No match found for: kaggle. Search: *kaggle*
+
+PackagesNotFoundError: The following packages are not available from current channels:
+
+  - kaggle
+
+Current channels:
+
+  - https://repo.anaconda.com/pkgs/main/osx-64
+  - https://repo.anaconda.com/pkgs/main/noarch
+  - https://repo.anaconda.com/pkgs/free/osx-64
+  - https://repo.anaconda.com/pkgs/free/noarch
+  - https://repo.anaconda.com/pkgs/r/osx-64
+  - https://repo.anaconda.com/pkgs/r/noarch
+
+To search for alternate channels that may provide the conda package you're
+looking for, navigate to
+
+    https://anaconda.org
+
+and use the search bar at the top of the page.
+~~~
+{: .language-bash}
+
+The [official installation instructions](https://github.com/Kaggle/kaggle-api) suggest downloading 
+the `kaggle` package using `pip`. But since we are using `conda` we should check whether the 
+package exists on at least `conda-forge` channel before proceeding to use `pip`.
+
+~~~
+$ conda search conda-forge::kaggle
+Loading channels: done
+# Name                       Version           Build  Channel             
+kaggle                         1.5.3          py27_1  conda-forge         
+kaggle                         1.5.3          py36_1  conda-forge         
+kaggle                         1.5.3          py37_1  conda-forge         
+kaggle                         1.5.4          py27_0  conda-forge         
+kaggle                         1.5.4          py36_0  conda-forge         
+kaggle                         1.5.4          py37_0  conda-forge         
+~~~
+{: .language-bash}
+
+Once we know that the `kaggle` package is available via `conda-forge` we can go ahead and install 
+it! Note that we are explicitly providing both the channel to use when installing the `kaggle` 
+package as well as a specific version number.
+
+~~~
+$ conda install conda-forge::kaggle=1.5.4  --prefix ./env
+~~~
+{: .language-bash}
+
+For the moment let us suppose that the `kaggle` package was not avaiable on `conda-forge`. Here is 
+how we would install the package into our environment using `pip`. 
+
+1. Use `conda` to install `pip` into our environment (if necessary).
+2. Activate the enviroment (if necessary).
+3. Use `pip` to install `kaggle`
+
+~~~
+$ conda install pip --prefix ./env
+$ conda activate ./env
+$ pip install $SOME_PACKAGE 
+~~~
+{: .language-bash}
+
+> ## Installing via `pip` in `environment.yml` files
+>
+> Since you write `environment.yml` files for all of your projects, you might be wondering how 
+> to specify that packages should be installed using `pip` in the `environment.yml` file.  Here 
+> is an example `environment.yml` file that uses `pip` to install the `kaggle` and `yellowbrick` 
+> packages.
+>
+> ~~~
+> name: null
+> 
+> dependencies:
+>  - jupyterlab
+>  - matplotlib
+>  - pandas
+>  - scikit-learn
+>  - pip
+>  pip:
+>    - kaggle
+>    - yellowbrick
+> 
+> prefix: ./env
+> ~~~
+>
+> Note that you should include `pip` itself as a dependency and then a sub-section denoting those 
+> packages to be installed via `pip`. Also in case you are wondering, The 
+> [Yellowbrick](https://www.scikit-yb.org/en/latest/) pacakge is a suite of visual diagnostic 
+> tools called “Visualizers” that extend the [Scikit-Learn](https://scikit-learn.org/stable/) API 
+> to allow human steering of the model selection process. Yellowbrick can also be installed using 
+> `conda` from the `districtdatalabs` channel.
+>
+> ~~~
+> $ conda install --channel districtdatalabs yellowbrick --prefix ./env
+> ~~~
+{: .callout}
+
 ## What actually happens when I install packages?
 
 During the installation process, files are extracted into the specified environment (defaulting to 
