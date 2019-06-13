@@ -33,7 +33,7 @@ environment file for an existing Conda environment?
 
 In order to make sure that your environment is truly shareable, you need to make sure that 
 that the contents of your environment are described in such a way that the resulting 
-`enviroment.yml` file can be used to re-create your environment on Linux, Mac OS, and Windows. 
+`environment.yml` file can be used to re-create your environment on Linux, Mac OS, and Windows. 
 
 > ## Default `environment.yml` file
 > 
