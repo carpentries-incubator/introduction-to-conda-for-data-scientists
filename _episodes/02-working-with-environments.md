@@ -363,6 +363,36 @@ For more on modifying your `.condarc` file, see [the docs][conda-docs].
 > {: .solution}
 {: .challenge}
 
+
+> ## Conda can create environments for R projects too!
+>
+> First create a project directory called `r-project-dir` using the following command.
+> 
+> ~~~
+> $ mkdir r-project-dir
+> $ cd r-project-dir
+> ~~~
+> {: .language-bash}
+>
+> Next, take a look through the [list of R packages](https://anaconda.org/r/repo) available by 
+> default for installation using `conda`. Create a new environment inside the newly created 
+> `r-project-dir` in a sub-directory called `env` and install `r-base` as well at least three 
+> other R packages that you think look interesting. 
+> 
+> > ## Solution
+> > 
+> > ~~~
+> > project-dir $ conda create --prefix ./env \
+> > > r-base \
+> > > r-tidyverse \
+> > > r-sparklyr \
+> > > rstudio
+> > ~~~
+> > {: .language-bash}
+> >
+> {: .solution}
+{: .challenge}
+
 ## Listing existing environments
 
 Now that you have created a number of Conda environments on your local machine you have probably 
