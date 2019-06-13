@@ -257,7 +257,7 @@ $ pip install $SOME_PACKAGE
 >  - pandas
 >  - scikit-learn
 >  - pip
->  pip:
+>  - pip:
 >    - kaggle
 >    - yellowbrick
 > 
