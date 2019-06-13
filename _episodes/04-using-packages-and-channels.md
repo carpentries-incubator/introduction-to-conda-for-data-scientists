@@ -145,7 +145,7 @@ $ conda install r-tidyverse --prefix ./env
 
 > ## Channel priority
 > 
-> You may specify multiple channels for insalling packages by passing the `--channel` argument 
+> You may specify multiple channels for installing packages by passing the `--channel` argument 
 > multiple times.
 > 
 > ~~~
