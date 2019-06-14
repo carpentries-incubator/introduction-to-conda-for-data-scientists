@@ -115,7 +115,7 @@ Linux.
 *   Conda can create, save, load, and switch between project specific software environments on 
     your local computer. 
 *   Although Conda was created for Python programs, Conda can package and distribute software for 
-    any language such as R, Ruby, Lua, Scala, Java, JavaScript, C/ C++, FORTRAN.
+    any language such as R, Ruby, Lua, Scala, Java, JavaScript, C, C++, FORTRAN.
 
 Conda as a *package manager* helps you find and install packages. If you need a package that 
 requires a different version of Python, you do not need to switch to a different environment 
@@ -134,47 +134,48 @@ your usual version of Python in your normal environment.
 > Anaconda includes Miniconda as well as over 150 of the most widely used Python packages. 
 {: .callout}
 
-## Why Conda and not `pip` + `virtualenv` or `Pipenv`?
+## Why use Conda?
 
-### Conda solves both *package management* and *environment management* problems
+Whilst there are many different package and environment management systems
+around, Conda is one of the few explicitly targeted at data scientists, and has
+the following features:
 
-Conda solves package and environment management problems and Conda is language agnostic (although 
-Conda does targets users in the Python and R (data) science communities). Other open source tools 
-solve either package management or environment management problems, or target only Python or R 
-users. 
+* Conda provides prebuilt packages, avoiding the need to deal with compilers, or
+  trying to work out how exactly to set up a specific tool. Fields such as
+  [Astronomy use conda to distribute some of their most difficult-to-install
+  tools such as IRAF](https://astroconda.readthedocs.io/en/latest/). TensorFlow
+  is another tool where to install it from source is near impossible, but conda
+  makes this a single step (which also works across platforms and is much
+  faster! See the callout below for more).
+* Conda is cross platform, with support for Windows, MacOS, GNU/Linux, and
+  support for multiple hardware platforms, such as x86 and Power 8 and 9. In
+  future lessons we will show how to make your environment reproducible
+  ([reproducibility being one of the major issues facing science](https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970)),
+  and conda allows you to provide your environment to other people across these
+  different platforms.
+* Conda allows for using other package management tools (such as pip) inside
+  conda environments, where a library or tools is not already packaged for conda
+  (we'll show later how to get access to more conda packages via channels).
 
-*   [pip](https://pip.pypa.io/en/stable/) is a package manager for Python only.
-*   [virtualenv](https://virtualenv.pypa.io/en/latest/) is an environment manager for Python only.
-*   [venv](https://docs.python.org/3/library/venv.html) is an environment manager for Python only 
-    (included as part of the standard library).
-*   [Pipenv](https://docs.pipenv.org/en/latest/) is a package and environment manager for Python 
-    packages only and targets general Python community.
-*   [Packrat](https://rstudio.github.io/packrat/) is a package and environment managager for R 
-    packages only.
+Additionally, Anaconda provides commonly used data science libraries and tools,
+such as R, numpy, scipy and TensorFlow built using optimised, hardware specific
+libraries (such as Intel's MKL or Nvidia's CUDA), which provides a speedup
+without having to change any of your code.
 
-**Any R users who feel that I have missed an important R specific tool please let me know!**
 
-### Conda and pip can be used together (if necessary!)
-
-Conda and pip can also be used together: one can use `conda` to install a specific version of 
-`pip` and then use that version of `pip` to install third-party Python packages not directly 
-available via `conda`. You will see some examples of how to do this in future episodes.
-
-> ## Stop installing TensorFlow using `pip` for performance sake!
-> 
-> The performance of the `conda` installation of TensorFlow can give over 8X the speed boost 
-> compared to the `pip` installation. How? The `conda` Tensorflow packages leverage the 
-> [Intel Math Kernel Library for Deep Neural Networks (MKL-DNN)](https://github.com/intel/mkl-dnn) 
-> starting with version 1.9.0. This library gives a huge performance boost.
+> ## Use conda not pip to install TensorFlow (and get an 8× speedup!)
+>
+> TensorFlow as packaged on PyPI has a number of problems: you can't install it
+> from source (you're stuck with however Google built it), it may not run on
+> your platform (the wheels only work on Ubuntu), and it doesn't use all the
+> speedups it can get from your system. TensorFlow as packaged by Anaconda works
+> on your platform, and uses the fastest libraries available to achieve a
+> [speedup of more than 8× over the version currently on PyPI](https://www.anaconda.com/tensorflow-in-anaconda/).
 >
 > <p align="center">
 >    <img alt="TensorFlow Performance: Conda vs. Pip" src="../fig/tf-perf-conda-vs-pip-install.png" width="400">
 > </p>
 >
-> Not only does the MKL library speed up your Tensorflow packages, it also speeds up other widely 
-> used libraries like NumPy, NumpyExr, SciPy, and Scikit-Learn. For more details see this excellent 
-> [blog post](https://towardsdatascience.com/stop-installing-tensorflow-using-pip-for-performance-sake-5854f9d9eb0c) 
-> on *Medium*.
 {: .callout}
 
 ## Installing Conda
