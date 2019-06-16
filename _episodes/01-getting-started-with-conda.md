@@ -241,7 +241,7 @@ Once you restart your shell (or reload your `.bashrc` profile) you should see a 
 
 The `(base)` in front of the `$` prompt indicates that the currently active Conda environment is the default `base` environment.
 
-> ## Avoid installing software into your `base` Conda environment
+> ## Avoid installing packages into your `base` Conda environment
 >
 > It is a "best practice" to avoid installing additional packages into your `base` software 
 > environment. Additional packages needed for a new project should always be installed into a 
