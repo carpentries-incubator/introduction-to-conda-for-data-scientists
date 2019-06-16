@@ -213,6 +213,7 @@ that includes only Conda and its dependencies.
 > ~~~
 > $ conda create --name my-anaconda-env anaconda=5.3
 > ~~~
+> {: .language-bash}
 >
 > We will discuss the above command in great depth in the following episode.
 {: .callout}
