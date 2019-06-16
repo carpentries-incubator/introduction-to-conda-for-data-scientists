@@ -199,6 +199,24 @@ If Conda has not been installed on your machine, then install the Python 3 versi
 is mini version of the [Anaconda Python distribution](https://www.anaconda.com/distribution/) 
 that includes only Conda and its dependencies.
 
+> ## Prefer Miniconda to Anaconda
+>
+> I suggest installing Miniconda which combines Conda with Python 3 (and a small number of core 
+> systems packages) instead of the full Anaconda distribution. Installing only Miniconda will 
+> encourage you to create separate environments for each project (and to install only those packages 
+> that you actually need for each project!). Project specific environments enhance portability and 
+> reproducibility of your research and workflows. 
+> 
+> Besides, if you *really* want the full Anaconda distribution you can always create an new conda 
+> environment and install it using the following command.
+>
+> ~~~
+> $ conda create --name my-anaconda-env anaconda=5.3
+> ~~~
+>
+> We will discuss the above command in great depth in the following episode.
+{: .callout}
+
 ### Make sure you have the most recent version
 
 Once Conda exists on your machine, then run the following command to make sure that you 
@@ -218,24 +236,6 @@ Where previously you once had `source activate envname` on unix, and just `activ
 windows, Conda 4.4 allowed `conda activate envname`.  Setting up your shell to use this new 
 feature was tricky. Conda 4.6 added extensive initialization support so that more shells can use 
 the new `conda activate` command. For more information, read the output from `conda init –-help`. 
-
-> ## Prefer Miniconda to Anaconda
->
-> I suggest installing Miniconda which combines Conda with Python 3 (and a small number of core 
-> systems packages) instead of the full Anaconda distribution. Installing only Miniconda will 
-> encourage you to create separate environments for each project (and to install only those packages 
-> that you actually need for each project!). Project specific environments enhance portability and 
-> reproducibility of your research and workflows. 
-> 
-> Besides, if you *really* want the full Anaconda distribution you can always create an new conda 
-> environment and install it using the following command.
->
-> ~~~
-> $ conda create --name my-anaconda-env anaconda=5.3
-> ~~~
->
-> We will discuss the above command in great depth in the following episode.
-{: .callout}
 
 ~~~
 $ conda init
