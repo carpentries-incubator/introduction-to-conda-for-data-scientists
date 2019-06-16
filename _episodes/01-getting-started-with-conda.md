@@ -187,44 +187,51 @@ local machine by running the following command in a terminal if you are running 
 
 ~~~
 $ which conda
+/Users/$USERNAME/miniconda3/bin/conda
 ~~~
 {: .language-bash}
 
-If Conda already exists on your machine, then run the following commands to make sure that you 
-have the most recent version and patches.
-
-~~~
-$ conda update -y conda
-$ conda init
-~~~
-{: .language-bash}
-
-**After running `conda init` you will need to close and restart your shell for changes to take 
-effect.**
+If Conda has already been installed on your machine, then you this command should return the 
+absolute path to the conda executable.
 
 If Conda has not been installed on your machine, then install the Python 3 version of 
 [Miniconda](https://docs.conda.io/en/latest/miniconda.html) from Anaconda for your OS. Miniconda 
 is mini version of the [Anaconda Python distribution](https://www.anaconda.com/distribution/) 
-that includes only Conda and its dependencies. Once you have installed Conda on your machine run 
-the following commands in make sure that you have the most recent version and patches.
+that includes only Conda and its dependencies.
+
+### Make sure you have the most recent version
+
+Once Conda exists on your machine, then run the following command to make sure that you 
+have the most recent version and patches.
 
 ~~~
 $ conda update -y conda
+~~~
+{: .language-bash}
+
+You can re-run this command at any time to update to the most recent version of Conda.
+
+### Make sure that Conda is properly setup for your shell
+
+Conda 4.4 introduced new scripts that make activation behavior uniform across operating systems. 
+Where previously you once had `source activate envname` on unix, and just `activate envname` on 
+windows, Conda 4.4 allowed `conda activate envname`.  Setting up your shell to use this new 
+feature was tricky. Conda 4.6 added extensive initialization support so that more shells can use 
+the new `conda activate` command. For more information, read the output from `conda init –-help`. 
+
+~~~
 $ conda init
 ~~~
 {: .language-bash}
 
-**Again, after running `conda init` you will need to close and restart your shell for changes to 
-take effect.**
+After running `conda init` you will need to close and restart your shell for changes to take 
+effect. Alternatively, you can reload your `.bashrc` profile (which was changed by running the 
+`conda init` command).  To reload your `.bashrc` profile, use the following command.
 
-> ## Initializing Conda
->
-> Conda 4.4 introduced new scripts that make activation behavior uniform across operating systems. 
-> Where previously you once had `source activate envname` on unix, and just `activate envname` on 
-> windows, Conda 4.4 allowed `conda activate envname`.  Setting up your shell to use this new 
-> feature was tricky. Conda 4.6 added extensive initialization support so that more shells can use 
-> the new `conda activate` command. For more information, read the output from `conda init –-help`. 
-{: .callout}
+~~~
+$ . ~/.bashrc
+~~~
+{: .language-bash}
 
 > ## Verifying your Conda installation
 >
