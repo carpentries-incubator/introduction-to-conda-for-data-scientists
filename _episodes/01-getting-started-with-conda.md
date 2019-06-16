@@ -208,6 +208,24 @@ is mini version of the [Anaconda Python distribution](https://www.anaconda.com/d
 that includes only Conda and its dependencies. Once you have installed Conda on your machine run 
 the following commands in make sure that you have the most recent version and patches.
 
+> ## Prefer Miniconda to Anaconda
+>
+> I suggest installing Miniconda which combines Conda with Python 3 (and a small number of core 
+> systems packages) instead of the full Anaconda distribution. Installing only Miniconda will 
+> encourage you to create separate environments for each project (and to install only those packages 
+> that you actually need for each project!). Project specific environments enhance portability and 
+> reproducibility of your research and workflows. 
+> 
+> Besides, if you *really* want the full Anaconda distribution you can always create an new conda 
+> environment and install it using the following command.
+>
+> ~~~
+> $ conda create --name my-anaconda-env anaconda=5.3
+> ~~~
+>
+> We will discuss the above command in great depth in the following episode.
+{: .callout}
+
 ~~~
 $ conda update -y conda
 $ conda init
