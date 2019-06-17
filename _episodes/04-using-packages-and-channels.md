@@ -236,7 +236,7 @@ how we would install the package into our environment using `pip`.
 
 ~~~
 $ conda install pip --prefix ./env
-$ conda activate ./env
+$ source activate ./env
 $ pip install $SOME_PACKAGE 
 ~~~
 {: .language-bash}
