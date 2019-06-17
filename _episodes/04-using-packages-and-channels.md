@@ -260,8 +260,6 @@ $ pip install $SOME_PACKAGE
 >  - pip:
 >    - kaggle
 >    - yellowbrick
-> 
-> prefix: ./env
 > ~~~
 >
 > Note that you should include `pip` itself as a dependency and then a sub-section denoting those 
