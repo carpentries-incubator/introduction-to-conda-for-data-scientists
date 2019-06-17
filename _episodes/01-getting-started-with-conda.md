@@ -210,14 +210,6 @@ $ conda update -y conda
 
 You can re-run this command at any time to update to the most recent version of Conda.
 
-> ## Avoid installing packages into your `base` Conda environment
->
-> It is a "best practice" to avoid installing additional packages into your `base` software 
-> environment. Additional packages needed for a new project should always be installed into a 
-> newly created Conda environment.  You will see how to create new environments and install 
-> packages in the next episode.
-{: .callout}
-
 > ## Verifying your Conda installation
 >
 > Confirm that you have installed Conda correctly on your machine. What is the version number?
