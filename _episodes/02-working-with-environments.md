@@ -21,7 +21,7 @@ objectives:
 keypoints:
 - "A Conda environment is a directory that contains a specific collection of Conda packages that you have installed."
 - "You create (remove) a new environment using the `conda create` (`conda remove`) commands."
-- "You activate (deactivate) an environment using the `conda activate` (`conda deactivate`) commands."
+- "You activate (deactivate) an environment using the `source activate` (`conda deactivate`) commands."
 - "You should install each environment as a sub-directory inside its corresponding project directory"
 - "Use the `conda env list` command to list existing environments and their respective locations."
 - "Use the `conda list` command to list all of the packages installed in an environment."
@@ -34,6 +34,14 @@ requires NumPy 1.16 and its dependencies, while another environment associated w
 project has NumPy 1.12 (perhaps because version 1.12 was the most current version of NumPy at the 
 time the project finished). If you change one environment, your other environments are not 
 affected. You can easily activate or deactivate environments, which is how you switch between them.
+
+> ## Avoid installing packages into your `base` Conda environment
+>
+> Conda has a default environment called `base` that include a Python installation and some core 
+> system libraries and dependencies of Conda. It is a "best practice" to avoid installing 
+> additional packages into your `base` software environment. Additional packages needed for a new 
+> project should always be installed into a newly created Conda environment.
+{: .callout}
 
 ## Creating environments
 
@@ -138,14 +146,19 @@ sometimes at all!). Activation of an environment does two things.
 2. Runs any activation scripts that the environment may contain.
 
 Step 2 is particularly important as activation scripts are how packages can set arbitrary 
-environment variables that may be necessary for their operation.
-
-To activate the `my-second-conda-env` environment by name use the `activate` command as follows.
+environment variables that may be necessary for their operation. On a Unix system you activate the 
+`my-second-conda-env` environment by name using the following command.
 
 ~~~
-$ conda activate my-second-conda-env
+$ source activate my-second-conda-env
 ~~~
 {: .language-bash}
+
+On Windows the command to activate an environment by name is slightly different.
+
+~~~
+$ activate my-second-conda-env
+~~~
 
 You can see that an environment has been activated because the shell prompt will now include the 
 name of the active environment.
@@ -154,16 +167,49 @@ name of the active environment.
 (my-second-conda-env) $
 ~~~
 
+> ## Initializing Conda properly setup for your shell
+> 
+> Conda 4.4 introduced new scripts that make activation behavior uniform across operating systems. 
+> Where previously you once had `source activate envname` on Unix, and just `activate envname` on 
+> Windows, Conda 4.4 allowed `conda activate envname`.  Setting up your shell to use this new 
+> feature was tricky. Conda 4.6 added extensive initialization support so that more shells can use 
+> the new `conda activate` command. For more information, read the output from `conda init –-help`. 
+> 
+> ~~~
+> $ conda init bash
+> ~~~
+> {: .language-bash}
+> 
+> After running `conda init` you will need to close and restart your shell for changes to take 
+> effect. Alternatively, you can reload your `.bashrc` profile (which was changed by running the 
+> `conda init` command).  To reload your `.bashrc` profile, use the following command.
+>
+> ~~~
+> $ . ~/.bashrc
+> ~~~
+>
+> If you want to reverse or "undo" the changes to your `.bashrc`, then you can re-run the 
+> `conda init` command and pass the `--reverse` option.
+>
+> ~~~
+> (base) $ conda init --reverse
+> ~~~
+> {: .language-bash}
+>
+> Again, in order for the reversal to take effect you will likely need to close and restart your 
+> shell session.
+{: .callout} 
+
 > ## Activate an existing environment by name
 >
 > Activate the "explicit-conda-env" environment created in the previous challenge by name.
 > 
 > > ## Solution
 > > 
-> > In order to activate an existing environment by name you use the `conda activate` command as follows.
+> > In order to activate an existing environment by name you use the `source activate` command as follows.
 > > 
 > > ~~~
-> > $ conda activate explicit-conda-env
+> > $ source activate explicit-conda-env
 > > ~~~
 > > {: .language-bash}
 > >
@@ -189,7 +235,7 @@ $
 
 > ## Returning to the `base` environment
 >
-> To simply return to the `base` Conda environment, it's better to call `conda activate` with no 
+> To simply return to the `base` Conda environment, it's better to call `source activate` with no 
 > environment specified, rather than to use `deactivate`. If you run `conda deactivate` from your 
 > `base` environment, you may lose the ability to run `conda` commands at all. **Don't worry if 
 > you encounter this undesirable state! Just start a new shell.**
@@ -239,7 +285,7 @@ Note that the name of the environment that is created using this command is `my-
 can it activate the environment as follows.
 
 ~~~
-$ conda activate my-local-env
+$ source activate my-local-env
 ~~~
 {: .language-bash}
 
@@ -268,7 +314,7 @@ environments in your `~/miniconda3/env/` folder, you’ll have to give each of t
 > 
 > ~~~ 
 > $ cd my-project/
-> $ conda activate ./env
+> $ source activate ./env
 > ~~~
 > {: .language-bash}
 {: .callout}
@@ -336,7 +382,7 @@ you do not. Now your command prompt will display the active environment’s gene
  
 ~~~
 $ cd project-directory
-$ conda activate ./env
+$ source activate ./env
 (env) project-directory $
 ~~~
 {: .language-bash}
@@ -351,10 +397,10 @@ For more on modifying your `.condarc` file, see [the docs][conda-docs].
 > > ## Solution
 > > 
 > > You can activate an existing environment by providing the path the the environment directory 
-> > instead of the environment name when using the `conda activate` command as follows.
+> > instead of the environment name when using the `source activate` command as follows.
 > > 
 > > ~~~
-> > $ conda activate ./env
+> > $ source activate ./env
 > > ~~~
 > > {: .language-bash}
 > >

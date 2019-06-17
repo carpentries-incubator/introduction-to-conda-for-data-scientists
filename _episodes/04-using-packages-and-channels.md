@@ -236,7 +236,7 @@ how we would install the package into our environment using `pip`.
 
 ~~~
 $ conda install pip --prefix ./env
-$ conda activate ./env
+$ source activate ./env
 $ pip install $SOME_PACKAGE 
 ~~~
 {: .language-bash}
@@ -260,8 +260,6 @@ $ pip install $SOME_PACKAGE
 >  - pip:
 >    - kaggle
 >    - yellowbrick
-> 
-> prefix: ./env
 > ~~~
 >
 > Note that you should include `pip` itself as a dependency and then a sub-section denoting those 
