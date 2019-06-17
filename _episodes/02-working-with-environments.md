@@ -138,14 +138,19 @@ sometimes at all!). Activation of an environment does two things.
 2. Runs any activation scripts that the environment may contain.
 
 Step 2 is particularly important as activation scripts are how packages can set arbitrary 
-environment variables that may be necessary for their operation.
-
-To activate the `my-second-conda-env` environment by name use the `activate` command as follows.
+environment variables that may be necessary for their operation. On a Unix system you activate the 
+`my-second-conda-env` environment by name using the following command.
 
 ~~~
-$ conda activate my-second-conda-env
+$ source activate my-second-conda-env
 ~~~
 {: .language-bash}
+
+On Windows the command to activate an environment by name is slightly different.
+
+~~~
+$ activate my-second-conda-env
+~~~
 
 You can see that an environment has been activated because the shell prompt will now include the 
 name of the active environment.
@@ -154,16 +159,49 @@ name of the active environment.
 (my-second-conda-env) $
 ~~~
 
+> ## Initializing Conda properly setup for your shell
+> 
+> Conda 4.4 introduced new scripts that make activation behavior uniform across operating systems. 
+> Where previously you once had `source activate envname` on Unix, and just `activate envname` on 
+> Windows, Conda 4.4 allowed `conda activate envname`.  Setting up your shell to use this new 
+> feature was tricky. Conda 4.6 added extensive initialization support so that more shells can use 
+> the new `conda activate` command. For more information, read the output from `conda init –-help`. 
+> 
+> ~~~
+> $ conda init bash
+> ~~~
+> {: .language-bash}
+> 
+> After running `conda init` you will need to close and restart your shell for changes to take 
+> effect. Alternatively, you can reload your `.bashrc` profile (which was changed by running the 
+> `conda init` command).  To reload your `.bashrc` profile, use the following command.
+>
+> ~~~
+> $ . ~/.bashrc
+> ~~~
+>
+> If you want to reverse or "undo" the changes to your `.bashrc`, then you can re-run the 
+> `conda init` command and pass the `--reverse` option.
+>
+> ~~~
+> (base) $ conda init --reverse
+> ~~~
+> {: .language-bash}
+>
+> Again, in order for the reversal to take effect you will likely need to close and restart your 
+> shell session.
+{: .callout} 
+
 > ## Activate an existing environment by name
 >
 > Activate the "explicit-conda-env" environment created in the previous challenge by name.
 > 
 > > ## Solution
 > > 
-> > In order to activate an existing environment by name you use the `conda activate` command as follows.
+> > In order to activate an existing environment by name you use the `source activate` command as follows.
 > > 
 > > ~~~
-> > $ conda activate explicit-conda-env
+> > $ source activate explicit-conda-env
 > > ~~~
 > > {: .language-bash}
 > >
@@ -189,7 +227,7 @@ $
 
 > ## Returning to the `base` environment
 >
-> To simply return to the `base` Conda environment, it's better to call `conda activate` with no 
+> To simply return to the `base` Conda environment, it's better to call `source activate` with no 
 > environment specified, rather than to use `deactivate`. If you run `conda deactivate` from your 
 > `base` environment, you may lose the ability to run `conda` commands at all. **Don't worry if 
 > you encounter this undesirable state! Just start a new shell.**
@@ -239,7 +277,7 @@ Note that the name of the environment that is created using this command is `my-
 can it activate the environment as follows.
 
 ~~~
-$ conda activate my-local-env
+$ source activate my-local-env
 ~~~
 {: .language-bash}
 
