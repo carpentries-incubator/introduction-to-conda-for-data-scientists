@@ -204,7 +204,8 @@ Yes! Creating you project's Conda environment from a single environment file is 
 that can be placed under version control which further enhancing the reproducibility of your research 
 project and workflow.
 
-Let's take a look at a few example `environment.yml` files  to give you an idea of how to write your own environment files.
+Let's take a look at a few example `environment.yml` files  to give you an idea of how to write 
+your own environment files.
 
 ~~~
 name: machine-learning-env
@@ -220,8 +221,8 @@ This `environment.yml` file would create an environment called `machine-learning
 most current and mutually compatible versions of the listed packages (including all required 
 dependencies). The newly created environment would be installed inside the `~/miniconda3/envs/` 
 directory. Alternatively, if we intended this environment file to be used to create an environment 
-inside a sub-directory call `./env` of the project directory we could define the environment file 
-as follows.
+inside a sub-directory call `./env` of the project directory, then we should set then `name` key 
+to `null` as follows.
 
 ~~~
 name: null
@@ -231,11 +232,10 @@ dependencies:
   - matplotlib
   - pandas
   - scikit-learn
-
-prefix: ./env
 ~~~
 
-Note that in the above `environment.yml` file we set the name to be `null` when we provide a `prefix`. Finally, since explicit versions numbers for all packages should be preferred a better environment file would be the following.
+Finally, since explicit versions numbers for all packages should be preferred a better environment 
+file would be the following.
 
 ~~~
 name: null
@@ -245,11 +245,12 @@ dependencies:
   - matplotlib=0.3.*
   - pandas=0.24.*
   - scikit-learn=0.21.*
-
-prefix: ./env
 ~~~
 
-Note the use of the wildcard `*` when defining the patch version number. Defining the version number by fixing the major and minor version numbers while allowing the patch version number to vary allows us to use our environment file to update our environment to get any bug fixes whilst still maintaining consistency of software environment.
+Note the use of the wildcard `*` when defining the patch version number. Defining the version 
+number by fixing the major and minor version numbers while allowing the patch version number to 
+vary allows us to use our environment file to update our environment to get any bug fixes whilst 
+still maintaining consistency of software environment.
 
 > ## *Always* version control your `environment.yml` files!
 >
@@ -267,7 +268,7 @@ task.
 ~~~
 $ cd project-dir
 $ conda env create --prefix ./env --file environment.yml
-$ conda activate ./env
+$ source activate ./env
 ~~~
 {: .language-bash}
 
@@ -276,7 +277,7 @@ your `project-dir` directory.
 
 > ## Create a new environment from a YAML file.
 > 
-> Create a new project directory and then create a new `environment.yml` file insdie your project 
+> Create a new project directory and then create a new `environment.yml` file inside your project 
 > directory with the following contents.
 >
 > ~~~
@@ -288,7 +289,6 @@ your `project-dir` directory.
 >   - python=3.6.*
 >   - scikit-learn=0.21.*
 >   - py-xgboost=0.80.*
->
 > ~~~
 > Now use this file to create a new Conda environment. Where is this new environment created? 
 > Modify the `environment.yml` file so that the same `conda` commands will create a Conda 
@@ -302,7 +302,7 @@ your `project-dir` directory.
 > > $ mkdir project-dir
 > > $ cd project-dir
 > > $ nano environment.yml
-> > $ conda env create --file environment.yml
+> > $ conda env create --file environment.yml --prefix ./env
 > > ~~~
 > > {: .language-bash}
 > >
@@ -320,8 +320,6 @@ your `project-dir` directory.
 > >   - python=3.6.*
 > >   - scikit-learn=0.21.*
 > >   - py-xgboost=0.80.*
-> >
-> > prefix: ./env
 > > ~~~
 > >
 > {: .solution}
