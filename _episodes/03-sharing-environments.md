@@ -268,7 +268,7 @@ task.
 ~~~
 $ cd project-dir
 $ conda env create --prefix ./env --file environment.yml
-$ conda activate ./env
+$ source activate ./env
 ~~~
 {: .language-bash}
 

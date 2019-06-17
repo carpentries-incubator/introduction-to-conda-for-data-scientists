@@ -21,7 +21,7 @@ objectives:
 keypoints:
 - "A Conda environment is a directory that contains a specific collection of Conda packages that you have installed."
 - "You create (remove) a new environment using the `conda create` (`conda remove`) commands."
-- "You activate (deactivate) an environment using the `conda activate` (`conda deactivate`) commands."
+- "You activate (deactivate) an environment using the `source activate` (`conda deactivate`) commands."
 - "You should install each environment as a sub-directory inside its corresponding project directory"
 - "Use the `conda env list` command to list existing environments and their respective locations."
 - "Use the `conda list` command to list all of the packages installed in an environment."
@@ -306,7 +306,7 @@ environments in your `~/miniconda3/env/` folder, you’ll have to give each of t
 > 
 > ~~~ 
 > $ cd my-project/
-> $ conda activate ./env
+> $ source activate ./env
 > ~~~
 > {: .language-bash}
 {: .callout}
@@ -374,7 +374,7 @@ you do not. Now your command prompt will display the active environment’s gene
  
 ~~~
 $ cd project-directory
-$ conda activate ./env
+$ source activate ./env
 (env) project-directory $
 ~~~
 {: .language-bash}
@@ -389,10 +389,10 @@ For more on modifying your `.condarc` file, see [the docs][conda-docs].
 > > ## Solution
 > > 
 > > You can activate an existing environment by providing the path the the environment directory 
-> > instead of the environment name when using the `conda activate` command as follows.
+> > instead of the environment name when using the `source activate` command as follows.
 > > 
 > > ~~~
-> > $ conda activate ./env
+> > $ source activate ./env
 > > ~~~
 > > {: .language-bash}
 > >
