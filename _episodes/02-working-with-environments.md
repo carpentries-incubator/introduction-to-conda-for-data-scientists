@@ -35,6 +35,14 @@ project has NumPy 1.12 (perhaps because version 1.12 was the most current versio
 time the project finished). If you change one environment, your other environments are not 
 affected. You can easily activate or deactivate environments, which is how you switch between them.
 
+> ## Avoid installing packages into your `base` Conda environment
+>
+> Conda has a default environment called `base` that include a Python installation and some core 
+> system libraries and dependencies of Conda. It is a "best practice" to avoid installing 
+> additional packages into your `base` software environment. Additional packages needed for a new 
+> project should always be installed into a newly created Conda environment.
+{: .callout}
+
 ## Creating environments
 
 To create a new environment for Python development using `conda` you should use the `create` 
