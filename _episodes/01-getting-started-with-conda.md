@@ -198,7 +198,26 @@ Anaconda for your OS. Miniconda is mini version of the
 [Anaconda Python distribution](https://www.anaconda.com/distribution/) that includes only Conda 
 and its dependencies.
 
-## Make sure you have the most recent version
+> ## Prefer Miniconda to Anaconda
+>
+> I suggest installing Miniconda which combines Conda with Python 3 (and a small number of core 
+> systems packages) instead of the full Anaconda distribution. Installing only Miniconda will 
+> encourage you to create separate environments for each project (and to install only those packages 
+> that you actually need for each project!). Project specific environments enhance portability and 
+> reproducibility of your research and workflows. 
+> 
+> Besides, if you *really* want the full Anaconda distribution you can always create an new conda 
+> environment and install it using the following command.
+>
+> ~~~
+> $ conda create --name my-anaconda-env anaconda=5.3
+> ~~~
+> {: .language-bash}
+>
+> We will discuss the above command in great depth in the following episode.
+{: .callout}
+
+### Make sure you have the most recent version
 
 Once Conda exists on your machine, then run the following command to make sure that you 
 have the most recent version and patches.
