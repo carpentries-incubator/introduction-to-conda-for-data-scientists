@@ -233,6 +233,21 @@ $ . ~/.bashrc
 ~~~
 {: .language-bash}
 
+> ## Reversing `conda init` side-effects
+>
+> Running the `conda init` command inserts some `bash` code into your `~/.bashrc` file. If you 
+> want to reverse or "undo" these changes, then you can re-run the `conda init` command and pass 
+> the `--reverse` option.
+>
+> ~~~
+> (base) $ conda init --reverse
+> ~~~
+> {: .language-bash}
+>
+> Again, in order for the reversal to take effect you will likely need to close and restart your 
+> shell session.
+{: .callout} 
+
 > ## Verifying your Conda installation
 >
 > Confirm that you have installed Conda correctly on your machine. What is the version number?
