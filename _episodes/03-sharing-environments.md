@@ -22,16 +22,19 @@ system that you use on your local machine. In these cases it is useful to create
 system agnostic environment file which you can share with collaborators or use to re-create an 
 environment on a remote cluster. 
 
-Great! So environment files can be used to share Conda environments with my collaborators or used 
-and I can use environment files to re-create Conda environments on other computers including 
-remote clusters. Sounds like environment files are really useful. How exactly do I create an 
-environment file for an existing Conda environment?
-
 ### Creating an environment file
 
 In order to make sure that your environment is truly shareable, you need to make sure that 
 that the contents of your environment are described in such a way that the resulting 
-environment file can be used to re-create your environment on Linux, Mac OS, and Windows. 
+environment file can be used to re-create your environment on Linux, Mac OS, and Windows. Conda 
+uses YAML ("YAML Ain't Markup Language") for writing its environment files. YAML is a 
+human-readable data-serialization language that is commonly used for configuration files and that 
+uses Python-style indentation to indicate nesting.
+
+Creating you project's Conda environment from a single environment file is a Conda "best practice". 
+Not only do you have a file to share with collaborators but you also have a file that can be placed 
+under version control which further enhancing the reproducibility of your research project and 
+workflow.
 
 > ## Default `environment.yml` file
 > 
@@ -40,18 +43,6 @@ environment file can be used to re-create your environment on Linux, Mac OS, and
 > find a file called `environment.yml` in the current working directory and will throw an error if a 
 > file with that name can not be found.
 {: .callout}
-
-> ## YAML Ain't Markup Language (YAML)
-> 
-> YAML ("YAML Ain't Markup Language") is a human-readable data-serialization language that is 
-> commonly used for configuration files that uses Python-style indentation to indicate nesting.
->
-{: .callout}
-
-Creating you project's Conda environment from a single environment file is a Conda "best practice". 
-Not only do you have a file to share with collaborators but you also have a file that can be placed 
-under version control which further enhancing the reproducibility of your research project and 
-workflow.
 
 Let's take a look at a few example `environment.yml` files  to give you an idea of how to write 
 your own environment files.
@@ -127,7 +118,7 @@ your `project-dir` directory.
 > ## Avoid the `conda env export` command
 >  
 > Many other Conda tutorials (including the official documentation) encourage the use of the 
-> `conda env export` command to export an existing environment. For exampe to export the packages 
+> `conda env export` command to export an existing environment. For example, to export the packages 
 > installed into the previously created `machine-learning-env` you would run the following command.
 > 
 > ~~~
@@ -232,9 +223,10 @@ your `project-dir` directory.
 > 
 > In practice this command does not *consistently* produce environments that are reproducible 
 > across Mac OS, Windows, and Linux. The issue is that even after removing the build numbers (by 
-> passing the `--no-builds` option), the environment file will often still contain Mac OS or 
-> Windows specific packages that will not exist for Linux.
-> {: .language-bash}
+> passing the `--no-builds` option), an environment file exported from an environment created on, 
+> say Mac OS, will often still contain Mac OS specific packages that will not exist for Windows 
+> or Linux.
+{: .callout}
 
 > ## Create a new environment from a YAML file.
 > 
