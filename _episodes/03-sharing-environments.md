@@ -46,17 +46,17 @@ that the contents of your environment are described in such a way that the resul
 The `conda` command to export an existing environment is the following.
 
 ~~~
-$ conda env export --name explicit-conda-env
+$ conda env export --name machine-learning-env
 ~~~
 {: .language-bash}
 
 When you run this command, you will see the resulting YAML formatted representation of your Conda 
 environment streamed to the terminal. Recall that we only listed five packages when we 
-originally created `explicit-conda-env` yet from the output of the `conda env export` command 
+originally created `machine-learning-env` yet from the output of the `conda env export` command 
 we see that these five packages result in an environment with over 80 dependencies!
 
 ~~~
-name: explicit-conda-env
+name: machine-learning-env
 channels:
   - defaults
 dependencies:
@@ -141,7 +141,7 @@ dependencies:
   - xz=5.2.4=h1de35cc_4
   - zeromq=4.3.1=h0a44026_3
   - zlib=1.2.11=h1de35cc_3
-prefix: /Users/pughdr/miniconda3/envs/explicit-conda-env
+prefix: /Users/pughdr/miniconda3/envs/machine-learning-env
 ~~~
 {: .language-bash}
 
@@ -157,7 +157,7 @@ Now you *could* copy and paste the output into a text file and save it as `envir
 an `environment.yml` file!
 
 ~~~
-$ conda env export --name explicit-conda-env > environment.yml
+$ conda env export --name machine-learning-env > environment.yml
 ~~~
 {: .language-bash}
 
@@ -179,14 +179,18 @@ If a file with the name `environment.yml` already exists it will be overwritten.
 
 > ## Export an environment to a YAML file.
 > 
-> Export the `pyspark-env` environment created in a previous challenge to a YAML file called 
+> Create a new directory called `my-pyspark-project`; create an environment inside an `env` 
+> sub-directory of your project directory and install version 2.4 of 
+> [PySpark](http://spark.apache.org/). Export the newly created environment to a YAML file called  
 > `environment.yml`.
 > 
 > > ## Solution
 > > 
 > > Export an existing environment using the `conda env export` sub-command as follows.
 > > ~~~
-> > $ conda env export --name pyspark-env > environment.yml
+> > $ mkdir my-pyspark-project
+> > $ conda create --prefix my-pyspark-project/env pyspark=2.4
+> > $ conda env export --prefix my-pyspark-project/env > environment.yml
 > > ~~~
 > > {: .language-bash}
 > >
@@ -281,15 +285,17 @@ your `project-dir` directory.
 > directory with the following contents.
 >
 > ~~~
-> name: basic-machine-learning-env
+> name: xgboost-env
 > 
 > dependencies:
->   - matplotlib=3.0.*
+>   - matplotlib=3.1.*
 >   - pandas=0.24.*
 >   - python=3.6.*
 >   - scikit-learn=0.21.*
 >   - py-xgboost=0.80.*
+>   - pip=19.1.*
 > ~~~
+>
 > Now use this file to create a new Conda environment. Where is this new environment created? 
 > Modify the `environment.yml` file so that the same `conda` commands will create a Conda 
 > environment as a subdirectory called `env/` inside your project directory.
@@ -302,7 +308,7 @@ your `project-dir` directory.
 > > $ mkdir project-dir
 > > $ cd project-dir
 > > $ nano environment.yml
-> > $ conda env create --file environment.yml --prefix ./env
+> > $ conda env create --file environment.yml
 > > ~~~
 > > {: .language-bash}
 > >
@@ -315,39 +321,40 @@ your `project-dir` directory.
 > > name: null
 > >
 > > dependencies:
-> >   - matplotlib=3.0.*
+> >   - matplotlib=3.1.*
 > >   - pandas=0.24.*
 > >   - python=3.6.*
 > >   - scikit-learn=0.21.*
 > >   - py-xgboost=0.80.*
+> >   - pip=19.1.*
 > > ~~~
 > >
+> > And then use explicitly pass the `--prefix` to the `conda env create` command as follows.
+> > 
+> > ~~~
+> > $ conda env create --file environment.yml --prefix ./env
+> > ~~~
+> > {: .language-bash}
+> > 
+> > You can now run the `conda env list` command and see that these two environments have been 
+> > created in different locations.
 > {: .solution}
 {: .challenge}
 
 > ## Create your own `environment.yml` file from scratch
 > 
-> Create a new file in your current working directory called `environment.yml` with the following 
-> contents.
+> Create a new project directory, write you own `environment.yml` file, and then use the file to 
+> create an environment in a sub-directory of your project directory. Make sure to be provide 
+> version numbers for your packages! 
 >
-> ~~~
-> name: basic-machine-learning-env
-> 
-> dependencies:
->   - matplotlib=3.0.*
->   - pandas=0.24.*
->   - python=3.6.*
->   - scikit-learn=0.21.*
->   - py-xgboost=0.80.*
->
-> ~~~
-> Now use this file to create a new Conda environment.
-> 
 > > ## Solution
 > > 
 > > To create a new environment from a YAML file use the `conda env create` sub-command as follows.
 > > ~~~
-> > $ conda env create --file environment.yml
+> > $ mkdir project-dir
+> > $ cd project-dir
+> > $ nano environment.yml # write the contents of the environment file in the buffer
+> > $ conda env create --file environment.yml -- prefix ./env
 > > ~~~
 > > {: .language-bash}
 > >

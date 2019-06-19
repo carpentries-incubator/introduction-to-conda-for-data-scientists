@@ -104,7 +104,7 @@ You can install a package from a specific channel into the currently activate en
 passing the `--channel` option to the `conda install` command as follows.
 
 ~~~
-$ conda install scipy --channel conda-forge
+$ conda install scipy=1.3 --channel conda-forge
 ~~~
 {: .language-bash}
 
@@ -114,7 +114,7 @@ following command installs the `scipy` package from the `conda-forge` channel in
 called `my-first-env` which we created eariler.
 
 ~~~
-$ conda install scipy --channel conda-forge --name my-first-env
+$ conda install scipy=1.3 --channel conda-forge --name my-first-env
 ~~~
 {: .language-bash}
 
@@ -122,7 +122,7 @@ This command would install `tensorflow` package from `conda-forge` channel into 
 installed into the `env/` sub-directory.
 
 ~~~
-$ conda install tensorflow --channel conda-forge --prefix ./env
+$ conda install tensorflow=1.13 --channel conda-forge --prefix ./env
 ~~~
 {: .language-bash}
 
@@ -131,7 +131,7 @@ Here is another example for R users. The following command would install
 environment installed into the `env/` sub-directory.
 
 ~~~
-$ conda install r-tidyverse --channel r --prefix ./env
+$ conda install r-tidyverse=1.2 --channel r --prefix ./env
 ~~~
 {: .language-bash}
 
@@ -139,7 +139,7 @@ In this case the `--channel` option is unnecessary because the `r` channel is in
 The following works just as well!
 
 ~~~
-$ conda install r-tidyverse --prefix ./env
+$ conda install r-tidyverse=1.2 --prefix ./env
 ~~~
 {: .language-bash}
 
@@ -149,7 +149,7 @@ $ conda install r-tidyverse --prefix ./env
 > multiple times.
 > 
 > ~~~
-> $ conda install scipy --channel conda-forge --channel bioconda
+> $ conda install scipy=1.3 --channel conda-forge --channel bioconda
 > ~~~
 > {: .language-bash}
 >
@@ -252,14 +252,14 @@ $ pip install $SOME_PACKAGE
 > name: null
 > 
 > dependencies:
->  - jupyterlab
->  - matplotlib
->  - pandas
->  - scikit-learn
->  - pip
+>  - jupyterlab=0.35
+>  - matplotlib=3.1
+>  - pandas=0.24
+>  - scikit-learn=0.21
+>  - pip=19.1
 >  - pip:
->    - kaggle
->    - yellowbrick
+>    - kaggle=1.5
+>    - yellowbrick=0.9
 > ~~~
 >
 > Note that you should include `pip` itself as a dependency and then a sub-section denoting those 
@@ -270,7 +270,7 @@ $ pip install $SOME_PACKAGE
 > `conda` from the `districtdatalabs` channel.
 >
 > ~~~
-> $ conda install --channel districtdatalabs yellowbrick --prefix ./env
+> $ conda install --channel districtdatalabs yellowbrick=0.9 --prefix ./env
 > ~~~
 {: .callout}
 
@@ -316,10 +316,10 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 > > $ cd my-computer-vision-project/
 > > $ conda create --prefix ./env --channel pytorch \
 > > > python=3.6 \
-> > > jupyterlab \
-> > > pytorch \
-> > > torchvision \
-> > > matplotlib
+> > > jupyterlab=0.35 \
+> > > pytorch=1.1 \
+> > > torchvision=0.3 \
+> > > matplotlib=3.1
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
@@ -348,10 +348,10 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 > > $ cd my-computer-vision-project/
 > > $ conda create --prefix ./env \
 > > > conda-forge::python=3.6 \
-> > > conda-forge::jupyterlab \
-> > > conda-forge::matplotlib
-> > > pytorch::pytorch \
-> > > pytorch::torchvision
+> > > conda-forge::jupyterlab=0.35 \
+> > > conda-forge::matplotlib=3.1
+> > > pytorch::pytorch=1.1 \
+> > > pytorch::torchvision=0.3
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
