@@ -73,7 +73,7 @@ $ conda create --name my-first-conda-env python=3.6
 You can create a Conda environment and install multiple packages by simply listing the packages that you wish to install.
 
 ~~~
-$ conda create --name my-second-conda-env jupyterlab matplotlib numpy
+$ conda create --name my-second-conda-env jupyterlab=0.35 matplotlib=3.1 numpy=1.16
 ~~~
 {: .language-bash}
  
@@ -84,46 +84,38 @@ because it is a required dependency of at least one of the listed packages.
 
 > ## Creating a new environment
 >
-> Create a new environment called "conda-env" with Python and the most current versions of 
+> Create a new environment called "machine-learning-env" with Python and the most current versions of 
 > [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/), 
-> [Matplotlib](https://matplotlib.org/), [Pandas](https://pandas.pydata.org/), and 
-> [Scikit-Learn](https://scikit-learn.org/stable/index.html).
+> [Matplotlib](https://matplotlib.org/), [Pandas](https://pandas.pydata.org/), 
+> [Scikit-Learn](https://scikit-learn.org/stable/index.html), and [pip](https://pip.pypa.io/en/stable/).
 > 
 > > ## Solution
 > > 
 > > In order to create a new environment you use the `conda create` command as follows.
 > > 
 > > ~~~
-> > $ conda create --name conda-env \
+> > $ conda create --name machine-learning-env \
 > > > python \
 > > > jupyterlab \
 > > > matplotlib \
 > > > pandas \
-> > > scikit-learn
+> > > scikit-learn \
+> > > pip
 > > ~~~
 > > {: .language-bash}
 > >
 > > Since no version numbers are provided for any of the Python packages, Conda will download the 
-> > most current, mutually compatible versions of the requested packages.
-> >
-> {: .solution}
-{: .challenge}
-
-> ## Creating a new environment with explicit version numbers
->
-> Create a new environment called "explicit-conda-env" with Python 3.6, version 0.35.5 of 
-> JupyterLab, version 3.0.3 of Matplotlib, version 0.24.2 of Pandas, and version 0.21.1 of 
-> Scikit-Learn.
-> 
-> > ## Solution
+> > most current, mutually compatible versions of the requested packages. However, since it is best 
+> > practice to always provide explicit version numbers, you should prefer the following solution.
 > > 
 > > ~~~
 > > $ conda create --name explicit-conda-env \
 > > > python=3.6 \
-> > > jupyterlab=0.35.5 \
-> > > matplotlib=3.0.3 \
-> > > pandas=0.24.2 \
-> > > scikit-learn=0.21.1
+> > > jupyterlab=0.35 \
+> > > matplotlib=3.1 \
+> > > pandas=0.24 \
+> > > scikit-learn=0.21 \
+> > > pip=19.1
 > > ~~~
 > > {: .language-bash}
 > >
@@ -274,32 +266,32 @@ existing Conda environments.
 
 You can control where a Conda environment lives by providing a path to a target directory when 
 creating the environment. For example to following command will create  a new environment in a 
-sub-directory of the current working directory called `my-local-env`.
+sub-directory of the current working directory called `env`.
 
 ~~~
-$ conda create --prefix ./my-local-env jupyterlab matplotlib numpy
+$ conda create --prefix ./env jupyterlab=0.35 matplotlib=3.1 numpy=1.16
 ~~~
 {: .language-bash}
 
-Note that the name of the environment that is created using this command is `my-local-env`. You 
-can it activate the environment as follows.
+You activate an environment created with a prefix using the same command used to activate 
+environments created by name.
 
 ~~~
-$ source activate my-local-env
+$ source activate ./env
 ~~~
 {: .language-bash}
 
 It is a good idea to *always* specify a path to a sub-directory of your project directory when 
-creating a `conda` environment. Why?
+creating an environment. Why?
 
 1.  Makes it easy to tell if your project utilizes an isolated environment by including the 
     environment as a sub-directory.
 2.  Makes your project more self-contained as everything *including the required software* is 
     contained in a single project directory.
 
-An additional benefit of creating your project's `conda` environment inside a sub-directory is 
-that you can then use the same name for all your `conda` environments; if you keep all of your 
-environments in your `~/miniconda3/env/` folder, you’ll have to give each of them a different name.
+An additional benefit of creating your project's environment inside a sub-directory is that you 
+can then use the same name for all your environments; if you keep all of your environments in 
+your `~/miniconda3/env/` folder, you’ll have to give each of them a different name.
 
 > ## Conda environment sub-directory naming convention
 > 
@@ -330,18 +322,18 @@ environments in your `~/miniconda3/env/` folder, you’ll have to give each of t
 > {: .language-bash}
 >
 > Next, create a new environment inside the newly created `project-dir` in a sub-directory called 
-> `env` an install Python 3.6, version 0.35.5 of JupyterLab, version 3.0.3 of Matplotlib, version 
-> 0.24.2 of Pandas, and version 0.21.1 of Scikit-Learn.
+> `env` an install Python 3.6, version 0.35 of JupyterLab, version 3.1 of Matplotlib, version 
+> 1.13 of TensorFlow and verion 19.1 of pip.
 > 
 > > ## Solution
 > > 
 > > ~~~
 > > project-dir $ conda create --prefix ./env \
 > > > python=3.6 \
-> > > jupyterlab=0.35.5 \
-> > > matplotlib=3.0.3 \
-> > > pandas=0.24.2 \
-> > > scikit-learn=0.21.1
+> > > jupyterlab=0.35 \
+> > > matplotlib=3.1 \
+> > > tensorflow=1.13 \
+> > > pip=19.1
 > > ~~~
 > > {: .language-bash}
 > >
