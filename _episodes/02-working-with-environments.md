@@ -109,7 +109,7 @@ because it is a required dependency of at least one of the listed packages.
 > > practice to always provide explicit version numbers, you should prefer the following solution.
 > > 
 > > ~~~
-> > $ conda create --name explicit-conda-env \
+> > $ conda create --name machine-learning-env \
 > > > python=3.6 \
 > > > jupyterlab=0.35 \
 > > > matplotlib=3.1 \
