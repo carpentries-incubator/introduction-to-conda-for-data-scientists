@@ -227,11 +227,32 @@ your `project-dir` directory.
 >
 > > ## Solution
 > > 
+> > Here is an environment file for my "default" machine learning environment.
+> > ~~~
+> > name: null
+> > 
+> > channels:
+> >   - defaults
+> >   - conda-forge
+> >   - districtdatalabs
+> > 
+> > dependencies:
+> >   - python=3.7
+> >   - jupyterlab=0.35
+> >   - pandas=0.24
+> >   - py-xgboost=0.82
+> >   - scikit-learn=0.21
+> >   - scikit-optimize=0.5
+> >   - featuretools=0.9
+> >   - yellowbrick=0.9
+> >   - kaggle=1.5
+> >   - pip=19.1
+> > ~~~
+> > 
 > > To create a new environment from a YAML file use the `conda env create` sub-command as follows.
 > > ~~~
 > > $ mkdir project-dir
 > > $ cd project-dir
-> > $ nano environment.yml # write the contents of the environment file in the buffer
 > > $ conda env create --file environment.yml -- prefix ./env
 > > ~~~
 > > {: .language-bash}
