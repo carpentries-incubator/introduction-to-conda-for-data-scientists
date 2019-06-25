@@ -260,4 +260,56 @@ your `project-dir` directory.
 > {: .solution}
 {: .challenge}
 
+### Updating an envionment
+
+You are unlikely to know ahead of time which packages (and version numbers!) you will need to use 
+for your research project. For example it may be the case that...  
+
+*   one of your core dependencies just released a new version (dependency version number update).
+*   you need an additional package for data analysis (add a new dependency).
+*   you have found a better visualization package and no longer need to old visualization package 
+    (add new dependency and remove old dependency).
+
+If any of these occurs during the course of your research project, all you need to do is update 
+the contents of your `environment.yml` file accordingly and then run the following command.
+
+~~~
+$ conda env update --prefix ./env --file environment.yml  --prune
+~~~
+{: .language-bash}
+
+Note that the `--prune` option cause Conda to remove any dependencies that are no longer required 
+from the environment.
+
+> ## Adding JupyterLab to the environment.
+> 
+> Add [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/) to the `xgboost-env` environment 
+> file and update the environment.
+>
+> > ## Solution
+> > 
+> > The `environment.yml` file should now look as follows.
+> > 
+> > ~~~
+> > name: xgboost-env
+> >
+> > dependencies:
+> >   - jupyterlab=0.35.*
+> >   - matplotlib=3.1.*
+> >   - pandas=0.24.*
+> >   - python=3.6.*
+> >   - scikit-learn=0.21.*
+> >   - py-xgboost=0.80.*
+> >   - pip=19.1.*
+> > ~~~
+> > 
+> > The following command will update the environment accordingly.
+> > 
+> > ~~~
+> > $ conda env update --prefix ./env --file environment.yml --prune 
+> > ~~~
+> > {: .language-bash}
+> {: .solution}
+{: .challenge}
+
 {% include links.md %}
