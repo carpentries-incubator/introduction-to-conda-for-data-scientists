@@ -6,7 +6,7 @@ questions:
 - "What is a Conda environment?"
 - "How do I create (delete) an environment?"
 - "How do I activate (deactivate) an environment?"
-- "Where should I install my conda environment?"
+- "Where should I install my environments?"
 - "How do I find out the environments that exist on my machine?"
 - "How do I find out what packages have been installed in an environment?"
 - "How do I delete an environment that I no longer need?"

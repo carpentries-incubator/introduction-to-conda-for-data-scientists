@@ -5,7 +5,7 @@ exercises: 5
 questions:
 - "Why should I use a package and environment management system as part of my research workflow?"
 - "What is Conda?"
-- "Why Conda and not pip+virtualenv or Pipenv?"
+- "Why use Conda?"
 objectives:
 - "Explain why you should use Conda as part of your research workflow."
 - "Install Conda for your OS."
@@ -153,7 +153,7 @@ the following features:
   ([reproducibility being one of the major issues facing science](https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970)),
   and conda allows you to provide your environment to other people across these
   different platforms.
-* Conda allows for using other package management tools (such as pip) inside
+* Conda allows for using other package management tools (such as `pip`) inside
   conda environments, where a library or tools is not already packaged for conda
   (we'll show later how to get access to more conda packages via channels).
 
