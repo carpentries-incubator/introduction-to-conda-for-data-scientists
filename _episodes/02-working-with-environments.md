@@ -67,7 +67,22 @@ $ conda create --name my-first-conda-env python=3.6
 >
 > In order to make your results more reproducible and to make it easier for research colleagues to 
 > recreate your Conda environments on their machines it is a "best practice" to always explicitly 
-> specify the version number for each package that you install into an environment.  
+> specify the version number for each package that you install into an environment. If you are not 
+> sure exactly which version of a package you want to use, then you can use search to see what 
+> versions are available using the following command.
+>
+> ~~~
+> $ conda search $PACKAGE_NAME
+> ~~~
+> 
+> So, for example, if you wanted to see what versions of 
+> [Scikit-learn](https://scikit-learn.org/stable/) were available you would run the following. 
+>
+> ~~~
+> $ conda search scikit-learn
+> ~~~
+> 
+> As always you can run `conda search --help` to learn about available options.
 {: .callout}
 
 You can create a Conda environment and install multiple packages by simply listing the packages that you wish to install.
