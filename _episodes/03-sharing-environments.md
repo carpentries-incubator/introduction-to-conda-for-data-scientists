@@ -81,10 +81,10 @@ file would be the following.
 name: null
 
 dependencies:
-  - jupyterlab=0.35.*
-  - matplotlib=3.1.*
-  - pandas=0.24.*
-  - scikit-learn=0.21.*
+  - jupyterlab=1.0
+  - matplotlib=3.1
+  - pandas=0.25
+  - scikit-learn=0.21
 ~~~
 
 Note the use of the wildcard `*` when defining the patch version number. Defining the version 
@@ -166,12 +166,12 @@ your `project-dir` directory.
 > name: xgboost-env
 > 
 > dependencies:
->   - matplotlib=3.1.*
->   - pandas=0.24.*
->   - python=3.6.*
->   - scikit-learn=0.21.*
->   - py-xgboost=0.80.*
->   - pip=19.1.*
+>   - matplotlib=3.1
+>   - pandas=0.25
+>   - python=3.6
+>   - scikit-learn=0.21
+>   - py-xgboost=0.80
+>   - pip=19.1
 > ~~~
 >
 > Now use this file to create a new Conda environment. Where is this new environment created? 
@@ -199,12 +199,12 @@ your `project-dir` directory.
 > > name: null
 > >
 > > dependencies:
-> >   - matplotlib=3.1.*
-> >   - pandas=0.24.*
-> >   - python=3.6.*
-> >   - scikit-learn=0.21.*
-> >   - py-xgboost=0.80.*
-> >   - pip=19.1.*
+> >   - matplotlib=3.1
+> >   - pandas=0.25
+> >   - python=3.6
+> >   - scikit-learn=0.21
+> >   - py-xgboost=0.80
+> >   - pip=19.1
 > > ~~~
 > >
 > > And then use explicitly pass the `--prefix` to the `conda env create` command as follows.
@@ -238,8 +238,8 @@ your `project-dir` directory.
 > > 
 > > dependencies:
 > >   - python=3.7
-> >   - jupyterlab=0.35
-> >   - pandas=0.24
+> >   - jupyterlab=1.0
+> >   - pandas=0.25
 > >   - py-xgboost=0.82
 > >   - scikit-learn=0.21
 > >   - scikit-optimize=0.5
@@ -294,13 +294,13 @@ from the environment.
 > > name: xgboost-env
 > >
 > > dependencies:
-> >   - jupyterlab=0.35.*
-> >   - matplotlib=3.1.*
-> >   - pandas=0.24.*
-> >   - python=3.6.*
-> >   - scikit-learn=0.21.*
-> >   - py-xgboost=0.80.*
-> >   - pip=19.1.*
+> >   - jupyterlab=1.0
+> >   - matplotlib=3.1
+> >   - pandas=0.25
+> >   - python=3.6
+> >   - scikit-learn=0.21
+> >   - py-xgboost=0.80
+> >   - pip=19.1
 > > ~~~
 > > 
 > > The following command will update the environment accordingly.

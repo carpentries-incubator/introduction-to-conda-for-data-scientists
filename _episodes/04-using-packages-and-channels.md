@@ -111,10 +111,10 @@ $ conda install scipy=1.3 --channel conda-forge
 You can also install a package from a specific channel into a named environment (using `--name`) 
 or into an environment installed at a particular prefix (using `--prefix`). For example, the 
 following command installs the `scipy` package from the `conda-forge` channel into the environment 
-called `my-first-env` which we created eariler.
+called `my-first-conda-env` which we created eariler.
 
 ~~~
-$ conda install scipy=1.3 --channel conda-forge --name my-first-env
+$ conda install scipy=1.3 --channel conda-forge --name my-first-conda-env
 ~~~
 {: .language-bash}
 
@@ -252,7 +252,7 @@ $ pip install $SOME_PACKAGE
 > name: null
 > 
 > dependencies:
->  - jupyterlab=0.35
+>  - jupyterlab=1.0
 >  - matplotlib=3.1
 >  - pandas=0.24
 >  - scikit-learn=0.21
@@ -316,7 +316,7 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 > > $ cd my-computer-vision-project/
 > > $ conda create --prefix ./env --channel pytorch \
 > > > python=3.6 \
-> > > jupyterlab=0.35 \
+> > > jupyterlab=1.0 \
 > > > pytorch=1.1 \
 > > > torchvision=0.3 \
 > > > matplotlib=3.1
@@ -348,7 +348,7 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 > > $ cd my-computer-vision-project/
 > > $ conda create --prefix ./env \
 > > > conda-forge::python=3.6 \
-> > > conda-forge::jupyterlab=0.35 \
+> > > conda-forge::jupyterlab=1.0 \
 > > > conda-forge::matplotlib=3.1
 > > > pytorch::pytorch=1.1 \
 > > > pytorch::torchvision=0.3

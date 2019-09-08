@@ -88,7 +88,7 @@ $ conda create --name my-first-conda-env python=3.6
 You can create a Conda environment and install multiple packages by simply listing the packages that you wish to install.
 
 ~~~
-$ conda create --name my-second-conda-env jupyterlab=0.35 matplotlib=3.1 numpy=1.16
+$ conda create --name my-second-conda-env jupyerlab=1.0 matplotlib=3.1 numpy=1.16
 ~~~
 {: .language-bash}
  
@@ -101,8 +101,8 @@ because it is a required dependency of at least one of the listed packages.
 >
 > Create a new environment called "machine-learning-env" with Python and the most current versions of 
 > [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/), 
-> [Matplotlib](https://matplotlib.org/), [Pandas](https://pandas.pydata.org/), 
-> [Scikit-Learn](https://scikit-learn.org/stable/index.html), and [pip](https://pip.pypa.io/en/stable/).
+> [Matplotlib](https://matplotlib.org/), [Pandas](https://pandas.pydata.org/), and 
+> [Scikit-Learn](https://scikit-learn.org/stable/index.html).
 > 
 > > ## Solution
 > > 
@@ -126,7 +126,7 @@ because it is a required dependency of at least one of the listed packages.
 > > ~~~
 > > $ conda create --name machine-learning-env \
 > > > python=3.6 \
-> > > jupyterlab=0.35 \
+> > > jupyerlab=1.0 \
 > > > matplotlib=3.1 \
 > > > pandas=0.24 \
 > > > scikit-learn=0.21 \
@@ -209,14 +209,14 @@ name of the active environment.
 
 > ## Activate an existing environment by name
 >
-> Activate the "explicit-conda-env" environment created in the previous challenge by name.
+> Activate the "machine-learning-env" environment created in the previous challenge by name.
 > 
 > > ## Solution
 > > 
 > > In order to activate an existing environment by name you use the `source activate` command as follows.
 > > 
 > > ~~~
-> > $ source activate explicit-conda-env
+> > $ source activate machine-learning-env
 > > ~~~
 > > {: .language-bash}
 > >
@@ -284,7 +284,7 @@ creating the environment. For example to following command will create  a new en
 sub-directory of the current working directory called `env`.
 
 ~~~
-$ conda create --prefix ./env jupyterlab=0.35 matplotlib=3.1 numpy=1.16
+$ conda create --prefix ./env jupyerlab=1.0 matplotlib=3.1 numpy=1.16
 ~~~
 {: .language-bash}
 
@@ -345,7 +345,7 @@ your `~/miniconda3/env/` folder, you’ll have to give each of them a different 
 > > ~~~
 > > project-dir $ conda create --prefix ./env \
 > > > python=3.6 \
-> > > jupyterlab=0.35 \
+> > > jupyerlab=1.0 \
 > > > matplotlib=3.1 \
 > > > tensorflow=1.13 \
 > > > pip=19.1
@@ -462,10 +462,10 @@ $ conda env list
 In addition to forgetting names and locations of Conda environments, at some point you will 
 probably forget exactly what has been installed in a particular Conda environment. Again, there is 
 a `conda` command for listing the contents on an environment. To list the contents of the 
-`my-first-environment` that you created above, run the following command.
+`my-first-conda-env` that you created above, run the following command.
 
 ~~~
-$ conda list --name my-first-environment
+$ conda list --name my-first-conda-env
 ~~~
 {: .language-bash}
 
@@ -509,7 +509,7 @@ longer need an existing environment and just want to get rid of cruft on your ma
 the reason the command to delete an environment is the following.
 
 ~~~
-$ conda remove --name my-first-env --all
+$ conda remove --name my-first-conda-env --all
 ~~~
 {: .language-bash}
 
@@ -523,14 +523,14 @@ $ conda remove --prefix /path/to/conada-env/ --all
 
 > ## Delete an entire environment
 >
-> Delete the entire "my-first-env" environment created in a previous challenge.
+> Delete the entire "my-second-conda-env" environments.
 > 
 > > ## Solution
 > > 
 > > In order to delete an entire environment you use the `conda remove` command as follows.
 > > 
 > > ~~~
-> > $ conda remove --name my-first-env --all
+> > $ conda remove --name my-second-conda-env --all
 > > ~~~
 > > {: .language-bash}
 > >
