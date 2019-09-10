@@ -88,7 +88,7 @@ $ conda create --name my-first-conda-env python=3.6
 You can create a Conda environment and install multiple packages by simply listing the packages that you wish to install.
 
 ~~~
-$ conda create --name my-second-conda-env jupyerlab=1.0 matplotlib=3.1 numpy=1.16
+$ conda create --name my-second-conda-env jupyterlab=1.0 matplotlib=3.1 numpy=1.16
 ~~~
 {: .language-bash}
  
