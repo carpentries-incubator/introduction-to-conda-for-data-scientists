@@ -7,7 +7,7 @@
 # dc: Data Carpentry
 # lc: Library Carpentry
 # cp: Carpentries (to use for instructor traning for instance)
-carpentry: "swc"
+carpentry: "incubator"
 
 # Overall title for pages.
 title: "Introduction to Conda for (Data) Scientists"
@@ -99,3 +99,6 @@ exclude:
 
 # Turn on built-in syntax highlighting.
 highlighter: rouge
+
+# Remote theme
+remote_theme: carpentries/carpentries-theme
