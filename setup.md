@@ -7,12 +7,11 @@ root: ..
 
 ## Installation Instructions
 
-## Installing Conda
+### Check to see if Conda is already installed
 
-Now that I have motivated why package and environment management systems like Conda are useful, 
-and hopefully convinced you that Conda is the best package and environment management system 
-available. Let's install Conda! First check whether Conda has already been installed on your 
-local machine by running the following command in a terminal if you are running macOS or Linux.
+If you have ever installed the [Anaconda Python distribution](https://www.anaconda.com/distribution/) 
+on your local machine, then you already have Conda installed! Mac and Linux users can check 
+whether Conda is installed by running the following command in a terminal.
 
 ~~~
 $ which conda
@@ -21,11 +20,48 @@ $ which conda
 {: .language-bash}
 
 If Conda has already been installed on your machine, then you this command should return the 
-absolute path to the conda executable. If Conda has not been installed on your machine, then 
-install the Python 3 version of [Miniconda](https://docs.conda.io/en/latest/miniconda.html) from 
-Anaconda for your OS. Miniconda is mini version of the 
-[Anaconda Python distribution](https://www.anaconda.com/distribution/) that includes only Conda 
-and its dependencies.
+absolute path to the conda executable. Windows users should search for "Anaconda" to see if the 
+"Anaconda Command Prompt" shows up as an option, if it does then you already have Conda installed.
+
+### Install Python 3 version of Miniconda
+
+If Conda has not been installed on your machine, then install the Python 3 version of 
+[Miniconda](https://docs.conda.io/en/latest/miniconda.html) from Anaconda for your OS. As the name 
+suggests, Miniconda is a "mini" version of the 
+[Anaconda Python distribution](https://www.anaconda.com/distribution/) that includes only Conda a 
+base Python 3 distribution, and any necessary OS-specific dependencies. 
+
+For convenience here are links to the 64-bit GUI Miniconda installers for Windows and Mac OSX.
+
+* [Windows](https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe)
+* [Mac OSX](https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.pkg) 
+
+#### Linux installation
+
+I will walk through the steps for installing on Linux systems below as installing on Linux systems 
+is slightly more involved.
+
+Download the 64-bit Python 3 install script for Miniconda.
+
+~~~
+wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+~~~
+{: .language-bash}
+
+Run the Miniconda install script. The `-b` runs the install script in batch mode which doesn't 
+require manual intervention (and assumes that the user agrees to the terms of the license).
+
+~~~
+bash Miniconda3-latest-Linux-x86_64.sh -b
+~~~
+{: .language-bash}
+
+Once the install script completes, you can remove it.
+
+~~~
+rm Miniconda3-latest-Linux-x86_64
+~~~
+{: .language-bash}
 
 ### Make sure you have the most recent version
 
