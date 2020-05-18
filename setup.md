@@ -134,6 +134,42 @@ $ conda update --name base --channel defaults --yes conda
 
 You can re-run this command at any time to update to the most recent version of Conda.
 
+## Initializing your shell for Conda
+
+Key parts of Conda's functionality require that it interact directly with the shell within which 
+Conda commands are being invoked as such each shell must be configured to make use of them. The 
+`conda init` command initializes a shell for use with Conda by making changes to your system that 
+are specific and customized for each shell. Conda supports a number of different shells and you 
+can run `conda init --help` to see the complete list.
+
+Mac OSX and Linux users will want to initialize Conda for Bash as follows.
+
+~~~
+$ conda init bash
+~~~
+{: .language-bash}
+
+Windows users can either use the Anaconda Command Prompt or the Anaconda Powershell Prompt which 
+are already initialized for Conda or they can initialize Conda for Powershell as follows.
+
+~~~
+> conda init powershell
+~~~
+
+After running `conda init` you will need to close and restart your shell for changes to take 
+effect. Alternatively, Mac OS and Linux users can reload your `~/.bashrc` profile (which was 
+changed by running the `conda init` command). To reload your `~/.bashrc` profile, use the 
+following command.
+
+~~~
+$ source ~/.bashrc
+~~~
+{: .language-bash}
+
+If you want to reverse or “undo” the changes made by `conda init`, then you can re-run the 
+`conda init` command and pass the `--reverse` option. Again, in order for the reversal to take 
+effect you will likely need to close and restart your shell session.
+
 ## Workspace Setup
 
 In order to maintain a consistent workspace for all learners create an 
