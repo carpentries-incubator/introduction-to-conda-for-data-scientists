@@ -1,4 +1,5 @@
 [![Create a Slack Account with us](https://img.shields.io/badge/Create_Slack_Account-The_Carpentries-071159.svg)](https://swc-slack-invite.herokuapp.com/)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/carpentries-incubator/introduction-to-conda-for-data-scientists/binder?urlpath=lab)
 
 # Introduction to Conda for (Data) Scientists
 
