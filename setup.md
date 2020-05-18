@@ -8,9 +8,9 @@ root: ..
 # Installation Instructions
 
 If you wish to get started with this course without installing Conda, then you can use a 
-pre-configured instance running on BinderHub by clicking on the link below.
+pre-configured instance running on [Binder](https://mybinder.org/) by clicking on the link below.
 
-[![Launch Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/carpentries-incubator/introduction-to-conda-for-data-scientists/binder)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/carpentries-incubator/introduction-to-conda-for-data-scientists/binder?urlpath=lab)
 
 ## Check to see if Conda is already installed
 
