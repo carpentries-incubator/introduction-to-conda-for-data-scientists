@@ -158,7 +158,7 @@ problems and explicitly targeted at (data) science use cases.
 
 Additionally, Anaconda provides commonly used data science libraries and tools,
 such as R, NumPy, SciPy and TensorFlow built using optimised, hardware specific
-libraries (such as Intel's MKL or Nvidia's CUDA), which provides a speedup
+libraries (such as Intel's MKL or NVIDIA's CUDA), which provides a speedup
 without having to change any of your code.
 
 
