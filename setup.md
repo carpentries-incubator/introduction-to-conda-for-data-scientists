@@ -44,6 +44,25 @@ For convenience here are links to the 64-bit GUI Miniconda installers.
 * [Mac OSX](https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.pkg)
 * [Linux](https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh) 
 
+> ## Prefer Miniconda to Anaconda
+>
+> I suggest installing Miniconda which combines Conda with Python 3 (and a small number of core 
+> systems packages) instead of the full Anaconda distribution. Installing only Miniconda will 
+> encourage you to create separate environments for each project (and to install only those packages 
+> that you actually need for each project!). Project specific environments enhance portability and 
+> reproducibility of your research and workflows. 
+> 
+> Besides, if you *really* want the full Anaconda distribution you can always create an new conda 
+> environment and install it using the following command.
+>
+> ~~~
+> $ conda create --name my-anaconda-env anaconda=5.3
+> ~~~
+> {: .language-bash}
+>
+> We will discuss the above command in great depth in the workshop.
+{: .callout}
+
 ### Linux installation
 
 I will walk through the steps for installing on Linux systems below as installing on Linux systems 
