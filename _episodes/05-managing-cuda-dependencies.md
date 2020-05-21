@@ -9,7 +9,7 @@ objectives:
 - "Show how to use Conda to manage key GPU dependencies for you next (data) science project."
 - "Show how to identify which versions of CUDA packages are available via Conda."
 - "Understand how to write a Conda environment file for a project with GPU dependencies."
-- "Understand when you need NVIDIA CUDA Compiler (NVCC) and how  to handle this situation." 
+- "Understand when you need the NVIDIA CUDA Compiler (NVCC) and how  to handle this situation." 
 keypoints:
 - "Conda can be used to manage your key GPU dependencies."
 - "Use `conda search` to identify which version of CUDA libraries are available."
@@ -17,6 +17,8 @@ keypoints:
 - "If your project does need NVCC, try `cudatoolkit-dev` package or `nvcc_linux-64` meta-package (requires separate NVIDIA CUDA Toolkit 
   install)."
 ---
+
+# Getting familiar with NVIDIA CUDA libraries
 
 Transitioning your (data) science projects from CPU to GPU can seem like a daunting task. 
 In particular, there is quite a bit of unfamiliar additional software, such as 
@@ -61,7 +63,13 @@ cudatoolkit                  10.2.89      hfd86e86_1  pkgs/main
 
 NVIDIA actually maintains their own Conda channel and the versions of CUDA Toolkit available from 
 the default channels are the same as those you will find on the NVIDIA channel. If you are 
-interested in confirming this you can run the command `conda search --channel nvidia cudatoolkit` 
+interested in confirming this you can run the command 
+
+~~~
+$ conda search --channel nvidia cudatoolkit
+~~~
+{: .language-bash}
+
 and then compare the build numbers with those listed above from the default channels.
 
 > ## The CUDA Toolkit packages available from defaults do not include NVCC
@@ -140,7 +148,8 @@ the default channels.
 
 > ## Which version of NCCL are available via Conda Forge?
 > 
-> Can you find out which version of NCCL are available via Conda Forge?
+> Find out which versions of the NVIDIA Collective Communications Library (NCCL) are available via 
+> Conda Forge?
 > 
 > > ## Solution
 > > 
@@ -197,7 +206,9 @@ help get you started on your next GPU data science project.
 [PyTorch](https://pytorch.org/) is an open source machine learning library based on the Torch 
 library, used for applications such as computer vision and natural language processing. It is 
 primarily developed by Facebook’s AI Research lab. Conda is actually the 
-[recommended way](https://pytorch.org/get-started/locally/) to install PyTorch.
+[recommended way](https://pytorch.org/get-started/locally/) to install PyTorch. The official 
+PyTorch binary ships with NCCL and cuDNN so it is not necessary to include these libraries in 
+your `environment.yml` file (unless some other package also needs these libraries!).
 
 ~~~
 name: null
@@ -209,15 +220,12 @@ channels:
 
 dependencies:
   - cudatoolkit=10.1
-  - mpi4py=3.0 # installs cuda-aware openmpi
   - pip=20.0
   - python=3.7
   - pytorch=1.5
   - torchvision=0.6
 ~~~
-
-The official PyTorch binary ships with NCCL and cuDNN so it is not necessary to include these 
-libraries in your environment.yml file (unless some other package also needs these libraries!). 
+{: .language-yaml}
 
 > ## Check you channel priorities!
 > 
@@ -227,7 +235,7 @@ libraries in your environment.yml file (unless some other package also needs the
 > available on `conda-forge`).
 {: .callout}
 
-## TensorFlow example
+## TensorFlow
 
 [TensorFlow](https://www.tensorflow.org/) is a free, open-source software library for dataflow and 
 differentiable programming across a range of tasks. It is a symbolic math library, and is also used 
@@ -267,25 +275,24 @@ this one yourself!
 > >   - python=3.7
 > >   - tensorflow-gpu=2.1 # installs tensorflow=2.1=gpu_py37h7a4bb67_0
 > > ~~~
+> > {: .language-yaml}
 > {: .solution} 
 {: .challenge}
 
-## BlazingSQL + NVIDIA RAPIDS example
+## NVIDIA RAPIDS (+BlazingSQL+Datashader)
 
 As a final example let's see how to get started with 
 [NVIDIA RAPIDS](https://rapids.ai/) (and friends!). NVIDIA RAPIDS is a suite of open source 
 software libraries and APIs gives you the ability to execute end-to-end data science and 
 analytics pipelines entirely on GPUs (think [Pandas](https://pandas.pydata.org/) + 
-[Scikit-learn](https://scikit-learn.org/stable/index.html) but for GPUs instead of CPUs).
-
-In addition to RAPIDS we have also included [BlazingSQL](https://www.blazingsql.com/) in this 
+[Scikit-learn](https://scikit-learn.org/stable/index.html) but for GPUs instead of CPUs). In 
+addition to RAPIDS we have also included [BlazingSQL](https://www.blazingsql.com/) in this 
 example environment file. BlazingSQL is an open-source SQL interface to extract-transform-load 
-(ETL) massive datasets directly into GPU memory for analysis using NVIDIA RAPIDS.
-
-Finally, the environment above also includes [Datashader](https://datashader.org/), a graphics 
-pipeline system for creating meaningful representations of large datasets quickly and flexibly, 
-that can be accelerated with GPUs. If you are going to do all of your data analysis on the GPU you 
-might as well do your data visualization on the GPU too.
+(ETL) massive datasets directly into GPU memory for analysis using NVIDIA RAPIDS. The environment 
+also includes [Datashader](https://datashader.org/), a graphics pipeline system for creating 
+meaningful representations of large datasets quickly and flexibly, that can be accelerated with 
+GPUs. If you are going to do all of your data analysis on the GPU, then you might as well do your 
+data visualization on the GPU too!
 
 ~~~
 name: null 
@@ -305,6 +312,7 @@ dependencies:
   - python=3.7
   - rapids=0.13
 ~~~
+{: .language-yaml}
 
 > ## What exactly is installed when you install NVIDIA RAPIDS?
 > 
@@ -346,7 +354,7 @@ approaches above and Conda will fail to successfully create the environment and 
 bunch of compiler errors. Once you know that you need NVCC, there are a couple of ways to get the 
 NVCC compiler installed.
 
-## Try the `cudatoolkit-dev` package
+## First, try the `cudatoolkit-dev` package...
 
 The cudatoolkit-dev package available from the conda-forge channel includes GPU-accelerated 
 libraries, debugging and optimization tools, a C/C++ compiler and a runtime library. This package 
@@ -393,9 +401,11 @@ dependencies:
   - tensorboard=2.1
   - torchvision=0.5
 ~~~
+{: .language-yaml}
 
-The requirements.txt file referenced above contains PyTorch Cluster and related packages such as 
-PyTorch Geometric. Here is what that file looks like.
+The `requirements.txt` file referenced above contains PyTorch Cluster and related packages such as 
+[PyTorch Geometric](https://github.com/rusty1s/pytorch_geometric). Here is what that file looks 
+like.
 
 ~~~
 torch-scatter==2.0.*
@@ -403,6 +413,7 @@ torch-sparse==0.6.*
 torch-spline-conv==1.2.*
 torch-cluster==1.5.*
 torch-geometric==1.4.*
+
 # make sure the following are re-compiled if environment is re-built
 --no-binary=torch-scatter
 --no-binary=torch-sparse
@@ -416,57 +427,41 @@ re-built whenever the environment is re-built which helps increase the reproduci
 environment build process when porting from workstations to remote clusters that might have 
 different OS.
 
-## In general go with the `nvcc_linux-64` meta-package
+## ...if that doesn't work, then use the `nvcc_linux-64` meta-package
 
 The most robust approach to obtain NVCC and still use Conda to manage all the other dependencies 
 is to install the NVIDIA CUDA Toolkit on your system and then install a meta-package nvcc_linux-64 
 from conda-forge which configures your Conda environment to use the NVCC installed on your system 
-together with the other CUDA Toolkit components installed inside the Conda environment. While I 
+together with the other CUDA Toolkit components installed inside the Conda environment. While we 
 have found this approach to be more robust then relying on `cudatoolkit-dev`, this approach is more 
-involved as it requires installing a particular version of the NVIDIA CUDA Toolkit on your system 
-first.
+involved as it requires installing a 
+[particular version](https://developer.nvidia.com/cuda-toolkit-archive) of the NVIDIA CUDA Toolkit 
+on your system first.
 
-## A Conda environment for Horovod
+In order to demonstrate how to use the `nvcc_linux-64` meta-package approach we will show how to 
+build a Conda environment for deep learning projects that use Horovod to enable distributed 
+training across multiple GPUs (either on the same node or spread across multiple nodes). 
 
-Horovod is an open-source distributed training framework for TensorFlow, Keras, PyTorch, and 
-Apache MXNet. Originally developed by Uber for in house use, Horovod was open sourced a couple 
-of years ago and is now an official Linux Foundation AI (LFAI) project.
+[Horovod](https://github.com/horovod/horovod) is an open-source distributed training framework for 
+[TensorFlow](https://www.tensorflow.org/), [Keras](https://keras.io/), 
+[PyTorch](https://pytorch.org/), and [Apache MXNet](https://mxnet.incubator.apache.org/). 
+Originally developed by Uber for in-house use, Horovod was open sourced a couple of years ago and 
+is now an official [Linux Foundation AI (LFAI)](https://lfai.foundation/) project.
 
-In this section I describe how I build Conda environments for my deep learning projects when I am 
-using Horovod to enable distributed training across multiple GPUs (either on the same node or 
-spread across multiple nodes).
+### Typical `environment.yml` file
 
-### Channel Priority
-
-I use the recommended channel priorities. Note that conda-forge has priority over defaults.
-name: null
+Let's checkout the `environment.yml` file. You can find this `environment.yml` file on GitHub as a 
+part of a [template repository](https://github.com/kaust-vislab/horovod-gpu-data-science-project) to 
+help you get started with Horovod. 
 
 ~~~
+name: null
+
 channels:
   - pytorch
   - conda-forge
   - defaults
-~~~
 
-### Dependencies
-
-There are a few things worth noting about the dependencies. Even though I have installed the NVIDIA 
-CUDA Toolkit manually I still use Conda to manage the other required CUDA components such as 
-`cudnn` and `nccl` (and the optional `cupti`).
-
-* I use two meta-pacakges, `cxx-compiler` and `nvcc_linux-64`, to make sure that suitable C, and C++ 
-  compilers are installed and that the resulting Conda environment is aware of the manually installed 
-  CUDA Toolkit.
-* Horovod requires some controller library to coordinate work between the various Horovod processes. 
-  Typically this will be some MPI implementation such as OpenMPI. However, rather than specifying 
-  the `openmpi` package directly I instead opt for `mpi4py` Conda package which provides a CUDA-aware 
-  build of OpenMPI (assuming it is supported by your hardware).
-* Horovod also supports the Gloo collective communications library that can be used in place of MPI. 
-  I include cmake in order to insure that the Horovod extensions for Gloo are built.
-
-Below are the core required dependencies. The complete environment.yml file is available on GitHub.
-
-~~~
 dependencies:
   - bokeh=1.4
   - cmake=3.16 # insures that Gloo library extensions will be built
@@ -488,13 +483,34 @@ dependencies:
   - tensorflow-gpu=2.1
   - torchvision=0.5
 ~~~
+{: .language-yaml}
 
-### The `requirements.txt` File
+Take note of the channel priorities: `pytorch` is given highest priority in order to insure that 
+the official PyTorch binary is installed (and not the binaries available on `conda-forge`). There 
+are also a few things worth noting about the dependencies. Even though you have installed the 
+NVIDIA CUDA Toolkit manually you can still use Conda to manage the other required CUDA components 
+such as `cudnn` and `nccl` (and the optional `cupti`).
 
-The `requirements.txt` file is where all of the Pip dependencies, including Horovod itself, are 
-listed for installation. In addition to Horovod I typically will also use pip to install 
-JupyterLab extensions to enable GPU and CPU resource monitoring via `jupyterlab-nvdashboard` and 
-Tensorboard support via `jupyter-tensorboard`.
+* We use two meta-pacakges, `cxx-compiler` and `nvcc_linux-64`, to make sure that suitable C, and C++ 
+  compilers are installed and that the resulting Conda environment is aware of the manually installed 
+  CUDA Toolkit.
+* Horovod requires some controller library to coordinate work between the various Horovod processes. 
+  Typically this will be some MPI implementation such as OpenMPI. However, rather than specifying 
+  the `openmpi` package directly, opt for `mpi4py` Conda package which will install a CUDA-aware 
+  build of OpenMPI (assuming it is supported by your hardware).
+* Horovod also supports the Gloo collective communications library that can be used in place of MPI. 
+  If you include `cmake` in order to insure that the Horovod extensions for Gloo are built.
+
+### Typical `requirements.txt` file
+
+The `requirements.txt` file is where all of the dependencies, including Horovod itself, are 
+listed for installation via `pip`. In addition to Horovod, it is recommended to use `pip` to install 
+JupyterLab extensions to enable GPU and CPU resource monitoring via 
+[`jupyterlab-nvdashboard`](https://github.com/rapidsai/jupyterlab-nvdashboard) and 
+[Tensorboard](https://www.tensorflow.org/tensorboard/) support via 
+[`jupyter-tensorboard`](https://github.com/chaoleili/jupyterlab_tensorboard). Note the use of the 
+`--no-binary` option at the end of the file. Including this option insures that Horovod will be 
+re-built whenever the Conda environment is re-built.
 
 ~~~
 horovod==0.19.*
@@ -505,13 +521,12 @@ jupyter-tensorboard==0.2.*
 --no-binary=horovod
 ~~~
 
-Note the use of the `--no-binary` option at the end of the file. Including this option insures 
-that Horovod will be re-built whenever the Conda environment is re-built. The complete 
-`requirements.txt` file is available on GitHub.
+### Creating the Conda environment
 
-### Building Conda Environment
-
-You can create the Conda environment in a sub-directory `./env` of your project directory by running the following commands.
+You can create the Conda environment in a sub-directory `env` of your project directory by 
+running the following commands. By default Horovod will try and build extensions for all 
+detected frameworks. See the [Horovod documentation](https://horovod.readthedocs.io/en/stable/) on 
+for the details on additional environment variables that can be set prior to building Horovod.
 
 ~~~
 export ENV_PREFIX=$PWD/env
@@ -521,17 +536,14 @@ export HOROVOD_GPU_ALLREDUCE=NCCL
 export HOROVOD_GPU_BROADCAST=NCCL
 conda env create --prefix $ENV_PREFIX --file environment.yml --force
 ~~~
-
-By default Horovod will try and build extensions for all detected frameworks. See the Horovod 
-documentation on environment variables for the details on additional environment variables that 
-can be set prior to building Horovod.
+{: .language-bash}
 
 > ## Wrap complex Conda environment builds in a script!
 > 
 > In order to enhance reproducibiity of your complex Conda build, I typically wrap commands into a 
 > shell script called `create-conda-env.sh`. Running the shell script will set the Horovod build 
-> variables, create the Conda environment, activate the Conda environment, and built JupyterLab 
-> with any additional extensions.
+> variables, create the Conda environment, activate the Conda environment, and build JupyterLab 
+> with any additional extensions as specified in a `postBuild` script.
 > 
 > ~~~
 > #!/bin/bash --login
@@ -549,18 +561,17 @@ can be set prior to building Horovod.
 > ~~~
 > {: .language-bash}
 > 
-> I typically put scripts inside a `./bin` directory in my project root directory. The script 
-> should be run from the project root directory as follows.
+> You can put scripts inside a `bin` directory in my project root directory. The script should 
+> be run from the project root directory as follows.
 > ~~~
 > $ ./bin/create-conda-env.sh
 > ~~~
 > {: .language-bash}
 {: .callout}
 
-# Summary
-
-We covered a lot of ground in this post. We showed you how to use `conda search` to see which 
+We covered a lot of ground in this episode! We showed you how to use `conda search` to see which 
 versions of the NVIDIA CUDA Toolkit and related libraries such as NCCL and cuDNN were available 
 via Conda. Then we walked you through example Conda environment files for several popular data 
-science frameworks that can use GPUs. Hopefully these ideas will help you make the jump from CPUs 
-to GPUs on your next data science project!
+science frameworks that can use GPUs. We wrapped up with a discussion of two different approaches 
+for getting NVCC when your project requires compiler custom CUDA extensions. Hopefully these ideas 
+will help you make the jump from CPUs to GPUs on your next data science project!
