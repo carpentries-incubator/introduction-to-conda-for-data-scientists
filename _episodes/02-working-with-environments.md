@@ -21,7 +21,7 @@ objectives:
 keypoints:
 - "A Conda environment is a directory that contains a specific collection of Conda packages that you have installed."
 - "You create (remove) a new environment using the `conda create` (`conda remove`) commands."
-- "You activate (deactivate) an environment using the `source activate` (`conda deactivate`) commands."
+- "You activate (deactivate) an environment using the `conda activate` (`conda deactivate`) commands."
 - "You should install each environment as a sub-directory inside its corresponding project directory"
 - "Use the `conda env list` command to list existing environments and their respective locations."
 - "Use the `conda list` command to list all of the packages installed in an environment."
@@ -364,7 +364,7 @@ you do not. Now your command prompt will display the active environment’s gene
  
 ~~~
 $ cd project-directory
-$ source activate ./env
+$ conda activate ./env
 (env) project-directory $
 ~~~
 {: .language-bash}
