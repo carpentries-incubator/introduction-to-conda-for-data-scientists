@@ -317,8 +317,8 @@ $ python -m ipykernel install --user --name xgboost-env --display-name "XGBoost"
 The last command installs a kernel spec file for the current environment. Kernel spec files are 
 JSON files which can be viewed and changed with a normal text editor. The `--name` value is used 
 by Jupyter internally; `--display-name` is what you see in the JupyterLab launcher menu as well as 
-the dropdown notebook kernel menu. This command will overwrite any existing kernel with the same 
-name. 
+the Jupyter Notebook dropdown kernel menu. This command will overwrite any existing kernel with 
+the same name. 
 
 > ## Create a kernel for a Conda environment
 >
