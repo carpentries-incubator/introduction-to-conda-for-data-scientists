@@ -271,13 +271,14 @@ from the environment.
 > {: .solution}
 {: .challenge}
 
-## Creating a custom kernel for your Conda environment
+## Making Jupyter aware of your Conda environments
 
-JupyterLab automatically ensures that the standard IPython kernel is always available by default. 
-However, if you want to use a kernel based on a particular Conda environment from inside Jupyter 
-Lab, you will need to create a 
-[kernel spec](https://jupyter-client.readthedocs.io/en/latest/kernels.html#kernelspecs) for the 
-Conda environment manually.
+Both JupyterLab and Jupyter Notebooks automatically ensure that the standard IPython kernel is 
+always available by default. However, if you want to use a kernel based on a particular Conda 
+environment from inside Jupyter (and Juptyer is *not* installed inside your environment) then will 
+need to create a 
+[kernel spec](https://jupyter-client.readthedocs.io/en/latest/kernels.html#kernelspecs) file for 
+your Conda environments manually.
 
 Before you can create a custom kernel for you Conda environment you need to make sure that the 
 [`ipykernel`](https://pypi.org/project/ipykernel/) package is installed in your Conda environment 
@@ -299,7 +300,7 @@ dependencies:
 ~~~
 {: .language-yaml}
 
-You can rebuild the Conda environment in a sub-directory using the following command.
+Next, rebuild the Conda environment using the following command.
 
 ~~~
 $ conda env create --prefix ./env --file environment.yml --force
@@ -315,9 +316,9 @@ $ python -m ipykernel install --user --name xgboost-env --display-name "XGBoost"
 
 The last command installs a kernel spec file for the current environment. Kernel spec files are 
 JSON files which can be viewed and changed with a normal text editor. The `--name` value is used 
-by Jupyter internally. The command will overwrite any existing kernel with the same name. 
-`--display-name` is what you see in the JupyterLab launcher menu as well as the dropdown notebook 
-kernel menu. 
+by Jupyter internally; `--display-name` is what you see in the JupyterLab launcher menu as well as 
+the dropdown notebook kernel menu. This command will overwrite any existing kernel with the same 
+name. 
 
 > ## Create a kernel for a Conda environment
 >
