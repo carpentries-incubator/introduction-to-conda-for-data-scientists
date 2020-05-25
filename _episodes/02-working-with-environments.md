@@ -28,12 +28,13 @@ keypoints:
 ---
 ## What is a Conda environment
 
-A [Conda environment][conda-env-docs] is a directory that contains a specific collection of Conda 
-packages that you have installed. For example, you may be working on a research project that 
-requires NumPy 1.18 and its dependencies, while another environment associated with an finished 
-project has NumPy 1.12 (perhaps because version 1.12 was the most current version of NumPy at the 
-time the project finished). If you change one environment, your other environments are not 
-affected. You can easily activate or deactivate environments, which is how you switch between them.
+A [Conda environment](https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/environments.html) 
+is a directory that contains a specific collection of Conda packages that you have installed. For 
+example, you may be working on a research project that requires NumPy 1.18 and its dependencies, 
+while another environment associated with an finished project has NumPy 1.12 (perhaps because 
+version 1.12 was the most current version of NumPy at the time the project finished). If you 
+change one environment, your other environments are not affected. You can easily activate or 
+deactivate environments, which is how you switch between them.
 
 > ## Avoid installing packages into your `base` Conda environment
 >
@@ -359,8 +360,8 @@ $ conda config --set env_prompt '({name})'
 ~~~
 {: .language-bash}
  
-This will either edit your `.condarc` file if you already have one or create a `condarc` file if 
-you do not. Now your command prompt will display the active environment’s generic name.
+This will either edit your `~/.condarc` file if you already have one or create a `~/.condarc` file 
+if you do not. Now your command prompt will display the active environment’s generic name.
  
 ~~~
 $ cd project-directory
@@ -369,7 +370,8 @@ $ conda activate ./env
 ~~~
 {: .language-bash}
 
-For more on modifying your `.condarc` file, see [the docs][conda-docs].
+For more on modifying your `.condarc` file, see the 
+[official Conda docs](https://docs.conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html).
 
 > ## Activate an existing environment by path
 >
