@@ -1,19 +1,21 @@
 ---
 title: "Working with Environments"
-teaching: 45
+teaching: 60
 exercises: 15
 questions:
 - "What is a Conda environment?"
 - "How do I create (delete) an environment?"
 - "How do I activate (deactivate) an environment?"
-- "Where should I install my environments?"
-- "How do I find out the environments that exist on my machine?"
+- "How do I install packages into existing environments using Conda (+pip)?"
+- "Where should I create my environments?"
 - "How do I find out what packages have been installed in an environment?"
+- "How do I find out what environments that exist on my machine?"
 - "How do I delete an environment that I no longer need?"
 objectives:
 - "Understand how Conda environments can improve your research workflow."
 - "Create a new environment."
 - "Activate (deactivate) a particular environment."
+- "Install packages into existing environments using Conda (+pip)."
 - "Specify the installation location of an environment."
 - "List all of the existing environments on your machine."
 - "List all of the installed packages within a particular environment."
@@ -22,6 +24,7 @@ keypoints:
 - "A Conda environment is a directory that contains a specific collection of Conda packages that you have installed."
 - "You create (remove) a new environment using the `conda create` (`conda remove`) commands."
 - "You activate (deactivate) an environment using the `conda activate` (`conda deactivate`) commands."
+- "You install packages into environments using `conda install`; you install packages into an active environment using `pip install`."
 - "You should install each environment as a sub-directory inside its corresponding project directory"
 - "Use the `conda env list` command to list existing environments and their respective locations."
 - "Use the `conda list` command to list all of the packages installed in an environment."
@@ -46,27 +49,33 @@ deactivate environments, which is how you switch between them.
 
 ## Creating environments
 
-To create a new environment for Python development using `conda` you can use the 
-[`create`](https://docs.conda.io/projects/conda/en/latest/commands/create.html) command as follows.
+To create a new environment for Python development using `conda` you can use the `conda create` 
+command.
 
 ~~~
-$ conda create --name python3-env python
+$ conda create --name python3-env python pip
 ~~~
 {: .language-bash}
 
-> ## Always give your environments meaningful names
+> ## Always install `pip` in your Python environments
 >
-> It is a good idea to give your environment a meaningful name in order to help yourself remember 
-> the purpose of the environment. While naming things can be difficult, `$PROJECT_NAME-env` is a 
-> good convention to follow.
+> [Pip](https://pip.pypa.io/en/stable/), the default Python package manager, is often already 
+> installed on most operating systems (where it is used to manage any packages need by the OS 
+> Python). Pip is also included in the Miniconda installer. Including `pip` as an explicit 
+> dependency in your Conda environment avoids difficult to debug issues that can arise when 
+> installing packages into environments using some other `pip` installed outside your environment. 
 {: .callout}
 
+It is a good idea to give your environment a meaningful name in order to help yourself remember 
+the purpose of the environment. While naming things can be difficult, `$PROJECT_NAME-env` is a 
+good convention to follow.
+
 The command above will create a new Conda environment called "python3" and install the most recent 
-version of Python. If you wish, you may specify a particular version of Python for `conda` to 
-install as follows.
+version of Python. If you wish, you can specify a particular version of packages for `conda` to 
+install when creating the environment.
 
 ~~~
-$ conda create --name python36-env python=3.6
+$ conda create --name python36-env python=3.6 pip=20.0
 ~~~
 {: .language-bash}
 
@@ -76,14 +85,15 @@ $ conda create --name python36-env python=3.6
 > recreate your Conda environments on their machines it is a "best practice" to always explicitly 
 > specify the version number for each package that you install into an environment. If you are not 
 > sure exactly which version of a package you want to use, then you can use search to see what 
-> versions are available using the following command.
+> versions are available using the `conda search` command.
 >
 > ~~~
 > $ conda search $PACKAGE_NAME
 > ~~~
 > 
-> So, for example, if you wanted to see what versions of 
-> [Scikit-learn](https://scikit-learn.org/stable/) were available you would run the following. 
+> So, for example, if you wanted to see which versions of 
+> [Scikit-learn](https://scikit-learn.org/stable/), a popular Python library for machine learning,
+> were available, you would run the following. 
 >
 > ~~~
 > $ conda search scikit-learn
@@ -138,7 +148,7 @@ because it is a required dependency of at least one of the listed packages.
 > > > pandas=1.0 \
 > > > pip=20.0
 > > > python=3.6 \
-> > > scikit-learn=0.22 \
+> > > scikit-learn=0.22
 > > ~~~
 > > {: .language-bash}
 > >
@@ -169,24 +179,6 @@ name of the active environment.
 (basic-scipy-env) $
 ~~~
 
-> ## Activate an existing environment by name
->
-> Activate the `machine-learning-env` environment created in the previous challenge by name.
-> 
-> > ## Solution
-> > 
-> > In order to activate an existing environment by name you use the `conda activate` command as 
-> > follows.
-> > 
-> > ~~~
-> > $ conda activate machine-learning-env
-> > ~~~
-> > {: .language-bash}
-> >
-> >
-> {: .solution}
-{: .challenge}
-
 ## Deactivate the current environment
 
 To deactivate the currently active environment use the `deactivate` command as follows.
@@ -197,7 +189,7 @@ To deactivate the currently active environment use the `deactivate` command as f
 {: .language-bash}
 
 You can see that an environment has been deactivated because the shell prompt will no longer 
-include the name of the previouslt active environment.
+include the name of the previously active environment.
 
 ~~~
 $
@@ -211,9 +203,25 @@ $
 > you encounter this undesirable state! Just start a new shell.**
 {: .callout}
 
+> ## Activate an existing environment by name
+>
+> Activate the `machine-learning-env` environment created in the previous challenge by name.
+> 
+> > ## Solution
+> > 
+> > In order to activate an existing environment by name you use the `conda activate` command as 
+> > follows.
+> > 
+> > ~~~
+> > $ conda activate machine-learning-env
+> > ~~~
+> > {: .language-bash}
+> {: .solution}
+{: .challenge}
+
 > ## Deactivate the active environment
 >
-> Deactivate the currently active Conda environment.
+> Deactivate the `machine-learning-env` environment that you activated in the previous challenge.
 > 
 > > ## Solution
 > > 
@@ -223,7 +231,97 @@ $
 > > (active-environment-name) $ conda deactivate
 > > ~~~
 > > {: .language-bash}
+> {: .solution}
+{: .challenge}
+
+## Installing a package into an existing environment
+
+You can install a package into an existing environment using the `conda install` command. This 
+command accepts a list of package specifications (i.e., `numpy=1.18`) and installs a set of 
+packages consistent with those specifications *and* compatible with the underlying environment. If 
+full compatibility cannot be assured, an error is reported and the environment is *not* changed.
+
+By default the `conda install` command will install packages into the current, active environment. 
+The following would activate the `basic-scipy-env` we created above and install 
+[Numba](https://numba.pydata.org/), an open source JIT compiler that translates a subset of Python 
+and NumPy code into fast machine code, into the active environment.
+
+~~~
+$ conda activate basic-scipy-env
+$ conda install numba
+~~~
+{: .language-bash}
+
+As was the case when listing packages to install when using the `conda create` command, if version 
+numbers are not explicitly provided, Conda will attempt to install the newest versions of any 
+requested packages. To accomplish this, Conda may need to update some packages that are already 
+installed or install additional packages. It is always a good idea to explicitly provide version 
+numbers when installing packages with the `conda install` command. For example, the following would 
+install a particular version of Scikit-Learn, into the current, active environment. 
+
+~~~
+$ conda install scikit-learn=0.22
+~~~
+{: .language-bash}
+
+> ## Freezing installed packages
+> 
+> To prevent existing packages from being updating when using the `conda install` command, you can 
+> use the `--freeze-installed` option. This may force Conda to install older versions of the 
+> requested packages in order to maintain compatibility with previously installed packages. Using 
+> the `--freeze-installed` option does not prevent additional dependency packages from being 
+> installed.
+{: .callout}
+
+> ## Installing a package into a specific environment
+>
+> [Dask](https://dask.org/) 
+> provides advanced parallelism for data science workflows enabling performance at scale for the 
+> core Python data science tools such as Numpy Pandas, and Scikit-Learn. Have a read through the 
+> [official documentation](https://docs.conda.io/projects/conda/en/latest/commands/install.html) 
+> for the `conda install` command and see if you can figure out how to install Dask into the 
+> `machine-learning-env` that you created in the previous challenge. 
+> 
+> > ## Solution
+> > 
+> > You can install Dask into `machine-learning-env` using the `conda install` command as follow.
+> > ~~~
+> > $ conda install --name machine-learning-env dask=2.16
+> > ~~~
+> > {: .language-bash}
+> > 
+> > You could also install Dask into `machine-learning-env` by first activating that environment 
+> > and then using the `conda install` command.
+> > 
+> > ~~~
+> > $ conda activate machine-learning-env
+> > $ conda install dask=2.16
+> > ~~~
+> > {: .language-bash}
+> {: .solution}
+{: .challenge} 
+
+> ## Installing packages into Conda environments using `pip`
+> 
+> [Combo](https://github.com/yzhao062/combo) is a comprehensive Python toolbox for combining 
+> machine learning models and scores. Model combination can be considered as a subtask of 
+> [ensemble learning](https://en.wikipedia.org/wiki/Ensemble_learning), and has been widely used 
+> in real-world tasks and data science competitions like [Kaggle](https://www.kaggle.com/).
+> 
+> Activate the `machine-learning-env` you created in a previous challenge and use `pip` to install 
+> `combo`.
+>
+> > ## Solution
+> > 
+> > The following commands will activate the `machine-learning-env` and install `combo`.
+> > 
+> > ~~~
+> > $ conda activate machine-learning-env
+> > $ pip install combo==0.1.*
+> > ~~~
+> > {: .language-bash}
 > >
+> > For more details on using `pip` see the [official documentation](https://pip.pypa.io/en/stable/).
 > {: .solution}
 {: .challenge}
 
