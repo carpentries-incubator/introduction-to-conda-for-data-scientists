@@ -592,7 +592,7 @@ If you wish to delete and environment that you created with a `--prefix` option,
 need to provide the prefix again when removing the environment.
 
 ~~~
-$ conda remove --prefix /path/to/conada-env/ --all
+$ conda remove --prefix /path/to/conda-env/ --all
 ~~~
 {: .language-bash}
 
