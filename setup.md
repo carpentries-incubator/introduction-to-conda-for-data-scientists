@@ -74,18 +74,18 @@ wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.
 ~~~
 {: .language-bash}
 
-Run the Miniconda install script. The `-b` runs the install script in batch mode which doesn't 
-require manual intervention (and assumes that the user agrees to the terms of the license).
+Run the Miniconda install script. Follow the prompts on the installer screens. If you are unsure 
+about any setting, accept the defaults (you can change them later if necessary).
 
 ~~~
-bash Miniconda3-latest-Linux-x86_64.sh -b
+bash Miniconda3-latest-Linux-x86_64.sh
 ~~~
 {: .language-bash}
 
 Once the install script completes, you can remove it.
 
 ~~~
-rm Miniconda3-latest-Linux-x86_64
+rm Miniconda3-latest-Linux-x86_64.sh
 ~~~
 {: .language-bash}
 
@@ -166,7 +166,9 @@ Conda commands are being invoked as such each shell must be configured to make u
 are specific and customized for each shell. Conda supports a number of different shells and you 
 can run `conda init --help` to see the complete list.
 
-Mac OSX and Linux users will want to initialize Conda for Bash as follows.
+Mac OSX and Linux users will want to initialize Conda for Bash as follows. If you are installing 
+on Linux, then you may be prompted to initialize Conda for your shell when running the installation 
+script. If so, then you can safely skip this step.
 
 ~~~
 $ conda init bash
