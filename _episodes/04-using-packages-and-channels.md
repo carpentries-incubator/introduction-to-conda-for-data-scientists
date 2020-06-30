@@ -264,7 +264,7 @@ $ pip install $SOME_PACKAGE
 >
 > Note that you should include `pip` itself as a dependency and then a sub-section denoting those 
 > packages to be installed via `pip`. Also in case you are wondering, The 
-> [Yellowbrick](https://www.scikit-yb.org/en/latest/) pacakge is a suite of visual diagnostic 
+> [Yellowbrick](https://www.scikit-yb.org/en/latest/) package is a suite of visual diagnostic 
 > tools called “Visualizers” that extend the [Scikit-Learn](https://scikit-learn.org/stable/) API 
 > to allow human steering of the model selection process. Yellowbrick can also be installed using 
 > `conda` from the `districtdatalabs` channel.

@@ -172,8 +172,7 @@ your `project-dir` directory.
 >
 > Now use this file to create a new Conda environment. Where is this new environment created? 
 > Using the same `environment.yml` file create a Conda environment as a sub-directory called 
-> `env/` inside a newlt created project directory. Compare the contents of the two environments 
-> and confirm that they are the same.
+> `env/` inside a newly created project directory. Compare the contents of the two environments.
 > 
 > > ## Solution
 > > 

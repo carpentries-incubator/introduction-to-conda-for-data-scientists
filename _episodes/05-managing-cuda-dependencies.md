@@ -491,7 +491,7 @@ are also a few things worth noting about the dependencies. Even though you have 
 NVIDIA CUDA Toolkit manually you can still use Conda to manage the other required CUDA components 
 such as `cudnn` and `nccl` (and the optional `cupti`).
 
-* We use two meta-pacakges, `cxx-compiler` and `nvcc_linux-64`, to make sure that suitable C, and C++ 
+* We use two meta-packages, `cxx-compiler` and `nvcc_linux-64`, to make sure that suitable C, and C++ 
   compilers are installed and that the resulting Conda environment is aware of the manually installed 
   CUDA Toolkit.
 * Horovod requires some controller library to coordinate work between the various Horovod processes. 
@@ -532,8 +532,7 @@ for the details on additional environment variables that can be set prior to bui
 export ENV_PREFIX=$PWD/env
 export HOROVOD_CUDA_HOME=$CUDA_HOME
 export HOROVOD_NCCL_HOME=$ENV_PREFIX
-export HOROVOD_GPU_ALLREDUCE=NCCL
-export HOROVOD_GPU_BROADCAST=NCCL
+export HOROVOD_GPU_OPERATIONS=NCCL
 conda env create --prefix $ENV_PREFIX --file environment.yml --force
 ~~~
 {: .language-bash}
@@ -553,8 +552,7 @@ conda env create --prefix $ENV_PREFIX --file environment.yml --force
 > export ENV_PREFIX=$PWD/env
 > export HOROVOD_CUDA_HOME=$CUDA_HOME
 > export HOROVOD_NCCL_HOME=$ENV_PREFIX
-> export HOROVOD_GPU_ALLREDUCE=NCCL
-> export HOROVOD_GPU_BROADCAST=NCCL
+> export HOROVOD_GPU_OPERATIONS=NCCL
 > conda env create --prefix $ENV_PREFIX --file environment.yml --force
 > conda activate $ENV_PREFIX
 > . postBuild
