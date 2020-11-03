@@ -391,7 +391,7 @@ your `~/miniconda3/env/` folder, you’ll have to give each of them a different 
 > sub-directory will be automatically ignored by the default Python `.gitignore` file used on 
 > [GitHub](https://github.com/github/gitignore/blob/master/Python.gitignore). 
 >
-> Whatever naming convention you adopt it is importanat to be consistent! Using the same name for 
+> Whatever naming convention you adopt it is important to be consistent! Using the same name for 
 > all of your Conda environments allows you to use the same `activate` command as well.
 > 
 > ~~~ 
@@ -581,7 +581,7 @@ $ conda list --prefix /path/to/conda-env
 Occasionally, you will want to delete an entire environment. Perhaps you were experimenting with 
 `conda` commands and you created an environment you have no intention of using; perhaps you no 
 longer need an existing environment and just want to get rid of cruft on your machine. Whatever 
-the reason the command to delete an environment is the following.
+the reason, the command to delete an environment is the following.
 
 ~~~
 $ conda remove --name my-first-conda-env --all
@@ -617,4 +617,5 @@ $ conda remove --prefix /path/to/conda-env/ --all
 {: .challenge}
 
 {% include links.md %}
+
 

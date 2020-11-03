@@ -34,7 +34,7 @@ uses YAML ("YAML Ain't Markup Language") for writing its environment files. YAML
 human-readable data-serialization language that is commonly used for configuration files and that 
 uses Python-style indentation to indicate nesting.
 
-Creating you project's Conda environment from a single environment file is a Conda "best practice". 
+Creating your project's Conda environment from a single environment file is a Conda "best practice". 
 Not only do you have a file to share with collaborators but you also have a file that can be placed 
 under version control which further enhancing the reproducibility of your research project and 
 workflow.
@@ -201,7 +201,7 @@ your `project-dir` directory.
 > {: .solution}
 {: .challenge}
 
-### Updating an envionment
+### Updating an environment
 
 You are unlikely to know ahead of time which packages (and version numbers!) you will need to use 
 for your research project. For example it may be the case that...  
@@ -226,7 +226,7 @@ from the environment.
 > 
 > When working with `environment.yml` files it is often just as easy to rebuild the Conda 
 > environment from scratch whenever you need to add or remove dependencies. To rebuild a Conda 
-> environment from scatch you simply pass the `--force` option to the `conda env create` command 
+> environment from scratch you simply pass the `--force` option to the `conda env create` command 
 > which will remove any existing environment directory before rebuilding it using the provided 
 > environment file. 
 > ~~~
@@ -341,3 +341,5 @@ the same name.
 {: .challenge}
 
 {% include links.md %}
+
+

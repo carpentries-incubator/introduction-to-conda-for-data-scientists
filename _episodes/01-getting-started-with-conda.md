@@ -14,7 +14,7 @@ keypoints:
 - "Conda is a platform agnostic, open source package and environment management system."
 - "Using a package and environment management tool facilitates portability and reproducibility 
   of (data) science workflows."
-- "Conda (+pip) solves both the package and environment managment problems and targets multiple 
+- "Conda (+pip) solves both the package and environment management problems and targets multiple 
   programming languages. Other open source tools solve either one or the other, or target only 
   a particular programming language."
 ---
@@ -62,7 +62,7 @@ Installing software system-wide has a number of drawbacks:
 *   Updating software required for one project can often "break" the software installed for another 
     project.
 
-Put differently, installing software system-wide creates complex dependencies between your reearch 
+Put differently, installing software system-wide creates complex dependencies between your research 
 projects that shouldn't really exist!
 
 Rather than installing software system-wide, wouldn't it be great if we could install software 
@@ -163,4 +163,5 @@ without having to change any of your code.
 
 
 {% include links.md %}
+
 
