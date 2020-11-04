@@ -111,7 +111,7 @@ $ conda install scipy=1.3 --channel conda-forge
 You can also install a package from a specific channel into a named environment (using `--name`) 
 or into an environment installed at a particular prefix (using `--prefix`). For example, the 
 following command installs the `scipy` package from the `conda-forge` channel into the environment 
-called `my-first-conda-env` which we created eariler.
+called `my-first-conda-env` which we created earlier.
 
 ~~~
 $ conda install scipy=1.3 --channel conda-forge --name my-first-conda-env
@@ -227,11 +227,11 @@ $ conda install conda-forge::kaggle=1.5.4  --prefix ./env
 ~~~
 {: .language-bash}
 
-For the moment let us suppose that the `kaggle` package was not avaiable on `conda-forge`. Here is 
+For the moment let us suppose that the `kaggle` package was not available on `conda-forge`. Here is 
 how we would install the package into our environment using `pip`. 
 
 1. Use `conda` to install `pip` into our environment (if necessary).
-2. Activate the enviroment (if necessary).
+2. Activate the environment (if necessary).
 3. Use `pip` to install `kaggle`
 
 ~~~
@@ -262,7 +262,7 @@ $ pip install $SOME_PACKAGE
 >    - yellowbrick=0.9
 > ~~~
 >
-> Note that you should include `pip` itself as a dependency and then a sub-section denoting those 
+> Note that you should include `pip` itself as a dependency and then a subsection denoting those 
 > packages to be installed via `pip`. Also in case you are wondering, The 
 > [Yellowbrick](https://www.scikit-yb.org/en/latest/) package is a suite of visual diagnostic 
 > tools called “Visualizers” that extend the [Scikit-Learn](https://scikit-learn.org/stable/) API 
@@ -358,4 +358,5 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 {: .challenge}
 
 {% include links.md %}
+
 
