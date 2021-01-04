@@ -30,6 +30,21 @@ absolute path to the conda executable.
 Windows users should search for "Anaconda" to see if the "Anaconda Command Prompt" shows up as an 
 option, if it does then you already have Conda installed.
 
+> ## Old version of Anaconda?
+>
+> If you previously installed the Anaconda Python distribution you may have an old version of Conda. You
+> can check your version of Conda with the following command.
+> 
+> ~~~
+> $ conda --version
+> ~~~
+> {: .language-bash}
+> 
+> If you have a version of Conda that is 4.5 (or older), then it is probably best to 
+[uninstall](https://docs.anaconda.com/anaconda/install/uninstall/)) your Anaconda Python distribution 
+> and then reinstall the most recent version.
+{: .callout}
+
 ## Install Python 3 version of Miniconda
 
 If Conda has not been installed on your machine, then install the Python 3 version of 
