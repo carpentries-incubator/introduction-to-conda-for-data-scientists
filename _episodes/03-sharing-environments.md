@@ -261,10 +261,17 @@ from the environment.
 > >   - xgboost=1.0
 > > ~~~
 > > 
-> > The following command will rebuild the environment with the new Dask dependencies.
+> > The following command will rebuild the environment from scratch with the new Dask dependencies.
 > > 
 > > ~~~
-> > $ conda env update --prefix ./env --file environment.yml --force 
+> > $ conda env create --prefix ./env --file environment.yml --force 
+> > ~~~
+> > {: .language-bash}
+> > 
+> > The following command will update the envirionment in-place with the new Dask dependencies.
+> > 
+> > ~~~
+> > $ conda env update --prefix ./env --file environment.yml  --prune
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
