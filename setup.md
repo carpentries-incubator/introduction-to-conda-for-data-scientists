@@ -220,5 +220,7 @@ the commands from the command prompt.
 > cd introduction-to-conda-for-data-scientists
 ~~~
 
-Alternatively, you can always "right-click" and "create new folder" on your Desktop.
+Alternatively, you can always "right-click" and "create new folder" on your Desktop. All the 
+commands that are run during the workshop should be run in a terminal within the 
+`introduction-to-conda-for-data-scientists` directory.
 
