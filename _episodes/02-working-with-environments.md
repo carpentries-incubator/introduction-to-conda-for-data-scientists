@@ -57,18 +57,21 @@ $ conda create --name python3-env python pip
 ~~~
 {: .language-bash}
 
-> ## Always install `pip` in your Python environments
+> ## `pip` within Conda environments
 >
 > [Pip](https://pip.pypa.io/en/stable/), the default Python package manager, is often already 
 > installed on most operating systems (where it is used to manage any packages need by the OS 
-> Python). Pip is also included in the Miniconda installer. Including `pip` as an explicit 
-> dependency in your Conda environment avoids difficult to debug issues that can arise when 
-> installing packages into environments using some other `pip` installed outside your environment. 
+> Python). Pip is also included in the Miniconda installer. 
+> Some packages may not be available via Conda. If such package is still needed in a project, 
+> it is possible to install it into a conda environment, using pip.
+> Therefore it may be helpful to include `pip` as an explicit dependency in your Conda environment, 
+> to avoids difficult to debug issues, that may arise when mixing up system wide installations with those
+> within conda environments. 
 {: .callout}
 
 It is a good idea to give your environment a meaningful name in order to help yourself remember 
 the purpose of the environment. While naming things can be difficult, `$PROJECT_NAME-env` is a 
-good convention to follow.
+good convention to follow. Sometimes also the specific version of a package why you had to create a new environment is a good name
 
 The command above will create a new Conda environment called "python3" and install the most recent 
 version of Python. If you wish, you can specify a particular version of packages for `conda` to 
@@ -181,7 +184,7 @@ name of the active environment.
 
 ## Deactivate the current environment
 
-To deactivate the currently active environment use the `deactivate` command as follows.
+To deactivate the currently active environment use the Conda `deactivate` command as follows.
 
 ~~~
 (basic-scipy-env) $ conda deactivate
@@ -197,7 +200,7 @@ $
 
 > ## Returning to the `base` environment
 >
-> To simply return to the `base` Conda environment, it's better to call `conda activate` with no 
+> To return to the `base` Conda environment, it's better to call `conda activate` with no 
 > environment specified, rather than to use `deactivate`. If you run `conda deactivate` from your 
 > `base` environment, you may lose the ability to run `conda` commands at all. **Don't worry if 
 > you encounter this undesirable state! Just start a new shell.**
@@ -327,16 +330,9 @@ $ conda install scikit-learn=0.22
 
 ## Where do Conda environments live?
 
-Environments created with `conda`, by default, live in the `envs/` folder of your `miniconda3` 
-directory the absolute path to which will look something the following.
+Environments created with `conda`, by default, live in the `envs/` folder of your `miniconda3` (or `anaconda3`) directory the absolute path to which will look something the following: `/Users/$USERNAME/miniconda3/envs` or `C:\Users\$USERNAME\Anaconda3`.
 
-~~~
-$ /Users/$USERNAME/miniconda3/envs
-~~~
-{: .language-bash} 
-
-Running `ls` on your `~/miniconda3/envs/` directory will list out the directories containing the 
-existing Conda environments.
+Running `ls` (linux) / `dir` (Windows) on your anaconda `envs/` directory will list out the directories containing the existing Conda environments.
 
 > ## Location of Conda environments on Binder
 >
@@ -371,7 +367,7 @@ $ conda activate ./env
 ~~~
 {: .language-bash}
 
-It is a good idea to *always* specify a path to a sub-directory of your project directory when 
+It is often a good idea to specify a path to a sub-directory of your project directory when 
 creating an environment. Why?
 
 1.  Makes it easy to tell if your project utilizes an isolated environment by including the 
@@ -617,5 +613,4 @@ $ conda remove --prefix /path/to/conda-env/ --all
 {: .challenge}
 
 {% include links.md %}
-
 
