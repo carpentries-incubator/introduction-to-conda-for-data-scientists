@@ -16,7 +16,7 @@ keypoints:
 
 ## What are Conda packages?
 
-A [conda package][conda-pkg-docs] is a compressed tarball file (`.tar.bz2`) that contains:
+A conda package is a compressed archive file (`.tar.bz2`) that contains:
 
 * system-level libraries
 * Python or other modules
@@ -67,7 +67,7 @@ A complete listing of available PyTorch packages can be found on
 
 ## What are Conda channels?
 
-Again from the [Conda documentation][conda-channels-docs], conda packages are downloaded from 
+Again from the [Conda documentation](https://conda.io/en/latest/), conda packages are downloaded from 
 remote channels, which are URLs to directories containing conda packages. The `conda` command 
 searches a default set of channels, and packages are automatically downloaded and updated from the 
 [Anaconda Cloud channels](https://repo.anaconda.com/pkgs/). 
@@ -258,11 +258,12 @@ $ pip install $SOME_PACKAGE
 >  - scikit-learn=0.21
 >  - pip=19.1
 >  - pip:
->    - kaggle=1.5
->    - yellowbrick=0.9
+>    - kaggle==1.5
+>    - yellowbrick==0.9
 > ~~~
 >
-> Note that you should include `pip` itself as a dependency and then a subsection denoting those 
+> Note the double '==' instead of '=' for the pip installation and that you should include `pip` itself 
+> as a dependency and then a subsection denoting those 
 > packages to be installed via `pip`. Also in case you are wondering, The 
 > [Yellowbrick](https://www.scikit-yb.org/en/latest/) package is a suite of visual diagnostic 
 > tools called “Visualizers” that extend the [Scikit-Learn](https://scikit-learn.org/stable/) API 
@@ -358,5 +359,4 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 {: .challenge}
 
 {% include links.md %}
-
 
