@@ -53,7 +53,7 @@ suggests, Miniconda is a "mini" version of the
 [Anaconda Python distribution](https://www.anaconda.com/distribution/) that includes only Conda, a 
 Python 3 distribution, and any necessary OS-specific dependencies.
 
-For convenience here are links to the 64-bit GUI Miniconda installers.
+For convenience here are links to the 64-bit Miniconda installers.
 
 * [Windows](https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe)
 * [Mac OSX](https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.pkg)
@@ -77,6 +77,11 @@ For convenience here are links to the 64-bit GUI Miniconda installers.
 >
 > We will discuss the above command in great depth in the workshop.
 {: .callout}
+
+### Windows installation
+
+After you downloaded the [Windows GUI installer](https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe), double click on it and follow the instructions (accept license, etc.).
+You can use the defaults except for the "Advanced Installation Options" where you would tick on **"Add Miniconda3 to my PATH environment variable"**.
 
 ### Linux installation
 
