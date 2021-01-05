@@ -216,6 +216,29 @@ systems in use, add the `--from-history` argument.
 > {: .solution}
 {: .challenge}
 
+> ## Specifying channels in the environment.yml
+>
+> We learned in the previous episode, that some packages may need to be installed from other than the 
+> defaults channel. We can also specify the channels, that conda should look for the packages within the 
+> environment.yml file:
+>
+> ~~~
+> name: pytorch-env
+> 
+> channels:
+>   - pytorch
+>   - defaults
+>
+> dependencies:
+>   - pytorch=1.1
+> ~~~
+> {: .language-yaml}
+> 
+> When the above file is used to create an environment, conda would first look in the `pytorch` channel for 
+> all packages mentioned under `dependencies`. If they exist in the `pytorch` channel, conda would install 
+> them from there, and not look for them in `defaults` at all.
+{: .callout}
+
 ### Updating an environment
 
 You are unlikely to know ahead of time which packages (and version numbers!) you will need to use 
