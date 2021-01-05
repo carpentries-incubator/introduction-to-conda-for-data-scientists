@@ -211,31 +211,3 @@ If you want to reverse or “undo” the changes made by `conda init`, then you 
 `conda init` command and pass the `--reverse` option. Again, in order for the reversal to take 
 effect you will likely need to close and restart your shell session.
 
-## Workspace Setup
-
-In order to maintain a consistent workspace for all learners create an 
-`introduction-to-conda-for-data-scientists` directory on your Desktop to serve as the working 
-directory for the duration of the lesson. On Mac OSX and Linux running following commands in the
-Terminal will create the required directory on the Desktop.
-
-~~~
-$ cd ~/Desktop
-$ mkdir introduction-to-conda-for-data-scientists
-$ cd introduction-to-conda-for-data-scientists
-~~~
-{: .language-bash}
-
-
-For Windows users you will need to reverse the direction of the slash (because Windows) and run 
-the commands from the command prompt.
-
-~~~
-> cd ~\Desktop
-> mkdir introduction-to-conda-for-data-scientists
-> cd introduction-to-conda-for-data-scientists
-~~~
-
-Alternatively, you can always "right-click" and "create new folder" on your Desktop. All the 
-commands that are run during the workshop should be run in a terminal within the 
-`introduction-to-conda-for-data-scientists` directory.
-
