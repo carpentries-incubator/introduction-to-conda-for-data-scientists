@@ -57,6 +57,8 @@ $ conda create --name python3-env python pip
 ~~~
 {: .language-bash}
 
+For a list of all commands, take a look at [Conda general commands](https://docs.conda.io/projects/conda/en/latest/commands.html).
+
 > ## `pip` within Conda environments
 >
 > [Pip](https://pip.pypa.io/en/stable/), the default Python package manager, is often already 
