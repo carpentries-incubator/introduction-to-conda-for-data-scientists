@@ -288,11 +288,11 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 > > $ mkdir my-computer-vision-project
 > > $ cd my-computer-vision-project/
 > > $ conda create --prefix ./env --channel pytorch \
-> > > python=3.6 \
-> > > jupyterlab=1.0 \
-> > > pytorch=1.1 \
-> > > torchvision=0.3 \
-> > > matplotlib=3.1
+> >  python=3.6 \
+> >  jupyterlab=1.0 \
+> >  pytorch=1.1 \
+> >  torchvision=0.3 \
+> >  matplotlib=3.1
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
@@ -308,7 +308,7 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 > ~~~
 > {: .language-bash}
 >
-> Repeat the previous exercise using this alternative syntax to install `python`, `jupyterlab`, 
+> Create a new folder `my-final-project` in `~/Desktop/introduction-to-conda-for-data-scientists` and repeat the previous exercise using this alternative syntax to install `python`, `jupyterlab`, 
 > and `matplotlib` from the `conda-forge` channel and `pytorch` and `torchvision` from the 
 > `pytorch` channel.
 >
@@ -317,14 +317,15 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 > > One possibility would be to use the `conda create` command as follows.
 > > 
 > > ~~~
-> > $ mkdir my-computer-vision-project
-> > $ cd my-computer-vision-project/
+> > $ cd ~/Desktop/introduction-to-conda-for-data-scientists
+> > $ mkdir my-final-project
+> > $ cd my-final-project/
 > > $ conda create --prefix ./env \
-> > > conda-forge::python=3.6 \
-> > > conda-forge::jupyterlab=1.0 \
-> > > conda-forge::matplotlib=3.1
-> > > pytorch::pytorch=1.1 \
-> > > pytorch::torchvision=0.3
+> >  conda-forge::python=3.6 \
+> >  conda-forge::jupyterlab=1.0 \
+> >  conda-forge::matplotlib=3.1 \
+> >  pytorch::pytorch=1.1 \
+> >  pytorch::torchvision=0.3
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
