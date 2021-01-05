@@ -274,6 +274,40 @@ from the environment.
 > {: .solution}
 {: .challenge}
 
+> ## Installing via `pip` in `environment.yml` files
+>
+> Since you write `environment.yml` files for all of your projects, you might be wondering how 
+> to specify that packages should be installed using `pip` in the `environment.yml` file.  Here 
+> is an example `environment.yml` file that uses `pip` to install the `kaggle` and `yellowbrick` 
+> packages.
+>
+> ~~~
+> name: null
+> 
+> dependencies:
+>  - jupyterlab=1.0
+>  - matplotlib=3.1
+>  - pandas=0.24
+>  - scikit-learn=0.21
+>  - pip=19.1
+>  - pip:
+>    - kaggle==1.5
+>    - yellowbrick==0.9
+> ~~~
+>
+> Note the double '==' instead of '=' for the pip installation and that you should include `pip` itself 
+> as a dependency and then a subsection denoting those 
+> packages to be installed via `pip`. Also in case you are wondering, The 
+> [Yellowbrick](https://www.scikit-yb.org/en/latest/) package is a suite of visual diagnostic 
+> tools called “Visualizers” that extend the [Scikit-Learn](https://scikit-learn.org/stable/) API 
+> to allow human steering of the model selection process. Recent version of yellowbrick can also be installed using 
+> `conda` from the `conda-forge` channel.
+>
+> ~~~
+> $ conda install --channel conda-forge yellowbrick=1.2 --prefix ./env
+> ~~~
+{: .callout}
+
 ## Making Jupyter aware of your Conda environments
 
 Both JupyterLab and Jupyter Notebooks automatically ensure that the standard IPython kernel is 

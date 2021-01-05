@@ -104,9 +104,11 @@ You can install a package from a specific channel into the currently activate en
 passing the `--channel` option to the `conda install` command as follows.
 
 ~~~
-$ conda install scipy=1.3 --channel conda-forge
+$ conda activate machine-learning-env
+$ conda install scipy=1.6 --channel conda-forge
 ~~~
 {: .language-bash}
+
 
 You can also install a package from a specific channel into a named environment (using `--name`) 
 or into an environment installed at a particular prefix (using `--prefix`). For example, the 
@@ -114,7 +116,7 @@ following command installs the `scipy` package from the `conda-forge` channel in
 called `my-first-conda-env` which we created earlier.
 
 ~~~
-$ conda install scipy=1.3 --channel conda-forge --name my-first-conda-env
+$ conda install scipy=1.6 --channel conda-forge --name machine-learning-env
 ~~~
 {: .language-bash}
 
@@ -122,24 +124,17 @@ This command would install `tensorflow` package from `conda-forge` channel into 
 installed into the `env/` sub-directory.
 
 ~~~
-$ conda install tensorflow=1.13 --channel conda-forge --prefix ./env
+$ conda install tensorflow=1.14 --channel conda-forge --prefix ./env
 ~~~
 {: .language-bash}
 
 Here is another example for R users. The following command would install 
-[`r-tidyverse`](https://anaconda.org/r/r-tidyverse) package from the `r` channel into an 
+[`r-tidyverse`](https://anaconda.org/r/r-tidyverse) package from the `conda-forge` channel into an 
 environment installed into the `env/` sub-directory.
 
 ~~~
-$ conda install r-tidyverse=1.2 --channel r --prefix ./env
-~~~
-{: .language-bash}
-
-In this case the `--channel` option is unnecessary because the `r` channel is included by default. 
-The following works just as well!
-
-~~~
-$ conda install r-tidyverse=1.2 --prefix ./env
+$ cd ~/Desktop/introduction-to-conda-for-data-scientists
+$ conda install r-tidyverse=1.3 --channel conda-forge --prefix ./env
 ~~~
 {: .language-bash}
 
@@ -149,7 +144,7 @@ $ conda install r-tidyverse=1.2 --prefix ./env
 > multiple times.
 > 
 > ~~~
-> $ conda install scipy=1.3 --channel conda-forge --channel bioconda
+> $ conda install scipy=1.6 --channel conda-forge --channel bioconda
 > ~~~
 > {: .language-bash}
 >
@@ -157,6 +152,8 @@ $ conda install r-tidyverse=1.2 --prefix ./env
 > second. For reference, bioconda is a channel for the conda package manager specializing in 
 > bioinformatics software. For those interested in learning more about the Bioconda project, 
 > checkout the project's [GitHub](https://bioconda.github.io/) page.
+>
+> Please note that in our example, adding `bioconda` channel is irrelevant because `scipy` is no longer available on `bioconda` channel.
 {: .callout}
 
 ## My package isn't available on the `defaults` channel! What should I do?
@@ -168,6 +165,9 @@ following.
 1.  `conda-forge`: the `conda-forge` channel contains a large number of community curated conda 
     packages. Typically the most recent versions of packages that are generally available via the 
     `defaults` channel are available on `conda-forge` first.
+2. `bioconda`: the `bioconda` channel also contains a large number of Bioinformatics curated conda packages. 
+    `bioconda` channel is meant to be used with `conda-forge`, you should not worried about using the two channels
+    when installing your prefered packages.
 2.  `pip`: only if a package is not otherwise available via `conda-forge` (or some 
     domain-specific channel like `bioconda`) should a package be installed into a conda 
     environment from PyPI using `pip`.
@@ -215,15 +215,20 @@ kaggle                         1.5.3          py37_1  conda-forge
 kaggle                         1.5.4          py27_0  conda-forge         
 kaggle                         1.5.4          py36_0  conda-forge         
 kaggle                         1.5.4          py37_0  conda-forge         
+.
+.
+.
 ~~~
 {: .language-bash}
+
+Or you can also check online at [https://anaconda.org/conda-forge/kaggle](https://anaconda.org/conda-forge/kaggle).
 
 Once we know that the `kaggle` package is available via `conda-forge` we can go ahead and install 
 it! Note that we are explicitly providing both the channel to use when installing the `kaggle` 
 package as well as a specific version number.
 
 ~~~
-$ conda install conda-forge::kaggle=1.5.4  --prefix ./env
+$ conda install conda-forge::kaggle=1.5.10  --prefix ./env
 ~~~
 {: .language-bash}
 
@@ -241,39 +246,6 @@ $ pip install $SOME_PACKAGE
 ~~~
 {: .language-bash}
 
-> ## Installing via `pip` in `environment.yml` files
->
-> Since you write `environment.yml` files for all of your projects, you might be wondering how 
-> to specify that packages should be installed using `pip` in the `environment.yml` file.  Here 
-> is an example `environment.yml` file that uses `pip` to install the `kaggle` and `yellowbrick` 
-> packages.
->
-> ~~~
-> name: null
-> 
-> dependencies:
->  - jupyterlab=1.0
->  - matplotlib=3.1
->  - pandas=0.24
->  - scikit-learn=0.21
->  - pip=19.1
->  - pip:
->    - kaggle==1.5
->    - yellowbrick==0.9
-> ~~~
->
-> Note the double '==' instead of '=' for the pip installation and that you should include `pip` itself 
-> as a dependency and then a subsection denoting those 
-> packages to be installed via `pip`. Also in case you are wondering, The 
-> [Yellowbrick](https://www.scikit-yb.org/en/latest/) package is a suite of visual diagnostic 
-> tools called “Visualizers” that extend the [Scikit-Learn](https://scikit-learn.org/stable/) API 
-> to allow human steering of the model selection process. Yellowbrick can also be installed using 
-> `conda` from the `districtdatalabs` channel.
->
-> ~~~
-> $ conda install --channel districtdatalabs yellowbrick=0.9 --prefix ./env
-> ~~~
-{: .callout}
 
 ## What actually happens when I install packages?
 
