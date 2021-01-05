@@ -67,8 +67,8 @@ This `environment.yml` file would create an environment called `machine-learning
 most current and mutually compatible versions of the listed packages (including all required 
 dependencies). The newly created environment would be installed inside the `~/miniconda3/envs/` 
 directory. Alternatively, if we intended this environment file to be used to create an environment 
-inside a sub-directory call `./env` of the project directory, then we should set then `name` key 
-to `null` as follows.
+inside a sub-directory call `./env` of the project directory, we can set the `name` key 
+to `null` as follows, since the environment will be named by path.
 
 ~~~
 name: null
@@ -157,7 +157,7 @@ your `project-dir` directory.
 > directory with the following contents.
 >
 > ~~~
-> name: xgboost-env
+> name: scikit-env
 > 
 > dependencies:
 >   - ipython=7.13
@@ -166,7 +166,6 @@ your `project-dir` directory.
 >   - pip=20.0
 >   - python=3.6
 >   - scikit-learn=0.22
->   - xgboost=1.0
 > ~~~
 > {: .language-yaml}
 >
@@ -237,7 +236,7 @@ from the environment.
 
 > ## Add Dask to the environment to scale up your analytics
 > 
-> Add to the `xgboost-env` environment file and update the environment. [Dask](https://dask.org/) 
+> Add to the `scikit-env` environment file and update the environment. [Dask](https://dask.org/) 
 > provides advanced parallelism for data science workflows enabling performance at scale for the 
 > core Python data science tools such as Numpy Pandas, and Scikit-Learn.  
 >
@@ -246,19 +245,17 @@ from the environment.
 > > The `environment.yml` file should now look as follows.
 > > 
 > > ~~~
-> > name: xgboost-env
+> > name: scikit-env
 > >
 > > dependencies:
 > >   - dask=2.16
 > >   - dask-ml=1.4
-> >   - dask-xgboost=0.1
 > >   - ipython=7.13
 > >   - matplotlib=3.1
 > >   - pandas=1.0
 > >   - pip=20.0
 > >   - python=3.6
 > >   - scikit-learn=0.22
-> >   - xgboost=1.0
 > > ~~~
 > > 
 > > The following command will rebuild the environment from scratch with the new Dask dependencies.
@@ -348,5 +345,4 @@ the same name.
 {: .challenge}
 
 {% include links.md %}
-
 
