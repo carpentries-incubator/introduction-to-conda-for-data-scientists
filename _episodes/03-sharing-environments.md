@@ -146,7 +146,7 @@ we see that these five packages result in an environment with roughly 80 depende
 To export this list into an environment.yml file, you can run:
 
 ~~~
-$ conda env export --name machine-learning-env environment.yml
+$ conda env export --name machine-learning-env > environment.yml
 ~~~
 {: .language-bash}
 
@@ -159,7 +159,7 @@ One way to avoid this, is to just include those packages into the environment fi
 been specifically installed:
 
 ~~~
-$ conda env export --name machine-learning-env --from-history environment.yml
+$ conda env export --name machine-learning-env --from-history > environment.yml
 ~~~
 {: .language-bash}
 
