@@ -29,6 +29,34 @@ keypoints:
 - "Use the `conda env list` command to list existing environments and their respective locations."
 - "Use the `conda list` command to list all of the packages installed in an environment."
 ---
+## Workspace for Conda environments
+
+In order to maintain a consistent workspace for all your conda environment, we will create a new
+`introduction-to-conda-for-data-scientists` directory on your Desktop and store our conda environment in this directory.
+On Mac OSX and Linux running following commands in the
+Terminal will create the required directory on the Desktop.
+
+~~~
+$ cd ~/Desktop
+$ mkdir introduction-to-conda-for-data-scientists
+$ cd introduction-to-conda-for-data-scientists
+~~~
+{: .language-bash}
+
+
+For Windows users you may need to reverse the direction of the slash and run 
+the commands from the command prompt.
+
+~~~
+> cd ~\Desktop
+> mkdir introduction-to-conda-for-data-scientists
+> cd introduction-to-conda-for-data-scientists
+~~~
+
+Alternatively, you can always "right-click" and "create new folder" on your Desktop. All the 
+commands that are run during the workshop should be run in a terminal within the 
+`introduction-to-conda-for-data-scientists` directory.
+
 ## What is a Conda environment
 
 A [Conda environment](https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/environments.html) 
@@ -354,33 +382,6 @@ Running `ls` (linux) / `dir` (Windows) on your anaconda `envs/` directory will l
 > previously installed Conda environments.
 {: .callout}
 
-## Workspace for Conda environments
-
-In order to maintain a consistent workspace for all your conda environment, we will create a new
-`introduction-to-conda-for-data-scientists` directory on your Desktop and store our conda environment in this directory.
-On Mac OSX and Linux running following commands in the
-Terminal will create the required directory on the Desktop.
-
-~~~
-$ cd ~/Desktop
-$ mkdir introduction-to-conda-for-data-scientists
-$ cd introduction-to-conda-for-data-scientists
-~~~
-{: .language-bash}
-
-
-For Windows users you may need to reverse the direction of the slash and run 
-the commands from the command prompt.
-
-~~~
-> cd ~\Desktop
-> mkdir introduction-to-conda-for-data-scientists
-> cd introduction-to-conda-for-data-scientists
-~~~
-
-Alternatively, you can always "right-click" and "create new folder" on your Desktop. All the 
-commands that are run during the workshop should be run in a terminal within the 
-`introduction-to-conda-for-data-scientists` directory.
 
 ## How do I specify a location for a Conda environment?
 
