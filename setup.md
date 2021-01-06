@@ -80,6 +80,11 @@ For convenience here are links to the 64-bit Miniconda installers.
 After you downloaded the [Windows GUI installer](https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe), double click on it and follow the instructions (accept license, etc.).
 You can use the defaults except for the "Advanced Installation Options" where you would tick on **"Add Miniconda3 to my PATH environment variable"**.
 
+### Mac OSX installation
+After you downloaded the [Mac OSX GUI installer](https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.pkg), double click on it and follow the instructions (accept license, etc.). 
+When you are asked where to install Miniconda, you should leave the default option to "install for me only". If you get the error message “You cannot install Miniconda in this location,” reselect "Install for me only". Then you should be able to continue to the next.
+The default option will modify your PATH in ~/.bash_profile. If you open the terminal after installation is over, you would see "(base)" on the left side of prompt.
+
 ### Linux installation
 
 I will walk through the steps for installing on Linux systems below as installing on Linux systems 
