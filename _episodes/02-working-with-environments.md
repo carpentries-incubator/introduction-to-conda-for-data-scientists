@@ -124,7 +124,7 @@ because it is a required dependency of at least one of the listed packages.
 >
 > Create a new environment called "machine-learning-env" with Python and the most current versions 
 > of [IPython](https://ipython.org/), [Matplotlib](https://matplotlib.org/), 
-> [Pandas](https://pandas.pydata.org/), and 
+> [Pandas](https://pandas.pydata.org/), [Numba](https://numba.pydata.org/) and 
 > [Scikit-Learn](https://scikit-learn.org/stable/index.html).
 > 
 > > ## Solution
@@ -138,7 +138,8 @@ because it is a required dependency of at least one of the listed packages.
 > >  pandas \
 > >  pip \
 > >  python \
-> >  scikit-learn 
+> >  scikit-learn \
+> >  numba
 > > ~~~
 > > {: .language-bash}
 > >
@@ -148,12 +149,13 @@ because it is a required dependency of at least one of the listed packages.
 > > 
 > > ~~~
 > > $ conda create --name machine-learning-env \
-> > > ipython=7.13
-> > > matplotlib=3.1 \
-> > > pandas=1.0 \
-> > > pip=20.0
-> > > python=3.6 \
-> > > scikit-learn=0.22
+> >  ipython=7.19 \
+> >  matplotlib=3.3 \
+> >  pandas=1.2 \
+> >  pip=20.3 \
+> >  python=3.8 \
+> >  scikit-learn=0.23 \
+> >  numba=0.51
 > > ~~~
 > > {: .language-bash}
 > >
@@ -302,7 +304,7 @@ $ conda install scikit-learn=0.22
 > > 
 > > ~~~
 > > $ conda activate machine-learning-env
-> > $ conda install dask=2.16
+> > $ conda install dask=2020.12
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
@@ -315,7 +317,7 @@ $ conda install scikit-learn=0.22
 > [ensemble learning](https://en.wikipedia.org/wiki/Ensemble_learning), and has been widely used 
 > in real-world tasks and data science competitions like [Kaggle](https://www.kaggle.com/).
 > 
-> Activate the `basic-scipy-env` you created in a previous challenge and use `pip` to install 
+> Activate the `machine-learning-env` you created in a previous challenge and use `pip` to install 
 > `combo`.
 >
 > > ## Solution
@@ -323,7 +325,7 @@ $ conda install scikit-learn=0.22
 > > The following commands will activate the `basic-scipy-env` and install `combo`.
 > > 
 > > ~~~
-> > $ conda activate basic-scipy-env
+> > $ conda activate machine-learning-env
 > > $ pip install combo==0.1.*
 > > ~~~
 > > {: .language-bash}
