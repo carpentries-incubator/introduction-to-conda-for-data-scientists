@@ -271,7 +271,7 @@ from the environment.
 > 
 > When working with `environment.yml` files it is often just as easy to rebuild the Conda 
 > environment from scratch whenever you need to add or remove dependencies. To rebuild a Conda 
-> environment from scratch you simply pass the `--force` option to the `conda env create` command 
+> environment from scratch you can pass the `--force` option to the `conda env create` command 
 > which will remove any existing environment directory before rebuilding it using the provided 
 > environment file. 
 > ~~~
@@ -304,14 +304,15 @@ from the environment.
 > >   - scikit-learn=0.22
 > > ~~~
 > > 
-> > The following command will rebuild the environment from scratch with the new Dask dependencies.
+> > You could use the following command, that will rebuild the environment from scratch with the 
+> > new Dask dependencies:
 > > 
 > > ~~~
 > > $ conda env create --prefix ./env --file environment.yml --force 
 > > ~~~
 > > {: .language-bash}
 > > 
-> > The following command will update the environment in-place with the new Dask dependencies.
+> > Or, if you just want to update the environment in-place with the new Dask dependencies, you can use:
 > > 
 > > ~~~
 > > $ conda env update --prefix ./env --file environment.yml  --prune

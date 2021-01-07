@@ -235,8 +235,8 @@ $ conda install conda-forge::kaggle=1.5.10  --prefix ./env
 For the moment let us suppose that the `kaggle` package was not available on `conda-forge`. Here is 
 how we would install the package into our environment using `pip`. 
 
-1. Use `conda` to install `pip` into our environment (if necessary).
-2. Activate the environment (if necessary).
+1. Use `conda` to install `pip` into our environment (if not already installed *into the environment*).
+2. Activate the environment.
 3. Use `pip` to install `kaggle`
 
 ~~~
@@ -245,7 +245,6 @@ $ source activate ./env
 $ pip install $SOME_PACKAGE 
 ~~~
 {: .language-bash}
-
 
 ## What actually happens when I install packages?
 
@@ -295,6 +294,10 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 > >  matplotlib=3.1
 > > ~~~
 > > {: .language-bash}
+> > 
+> > Hint: For the lazy typers: the `--channel` argument can also be shortened to `-c`, for more 
+> > abbreviations, see also the 
+> > [Conda command reference](https://docs.conda.io/projects/conda/en/latest/commands.html) . 
 > {: .solution}
 {: .challenge}
 
