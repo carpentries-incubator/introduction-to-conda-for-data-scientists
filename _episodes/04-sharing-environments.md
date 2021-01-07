@@ -104,7 +104,15 @@ environment in a sub-directory of some project directory. Here is how you would 
 task.
 
 ~~~
-$ cd project-dir
+$ cd ~/Desktop/introduction-to-conda-for-data-scientists
+$ mkdir phd-project-dir
+$ cd phd-project-dir
+~~~
+
+Once your project folder is created, create `environment.yml` using your favourite editor for instance `nano`.
+Finally create a new conda environment:
+
+~~~
 $ conda env create --prefix ./env --file environment.yml
 $ conda activate ./env
 ~~~
@@ -128,15 +136,14 @@ environment streamed to the terminal. Recall that we only listed five packages w
 originally created `machine-learning-env` yet from the output of the `conda env export` command 
 we see that these five packages result in an environment with roughly 80 dependencies!
 
-To export this list into an environment.yml file, you can run:
+To export this list into an environment.yml file, you can use `--file` option to directly save the resulting YAML environment into a file:
 
 ~~~
-$ conda env export --name machine-learning-env > environment.yml
+$ conda env export --name machine-learning-env --file ~/Desktop/introduction-to-conda-for-data-scientists/environment.yml
 ~~~
 {: .language-bash}
 
-Make sure you do not have any other environment.yml file from before in the same directory. 
-When running the above command, it would get overwritten.
+Make sure you do not have any other environment.yml file from before in the same directory when running the above command.
 This file will however not *consistently* produce environments that are reproducible 
 across Mac OS, Windows, and Linux. The reason is, that it may include operating system specific
 low-level packages, which cannot be used by other operating systems.
@@ -144,13 +151,12 @@ One way to avoid this, is to just include those packages into the environment fi
 been specifically installed:
 
 ~~~
-$ conda env export --name machine-learning-env --from-history > environment.yml
+$ conda env export --name machine-learning-env --from-history --file ~/Desktop/introduction-to-conda-for-data-scientists/environment.yml
 ~~~
 {: .language-bash}
 
 In short: to make sure others can reproduce your environment independent of the operating 
 systems in use, add the `--from-history` argument.
-
 
 > ## Create a new environment from a YAML file.
 > 
@@ -179,8 +185,8 @@ systems in use, add the `--from-history` argument.
 > > To create a new environment from a YAML file use the `conda env create` sub-command as follows.
 > > 
 > > ~~~
-> > $ mkdir project-dir
-> > $ cd project-dir
+> > $ mkdir ~/Desktop/introduction-to-conda-for-data-scientists/scikit-dir
+> > $ cd ~Desktop/introduction-to-conda-for-data-scientists/scikit-dir
 > > $ nano environment.yml
 > > $ conda env create --file environment.yml
 > > ~~~
@@ -223,6 +229,7 @@ systems in use, add the `--from-history` argument.
 > all packages mentioned under `dependencies`. If they exist in the `pytorch` channel, conda would install 
 > them from there, and not look for them in `defaults` at all.
 {: .callout}
+
 
 ### Updating an environment
 
@@ -325,11 +332,11 @@ from the environment.
 > packages to be installed via `pip`. Also in case you are wondering, The 
 > [Yellowbrick](https://www.scikit-yb.org/en/latest/) package is a suite of visual diagnostic 
 > tools called “Visualizers” that extend the [Scikit-Learn](https://scikit-learn.org/stable/) API 
-> to allow human steering of the model selection process. Yellowbrick can also be installed using 
-> `conda` from the `districtdatalabs` channel.
+> to allow human steering of the model selection process. Recent version of yellowbrick can also be installed using 
+> `conda` from the `conda-forge` channel.
 >
 > ~~~
-> $ conda install --channel districtdatalabs yellowbrick=0.9 --prefix ./env
+> $ conda install --channel conda-forge yellowbrick=1.2 --prefix ./env
 > ~~~
 {: .callout}
 
@@ -348,7 +355,7 @@ as you will need to use this package to create the kernel spec file. Here is the
 `environment.yml` file that includes the `ipykernel` package.
 
 ~~~
-name: xgboost-env
+name: ml-env
 
 dependencies:
   - ipykernel=5.3
@@ -358,7 +365,6 @@ dependencies:
   - pip=20.0
   - python=3.6
   - scikit-learn=0.22
-  - xgboost=1.0
 ~~~
 {: .language-yaml}
 
