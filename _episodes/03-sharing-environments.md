@@ -225,7 +225,7 @@ from the environment.
 > 
 > When working with `environment.yml` files it is often just as easy to rebuild the Conda 
 > environment from scratch whenever you need to add or remove dependencies. To rebuild a Conda 
-> environment from scratch you simply pass the `--force` option to the `conda env create` command 
+> environment from scratch you can pass the `--force` option to the `conda env create` command 
 > which will remove any existing environment directory before rebuilding it using the provided 
 > environment file. 
 > ~~~
