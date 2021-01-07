@@ -107,7 +107,7 @@ $ conda create --name python36-env python=3.6 pip=20.0
 > As always you can run `conda search --help` to learn about available options.
 {: .callout}
 
-You can create a Conda environment and install multiple packages by simply listing the packages 
+You can create a Conda environment and install multiple packages by listing the packages 
 that you wish to install.
 
 ~~~
@@ -564,7 +564,7 @@ $ conda list --prefix /path/to/conda-env
 > > ~~~
 > > {: .language-bash}
 > >
-> > To list the packages and their versions installed in the active environment simply leave off 
+> > To list the packages and their versions installed in the active environment leave off 
 > > the `--name` or `--prefix` option.
 > > ~~~
 > > $ conda list
