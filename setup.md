@@ -224,3 +224,32 @@ If you wish to get started with this course without installing Conda, then you c
 pre-configured instance running on [Binder](https://mybinder.org/) by clicking on the link below.
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/carpentries-incubator/introduction-to-conda-for-data-scientists/binder?urlpath=lab)
+
+## Workspace for Conda environments
+
+In order to maintain a consistent workspace for all your conda environment, we will create a new
+`introduction-to-conda-for-data-scientists` directory on your Desktop and store our conda environment in this directory.
+On Mac OSX and Linux running following commands in the
+Terminal will create the required directory on the Desktop.
+
+~~~
+$ cd ~/Desktop
+$ mkdir introduction-to-conda-for-data-scientists
+$ cd introduction-to-conda-for-data-scientists
+~~~
+{: .language-bash}
+
+
+For Windows users you may need to reverse the direction of the slash and run 
+the commands from the command prompt.
+
+~~~
+> cd ~\Desktop
+> mkdir introduction-to-conda-for-data-scientists
+> cd introduction-to-conda-for-data-scientists
+~~~
+{: .language-bash}
+
+Alternatively, you can always "right-click" and "create new folder" on your Desktop. All the 
+commands that are run during the workshop should be run in a terminal within the 
+`introduction-to-conda-for-data-scientists` directory.
