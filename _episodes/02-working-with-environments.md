@@ -29,6 +29,34 @@ keypoints:
 - "Use the `conda env list` command to list existing environments and their respective locations."
 - "Use the `conda list` command to list all of the packages installed in an environment."
 ---
+## Workspace for Conda environments
+
+In order to maintain a consistent workspace for all your conda environment, we will create a new
+`introduction-to-conda-for-data-scientists` directory on your Desktop and store our conda environment in this directory.
+On Mac OSX and Linux running following commands in the
+Terminal will create the required directory on the Desktop.
+
+~~~
+$ cd ~/Desktop
+$ mkdir introduction-to-conda-for-data-scientists
+$ cd introduction-to-conda-for-data-scientists
+~~~
+{: .language-bash}
+
+
+For Windows users you may need to reverse the direction of the slash and run 
+the commands from the command prompt.
+
+~~~
+> cd ~\Desktop
+> mkdir introduction-to-conda-for-data-scientists
+> cd introduction-to-conda-for-data-scientists
+~~~
+
+Alternatively, you can always "right-click" and "create new folder" on your Desktop. All the 
+commands that are run during the workshop should be run in a terminal within the 
+`introduction-to-conda-for-data-scientists` directory.
+
 ## What is a Conda environment
 
 A [Conda environment](https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/environments.html) 
@@ -124,7 +152,7 @@ because it is a required dependency of at least one of the listed packages.
 >
 > Create a new environment called "machine-learning-env" with Python and the most current versions 
 > of [IPython](https://ipython.org/), [Matplotlib](https://matplotlib.org/), 
-> [Pandas](https://pandas.pydata.org/), and 
+> [Pandas](https://pandas.pydata.org/), [Numba](https://numba.pydata.org/) and 
 > [Scikit-Learn](https://scikit-learn.org/stable/index.html).
 > 
 > > ## Solution
@@ -133,12 +161,13 @@ because it is a required dependency of at least one of the listed packages.
 > > 
 > > ~~~
 > > $ conda create --name machine-learning-env \
-> > > ipython \
-> > > matplotlib \
-> > > pandas \
-> > > pip \
-> > > python \
-> > > scikit-learn \
+> >  ipython \
+> >  matplotlib \
+> >  pandas \
+> >  pip \
+> >  python \
+> >  scikit-learn \
+> >  numba
 > > ~~~
 > > {: .language-bash}
 > >
@@ -148,15 +177,18 @@ because it is a required dependency of at least one of the listed packages.
 > > 
 > > ~~~
 > > $ conda create --name machine-learning-env \
-> > > ipython=7.13
-> > > matplotlib=3.1 \
-> > > pandas=1.0 \
-> > > pip=20.0
-> > > python=3.6 \
-> > > scikit-learn=0.22
+> >  ipython=7.19 \
+> >  matplotlib=3.3 \
+> >  pandas=1.2 \
+> >  pip=20.3 \
+> >  python=3.8 \
+> >  scikit-learn=0.23 \
+> >  numba=0.51
 > > ~~~
 > > {: .language-bash}
 > >
+> > However, please be aware that the version numbers for each packages may not be the latest available and would need to be adjusted.
+> > 
 > {: .solution}
 {: .challenge}
 
@@ -300,7 +332,7 @@ $ conda install scikit-learn=0.22
 > > 
 > > ~~~
 > > $ conda activate machine-learning-env
-> > $ conda install dask=2.16
+> > $ conda install dask=2020.12
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
@@ -318,7 +350,7 @@ $ conda install scikit-learn=0.22
 >
 > > ## Solution
 > > 
-> > The following commands will activate the `machine-learning-env` and install `combo`.
+> > The following commands will activate the `basic-scipy-env` and install `combo`.
 > > 
 > > ~~~
 > > $ conda activate machine-learning-env
@@ -349,6 +381,7 @@ Running `ls` (linux) / `dir` (Windows) on your anaconda `envs/` directory will l
 > Running `ls /srv/conda/envs/` from a terminal will list out the directories containing any 
 > previously installed Conda environments.
 {: .callout}
+
 
 ## How do I specify a location for a Conda environment?
 
@@ -410,17 +443,17 @@ your `~/miniconda3/env/` folder, you’ll have to give each of them a different 
 > {: .language-bash}
 >
 > Next, create a new environment inside the newly created `project-dir` in a sub-directory called 
-> `env` an install Python 3.6, version 3.1 of Matplotlib, version 2.1 of 
+> `env` an install Python 3.6, version 3.1 of Matplotlib, version 2.0 of 
 > [TensorFlow](https://www.tensorflow.org/) and version 20.0 of pip.
 > 
 > > ## Solution
 > > 
 > > ~~~
 > > project-dir $ conda create --prefix ./env \
-> > > python=3.6 \
-> > > matplotlib=3.1 \
-> > > tensorflow=2.1 \
-> > > pip=20.0
+> > python=3.6 \
+> > matplotlib=3.1 \
+> > tensorflow=2.0 \
+> > pip=20.0
 > > ~~~
 > > {: .language-bash}
 > >
@@ -485,7 +518,7 @@ For more on modifying your `.condarc` file, see the
 > > {: .language-bash}
 > >
 > > Note that the provided path can either be absolute or relative. If the path is a relative path 
-> > then it must start with `./` on Unix systems and `.\` on Windows.
+> > then it must start with `./` on Unix systems and `.\` when using PowerShell on Windows.
 > {: .solution}
 {: .challenge}
 
@@ -495,6 +528,7 @@ For more on modifying your `.condarc` file, see the
 > First create a project directory called `r-project-dir` using the following command.
 > 
 > ~~~
+> $ cd ~/Desktop/introduction-to-conda-for-data-scientists
 > $ mkdir r-project-dir
 > $ cd r-project-dir
 > ~~~
@@ -502,8 +536,7 @@ For more on modifying your `.condarc` file, see the
 >
 > Next, take a look through the [list of R packages](https://anaconda.org/r/repo) available by 
 > default for installation using `conda`. Create a new environment inside the newly created 
-> `r-project-dir` in a sub-directory called `env` and install `r-base` (and any other R packages 
-> that you think look interesting). 
+> `r-project-dir` in a sub-directory called `env` and install `r-base`, `r-tidyverse` and `r-sparklyr`. 
 > 
 > > ## Solution
 > > 
@@ -537,7 +570,7 @@ a `conda` command for listing the contents on an environment. To list the conten
 `basic-scipy-env` that you created above, run the following command.
 
 ~~~
-$ conda list --name basic-conda-env
+$ conda list --name basic-scipy-env
 ~~~
 {: .language-bash}
 
