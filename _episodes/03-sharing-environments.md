@@ -128,28 +128,44 @@ $ conda activate ./env
 Note that the above sequence of commands assumes that the `environment.yml` file is stored within 
 your `project-dir` directory. 
 
-> ## Beware the `conda env export` command
->  
-> Many other Conda tutorials (including the official documentation) encourage the use of the 
-> `conda env export` command to export an existing environment. For example, to export the packages 
-> installed into the previously created `machine-learning-env` you would run the following command.
-> 
-> ~~~
-> $ conda env export --name machine-learning-env --no-builds
-> ~~~
-> {: .language-bash}
-> 
-> When you run this command, you will see the resulting YAML formatted representation of your Conda 
-> environment streamed to the terminal. Recall that we only listed five packages when we 
-> originally created `machine-learning-env` yet from the output of the `conda env export` command 
-> we see that these five packages result in an environment with roughly 80 dependencies!
-> 
-> In practice this command does not *consistently* produce environments that are reproducible 
-> across Mac OS, Windows, and Linux. The issue is that even after removing the build numbers (by 
-> passing the `--no-builds` option), an environment file exported from an environment created on, 
-> say Mac OS, will often still contain Mac OS specific packages that will not exist for Windows 
-> or Linux.
-{: .callout}
+## Automatically generate an environment.yml
+ 
+To export the packages installed into the previously created `machine-learning-env` you can run the 
+following command:
+
+~~~
+$ conda env export --name machine-learning-env 
+~~~
+{: .language-bash}
+
+When you run this command, you will see the resulting YAML formatted representation of your Conda 
+environment streamed to the terminal. Recall that we only listed five packages when we 
+originally created `machine-learning-env` yet from the output of the `conda env export` command 
+we see that these five packages result in an environment with roughly 80 dependencies!
+
+To export this list into an environment.yml file, you can run:
+
+~~~
+$ conda env export --name machine-learning-env > environment.yml
+~~~
+{: .language-bash}
+
+Make sure you do not have any other environment.yml file from before in the same directory. 
+When running the above command, it would get overwritten.
+This file will however not *consistently* produce environments that are reproducible 
+across Mac OS, Windows, and Linux. The reason is, that it may include operating system specific
+low-level packages, which cannot be used by other operating systems.
+One way to avoid this, is to just include those packages into the environment file that have 
+been specifically installed:
+
+~~~
+$ conda env export --name machine-learning-env --from-history > environment.yml
+~~~
+{: .language-bash}
+
+In short: to make sure others can reproduce your environment independent of the operating 
+systems in use, add the `--from-history` argument.
+
 
 > ## Create a new environment from a YAML file.
 > 
@@ -199,6 +215,29 @@ your `project-dir` directory.
 > > created in different locations but contain the same packages.
 > {: .solution}
 {: .challenge}
+
+> ## Specifying channels in the environment.yml
+>
+> We learned in the previous episode, that some packages may need to be installed from other than the 
+> defaults channel. We can also specify the channels, that conda should look for the packages within the 
+> environment.yml file:
+>
+> ~~~
+> name: pytorch-env
+> 
+> channels:
+>   - pytorch
+>   - defaults
+>
+> dependencies:
+>   - pytorch=1.1
+> ~~~
+> {: .language-yaml}
+> 
+> When the above file is used to create an environment, conda would first look in the `pytorch` channel for 
+> all packages mentioned under `dependencies`. If they exist in the `pytorch` channel, conda would install 
+> them from there, and not look for them in `defaults` at all.
+{: .callout}
 
 ### Updating an environment
 
@@ -258,14 +297,15 @@ from the environment.
 > >   - scikit-learn=0.22
 > > ~~~
 > > 
-> > The following command will rebuild the environment from scratch with the new Dask dependencies.
+> > You could use the following command, that will rebuild the environment from scratch with the 
+> > new Dask dependencies:
 > > 
 > > ~~~
 > > $ conda env create --prefix ./env --file environment.yml --force 
 > > ~~~
 > > {: .language-bash}
 > > 
-> > The following command will update the envirionment in-place with the new Dask dependencies.
+> > Or, if you just want to update the environment in-place with the new Dask dependencies, you can use:
 > > 
 > > ~~~
 > > $ conda env update --prefix ./env --file environment.yml  --prune
@@ -273,6 +313,40 @@ from the environment.
 > > {: .language-bash}
 > {: .solution}
 {: .challenge}
+
+> ## Installing via `pip` in `environment.yml` files
+>
+> Since you write `environment.yml` files for all of your projects, you might be wondering how 
+> to specify that packages should be installed using `pip` in the `environment.yml` file.  Here 
+> is an example `environment.yml` file that uses `pip` to install the `kaggle` and `yellowbrick` 
+> packages.
+>
+> ~~~
+> name: null
+> 
+> dependencies:
+>  - jupyterlab=1.0
+>  - matplotlib=3.1
+>  - pandas=0.24
+>  - scikit-learn=0.21
+>  - pip=19.1
+>  - pip:
+>    - kaggle==1.5
+>    - yellowbrick==0.9
+> ~~~
+>
+> Note the double '==' instead of '=' for the pip installation and that you should include `pip` itself 
+> as a dependency and then a subsection denoting those 
+> packages to be installed via `pip`. Also in case you are wondering, The 
+> [Yellowbrick](https://www.scikit-yb.org/en/latest/) package is a suite of visual diagnostic 
+> tools called “Visualizers” that extend the [Scikit-Learn](https://scikit-learn.org/stable/) API 
+> to allow human steering of the model selection process. Yellowbrick can also be installed using 
+> `conda` from the `districtdatalabs` channel.
+>
+> ~~~
+> $ conda install --channel districtdatalabs yellowbrick=0.9 --prefix ./env
+> ~~~
+{: .callout}
 
 ## Making Jupyter aware of your Conda environments
 

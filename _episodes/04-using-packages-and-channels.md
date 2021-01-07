@@ -230,8 +230,8 @@ $ conda install conda-forge::kaggle=1.5.4  --prefix ./env
 For the moment let us suppose that the `kaggle` package was not available on `conda-forge`. Here is 
 how we would install the package into our environment using `pip`. 
 
-1. Use `conda` to install `pip` into our environment (if necessary).
-2. Activate the environment (if necessary).
+1. Use `conda` to install `pip` into our environment (if not already installed *into the environment*).
+2. Activate the environment.
 3. Use `pip` to install `kaggle`
 
 ~~~
@@ -240,40 +240,6 @@ $ source activate ./env
 $ pip install $SOME_PACKAGE 
 ~~~
 {: .language-bash}
-
-> ## Installing via `pip` in `environment.yml` files
->
-> Since you write `environment.yml` files for all of your projects, you might be wondering how 
-> to specify that packages should be installed using `pip` in the `environment.yml` file.  Here 
-> is an example `environment.yml` file that uses `pip` to install the `kaggle` and `yellowbrick` 
-> packages.
->
-> ~~~
-> name: null
-> 
-> dependencies:
->  - jupyterlab=1.0
->  - matplotlib=3.1
->  - pandas=0.24
->  - scikit-learn=0.21
->  - pip=19.1
->  - pip:
->    - kaggle==1.5
->    - yellowbrick==0.9
-> ~~~
->
-> Note the double '==' instead of '=' for the pip installation and that you should include `pip` itself 
-> as a dependency and then a subsection denoting those 
-> packages to be installed via `pip`. Also in case you are wondering, The 
-> [Yellowbrick](https://www.scikit-yb.org/en/latest/) package is a suite of visual diagnostic 
-> tools called “Visualizers” that extend the [Scikit-Learn](https://scikit-learn.org/stable/) API 
-> to allow human steering of the model selection process. Yellowbrick can also be installed using 
-> `conda` from the `districtdatalabs` channel.
->
-> ~~~
-> $ conda install --channel districtdatalabs yellowbrick=0.9 --prefix ./env
-> ~~~
-{: .callout}
 
 ## What actually happens when I install packages?
 
@@ -323,6 +289,10 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 > > > matplotlib=3.1
 > > ~~~
 > > {: .language-bash}
+> > 
+> > Hint: For the lazy typers: the `--channel` argument can also be shortened to `-c`, for more 
+> > abbreviations, see also the 
+> > [Conda command reference](https://docs.conda.io/projects/conda/en/latest/commands.html) . 
 > {: .solution}
 {: .challenge}
 
