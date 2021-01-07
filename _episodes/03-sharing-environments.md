@@ -66,28 +66,13 @@ dependencies:
 This `environment.yml` file would create an environment called `machine-learning-env` with the 
 most current and mutually compatible versions of the listed packages (including all required 
 dependencies). The newly created environment would be installed inside the `~/miniconda3/envs/` 
-directory. Alternatively, if we intended this environment file to be used to create an environment 
-inside a sub-directory call `./env` of the project directory, we can set the `name` key 
-to `null` as follows, since the environment will be named by path.
+directory, unless we specified a different path using `--prefix`.
 
-~~~
-name: null
-
-dependencies:
-  - ipython
-  - matplotlib
-  - pandas
-  - pip
-  - python
-  - scikit-learn
-~~~
-{: .language-yaml}
-
-Finally, since explicit versions numbers for all packages should be preferred a better environment 
+Since explicit versions numbers for all packages should be preferred a better environment 
 file would be the following.
 
 ~~~
-name: null
+name: machine-learning-env
 
 dependencies:
   - ipython=7.13
@@ -322,7 +307,7 @@ from the environment.
 > packages.
 >
 > ~~~
-> name: null
+> name: example
 > 
 > dependencies:
 >  - jupyterlab=1.0
