@@ -275,7 +275,7 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 > models specific to computer vision).
 > 
 > Create a new directory called `my-computer-vision-project` and then create a Python 3.6 
-> environment in a sub-directory called `env/` with the three packages listed above. Also include 
+> environment in a sub-directory called `env/` with the two packages listed above. Also include 
 > the most recent version of `jupyterlab` in your environment (so you have a nice UI) and 
 > `matplotlib` (so you can make plots).
 > 
