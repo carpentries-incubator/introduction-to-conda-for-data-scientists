@@ -338,6 +338,20 @@ from the environment.
 > ~~~
 > $ conda install --channel conda-forge yellowbrick=1.2 --prefix ./env
 > ~~~
+>
+> An alternative way of installing dependencies via `pip` in your environment files is to store all the packages 
+> that you wish to install via `pip` in a `requirements.txt` file and then add the following to your 
+> `environment.yml file`.
+> 
+> ```
+> ...
+>   - pip
+>   - pip:
+>     - -r file:requirements.txt
+> ```
+> 
+> Conda will then install your `pip` dependencies using `python -m pip install -r requirements.txt` (after creating 
+> the Conda environment and installing all Conda installable dependencies).
 {: .callout}
 
 ## Making Jupyter aware of your Conda environments
