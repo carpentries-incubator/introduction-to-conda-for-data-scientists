@@ -338,7 +338,39 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 
 ## A Python package isn't available on any Conda channel! What should I do?
 
-TODO: Discussion of Pip and its place in the Python packaging ecosystem.
+[Pip](https://pip.pypa.io/en/stable/), the default Python package manager, is often already 
+installed on most operating systems (where it is used to manage any packages need by the OS 
+Python). 
+
+~~~
+(base) $ conda deactivate
+$
+$ which python
+/usr/bin/python
+$ which pip
+/usr/bin/pip
+~~~
+{: .language-bash}
+
+Pip is also included in the Miniconda installer and will be installed into your base Conda 
+environment.
+
+~~~
+$ conda activate
+(base) $ which python
+~/miniconda3/bin/python
+$ which pip
+~/miniconda3/bin/pip
+~~~
+
+Some Python packages may not be available via Conda. If such a package is needed in your project, 
+it is possible to install it into your Conda environment using Pip. However which `pip` should you
+use: the OS system install of `pip`? Or the `pip` installed in your base Conda environment? The 
+answer is neither! Instead you should first install `pip` into your Conda environment (if you have 
+not already done so) and then use that `pip` to install the desired package. Using `pip` installed 
+in your Conda environment to install Python packages not available via Conda channels will help you 
+avoid difficult to debug issues that may arise when mixing up system wide installations of packages 
+with those pacakges installed within your Conda environments.
 
 > ## Best practices for using Conda and Pip together effectively
 >
