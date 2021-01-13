@@ -404,5 +404,30 @@ $ conda list --name python-env
 ~~~
 {: .language-bash}
 
+> ## Installing packages into Conda environments using `pip`
+> 
+> [Combo](https://github.com/yzhao062/combo) is a comprehensive Python toolbox for combining 
+> machine learning models and scores. Model combination can be considered as a subtask of 
+> [ensemble learning](https://en.wikipedia.org/wiki/Ensemble_learning), and has been widely used 
+> in real-world tasks and data science competitions like [Kaggle](https://www.kaggle.com/).
+> 
+> Activate the `machine-learning-env` you created in a previous challenge and use `pip` to install 
+> `combo`.
+>
+> > ## Solution
+> > 
+> > The following commands will activate the `basic-scipy-env` and install `combo`.
+> > 
+> > ~~~
+> > $ conda install --name machine-learning-env pip
+> > $ conda activate machine-learning-env
+> > $ python -m pip install combo==0.1.*
+> > ~~~
+> > {: .language-bash}
+> >
+> > For more details on using `pip` see the [official documentation](https://pip.pypa.io/en/stable/).
+> {: .solution}
+{: .challenge}
+
 {% include links.md %}
 
