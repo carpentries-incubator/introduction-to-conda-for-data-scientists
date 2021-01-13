@@ -90,18 +90,6 @@ $ conda create --name python3-env python pip
 
 For a list of all commands, take a look at [Conda general commands](https://docs.conda.io/projects/conda/en/latest/commands.html).
 
-> ## `pip` within Conda environments
->
-> [Pip](https://pip.pypa.io/en/stable/), the default Python package manager, is often already 
-> installed on most operating systems (where it is used to manage any packages need by the OS 
-> Python). Pip is also included in the Miniconda installer. 
-> Some packages may not be available via Conda. If such package is still needed in a project, 
-> it is possible to install it into a conda environment, using pip.
-> Therefore it may be helpful to include `pip` as an explicit dependency in your Conda environment, 
-> to avoids difficult to debug issues, that may arise when mixing up system wide installations with those
-> within conda environments. 
-{: .callout}
-
 It is a good idea to give your environment a meaningful name in order to help yourself remember 
 the purpose of the environment. While naming things can be difficult, `$PROJECT_NAME-env` is a 
 good convention to follow. Sometimes also the specific version of a package why you had to create a new environment is a good name
