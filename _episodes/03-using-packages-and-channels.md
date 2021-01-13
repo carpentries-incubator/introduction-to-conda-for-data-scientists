@@ -6,12 +6,14 @@ questions:
 - "What are Conda channels?"
 - "What are Conda packages?"
 - "Why should I be explicit about which channels my research project uses?"
+- "What should I do if a Python package isn't available via a Conda channel?"
 objectives:
 - "Install a package from a specific channel."
 keypoints:
 - "A package is a tarball containing system-level libraries, Python or other modules, executable programs and other components, and associated metadata."
 - "A Conda channel is a URL to a directory containing a Conda package(s)."
 - "Explicitly including the channels (and their priority!) in a project's environment file is necessary for another researcher to completely re-create that project's software environment." 
+- "Understand how to use Conda and Pip together effectively."
 ---
 
 ## What are Conda packages?
@@ -333,6 +335,42 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 > > {: .language-bash}
 > {: .solution}
 {: .challenge}
+
+## A Python package isn't available on any Conda channel! What should I do?
+
+TODO: Discussion of Pip and its place in the Python packaging ecosystem.
+
+> ## Best practices for using Conda and Pip together effectively
+>
+> Many of the common pitfalls of using Conda and Pip together can be avoided by adopting the 
+> following practices.
+>
+> * Always explicitly install `pip` in every Python-based Conda environment.
+> * Always be sure your desired environment is active before installing anything using `pip`.
+> * Prefer `python -m pip install` over `pip install`
+>
+{: .callout}
+
+### Conda wherever possible and Pip only when necessary.
+
+When using Conda to manage environments for your Python project it is a good idea to 
+install packages available via both Conda and Pip using Conda; however there will 
+always be cases where package is only available via Pip in which case will need to 
+use Pip. I summarize this as the Conda (+Pip) philosophy: use Conda wherever possible 
+and Pip only where necessary.
+
+Worked example...
+~~~
+$ conda install --name python-env pip # installs pip from the defaults channel
+$ conda activate python-env
+$ which pip # should return path to the newly installed pip!
+~/miniconda3/envs/python-env/bin/pip
+$ which python # should return path to the python interpreter for active environment
+~/miniconda3/envs/python-env/bin/python
+$ python -m pip install python-package-not-available-via-conda
+$ conda list --name python-env
+~~~
+{: .language-bash}
 
 {% include links.md %}
 
