@@ -84,23 +84,11 @@ To create a new environment for Python development using `conda` you can use the
 command.
 
 ~~~
-$ conda create --name python3-env python pip
+$ conda create --name python3-env python
 ~~~
 {: .language-bash}
 
 For a list of all commands, take a look at [Conda general commands](https://docs.conda.io/projects/conda/en/latest/commands.html).
-
-> ## `pip` within Conda environments
->
-> [Pip](https://pip.pypa.io/en/stable/), the default Python package manager, is often already 
-> installed on most operating systems (where it is used to manage any packages need by the OS 
-> Python). Pip is also included in the Miniconda installer. 
-> Some packages may not be available via Conda. If such package is still needed in a project, 
-> it is possible to install it into a conda environment, using pip.
-> Therefore it may be helpful to include `pip` as an explicit dependency in your Conda environment, 
-> to avoids difficult to debug issues, that may arise when mixing up system wide installations with those
-> within conda environments. 
-{: .callout}
 
 It is a good idea to give your environment a meaningful name in order to help yourself remember 
 the purpose of the environment. While naming things can be difficult, `$PROJECT_NAME-env` is a 
@@ -111,7 +99,7 @@ version of Python. If you wish, you can specify a particular version of packages
 install when creating the environment.
 
 ~~~
-$ conda create --name python36-env python=3.6 pip=20.0
+$ conda create --name python36-env python=3.6
 ~~~
 {: .language-bash}
 
@@ -142,7 +130,7 @@ You can create a Conda environment and install multiple packages by listing the 
 that you wish to install.
 
 ~~~
-$ conda create --name basic-scipy-env ipython=7.13 matplotlib=3.1 numpy=1.18 pip=20.0 scipy=1.4
+$ conda create --name basic-scipy-env ipython=7.13 matplotlib=3.1 numpy=1.18 scipy=1.4
 ~~~
 {: .language-bash}
  
@@ -167,7 +155,6 @@ because it is a required dependency of at least one of the listed packages.
 > >  ipython \
 > >  matplotlib \
 > >  pandas \
-> >  pip \
 > >  python \
 > >  scikit-learn \
 > >  numba
@@ -183,7 +170,6 @@ because it is a required dependency of at least one of the listed packages.
 > >  ipython=7.19 \
 > >  matplotlib=3.3 \
 > >  pandas=1.2 \
-> >  pip=20.3 \
 > >  python=3.8 \
 > >  scikit-learn=0.23 \
 > >  numba=0.51
@@ -341,30 +327,6 @@ $ conda install scikit-learn=0.22
 > {: .solution}
 {: .challenge} 
 
-> ## Installing packages into Conda environments using `pip`
-> 
-> [Combo](https://github.com/yzhao062/combo) is a comprehensive Python toolbox for combining 
-> machine learning models and scores. Model combination can be considered as a subtask of 
-> [ensemble learning](https://en.wikipedia.org/wiki/Ensemble_learning), and has been widely used 
-> in real-world tasks and data science competitions like [Kaggle](https://www.kaggle.com/).
-> 
-> Activate the `machine-learning-env` you created in a previous challenge and use `pip` to install 
-> `combo`.
->
-> > ## Solution
-> > 
-> > The following commands will activate the `basic-scipy-env` and install `combo`.
-> > 
-> > ~~~
-> > $ conda activate machine-learning-env
-> > $ pip install combo==0.1.*
-> > ~~~
-> > {: .language-bash}
-> >
-> > For more details on using `pip` see the [official documentation](https://pip.pypa.io/en/stable/).
-> {: .solution}
-{: .challenge}
-
 ## Where do Conda environments live?
 
 Environments created with `conda`, by default, live in the `envs/` folder of your `miniconda3` (or `anaconda3`) directory the absolute path to which will look something the following: `/Users/$USERNAME/miniconda3/envs` or `C:\Users\$USERNAME\Anaconda3`.
@@ -446,8 +408,8 @@ your `~/miniconda3/env/` folder, you’ll have to give each of them a different 
 > {: .language-bash}
 >
 > Next, create a new environment inside the newly created `project-dir` in a sub-directory called 
-> `env` an install Python 3.6, version 3.1 of Matplotlib, version 2.0 of 
-> [TensorFlow](https://www.tensorflow.org/) and version 20.0 of pip.
+> `env` an install Python 3.6, version 3.1 of Matplotlib, and version 2.0 of 
+> [TensorFlow](https://www.tensorflow.org/).
 > 
 > > ## Solution
 > > 
@@ -456,7 +418,6 @@ your `~/miniconda3/env/` folder, you’ll have to give each of them a different 
 > > python=3.6 \
 > > matplotlib=3.1 \
 > > tensorflow=2.0 \
-> > pip=20.0
 > > ~~~
 > > {: .language-bash}
 > >
