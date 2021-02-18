@@ -208,7 +208,7 @@ the `kaggle` package using `pip`. But since we are using `conda` we should check
 package exists on at least `conda-forge` channel before proceeding to use `pip`.
 
 ~~~
-$ conda search conda-forge::kaggle
+$ conda search --channel conda-forge kaggle
 Loading channels: done
 # Name                       Version           Build  Channel             
 kaggle                         1.5.3          py27_1  conda-forge         
@@ -226,25 +226,10 @@ kaggle                         1.5.4          py37_0  conda-forge
 Or you can also check online at [https://anaconda.org/conda-forge/kaggle](https://anaconda.org/conda-forge/kaggle).
 
 Once we know that the `kaggle` package is available via `conda-forge` we can go ahead and install 
-it! Note that we are explicitly providing both the channel to use when installing the `kaggle` 
-package as well as a specific version number.
+it.
 
 ~~~
-$ conda install conda-forge::kaggle=1.5.10  --prefix ./env
-~~~
-{: .language-bash}
-
-For the moment let us suppose that the `kaggle` package was not available on `conda-forge`. Here is 
-how we would install the package into our environment using `pip`. 
-
-1. Use `conda` to install `pip` into our environment (if not already installed *into the environment*).
-2. Activate the environment.
-3. Use `pip` to install `kaggle`
-
-~~~
-$ conda install pip --prefix ./env
-$ source activate ./env
-$ pip install $SOME_PACKAGE 
+$ conda install --channel conda-forge kaggle=1.5.10  --prefix ./env
 ~~~
 {: .language-bash}
 
@@ -338,22 +323,28 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 
 ## A Python package isn't available on any Conda channel! What should I do?
 
-[Pip](https://pip.pypa.io/en/stable/), the default Python package manager, is often already 
-installed on most operating systems (where it is used to manage any packages need by the OS 
-Python). 
+If a Python package that you need isn't available on any Conda channel, then you can use 
+the default Python package manager [Pip](https://pip.pypa.io/en/stable/) to install this 
+package from [PyPI](https://pypi.org/). However, there are a few 
+[potential issues](https://www.anaconda.com/blog/using-pip-in-a-conda-environment) that 
+you should be aware of when using Pip to install Python packages when using Conda. 
+
+First, Pip is sometimes installed by default on operating systems where it is used to 
+manage any Python packages needed by your OS. **You do not want to use this `pip` to 
+install Python packages when using Conda environments.**
 
 ~~~
 (base) $ conda deactivate
-$
 $ which python
 /usr/bin/python
-$ which pip
+$ which pip # sometimes installed as pip3
 /usr/bin/pip
 ~~~
 {: .language-bash}
 
-Pip is also included in the Miniconda installer and will be installed into your base Conda 
-environment.
+Second, Pip is also included in the Miniconda installer where it is used to install and 
+manage OS specific Python packages required to setup your base Conda environment. **You 
+do not want to use this `pip` to install Python packages when using Conda environments.**
 
 ~~~
 $ conda activate
@@ -362,47 +353,35 @@ $ conda activate
 $ which pip
 ~/miniconda3/bin/pip
 ~~~
+{: .language-bash}
 
-Some Python packages may not be available via Conda. If such a package is needed in your project, 
-it is possible to install it into your Conda environment using Pip. However which `pip` should you
-use: the OS system install of `pip`? Or the `pip` installed in your base Conda environment? The 
-answer is neither! Instead you should first install `pip` into your Conda environment (if you have 
-not already done so) and then use that `pip` to install the desired package. Using `pip` installed 
-in your Conda environment to install Python packages not available via Conda channels will help you 
-avoid difficult to debug issues that may arise when mixing up system wide installations of packages 
-with those pacakges installed within your Conda environments.
-
-> ## Best practices for using Conda and Pip together effectively
->
-> Many of the common pitfalls of using Conda and Pip together can be avoided by adopting the 
-> following practices.
->
-> * Always explicitly install `pip` in every Python-based Conda environment.
-> * Always be sure your desired environment is active before installing anything using `pip`.
-> * Prefer `python -m pip install` over `pip install`
->
+> ## Another reaon to avoid installing packages into your `base` Conda environment
+> 
+> If your `base` Conda environment becomes cluttered with a mix of Pip and Conda installed 
+> packages it may no longer function. Creating separate conda environments allows you to 
+> delete and recreate environments readily so you dont have to worry about risking your core 
+> Conda functionality when mixing packages installed with Conda and Pip.
 {: .callout}
 
-### Conda wherever possible and Pip only when necessary.
+If you find yourself needing to install a Python package that is only available via Pip, then 
+you should first install `pip` into your Conda environment and then use that `pip` to install 
+the desired package. Using the `pip` installed in your Conda environment to install Python packages 
+not available via Conda channels will help you avoid difficult to debug issues that frequently 
+arise when using Python packages installed via a `pip` that was not installed inside you Conda 
+environment.
 
-When using Conda to manage environments for your Python project it is a good idea to 
-install packages available via both Conda and Pip using Conda; however there will 
-always be cases where package is only available via Pip in which case will need to 
-use Pip. I summarize this as the Conda (+Pip) philosophy: use Conda wherever possible 
-and Pip only where necessary.
-
-Worked example...
-~~~
-$ conda install --name python-env pip # installs pip from the defaults channel
-$ conda activate python-env
-$ which pip # should return path to the newly installed pip!
-~/miniconda3/envs/python-env/bin/pip
-$ which python # should return path to the python interpreter for active environment
-~/miniconda3/envs/python-env/bin/python
-$ python -m pip install python-package-not-available-via-conda
-$ conda list --name python-env
-~~~
-{: .language-bash}
+> ## Conda (+Pip): Conda wherever possible; Pip only when necessary
+>
+> When using Conda to manage environments for your Python project it is a good idea to 
+> install packages available via both Conda and Pip using Conda; however there will 
+> always be cases where a package is only available via Pip in which case you will need to 
+> use Pip. Many of the common pitfalls of using Conda and Pip together can be avoided by 
+> adopting the following practices.
+>
+> * Always explicitly install `pip` in *every* Python-based Conda environment.
+> * Always be sure your desired environment is *active* before installing anything using `pip`.
+> * Prefer `python -m pip install` over `pip install`; never use `pip` with the `--user` argument.
+{: .callout}
 
 > ## Installing packages into Conda environments using `pip`
 > 
