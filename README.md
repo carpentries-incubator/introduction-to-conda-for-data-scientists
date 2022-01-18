@@ -3,13 +3,13 @@
 
 # Introduction to Conda for (Data) Scientists
 
-This lesson is an introduction to Conda for (data) scientists. 
-[Conda](https://docs.conda.io/projects/conda/en/latest/index.html) is  an open source package and 
-environment management system that runs on Windows, macOS and Linux. Conda installs, runs, and 
-updates packages and their dependencies. Conda easily creates, saves, loads, and switches between 
-environments on your local computer. While Conda was created for Python programs it can package 
-and distribute software for any languages such as R, Ruby, Lua, Scala, Java, JavaScript, C/ C++, 
-FORTRAN. This lesson motivates the use of Conda as a development tool for building and sharing 
+This lesson is an introduction to Conda for (data) scientists.
+[Conda](https://docs.conda.io/projects/conda/en/latest/index.html) is an open source package and
+environment management system that runs on Windows, macOS and Linux. Conda installs, runs, and
+updates packages and their dependencies. Conda easily creates, saves, loads, and switches between
+environments on your local computer. While Conda was created for Python programs it can package
+and distribute software for any languages such as R, Ruby, Lua, Scala, Java, JavaScript, C/ C++,
+FORTRAN. This lesson motivates the use of Conda as a development tool for building and sharing
 project specific software environments that facilitate reproducible (data) science workflows.
 
 ## Contributing
@@ -25,12 +25,12 @@ Please see the current list of [issues](https://github.com/carpentries-incubator
 repository. For making your contribution, we use the GitHub flow, which is
 nicely explained in the chapter [Contributing to a Project](http://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project) in Pro Git
 by Scott Chacon.
-Look for the tag ![good_first_issue](https://img.shields.io/badge/-good%20first%20issue-gold.svg). This indicates that the mantainers will welcome a pull request fixing this issue.  
+Look for the tag ![good_first_issue](https://img.shields.io/badge/-good%20first%20issue-gold.svg). This indicates that the mantainers will welcome a pull request fixing this issue.
 
 
 ## Maintainer(s)
 
-Current maintainers of this lesson are 
+Current maintainers of this lesson are
 
 * David R. Pugh
 
