@@ -57,7 +57,7 @@ scientists.
     that you are currently using.
 *   An application you developed as part of a previous research project that worked fine on your 
     system six months ago now no longer works.
-*   Code that have written for a joint research project works on your machine but not on your 
+*   Code that was written for a joint research project works on your machine but not on your 
     collaborators' machines.
 *   An application that you are developing on your local machine doesn't provide the same results 
     when run on your remote cluster.
