@@ -567,7 +567,7 @@ conda env create --prefix $ENV_PREFIX --file environment.yml --force
 > {: .language-bash}
 {: .callout}
 
-We covered a lot of ground in this episode! We showed you how to use `conda search` to see which 
+We covered a lot of ground in this lesson! We showed you how to use `conda search` to see which 
 versions of the NVIDIA CUDA Toolkit and related libraries such as NCCL and cuDNN were available 
 via Conda. Then we walked you through example Conda environment files for several popular data 
 science frameworks that can use GPUs. We wrapped up with a discussion of two different approaches 
