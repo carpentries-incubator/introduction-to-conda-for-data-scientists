@@ -362,7 +362,7 @@ consists of a post-install script that downloads and installs the full CUDA tool
 and libraries, but not the exception of CUDA drivers).
 
 While the cudatoolkit-dev packages available from conda-forge do include NVCC, I have had 
-difficult getting these packages to consistently install properly.
+difficulties getting these packages to consistently install properly.
 
 * Some of the available builds require manual intervention to accept license agreements making 
   these builds unsuitable for installing on remote systems (which is critical functionality).
