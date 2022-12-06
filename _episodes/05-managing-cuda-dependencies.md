@@ -344,7 +344,7 @@ dependencies:
 
 # But what if I need the NVIDIA CUDA Compiler?
 
-Way up at the beginning of this episode I mention that the versions of the NVIDIA CUDA Toolkit 
+Way up at the beginning of this lesson I mentioned that the versions of the NVIDIA CUDA Toolkit 
 available via the default channels did not include the NVIDIA CUDA Compiler (NVCC). However, if 
 your data science project has dependencies that require compiling custom CUDA extensions then you 
 will almost surely need the NVIDIA CUDA Compiler (NVCC).
