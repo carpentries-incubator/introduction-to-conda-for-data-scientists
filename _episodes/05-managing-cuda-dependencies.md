@@ -227,7 +227,7 @@ dependencies:
 ~~~
 {: .language-yaml}
 
-> ## Check you channel priorities!
+> ## Check your channel priorities!
 > 
 > Also take note of the channel priorities: the official `pytorch` channel must be given priority 
 > over `conda-forge` in order to insure that the official PyTorch binaries (the ones that include 
@@ -248,10 +248,10 @@ this one yourself!
 
 > ## Create an `environment.yml` file for TensorFlow
 > 
-> In this exercise you will create a Conda environment for TensorFlow. Important CUDA depedencies 
+> In this exercise you will create a Conda environment for TensorFlow. Important CUDA dependencies 
 > of TensorFlow are the CUDA Toolkit, cuDNN, and 
 > [CUPTI](https://docs.nvidia.com/cuda/cupti/index.html). Don't forget that if you want to train 
-> on more than one GPU, then your environment will need also need NCCL and an MPI implementation.
+> on more than one GPU, then your environment will also need NCCL and an MPI implementation.
 > 
 > > ## Solution
 > > 
@@ -366,7 +366,7 @@ difficult getting these packages to consistently install properly.
 
 * Some of the available builds require manual intervention to accept license agreements making 
   these builds unsuitable for installing on remote systems (which is critical functionality).
-* Some other builds seems to work on Ubuntu but not on other flavors of Linux such as CentOS.
+* Some other builds seem to work on Ubuntu but not on other flavors of Linux such as CentOS.
 * Other Conda packages that depend on CUDA will often install the cudatoolkit package even though 
   everything included in this package will have already been installed via cudatoolkit-dev.
 
@@ -539,7 +539,7 @@ conda env create --prefix $ENV_PREFIX --file environment.yml --force
 
 > ## Wrap complex Conda environment builds in a script!
 > 
-> In order to enhance reproducibiity of your complex Conda build, I typically wrap commands into a 
+> In order to enhance reproducibility of your complex Conda build, I typically wrap commands into a 
 > shell script called `create-conda-env.sh`. Running the shell script will set the Horovod build 
 > variables, create the Conda environment, activate the Conda environment, and build JupyterLab 
 > with any additional extensions as specified in a `postBuild` script.
@@ -573,3 +573,4 @@ via Conda. Then we walked you through example Conda environment files for severa
 science frameworks that can use GPUs. We wrapped up with a discussion of two different approaches 
 for getting NVCC when your project requires compiler custom CUDA extensions. Hopefully these ideas 
 will help you make the jump from CPUs to GPUs on your next data science project!
+

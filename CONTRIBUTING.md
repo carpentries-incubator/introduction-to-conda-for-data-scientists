@@ -46,8 +46,8 @@ and to meet some of our community members.
 ## Where to Contribute
 
 1.  If you wish to change this lesson,
-    please work in <https://github.com/swcarpentry/FIXME>,
-    which can be viewed at <https://swcarpentry.github.io/FIXME>.
+    please work in <https://github.com/carpentries-incubator/introduction-to-conda-for-data-scientists>,
+    which can be viewed at <https://carpentries-incubator.github.io/introduction-to-conda-for-data-scientists/>.
 
 2.  If you wish to change the example lesson,
     please work in <https://github.com/carpentries/lesson-example>,
@@ -133,7 +133,7 @@ happens on the [discussion mailing list][discuss-list],
 which everyone is welcome to join.
 You can also [reach us by email][email].
 
-[email]: mailto:admin@software-carpentry.org
+[email]: mailto:david.pugh@kaust.edu.sa
 [dc-issues]: https://github.com/issues?q=user%3Adatacarpentry
 [dc-lessons]: http://datacarpentry.org/lessons/
 [dc-site]: http://datacarpentry.org/

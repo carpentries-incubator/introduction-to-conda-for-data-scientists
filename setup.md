@@ -7,10 +7,7 @@ root: ..
 
 # Installation Instructions
 
-If you wish to get started with this course without installing Conda, then you can use a 
-pre-configured instance running on [Binder](https://mybinder.org/) by clicking on the link below.
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/carpentries-incubator/introduction-to-conda-for-data-scientists/binder?urlpath=lab)
 
 ## Check to see if Conda is already installed
 
@@ -24,21 +21,36 @@ $ which conda
 ~~~
 {: .language-bash}
 
-If Conda has already been installed on your machine, then you this command should return the 
+If Conda has already been installed on your machine, then this command should return the 
 absolute path to the conda executable. 
 
 Windows users should search for "Anaconda" to see if the "Anaconda Command Prompt" shows up as an 
 option, if it does then you already have Conda installed.
 
+> ## Old version of Anaconda?
+>
+> If you previously installed the Anaconda Python distribution you may have an old version of Conda. You
+> can check your version of Conda with the following command.
+> 
+> ~~~
+> $ conda --version
+> ~~~
+> {: .language-bash}
+> 
+> If you have a version of Conda that is 4.5 (or older), then it is probably best to 
+[uninstall](https://docs.anaconda.com/anaconda/install/uninstall/) your Anaconda Python distribution 
+> and then reinstall the most recent version.
+{: .callout}
+
 ## Install Python 3 version of Miniconda
 
 If Conda has not been installed on your machine, then install the Python 3 version of 
-[Miniconda](https://docs.conda.io/en/latest/miniconda.html) from Anaconda for your OS. As the name 
+[Miniconda](https://docs.conda.io/en/latest/miniconda.html) for your OS. As the name 
 suggests, Miniconda is a "mini" version of the 
 [Anaconda Python distribution](https://www.anaconda.com/distribution/) that includes only Conda, a 
 Python 3 distribution, and any necessary OS-specific dependencies.
 
-For convenience here are links to the 64-bit GUI Miniconda installers.
+For convenience here are links to the 64-bit Miniconda installers.
 
 * [Windows](https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe)
 * [Mac OSX](https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.pkg)
@@ -62,6 +74,16 @@ For convenience here are links to the 64-bit GUI Miniconda installers.
 >
 > We will discuss the above command in great depth in the workshop.
 {: .callout}
+
+### Windows installation
+
+After you downloaded the [Windows GUI installer](https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe), double click on it and follow the instructions (accept license, etc.).
+You can use the defaults except for the "Advanced Installation Options" where you would tick on **"Add Miniconda3 to my PATH environment variable"**.
+
+### Mac OSX installation
+After you downloaded the [Mac OSX GUI installer](https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.pkg), double click on it and follow the instructions (accept license, etc.). 
+When you are asked where to install Miniconda, you should leave the default option to "install for me only". If you get the error message “You cannot install Miniconda in this location,” reselect "Install for me only". Then you should be able to continue to the next.
+The default option will modify your PATH in ~/.bash_profile. If you open the terminal after installation is over, you would see "(base)" on the left side of prompt.
 
 ### Linux installation
 
@@ -196,11 +218,18 @@ If you want to reverse or “undo” the changes made by `conda init`, then you 
 `conda init` command and pass the `--reverse` option. Again, in order for the reversal to take 
 effect you will likely need to close and restart your shell session.
 
-## Workspace Setup
+## Use of Binder instead of installing Conda (Optional)
 
-In order to maintain a consistent workspace for all learners create an 
-`introduction-to-conda-for-data-scientists` directory on your Desktop to serve as the working 
-directory for the duration of the lesson. On Mac OSX and Linux running following commands in the
+If you wish to get started with this course without installing Conda, then you can use a 
+pre-configured instance running on [Binder](https://mybinder.org/) by clicking on the link below.
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/carpentries-incubator/introduction-to-conda-for-data-scientists/binder?urlpath=lab)
+
+## Workspace for Conda environments
+
+In order to maintain a consistent workspace for all your conda environment, we will create a new
+`introduction-to-conda-for-data-scientists` directory on your Desktop and store our conda environment in this directory.
+On Mac OSX and Linux running following commands in the
 Terminal will create the required directory on the Desktop.
 
 ~~~
@@ -211,7 +240,7 @@ $ cd introduction-to-conda-for-data-scientists
 {: .language-bash}
 
 
-For Windows users you will need to reverse the direction of the slash (because Windows) and run 
+For Windows users you may need to reverse the direction of the slash and run 
 the commands from the command prompt.
 
 ~~~
@@ -219,6 +248,8 @@ the commands from the command prompt.
 > mkdir introduction-to-conda-for-data-scientists
 > cd introduction-to-conda-for-data-scientists
 ~~~
+{: .language-bash}
 
-Alternatively, you can always "right-click" and "create new folder" on your Desktop.
-
+Alternatively, you can always "right-click" and "create new folder" on your Desktop. All the 
+commands that are run during the workshop should be run in a terminal within the 
+`introduction-to-conda-for-data-scientists` directory.

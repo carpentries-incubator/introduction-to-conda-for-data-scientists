@@ -29,6 +29,37 @@ keypoints:
 - "Use the `conda env list` command to list existing environments and their respective locations."
 - "Use the `conda list` command to list all of the packages installed in an environment."
 ---
+
+> ## Workspace for Conda environments
+> If you haven't done it yet, create a new `introduction-to-conda-for-data-scientists` directory on your Desktop in order to maintain a consistent workspace for all your conda environment. 
+>
+> On Mac OSX and Linux running following commands in the
+> Terminal will create the required directory on the Desktop.
+> 
+> ~~~
+> $ cd ~/Desktop
+> $ mkdir introduction-to-conda-for-data-scientists
+> $ cd introduction-to-conda-for-data-scientists
+> ~~~
+> {: .language-bash}
+> 
+> 
+> For Windows users you may need to reverse the direction of the slash and run 
+> the commands from the command prompt.
+> 
+> ~~~
+> > cd ~\Desktop
+> > mkdir introduction-to-conda-for-data-scientists
+> > cd introduction-to-conda-for-data-scientists
+> ~~~
+> {: .language-bash}
+>
+> Alternatively, you can always "right-click" and "create new folder" on your Desktop. All the 
+> commands that are run during the workshop should be run in a terminal within the 
+> `introduction-to-conda-for-data-scientists` directory.
+>
+{: .callout}
+
 ## What is a Conda environment
 
 A [Conda environment](https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/environments.html) 
@@ -53,29 +84,22 @@ To create a new environment for Python development using `conda` you can use the
 command.
 
 ~~~
-$ conda create --name python3-env python pip
+$ conda create --name python3-env python
 ~~~
 {: .language-bash}
 
-> ## Always install `pip` in your Python environments
->
-> [Pip](https://pip.pypa.io/en/stable/), the default Python package manager, is often already 
-> installed on most operating systems (where it is used to manage any packages need by the OS 
-> Python). Pip is also included in the Miniconda installer. Including `pip` as an explicit 
-> dependency in your Conda environment avoids difficult to debug issues that can arise when 
-> installing packages into environments using some other `pip` installed outside your environment. 
-{: .callout}
+For a list of all commands, take a look at [Conda general commands](https://docs.conda.io/projects/conda/en/latest/commands.html).
 
 It is a good idea to give your environment a meaningful name in order to help yourself remember 
 the purpose of the environment. While naming things can be difficult, `$PROJECT_NAME-env` is a 
-good convention to follow.
+good convention to follow. Sometimes also the specific version of a package why you had to create a new environment is a good name
 
 The command above will create a new Conda environment called "python3" and install the most recent 
 version of Python. If you wish, you can specify a particular version of packages for `conda` to 
 install when creating the environment.
 
 ~~~
-$ conda create --name python36-env python=3.6 pip=20.0
+$ conda create --name python36-env python=3.6
 ~~~
 {: .language-bash}
 
@@ -102,11 +126,11 @@ $ conda create --name python36-env python=3.6 pip=20.0
 > As always you can run `conda search --help` to learn about available options.
 {: .callout}
 
-You can create a Conda environment and install multiple packages by simply listing the packages 
+You can create a Conda environment and install multiple packages by listing the packages 
 that you wish to install.
 
 ~~~
-$ conda create --name basic-scipy-env ipython=7.13 matplotlib=3.1 numpy=1.18 pip=20.0 scipy=1.4
+$ conda create --name basic-scipy-env ipython=7.13 matplotlib=3.1 numpy=1.18 scipy=1.4
 ~~~
 {: .language-bash}
  
@@ -119,7 +143,7 @@ because it is a required dependency of at least one of the listed packages.
 >
 > Create a new environment called "machine-learning-env" with Python and the most current versions 
 > of [IPython](https://ipython.org/), [Matplotlib](https://matplotlib.org/), 
-> [Pandas](https://pandas.pydata.org/), and 
+> [Pandas](https://pandas.pydata.org/), [Numba](https://numba.pydata.org/) and 
 > [Scikit-Learn](https://scikit-learn.org/stable/index.html).
 > 
 > > ## Solution
@@ -128,12 +152,12 @@ because it is a required dependency of at least one of the listed packages.
 > > 
 > > ~~~
 > > $ conda create --name machine-learning-env \
-> > > ipython \
-> > > matplotlib \
-> > > pandas \
-> > > pip \
-> > > python \
-> > > scikit-learn \
+> >  ipython \
+> >  matplotlib \
+> >  pandas \
+> >  python \
+> >  scikit-learn \
+> >  numba
 > > ~~~
 > > {: .language-bash}
 > >
@@ -143,15 +167,17 @@ because it is a required dependency of at least one of the listed packages.
 > > 
 > > ~~~
 > > $ conda create --name machine-learning-env \
-> > > ipython=7.13
-> > > matplotlib=3.1 \
-> > > pandas=1.0 \
-> > > pip=20.0
-> > > python=3.6 \
-> > > scikit-learn=0.22
+> >  ipython=7.19 \
+> >  matplotlib=3.3 \
+> >  pandas=1.2 \
+> >  python=3.8 \
+> >  scikit-learn=0.23 \
+> >  numba=0.51
 > > ~~~
 > > {: .language-bash}
 > >
+> > However, please be aware that the version numbers for each packages may not be the latest available and would need to be adjusted.
+> > 
 > {: .solution}
 {: .challenge}
 
@@ -181,7 +207,7 @@ name of the active environment.
 
 ## Deactivate the current environment
 
-To deactivate the currently active environment use the `deactivate` command as follows.
+To deactivate the currently active environment use the Conda `deactivate` command as follows.
 
 ~~~
 (basic-scipy-env) $ conda deactivate
@@ -197,7 +223,7 @@ $
 
 > ## Returning to the `base` environment
 >
-> To simply return to the `base` Conda environment, it's better to call `conda activate` with no 
+> To return to the `base` Conda environment, it's better to call `conda activate` with no 
 > environment specified, rather than to use `deactivate`. If you run `conda deactivate` from your 
 > `base` environment, you may lose the ability to run `conda` commands at all. **Don't worry if 
 > you encounter this undesirable state! Just start a new shell.**
@@ -295,48 +321,17 @@ $ conda install scikit-learn=0.22
 > > 
 > > ~~~
 > > $ conda activate machine-learning-env
-> > $ conda install dask=2.16
+> > $ conda install dask=2020.12
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
 {: .challenge} 
 
-> ## Installing packages into Conda environments using `pip`
-> 
-> [Combo](https://github.com/yzhao062/combo) is a comprehensive Python toolbox for combining 
-> machine learning models and scores. Model combination can be considered as a subtask of 
-> [ensemble learning](https://en.wikipedia.org/wiki/Ensemble_learning), and has been widely used 
-> in real-world tasks and data science competitions like [Kaggle](https://www.kaggle.com/).
-> 
-> Activate the `machine-learning-env` you created in a previous challenge and use `pip` to install 
-> `combo`.
->
-> > ## Solution
-> > 
-> > The following commands will activate the `machine-learning-env` and install `combo`.
-> > 
-> > ~~~
-> > $ conda activate machine-learning-env
-> > $ pip install combo==0.1.*
-> > ~~~
-> > {: .language-bash}
-> >
-> > For more details on using `pip` see the [official documentation](https://pip.pypa.io/en/stable/).
-> {: .solution}
-{: .challenge}
-
 ## Where do Conda environments live?
 
-Environments created with `conda`, by default, live in the `envs/` folder of your `miniconda3` 
-directory the absolute path to which will look something the following.
+Environments created with `conda`, by default, live in the `envs/` folder of your `miniconda3` (or `anaconda3`) directory the absolute path to which will look something the following: `/Users/$USERNAME/miniconda3/envs` or `C:\Users\$USERNAME\Anaconda3`.
 
-~~~
-$ /Users/$USERNAME/miniconda3/envs
-~~~
-{: .language-bash} 
-
-Running `ls` on your `~/miniconda3/envs/` directory will list out the directories containing the 
-existing Conda environments.
+Running `ls` (linux) / `dir` (Windows) on your anaconda `envs/` directory will list out the directories containing the existing Conda environments.
 
 > ## Location of Conda environments on Binder
 >
@@ -351,6 +346,7 @@ existing Conda environments.
 > Running `ls /srv/conda/envs/` from a terminal will list out the directories containing any 
 > previously installed Conda environments.
 {: .callout}
+
 
 ## How do I specify a location for a Conda environment?
 
@@ -371,7 +367,7 @@ $ conda activate ./env
 ~~~
 {: .language-bash}
 
-It is a good idea to *always* specify a path to a sub-directory of your project directory when 
+It is often a good idea to specify a path to a sub-directory of your project directory when 
 creating an environment. Why?
 
 1.  Makes it easy to tell if your project utilizes an isolated environment by including the 
@@ -391,7 +387,7 @@ your `~/miniconda3/env/` folder, you’ll have to give each of them a different 
 > sub-directory will be automatically ignored by the default Python `.gitignore` file used on 
 > [GitHub](https://github.com/github/gitignore/blob/master/Python.gitignore). 
 >
-> Whatever naming convention you adopt it is importanat to be consistent! Using the same name for 
+> Whatever naming convention you adopt it is important to be consistent! Using the same name for 
 > all of your Conda environments allows you to use the same `activate` command as well.
 > 
 > ~~~ 
@@ -412,17 +408,16 @@ your `~/miniconda3/env/` folder, you’ll have to give each of them a different 
 > {: .language-bash}
 >
 > Next, create a new environment inside the newly created `project-dir` in a sub-directory called 
-> `env` an install Python 3.6, version 3.1 of Matplotlib, version 2.1 of 
-> [TensorFlow](https://www.tensorflow.org/) and version 20.0 of pip.
+> `env` an install Python 3.6, version 3.1 of Matplotlib, and version 2.0 of 
+> [TensorFlow](https://www.tensorflow.org/).
 > 
 > > ## Solution
 > > 
 > > ~~~
 > > project-dir $ conda create --prefix ./env \
-> > > python=3.6 \
-> > > matplotlib=3.1 \
-> > > tensorflow=2.1 \
-> > > pip=20.0
+> > python=3.6 \
+> > matplotlib=3.1 \
+> > tensorflow=2.0 \
 > > ~~~
 > > {: .language-bash}
 > >
@@ -487,7 +482,7 @@ For more on modifying your `.condarc` file, see the
 > > {: .language-bash}
 > >
 > > Note that the provided path can either be absolute or relative. If the path is a relative path 
-> > then it must start with `./` on Unix systems and `.\` on Windows.
+> > then it must start with `./` on Unix systems and `.\` when using PowerShell on Windows.
 > {: .solution}
 {: .challenge}
 
@@ -497,6 +492,7 @@ For more on modifying your `.condarc` file, see the
 > First create a project directory called `r-project-dir` using the following command.
 > 
 > ~~~
+> $ cd ~/Desktop/introduction-to-conda-for-data-scientists
 > $ mkdir r-project-dir
 > $ cd r-project-dir
 > ~~~
@@ -504,8 +500,7 @@ For more on modifying your `.condarc` file, see the
 >
 > Next, take a look through the [list of R packages](https://anaconda.org/r/repo) available by 
 > default for installation using `conda`. Create a new environment inside the newly created 
-> `r-project-dir` in a sub-directory called `env` and install `r-base` (and any other R packages 
-> that you think look interesting). 
+> `r-project-dir` in a sub-directory called `env` and install `r-base`, `r-tidyverse` and `r-sparklyr`. 
 > 
 > > ## Solution
 > > 
@@ -539,7 +534,7 @@ a `conda` command for listing the contents on an environment. To list the conten
 `basic-scipy-env` that you created above, run the following command.
 
 ~~~
-$ conda list --name basic-conda-env
+$ conda list --name basic-scipy-env
 ~~~
 {: .language-bash}
 
@@ -566,7 +561,7 @@ $ conda list --prefix /path/to/conda-env
 > > ~~~
 > > {: .language-bash}
 > >
-> > To list the packages and their versions installed in the active environment simply leave off 
+> > To list the packages and their versions installed in the active environment leave off 
 > > the `--name` or `--prefix` option.
 > > ~~~
 > > $ conda list
@@ -581,7 +576,7 @@ $ conda list --prefix /path/to/conda-env
 Occasionally, you will want to delete an entire environment. Perhaps you were experimenting with 
 `conda` commands and you created an environment you have no intention of using; perhaps you no 
 longer need an existing environment and just want to get rid of cruft on your machine. Whatever 
-the reason the command to delete an environment is the following.
+the reason, the command to delete an environment is the following.
 
 ~~~
 $ conda remove --name my-first-conda-env --all
