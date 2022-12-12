@@ -181,9 +181,7 @@ make sure to add the `--from-history` argument to the `conda env export` command
 > ~~~
 > {: .language-yaml}
 >
-> Now use this file to create a new Conda environment. Where is this new environment created? 
-> Using the same `environment.yml` file create a Conda environment as a sub-directory called 
-> `env/` inside a newly created project directory. Compare the contents of the two environments.
+> Now use this file to create a new Conda environment. Where is this new environment created?
 > 
 > > ## Solution
 > > 
@@ -198,17 +196,10 @@ make sure to add the `--from-history` argument to the `conda env export` command
 > > {: .language-bash}
 > >
 > > The above sequence of commands will create a new Conda environment inside the 
-> > `~/miniconda3/envs` directory. In order to create the Conda environment inside a sub-directory 
-> > of the project directory you need to pass the `--prefix` to the `conda env create` command as 
-> > follows.
+> > `~/miniconda3/envs` directory. 
 > > 
-> > ~~~
-> > $ conda env create --file environment.yml --prefix ./env
-> > ~~~
-> > {: .language-bash}
-> > 
-> > You can now run the `conda env list` command and see that these two environments have been 
-> > created in different locations but contain the same packages.
+> > You can now run the `conda env list` command and see that this environment has been 
+> > created.
 > {: .solution}
 {: .challenge}
 
