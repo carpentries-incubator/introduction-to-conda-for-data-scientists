@@ -251,7 +251,7 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 > models specific to computer vision).
 > 
 > Create a new directory called `my-computer-vision-project` and then create a Python 3.6 
-> environment in a sub-directory called `env/` with the two packages listed above. Also include 
+> environment called `my-computer-vision-project` with the two packages listed above. Also include 
 > the most recent version of `jupyterlab` in your environment (so you have a nice UI) and 
 > `matplotlib` (so you can make plots).
 > 
@@ -262,7 +262,7 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 > > ~~~
 > > $ mkdir my-computer-vision-project
 > > $ cd my-computer-vision-project/
-> > $ conda create --prefix ./env --channel pytorch \
+> > $ conda create --name my-computer-vision-project --channel pytorch \
 > >  python=3.6 \
 > >  jupyterlab=1.0 \
 > >  pytorch=1.1 \
