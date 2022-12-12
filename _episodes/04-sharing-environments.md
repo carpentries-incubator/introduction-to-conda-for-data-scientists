@@ -256,7 +256,7 @@ from the environment.
 > which will remove any existing environment directory before rebuilding it using the provided 
 > environment file. 
 > ~~~
-> $ conda env create --prefix ./env --file environment.yml --force
+> $ conda env create --name project-env --file environment.yml --force
 > ~~~
 > {: .language-bash}
 {: .callout}
