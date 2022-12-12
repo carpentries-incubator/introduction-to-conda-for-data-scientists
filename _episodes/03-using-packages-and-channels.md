@@ -122,11 +122,10 @@ $ conda install scipy=1.6 --channel conda-forge --name machine-learning-env
 ~~~
 {: .language-bash}
 
-This command would install `tensorflow` package from `conda-forge` channel into an environment 
-installed into the `env/` sub-directory.
+This command would install `tensorflow` package from `conda-forge` channel into an environment called `machine-learning-env`.
 
 ~~~
-$ conda install tensorflow=1.14 --channel conda-forge --prefix ./env
+$ conda install tensorflow=1.14 --channel conda-forge --name machine-learning-env
 ~~~
 {: .language-bash}
 
