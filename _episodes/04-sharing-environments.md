@@ -380,7 +380,7 @@ dependencies:
 Next, rebuild the Conda environment using the following command.
 
 ~~~
-$ conda env create --prefix ./env --file environment.yml --force
+$ conda env create --name project-env --file environment.yml --force
 ~~~
 
 Once the Conda environment has been re-built you can activate the environment and then create the 
