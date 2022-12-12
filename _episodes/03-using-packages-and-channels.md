@@ -218,7 +218,7 @@ Once we know that the `kaggle` package is available via `conda-forge` we can go 
 it.
 
 ~~~
-$ conda install --channel conda-forge kaggle=1.5.10  --prefix ./env
+$ conda install --channel conda-forge kaggle=1.5.10  --name machine-learning-env
 ~~~
 {: .language-bash}
 
