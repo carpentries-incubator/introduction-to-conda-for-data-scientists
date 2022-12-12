@@ -130,16 +130,6 @@ $ conda install tensorflow=1.14 --channel conda-forge --prefix ./env
 ~~~
 {: .language-bash}
 
-Here is another example for R users. The following command would install 
-[`r-tidyverse`](https://anaconda.org/r/r-tidyverse) package from the `conda-forge` channel into an 
-environment installed into the `env/` sub-directory.
-
-~~~
-$ cd ~/Desktop/introduction-to-conda-for-data-scientists
-$ conda install r-tidyverse=1.3 --channel conda-forge --prefix ./env
-~~~
-{: .language-bash}
-
 > ## Channel priority
 > 
 > You may specify multiple channels for installing packages by passing the `--channel` argument 
