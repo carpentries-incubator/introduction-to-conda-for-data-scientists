@@ -241,7 +241,7 @@ If any of these occurs during the course of your research project, all you need 
 the contents of your `environment.yml` file accordingly and then run the following command.
 
 ~~~
-$ conda env update --prefix ./env --file environment.yml  --prune
+$ conda env update --name project-env --file environment.yml --prune
 ~~~
 {: .language-bash}
 
