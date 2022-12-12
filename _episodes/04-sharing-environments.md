@@ -387,7 +387,7 @@ Once the Conda environment has been re-built you can activate the environment an
 custom kernel for the activated environment.
 
 ~~~
-$ conda activate ./env
+$ conda activate project-env
 $ python -m ipykernel install --user --name xgboost-env --display-name "XGBoost"
 ~~~
 
