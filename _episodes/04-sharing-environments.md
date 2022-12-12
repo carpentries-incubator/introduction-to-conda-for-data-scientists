@@ -296,7 +296,7 @@ from the environment.
 > > Or, if you just want to update the environment in-place with the new Dask dependencies, you can use:
 > > 
 > > ~~~
-> > $ conda env update --prefix ./env --file environment.yml  --prune
+> > $ conda env update --name project-env --file environment.yml  --prune
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
