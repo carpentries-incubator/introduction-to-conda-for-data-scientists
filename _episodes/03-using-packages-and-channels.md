@@ -283,7 +283,7 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 > more explicitly links the channel being used to install a particular package.
 > 
 > ~~~
-> $ conda install conda-forge::tensorflow  --prefix ./env
+> $ conda install conda-forge::tensorflow --name my-computer-vision-project
 > ~~~
 > {: .language-bash}
 >
