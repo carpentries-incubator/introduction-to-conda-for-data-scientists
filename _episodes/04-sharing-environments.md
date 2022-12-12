@@ -289,7 +289,7 @@ from the environment.
 > > new Dask dependencies:
 > > 
 > > ~~~
-> > $ conda env create --prefix ./env --file environment.yml --force 
+> > $ conda env create --name project-env --file environment.yml --force 
 > > ~~~
 > > {: .language-bash}
 > > 
