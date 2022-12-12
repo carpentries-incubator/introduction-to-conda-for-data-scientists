@@ -113,8 +113,8 @@ Once your project folder is created, create `environment.yml` using your favouri
 Finally create a new conda environment:
 
 ~~~
-$ conda env create --prefix ./env --file environment.yml
-$ conda activate ./env
+$ conda env create --name project-env --file environment.yml
+$ conda activate project-env
 ~~~
 {: .language-bash}
 
