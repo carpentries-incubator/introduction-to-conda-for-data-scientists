@@ -299,7 +299,7 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 > > $ cd ~/Desktop/introduction-to-conda-for-data-scientists
 > > $ mkdir my-final-project
 > > $ cd my-final-project/
-> > $ conda create --prefix ./env \
+> > $ conda create --name my-final-project \
 > >  conda-forge::python=3.6 \
 > >  conda-forge::jupyterlab=1.0 \
 > >  conda-forge::matplotlib=3.1 \
