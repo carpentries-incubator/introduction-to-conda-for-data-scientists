@@ -331,7 +331,7 @@ from the environment.
 > process. Recent version of yellowbrick can also be installed using `conda` from the `conda-forge` channel.
 >
 > ~~~
-> $ conda install --channel conda-forge yellowbrick=1.2 --prefix ./env
+> $ conda install --channel conda-forge yellowbrick=1.2 --name project-env
 > ~~~
 >
 > An alternative way of installing dependencies via `pip` in your environment files is to store all the 
