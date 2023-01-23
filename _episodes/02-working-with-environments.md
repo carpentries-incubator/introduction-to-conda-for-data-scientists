@@ -368,15 +368,6 @@ $ conda list --name basic-scipy-env
 ~~~
 {: .language-bash}
 
-If you created your Conda environment using the `--prefix` option to install packages into a 
-particular directory, then you will need to use that prefix in order for `conda` to locate the 
-environment on your machine.
-
-~~~
-$ conda list --prefix /path/to/conda-env
-~~~
-{: .language-bash}
-
 > ## Listing the contents of a particular environment.
 >
 > List the packages installed in the `machine-learning-env` environment that you created in a 
