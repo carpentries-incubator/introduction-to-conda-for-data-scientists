@@ -24,7 +24,7 @@ keypoints:
 
 ### Packages
 
-When working with a programming language, such as Python, that can do almost _anything_, one has to wonder how this is possible. You download Python, it has about 25 MB, how can everthing be included in this small data package. The answer is - it is not. Python, as well as many other programming languages use external libraries or packages for being able to doing almost _anything_. You can see this already when you start programming. After learning some very basics, you often learn how to *import* something into your script or session.
+When working with a programming language, such as Python, that can do almost _anything_, one has to wonder how this is possible. You download Python, it is about 25 MB, how can everthing be included in this small data package. The answer is - it is not. Python, as well as many other programming languages use external libraries or packages for being able to doing almost _anything_. You can see this already when you start programming. After learning some very basics, you often learn how to *import* something into your script or session.
 
 > ## Modules, packages, libraries
 >
@@ -37,13 +37,13 @@ When working with a programming language, such as Python, that can do almost _an
 
 ### Dependencies
 
-A bit further into your programming career you may notice/have noticed that many packages do not just do everything on their own. Instead, they _depend_ on other packages for their functionality. For example, the [Scipy package](https://www.scipy.org/about.html) is used for numerical routines. To not reinvent the wheel, the package makes use of other packages, such as numpy (numerical python) and matplotlib (plotting) and many more. So we say that numpy and matplotlib are *dependencies* of Scipy. 
+A bit further into your programming career you may notice/have noticed that many packages do not just do everything on their own. Instead, they _depend_ on other packages for their functionality. For example, the [`Scipy` package](https://www.scipy.org/about.html) is used for numerical routines. To not reinvent the wheel, the package makes use of other packages, such as `numpy` (numerical python) and `matplotlib` (plotting) and many more. So we say that `numpy` and `matplotlib` are *dependencies* of `Scipy`. 
 
-Many packages are being further developed all the time, generating different *versions* of packages. During development it may happen that a function call changes and/or functionalities are added or removed. If one package can depend on another, this may create issues. Therefore it is not only important to know that e.g. Scipy depends on numpy and matplotlib, but also that it depends on numpy version >= 1.6 and matplotlib version >= 1.1. Numpy version 1.5 in this case would not be sufficient.
+Many packages are being further developed all the time, generating different *versions* of packages. During development it may happen that a function call changes and/or functionalities are added or removed. If one package can depend on another, this may create issues. Therefore it is not only important to know that e.g. `Scipy` depends on `numpy` and `matplotlib`, but also could be that it depends on `numpy` version >= 1.6 and `matplotlib` version >= 1.1. `numpy` version 1.5 in this case would not be sufficient.
 
 ### Environments
 
-When starting with programming we may not use many packages yet and the installation may be straightforward. But for most people, there comes a time when one version of a package or also the programming language is not enough anymore. You may find an older tool that depends on an older version of your programming language (e.g. Pyhton 2.7), but many of your other tools depend on a newer version (e.g. Python 3.6). You could now start up another computer or virtual machine to run the other version of the programming language, but this is not very handy, since you may want to use the tools together in a workflow later on. Here, *environments* are one solution to the problem.
+When starting with programming we may not use many packages yet and the installation may be straightforward. But for most people, there comes a time when one version of a package or also the programming language is not enough anymore. You may find an older tool that depends on an older version of your programming language (e.g. Python 2.7), but many of your other tools depend on a newer version (e.g. Python 3.6). You could now start up another computer or virtual machine to run the other version of the programming language, but this is not very handy, since you may want to use the tools together in a workflow later on. Here, *environments* are one solution to the problem.
 Nowadays there are several environment management systems following a similar idea:
 Instead of having to use multiple computers or virtual machines to run different versions of the same package, you can install packages in isolated environments.
 
