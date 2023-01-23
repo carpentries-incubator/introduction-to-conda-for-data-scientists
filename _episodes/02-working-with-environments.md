@@ -188,7 +188,7 @@ sometimes at all!). Activation of an environment does two things.
 2. Runs any activation scripts that the environment may contain.
 
 Step 2 is particularly important as activation scripts are how packages can set arbitrary 
-environment variables that may be necessary for their operation. Aou activate the 
+environment variables that may be necessary for their operation. You activate the 
 `basic-scipy-env` environment by name using the `activate` command.
 
 ~~~
@@ -267,8 +267,8 @@ full compatibility cannot be assured, an error is reported and the environment i
 
 By default the `conda install` command will install packages into the current, active environment. 
 The following would activate the `basic-scipy-env` we created above and install 
-[Numba](https://numba.pydata.org/), an open source JIT compiler that translates a subset of Python 
-and NumPy code into fast machine code, into the active environment.
+[`Numba`](https://numba.pydata.org/), an open source JIT compiler that translates a subset of Python 
+and `numpy` code into fast machine code, into the active environment.
 
 ~~~
 $ conda activate basic-scipy-env
@@ -279,7 +279,7 @@ $ conda install numba
 As was the case when listing packages to install when using the `conda create` command, if version 
 numbers are not explicitly provided, Conda will attempt to install the newest versions of any 
 requested packages. To accomplish this, Conda may need to update some packages that are already 
-installed or install additional packages. It is always a good idea to explicitly provide version 
+installed or install additional packages. It is sometimes a good idea to explicitly provide version 
 numbers when installing packages with the `conda install` command. For example, the following would 
 install a particular version of Scikit-Learn, into the current, active environment. 
 
@@ -299,11 +299,11 @@ $ conda install scikit-learn=0.22
 
 > ## Installing a package into a specific environment
 >
-> [Dask](https://dask.org/) 
+> [`dask`](https://dask.org/) 
 > provides advanced parallelism for data science workflows enabling performance at scale for the 
-> core Python data science tools such as Numpy Pandas, and Scikit-Learn. Have a read through the 
+> core Python data science tools such as `numpy`, `pandas`, and `scikit-learn`. Have a read through the 
 > [official documentation](https://docs.conda.io/projects/conda/en/latest/commands/install.html) 
-> for the `conda install` command and see if you can figure out how to install Dask into the 
+> for the `conda install` command and see if you can figure out how to install `dask` into the 
 > `machine-learning-env` that you created in the previous challenge. 
 > 
 > > ## Solution
