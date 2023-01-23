@@ -158,9 +158,9 @@ following.
 2. `bioconda`: the `bioconda` channel also contains a large number of Bioinformatics curated conda packages. 
     `bioconda` channel is meant to be used with `conda-forge`, you should not worried about using the two channels
     when installing your prefered packages.
-2.  `pip`: only if a package is not otherwise available via `conda-forge` (or some 
-    domain-specific channel like `bioconda`) should a package be installed into a conda 
-    environment from PyPI using `pip`.
+3.  `pip`: if a package is not otherwise available via `conda-forge` (or some 
+    domain-specific channel like `bioconda`) a package can be installed into a conda 
+    environment from PyPI using `pip`. It's fine to just use `pip` for installing most packages.
 
 For example, [Kaggle](https://www.kaggle.com/) publishes a Python 3 API that can be used to interact with Kaggle datasets, kernels and competition submissions. You can search for the package on the `defaults` channels but you will not find it!
 
