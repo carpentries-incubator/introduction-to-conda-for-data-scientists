@@ -112,8 +112,7 @@ $ conda install scipy=1.6 --channel conda-forge
 {: .language-bash}
 
 
-You can also install a package from a specific channel into a named environment (using `--name`) 
-or into an environment installed at a particular prefix (using `--prefix`). For example, the 
+You can also install a package from a specific channel into a named environment (using `--name`). For example, the 
 following command installs the `scipy` package from the `conda-forge` channel into the environment 
 called `my-first-conda-env` which we created earlier.
 
