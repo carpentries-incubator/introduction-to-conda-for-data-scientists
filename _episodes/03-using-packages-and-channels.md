@@ -35,7 +35,7 @@ All conda packages have a specific sub-directory structure inside the tarball fi
 `bin` directory that contains any binaries for the package; a `lib` directory containing the 
 relevant library files (i.e., the `.py` files); and an `info` directory containing package metadata. 
 For a more details of the conda package specification, including discussions of the various 
-metadata files, see the [docs][conda-pkg-spec-docs].
+metadata files, see the [docs](https://docs.conda.io/projects/conda-build/en/latest/resources/package-spec.html).
 
 As an example of Conda package structure consider the [Conda](https://pytorch.org/) package for 
 Python 3.6 version of PyTorch targeting a 64-bit Mac OS, `pytorch-1.1.0-py3.6_0.tar.bz2`.
