@@ -244,7 +244,7 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 
 > ## Specifying channels when installing packages
 >
-> Like many projects, [PyTorch](https://pytorch.org/) has its own 
+> Like many projects, [`PyTorch`](https://pytorch.org/) has its own 
 > [channel](https://anaconda.org/pytorch) on Anaconda Cloud. This channel has several interesting 
 > packages, in particular `pytorch` (PyTorch core) and `torchvision` (datasets, transforms, and 
 > models specific to computer vision).
@@ -358,17 +358,13 @@ not available via Conda channels will help you avoid difficult to debug issues t
 arise when using Python packages installed via a `pip` that was not installed inside you Conda 
 environment.
 
-> ## Conda (+Pip): Conda wherever possible; Pip only when necessary
+> ## Conda (+Pip)
 >
-> When using Conda to manage environments for your Python project it is a good idea to 
-> install packages available via both Conda and Pip using Conda; however there will 
-> always be cases where a package is only available via Pip in which case you will need to 
-> use Pip. Many of the common pitfalls of using Conda and Pip together can be avoided by 
+> Pitfalls of using Conda and Pip together can be avoided by 
 > adopting the following practices.
 >
-> * Always explicitly install `pip` in *every* Python-based Conda environment.
 > * Always be sure your desired environment is *active* before installing anything using `pip`.
-> * Prefer `python -m pip install` over `pip install`; never use `pip` with the `--user` argument.
+> * Always explicitly install `pip` in *every* Python-based Conda environment (`conda install pip`).
 {: .callout}
 
 > ## Installing packages into Conda environments using `pip`
