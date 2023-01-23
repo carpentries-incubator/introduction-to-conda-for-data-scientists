@@ -38,7 +38,7 @@ For a more details of the conda package specification, including discussions of 
 metadata files, see the [docs](https://docs.conda.io/projects/conda-build/en/latest/resources/package-spec.html).
 
 As an example of Conda package structure consider the [Conda](https://pytorch.org/) package for 
-Python 3.6 version of PyTorch targeting a 64-bit Mac OS, `pytorch-1.1.0-py3.6_0.tar.bz2`.
+Python 3.6 version of `PyTorch` targeting a 64-bit Mac OS, `pytorch-1.1.0-py3.6_0.tar.bz2`.
 
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
 ├── bin
@@ -64,7 +64,7 @@ Python 3.6 version of PyTorch targeting a 64-bit Mac OS, `pytorch-1.1.0-py3.6_0.
 </pre></div>
 </div>
 
-A complete listing of available PyTorch packages can be found on 
+A complete listing of available `PyTorch` packages can be found on 
 [Anaconda Cloud](https://anaconda.org/pytorch/pytorch/files).
 
 ## What are Conda channels?
