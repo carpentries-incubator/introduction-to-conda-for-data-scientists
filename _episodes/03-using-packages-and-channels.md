@@ -236,7 +236,7 @@ conda does the following.
 3. parses repodata to search for the package
 4. once the package is found, conda pulls it down and installs
 
-The [conda documentation][conda-install-docs] has a nice decision tree that describes the package installation process.
+The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/installing-with-conda.html) has a nice decision tree that describes the package installation process.
 
 <p align="center">
     <img alt="Installing with Conda" src="../fig/installing-with-conda.png" width="250">
