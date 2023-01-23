@@ -90,7 +90,7 @@ For a list of all commands, take a look at [Conda general commands](https://docs
 
 It is a good idea to give your environment a meaningful name in order to help yourself remember 
 the purpose of the environment. While naming things can be difficult, `$PROJECT_NAME-env` is a 
-good convention to follow. Sometimes also the specific version of a package why you had to create a new environment is a good name
+good convention to follow. Sometimes also the specific version of a package why you had to create a new environment is a good name.
 
 The command above will create a new Conda environment called "python3" and install the most recent 
 version of Python. If you wish, you can specify a particular version of packages for `conda` to 
@@ -101,13 +101,13 @@ $ conda create --name python36-env python=3.6
 ~~~
 {: .language-bash}
 
-> ## Always specify a version number for each package you wish to install
+> ## You can specify a version number for each package you wish to install
 >
 > In order to make your results more reproducible and to make it easier for research colleagues to 
-> recreate your Conda environments on their machines it is a "best practice" to always explicitly 
+> recreate your Conda environments on their machines it is sometimes a good practice to always explicitly 
 > specify the version number for each package that you install into an environment. If you are not 
 > sure exactly which version of a package you want to use, then you can use search to see what 
-> versions are available using the `conda search` command.
+> versions are available using the `conda search` command. A drawback of doing this is that it can lead to conflicts between versions of packages in an environment.
 >
 > ~~~
 > $ conda search $PACKAGE_NAME
@@ -160,8 +160,8 @@ because it is a required dependency of at least one of the listed packages.
 > > {: .language-bash}
 > >
 > > Since no version numbers are provided for any of the Python packages, Conda will download the 
-> > most current, mutually compatible versions of the requested packages. However, since it is best 
-> > practice to always provide explicit version numbers, you should prefer the following solution.
+> > most current, mutually compatible versions of the requested packages. However, since it is sometimes good 
+> > practice to provide explicit version numbers, you may prefer the following solution.
 > > 
 > > ~~~
 > > $ conda create --name machine-learning-env \
