@@ -192,7 +192,7 @@ and use the search bar at the top of the page.
 {: .language-bash}
 
 The [official installation instructions](https://github.com/Kaggle/kaggle-api) suggest downloading 
-the `kaggle` package using `pip`. But since we are using `conda` we should check whether the 
+the `kaggle` package using `pip`. But since we are using `conda`, let's check whether the 
 package exists on at least `conda-forge` channel before proceeding to use `pip`.
 
 ~~~
