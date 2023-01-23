@@ -68,8 +68,7 @@ most current and mutually compatible versions of the listed packages (including 
 dependencies). The newly created environment would be installed inside the `~/miniconda3/envs/` 
 directory, unless we specified a different path using `--prefix`.
 
-Since explicit versions numbers for all packages should be preferred a better environment 
-file would be the following.
+If you prefer to use explicit versions numbers for all packages:
 
 ~~~
 name: machine-learning-env
@@ -263,7 +262,7 @@ from the environment.
 
 > ## Add Dask to the environment to scale up your analytics
 > 
-> Add to the `scikit-env` environment file and update the environment. [Dask](https://dask.org/) 
+> Add `dask` to the `scikit-env` environment file and update the environment. [Dask](https://dask.org/) 
 > provides advanced parallelism for data science workflows enabling performance at scale for the 
 > core Python data science tools such as Numpy Pandas, and Scikit-Learn.  
 >
