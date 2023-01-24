@@ -103,10 +103,18 @@ $ conda create --name python36-env python=3.6
 > ## You can specify a version number for each package you wish to install
 >
 > In order to make your results more reproducible and to make it easier for research colleagues to 
-> recreate your Conda environments on their machines it is sometimes a good practice to always explicitly 
-> specify the version number for each package that you install into an environment. If you are not 
+> recreate your Conda environments on their machines it is sometimes a good practice to explicitly 
+> specify the version number for each package that you install into an environment. 
+> 
+> Many packages use [semantic versioning](https://semver.org/)
+> where there are three version numbers separated by decimal points e.g. 2.11.3. In this scheme
+> the numbers have this meaning: _major_version_._minor_version_._patch_version_. Changes to 
+> _patch_version_ are for backwards compatible bug fixes, so we often only specify the first two
+> numbers.
+>
+> If you are not 
 > sure exactly which version of a package you want to use, then you can use search to see what 
-> versions are available using the `conda search` command. A drawback of doing this is that it can lead to conflicts between versions of packages in an environment.
+> versions are available using the `conda search` command. 
 >
 > ~~~
 > $ conda search $PACKAGE_NAME
@@ -122,6 +130,21 @@ $ conda create --name python36-env python=3.6
 > 
 > As always you can run `conda search --help` to learn about available options.
 {: .callout}
+
+> ## Discussion
+> 
+> What are some of the _potential_ benefits of specifying versions of each package, what
+> are some of the _potential_ drawbacks.
+>
+> > ## Solution
+> > Specifying versions exactly helps make it more likely that the exact results of an analysis
+> > will be reproducible e.g. at a later time or on a different computer. However, not all versions
+> > of a package will be compatible with all versions of another, so specifying exact versions can
+> > make it harder to add or change packages in the future, limiting reusability e.g. with different
+> > data.
+> > 
+> {: .solution} 
+{: .challenge}
 
 You can create a Conda environment and install multiple packages by listing the packages 
 that you wish to install.
