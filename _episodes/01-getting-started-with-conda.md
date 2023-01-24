@@ -47,6 +47,14 @@ When starting with programming we may not use many packages yet and the installa
 Nowadays there are several environment management systems following a similar idea:
 Instead of having to use multiple computers or virtual machines to run different versions of the same package, you can install packages in isolated environments.
 
+> ## Virtual Machines
+>
+> A **virtual machine** is a representation of a real, physical computer created using software. A single
+> physical computer can host multiple virtual machines and each can be configured completely differently
+> including having different operating systems - a physical computer running Windows can host Linux 
+> virtual machines, and *vice versa*.
+{: .callout}
+
 ### Environment management
 
 An environment management system solves a number of problems commonly encountered by (data) 
