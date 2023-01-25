@@ -49,7 +49,6 @@ keypoints:
 > > mkdir introduction-to-conda-for-data-scientists
 > > cd introduction-to-conda-for-data-scientists
 > ~~~
-> {: .language-bash}
 >
 > Alternatively, you can always "right-click" and "create new folder" on your Desktop. All the 
 > commands that are run during the workshop should be run in a terminal within the 
@@ -61,15 +60,16 @@ keypoints:
 
 A [Conda environment](https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/environments.html) 
 is a directory that contains a specific collection of Conda packages that you have installed. For 
-example, you may be working on a research project that requires NumPy 1.18 and its dependencies, 
-while another environment associated with an finished project has NumPy 1.12 (perhaps because 
-version 1.12 was the most current version of NumPy at the time the project finished). If you 
-change one environment, your other environments are not affected. You can easily activate or 
-deactivate environments, which is how you switch between them.
+example, you may be working on a research project that requires [NumPy
+1.24.1](https://github.com/numpy/numpy/releases/tag/v1.24.1) and its dependencies, while another environment associated
+with an finished project has [NumPy 1.12.1](https://github.com/numpy/numpy/releases/tag/v1.12.1) (perhaps because
+version 1.12 was the most current version of NumPy at the time the project finished). If you change one environment,
+your other environments are not affected. You can easily activate or deactivate environments, which is how you switch
+between them.
 
 > ## Avoid installing packages into your `base` Conda environment
 >
-> Conda has a default environment called `base` that include a Python installation and some core 
+> Conda has a default environment called `base` that includes a Python installation and some core 
 > system libraries and dependencies of Conda. It is a "best practice" to avoid installing 
 > additional packages into your `base` software environment. Additional packages needed for a new 
 > project should always be installed into a newly created Conda environment.
@@ -89,14 +89,15 @@ For a list of all commands, take a look at [Conda general commands](https://docs
 
 It is a good idea to give your environment a meaningful name in order to help yourself remember 
 the purpose of the environment. While naming things can be difficult, `$PROJECT_NAME-env` is a 
-good convention to follow. Sometimes also the specific version of a package why you had to create a new environment is a good name.
+good convention to follow. Sometimes also the specific version of a package why you had to create a new environment is a
+good name.
 
-The command above will create a new Conda environment called "python3" and install the most recent 
-version of Python. If you wish, you can specify a particular version of packages for `conda` to 
-install when creating the environment.
+The command above will create a new Conda environment called `python3-env` and install a recent 
+version of Python (3.10). If you wish, you can specify a specific version of Python for `conda` to 
+install when creating the environment by changing the version number in `python=3.10` e.g. to `python=3.7`.
 
 ~~~
-$ conda create --name python36-env python=3.6
+$ conda create --name python36-env python=3.10
 ~~~
 {: .language-bash}
 
@@ -120,9 +121,8 @@ $ conda create --name python36-env python=3.6
 > $ conda search $PACKAGE_NAME
 > ~~~
 > 
-> So, for example, if you wanted to see which versions of 
-> [Scikit-learn](https://scikit-learn.org/stable/), a popular Python library for machine learning,
-> were available, you would run the following. 
+> For example, if you wanted to see which versions of [Scikit-learn](https://scikit-learn.org/stable/),
+> a popular Python library for machine learning, were available, you would run the following. 
 >
 > ~~~
 > $ conda search scikit-learn
@@ -146,18 +146,20 @@ $ conda create --name python36-env python=3.6
 > {: .solution} 
 {: .challenge}
 
-You can create a Conda environment and install multiple packages by listing the packages 
-that you wish to install.
+You can create a Conda environment and install multiple packages by listing the packages that you wish to install,
+optionally including the version you wish to use.
 
 ~~~
-$ conda create --name basic-scipy-env ipython=7.13 matplotlib=3.1 numpy=1.18 scipy=1.4
+$ conda create --name basic-scipy-env ipython matplotlib=3.1 numpy=1.24.1 scipy=1.10.0
 ~~~
 {: .language-bash}
  
 When `conda` installs a package into an environment it also installs any required dependencies. 
 For example, even though Python is not listed as a packaged to install into the 
 `basic-scipy-env` environment above, `conda` will still install Python into the environment 
-because it is a required dependency of at least one of the listed packages.
+because it is a required dependency of at least one of the listed packages. Note if you wanted a specific version of
+Python installed you would have to explicitly state which version as you did earlier.
+
 
 > ## Creating a new environment
 >
@@ -187,12 +189,12 @@ because it is a required dependency of at least one of the listed packages.
 > > 
 > > ~~~
 > > $ conda create --name machine-learning-env \
-> >  ipython=7.19 \
-> >  matplotlib=3.3 \
-> >  pandas=1.2 \
-> >  python=3.8 \
-> >  scikit-learn=0.23 \
-> >  numba=0.51
+> >  ipython=8.2.0 \
+> >  matplotlib=3.6.3 \
+> >  pandas=1.5.1 \
+> >  python=3.10 \
+> >  scikit-learn=1.0.2 \
+> >  numba=0.56.4
 > > ~~~
 > > {: .language-bash}
 > >
@@ -206,7 +208,7 @@ because it is a required dependency of at least one of the listed packages.
 Activating environments is essential to making the software in environments work well (or 
 sometimes at all!). Activation of an environment does two things.
 
-1. Adds entries to `PATH` for the environment.
+1. Adds entries to `$PATH` for the environment.
 2. Runs any activation scripts that the environment may contain.
 
 Step 2 is particularly important as activation scripts are how packages can set arbitrary 
@@ -246,7 +248,7 @@ $
 > To return to the `base` Conda environment, it's better to call `conda activate` with no 
 > environment specified, rather than to use `deactivate`. If you run `conda deactivate` from your 
 > `base` environment, you may lose the ability to run `conda` commands at all. **Don't worry if 
-> you encounter this undesirable state! Just start a new shell.**
+> you encounter this undesirable state! Just start a new shell or `source ~/.bashrc`.**
 {: .callout}
 
 > ## Activate an existing environment by name
@@ -271,10 +273,16 @@ $
 > 
 > > ## Solution
 > > 
-> > In order to deactivate the active environment you use the `conda deactivate` command.
+> > In order to deactivate the active environment you could use the `conda deactivate` command.
 > > 
 > > ~~~
 > > (active-environment-name) $ conda deactivate
+> > ~~~
+> > {: .language-bash}
+> > 
+> > Or you could switch back to the `base` conda environment.
+> > ~~~
+> > (active-environment-name) $ conda activate
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
@@ -287,10 +295,10 @@ command accepts a list of package specifications (i.e., `numpy=1.18`) and instal
 packages consistent with those specifications *and* compatible with the underlying environment. If 
 full compatibility cannot be assured, an error is reported and the environment is *not* changed.
 
-By default the `conda install` command will install packages into the current, active environment. 
-The following would activate the `basic-scipy-env` we created above and install 
-[`Numba`](https://numba.pydata.org/), an open source JIT compiler that translates a subset of Python 
-and `numpy` code into fast machine code, into the active environment.
+By default the `conda install` command will install packages into the current, active environment. The following would
+activate the `basic-scipy-env` we created above and install [`Numba`](https://numba.pydata.org/), an open source JIT
+(Just In Time) compiler that translates a subset of Python and `numpy` code into fast machine code, into the active
+environment.
 
 ~~~
 $ conda activate basic-scipy-env
@@ -306,13 +314,13 @@ numbers when installing packages with the `conda install` command. For example, 
 install a particular version of Scikit-Learn, into the current, active environment. 
 
 ~~~
-$ conda install scikit-learn=0.22
+$ conda install scikit-learn=1.0.2
 ~~~
 {: .language-bash}
 
 > ## Freezing installed packages
 > 
-> To prevent existing packages from being updating when using the `conda install` command, you can 
+> To prevent existing packages from being updated when using the `conda install` command, you can 
 > use the `--freeze-installed` option. This may force Conda to install older versions of the 
 > requested packages in order to maintain compatibility with previously installed packages. Using 
 > the `--freeze-installed` option does not prevent additional dependency packages from being 
@@ -341,7 +349,7 @@ $ conda install scikit-learn=0.22
 > > 
 > > ~~~
 > > $ conda activate machine-learning-env
-> > $ conda install dask=2020.12
+> > $ conda install dask=2023.1.0
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
@@ -349,9 +357,12 @@ $ conda install scikit-learn=0.22
 
 ## Where do Conda environments live?
 
-Environments created with `conda`, by default, live in the `envs/` folder of your `miniconda3` (or `anaconda3`) directory the absolute path to which will look something the following: `/Users/$USERNAME/miniconda3/envs` or `C:\Users\$USERNAME\Anaconda3`.
+Environments created with `conda`, by default, live in the `envs/` folder of your `miniconda3` (or `anaconda3`)
+directory the absolute path to which will look something the following: `/home/$USERNAME/miniconda3/envs` (Linux),
+`/Users/$USERNAME/miniconda3/envs` (OSX) or `C:\Users\$USERNAME\Anaconda3` (Windows).
 
-Running `ls` (linux) / `dir` (Windows) on your anaconda `envs/` directory will list out the directories containing the existing Conda environments.
+Running `ls` (Linux or OSX) / `dir` (Windows) on your anaconda `envs/` directory will list out the directories
+containing the existing Conda environments.
 
 > ## Location of Conda environments on Binder
 >

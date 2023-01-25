@@ -30,14 +30,13 @@ environment on a remote cluster.
 In order to make sure that your environment is truly shareable, you need to make sure that 
 that the contents of your environment are described in such a way that the resulting 
 environment file can be used to re-create your environment on Linux, Mac OS, and Windows. Conda 
-uses YAML ("YAML Ain't Markup Language") for writing its environment files. YAML is a 
-human-readable data-serialization language that is commonly used for configuration files and that 
-uses Python-style indentation to indicate nesting.
+uses [YAML (YAML Ain't Markup Language)](https://yaml.org/) for writing its environment files. YAML is a human-readable
+data-serialization language that is commonly used for configuration files and that uses Python-style indentation to
+indicate nesting. 
 
 Creating your project's Conda environment from a single environment file is a Conda "best practice". 
 Not only do you have a file to share with collaborators but you also have a file that can be placed 
-under version control which further enhancing the reproducibility of your research project and 
-workflow.
+under version control which further enhances the reproducibility of your research project and workflow.
 
 > ## Default `environment.yml` file
 > 
@@ -47,8 +46,8 @@ workflow.
 > file with that name can not be found.
 {: .callout}
 
-Let's take a look at a few example `environment.yml` files  to give you an idea of how to write 
-your own environment files.
+Let's take a look at a few example `environment.yml` files to give you an idea of how to write your own environment
+files.
 
 ~~~
 name: machine-learning-env
@@ -74,12 +73,12 @@ If you prefer to use explicit versions numbers for all packages:
 name: machine-learning-env
 
 dependencies:
-  - ipython=7.13
-  - matplotlib=3.1
-  - pandas=1.0
-  - pip=20.0
-  - python=3.6
-  - scikit-learn=0.22
+  - ipython=8.8
+  - matplotlib=3.6
+  - pandas=1.5
+  - pip=22.3
+  - python=3.10
+  - scikit-learn=1.2
 ~~~
 {: .language-yaml}
 
@@ -91,7 +90,7 @@ Conda environment across updates.
 
 > ## *Always* version control your `environment.yml` files!
 >
-> While you should *never* version control the contents of your `env/` environment sub-directory, 
+> While you should *never* version control the contents of your `~/miniconda/env/` environment sub-directory, 
 > you should *always* version control your `environment.yml` files. Version controlling your 
 > `environment.yml` files together with your project's source code means that you always know 
 > which versions of which packages were used to generate your results at any particular point in 
@@ -144,14 +143,15 @@ $ conda env export --name machine-learning-env --file environment.yml
 {: .language-bash}
 
 Make sure you do not have any other `environment.yml` file from before in the same directory when 
-running the above command. 
+running the above command. If you do you can use an alternative destination filename, e.g. `--file
+machline-learning-env.yaml`. 
 
-This exported environment file will however not *consistently* produce environments that are reproducible 
-across Mac OS, Windows, and Linux. The reason is, that it may include operating system specific low-level 
+This exported environment file may not *consistently* produce environments that are reproducible 
+across operating systems. The reason for this is, that it may include operating system specific low-level 
 packages which cannot be used by other operating systems. 
 
 If you need an environment file that can produce environments that are reproducibile across Mac OS, Windows, 
-and Linux, then you are better off just including those packages into the environment file that your have 
+and Linux, then you are better off just including those packages into the environment file that you have 
 specifically installed.
 
 ~~~
@@ -171,12 +171,12 @@ make sure to add the `--from-history` argument to the `conda env export` command
 > name: scikit-learn-env
 > 
 > dependencies:
->   - ipython=7.13
->   - matplotlib=3.1
->   - pandas=1.0
->   - pip=20.0
->   - python=3.6
->   - scikit-learn=0.22
+>   - ipython=8.8
+>   - matplotlib=3.6
+>   - pandas=1.5
+>   - pip=22.3
+>   - python=3.10
+>   - scikit-learn=1.2
 > ~~~
 > {: .language-yaml}
 >
@@ -189,7 +189,7 @@ make sure to add the `--from-history` argument to the `conda env export` command
 > > ~~~
 > > $ mkdir scikit-learn-project-dir
 > > $ cd scikit-learn-project-dir
-> > $ nano environment.yml
+> > $ nano environment.yml  # Adding the above contents to this file, saving and exiting.
 > > $ conda env create --file environment.yml
 > > ~~~
 > > {: .language-bash}
@@ -204,9 +204,9 @@ make sure to add the `--from-history` argument to the `conda env export` command
 
 > ## Specifying channels in the environment.yml
 >
-> We learned in the previous episode, that some packages may need to be installed from other than the 
-> defaults channel. We can also specify the channels, that conda should look for the packages within the 
-> environment.yml file:
+> We learnt in the previous episode, that some packages may need to be installed from other than the 
+> defaults channel. We can also specify the channels that conda should look for the packages within the 
+> `environment.yml` file:
 >
 > ~~~
 > name: pytorch-env
@@ -216,7 +216,7 @@ make sure to add the `--from-history` argument to the `conda env export` command
 >   - defaults
 >
 > dependencies:
->   - pytorch=1.1
+>   - pytorch=1.3
 > ~~~
 > {: .language-yaml}
 > 
@@ -229,11 +229,11 @@ make sure to add the `--from-history` argument to the `conda env export` command
 ### Updating an environment
 
 You are unlikely to know ahead of time which packages (and version numbers!) you will need to use 
-for your research project. For example it may be the case that  
+for your research project. For example it may be the case that
 
-*   one of your core dependencies just released a new version (dependency version number update).
-*   you need an additional package for data analysis (add a new dependency).
-*   you have found a better visualization package and no longer need to old visualization package 
+* one of your core dependencies just released a new version (dependency version number update).
+* you need an additional package for data analysis (add a new dependency).
+* you have found a better visualization package and no longer need to old visualization package 
     (add new dependency and remove old dependency).
 
 If any of these occurs during the course of your research project, all you need to do is update 
@@ -244,8 +244,7 @@ $ conda env update --name project-env --file environment.yml --prune
 ~~~
 {: .language-bash}
 
-Note that the `--prune` option tells Conda to remove any dependencies that are no longer required 
-from the environment.
+The `--prune` option tells Conda to remove any dependencies that are no longer required from the environment.
 
 > ## Rebuilding a Conda environment from scratch
 > 
@@ -274,14 +273,14 @@ from the environment.
 > > name: scikit-learn-env
 > >
 > > dependencies:
-> >   - dask=2.16
-> >   - dask-ml=1.4
-> >   - ipython=7.13
-> >   - matplotlib=3.1
-> >   - pandas=1.0
-> >   - pip=20.0
-> >   - python=3.6
-> >   - scikit-learn=0.22
+> >   - dask=2023.1
+> >   - dask-ml=2022.5
+> >   - ipython=8.8
+> >   - matplotlib=3.6
+> >   - pandas=1.5
+> >   - pip=22.3
+> >   - python=3.10
+> >   - scikit-learn=1.2
 > > ~~~
 > > 
 > > You could use the following command, that will rebuild the environment from scratch with the 
@@ -319,12 +318,12 @@ from the environment.
 >  - pip=19.1
 >  - pip:
 >    - kaggle==1.5
->    - yellowbrick==0.9
+>    - yellowbrick==1.5
 > ~~~
 >
-> Note the double '==' instead of '=' for the pip installation and that you should include `pip` itself 
-> as a dependency and then a subsection denoting those packages to be installed via `pip`. Also in case 
-> you are wondering, The [Yellowbrick](https://www.scikit-yb.org/en/latest/) package is a suite of 
+> Note the double '==' instead of '=' for the `pip` installation and that you should include `pip` itself 
+> as a Conda dependency and then a subsection denoting those packages to be installed via `pip`. Also in case 
+> you are wondering, the [Yellowbrick](https://www.scikit-yb.org/en/latest/) package is a suite of 
 > visual diagnostic tools called “Visualizers” that extend the 
 > [Scikit-Learn](https://scikit-learn.org/stable/) API to allow human steering of the model selection 
 > process. Recent version of yellowbrick can also be installed using `conda` from the `conda-forge` channel.

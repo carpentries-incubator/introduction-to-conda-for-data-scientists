@@ -37,9 +37,17 @@ When working with a programming language, such as Python, that can do almost _an
 
 ### Dependencies
 
-A bit further into your programming career you may notice/have noticed that many packages do not just do everything on their own. Instead, they _depend_ on other packages for their functionality. For example, the [`Scipy` package](https://www.scipy.org/about.html) is used for numerical routines. To not reinvent the wheel, the package makes use of other packages, such as `numpy` (numerical python) and `matplotlib` (plotting) and many more. So we say that `numpy` and `matplotlib` are *dependencies* of `Scipy`. 
+A bit further into your programming career you may notice/have noticed that many packages do not just do everything on
+their own. Instead, they _depend_ on other packages for their functionality. For example, the [`scipy`
+package](https://www.scipy.org/about.html) is used for numerical routines. To not reinvent the wheel, the package makes
+use of other packages, such as `numpy` (numerical python) and `matplotlib` (plotting) and many more. So we say that
+`numpy` and `matplotlib` are *dependencies* of `scipy`.
 
-Many packages are being further developed all the time, generating different *versions* of packages. During development it may happen that a function call changes and/or functionalities are added or removed. If one package can depend on another, this may create issues. Therefore it is not only important to know that e.g. `Scipy` depends on `numpy` and `matplotlib`, but also could be that it depends on `numpy` version >= 1.6 and `matplotlib` version >= 1.1. `numpy` version 1.5 in this case would not be sufficient.
+Many packages are being further developed all the time, generating different *versions* of packages. During development
+it may happen that a function call changes and/or functionalities are added or removed. If one package can depend on
+another, this may create issues. Therefore it is not only important to know that e.g. `scipy` depends on `numpy` and
+`matplotlib`, but also could be that it depends on `numpy` version >= 1.19.5 and `matplotlib` version > 2. `numpy`
+version 1.5 in this case would not be sufficient. 
 
 ### Environments
 
@@ -115,6 +123,7 @@ to project.
 > Also here, Conda is not the only way; Python for example has many more ways of working with packages:
 > * [pip](https://pip.pypa.io/en/stable/)
 > * [Poetry](https://python-poetry.org/)
+> * [PDM](https://pdm.fming.dev/latest/)
 > * ...
 {: .callout}
 
@@ -153,15 +162,15 @@ separately for each research project?
 > {: .solution} 
 {: .challenge}
 
-What I hope you will have taken away from the discussion exercise is an appreciation for the fact 
+What we hope you will have taken away from the discussion exercise is an appreciation for the fact 
 that in order to install project-specific software environments you need to solve two complementary 
 challenges: environment management and package management.
 
 ## Conda
 
 From the [official Conda documentation](https://conda.io/projects/conda/en/latest/index.html). 
-Conda is an open source package and environment management system that runs on Windows, Mac OS and 
-Linux.
+_Conda is an open source package and environment management system that runs on Windows, Mac OS and 
+Linux_.
 
 *   Conda can quickly install, run, and update packages and their dependencies.
 *   Conda can create, save, load, and switch between project specific software environments on 
@@ -195,7 +204,7 @@ problems and explicitly targeted at (data) science use cases.
 * Conda provides prebuilt packages, avoiding the need to deal with compilers, or
   trying to work out how exactly to set up a specific tool. Fields such as
   [Astronomy use conda to distribute some of their most difficult-to-install
-  tools such as IRAF](https://astroconda.readthedocs.io/en/latest/). TensorFlow
+  tools such as IRAF](https://astroconda.readthedocs.io/en/latest/). [TensorFlow](https://www.tensorflow.org/)
   is another tool where to install it from source is near impossible, but Conda
   makes this a single step.
 * Conda is cross platform, with support for Windows, MacOS, GNU/Linux, and

@@ -38,7 +38,7 @@ For a more details of the conda package specification, including discussions of 
 metadata files, see the [docs](https://docs.conda.io/projects/conda-build/en/latest/resources/package-spec.html).
 
 As an example of Conda package structure consider the [Conda](https://pytorch.org/) package for 
-Python 3.6 version of `PyTorch` targeting a 64-bit Mac OS, `pytorch-1.1.0-py3.6_0.tar.bz2`.
+Python 3.10 version of `PyTorch` targeting a 64-bit Mac OS, `pytorch-1.13.1-py3.10_cuda11.7_cudnn8.5.0_0.tar.bz2`.
 
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
 ├── bin
@@ -56,16 +56,16 @@ Python 3.6 version of `PyTorch` targeting a 64-bit Mac OS, `pytorch-1.1.0-py3.6_
 │   ├── recipe/
 │   └── test/
 └── lib
-    └── python3.6
+    └── python3.10
         └── site-packages
             ├── caffe2/
             ├── torch/
-            └── torch-1.1.0-py3.6.egg-info/
+            └── torch-1.13.1-py3.10.egg-info/
 </pre></div>
 </div>
 
-A complete listing of available `PyTorch` packages can be found on 
-[Anaconda Cloud](https://anaconda.org/pytorch/pytorch/files).
+A complete listing of available `PyTorch` packages can be found on [Anaconda
+Cloud](https://anaconda.org/pytorch/pytorch/files). 
 
 ## What are Conda channels?
 
@@ -86,10 +86,9 @@ channels.
 
 > ## The `conda-forge` channel
 >
-> In addition to the `default` channels that are managed by Anaconda Inc., there is another 
-> channel called that also has a special status. The [Conda-Forge](https://github.com/conda-forge) 
-> project "is a community led collection of recipes, build infrastructure and distributions for 
-> the conda package manager."
+> In addition to the `default` channels that are managed by Anaconda Inc., there is another channel called that also has
+> a special status. The [Conda-Forge](https://github.com/conda-forge) project "_is a community led collection of
+> recipes, build infrastructure and distributions for the conda package manager._"
 >
 > There are a few reasons that you may wish to use the `conda-forge` channel instead of the 
 > `defaults` channel maintained by Anaconda:
@@ -121,7 +120,8 @@ $ conda install scipy=1.6 --channel conda-forge --name machine-learning-env
 ~~~
 {: .language-bash}
 
-This command would install `tensorflow` package from `conda-forge` channel into an environment called `machine-learning-env`.
+The following command would install `tensorflow` package from `conda-forge` channel into the environment called
+`machine-learning-env`.
 
 ~~~
 $ conda install tensorflow=1.14 --channel conda-forge --name machine-learning-env
@@ -139,11 +139,12 @@ $ conda install tensorflow=1.14 --channel conda-forge --name machine-learning-en
 > {: .language-bash}
 >
 > Channel priority decreases from left to right - the first argument has higher priority than the 
-> second. For reference, bioconda is a channel for the conda package manager specializing in 
-> bioinformatics software. For those interested in learning more about the Bioconda project, 
-> checkout the project's [GitHub](https://bioconda.github.io/) page.
+> second. For reference, [bioconda](https://bioconda.github.io/) is a channel for the conda package manager specializing
+> in bioinformatics software. For those interested in learning more about the Bioconda project, checkout the project's
+> [GitHub](https://bioconda.github.io/) page.
 >
-> Please note that in our example, adding `bioconda` channel is irrelevant because `scipy` is no longer available on `bioconda` channel.
+> Please note that in our example, adding `bioconda` channel is irrelevant because `scipy` is no longer available on
+> `bioconda` channel. 
 {: .callout}
 
 ## My package isn't available on the `defaults` channel! What should I do?
@@ -198,16 +199,22 @@ package exists on at least `conda-forge` channel before proceeding to use `pip`.
 ~~~
 $ conda search --channel conda-forge kaggle
 Loading channels: done
-# Name                       Version           Build  Channel             
-kaggle                         1.5.3          py27_1  conda-forge         
-kaggle                         1.5.3          py36_1  conda-forge         
-kaggle                         1.5.3          py37_1  conda-forge         
-kaggle                         1.5.4          py27_0  conda-forge         
-kaggle                         1.5.4          py36_0  conda-forge         
-kaggle                         1.5.4          py37_0  conda-forge         
+# Name                       Version           Build  Channel
+kaggle                         1.5.3          py27_1  conda-forge
+kaggle                         1.5.3          py36_1  conda-forge
+kaggle                         1.5.3          py37_1  conda-forge
+kaggle                         1.5.4          py27_0  conda-forge
+kaggle                         1.5.4          py36_0  conda-forge
+kaggle                         1.5.4          py37_0  conda-forge
 .
 .
 .
+kaggle                        1.5.12  py38h578d9bd_1  conda-forge
+kaggle                        1.5.12  py38h578d9bd_2  conda-forge
+kaggle                        1.5.12  py39hf3d152e_0  conda-forge
+kaggle                        1.5.12  py39hf3d152e_1  conda-forge
+kaggle                        1.5.12  py39hf3d152e_2  conda-forge
+kaggle                        1.5.12    pyhd8ed1ab_4  conda-forge
 ~~~
 {: .language-bash}
 
@@ -217,7 +224,7 @@ Once we know that the `kaggle` package is available via `conda-forge` we can go 
 it.
 
 ~~~
-$ conda install --channel conda-forge kaggle=1.5.10  --name machine-learning-env
+$ conda install --channel conda-forge kaggle=1.5.12  --name machine-learning-env
 ~~~
 {: .language-bash}
 
@@ -249,7 +256,7 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > packages, in particular `pytorch` (PyTorch core) and `torchvision` (datasets, transforms, and 
 > models specific to computer vision).
 > 
-> Create a new directory called `my-computer-vision-project` and then create a Python 3.6 
+> Create a new directory called `my-computer-vision-project` and then create a Python 3.10 
 > environment called `my-computer-vision-project` with the two packages listed above. Also include 
 > the most recent version of `jupyterlab` in your environment (so you have a nice UI) and 
 > `matplotlib` (so you can make plots).
@@ -262,11 +269,11 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > > $ mkdir my-computer-vision-project
 > > $ cd my-computer-vision-project/
 > > $ conda create --name my-computer-vision-project --channel pytorch \
-> >  python=3.6 \
-> >  jupyterlab=1.0 \
-> >  pytorch=1.1 \
-> >  torchvision=0.3 \
-> >  matplotlib=3.1
+> >  python=3.10 \
+> >  jupyterlab \
+> >  pytorch=1.13.1 \
+> >  torchvision=0.14.1 \
+> >  matplotlib
 > > ~~~
 > > {: .language-bash}
 > > 
@@ -286,9 +293,9 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > ~~~
 > {: .language-bash}
 >
-> Create a new folder `my-final-project` in `~/Desktop/introduction-to-conda-for-data-scientists` and repeat the previous exercise using this alternative syntax to install `python`, `jupyterlab`, 
-> and `matplotlib` from the `conda-forge` channel and `pytorch` and `torchvision` from the 
-> `pytorch` channel.
+> Create a new folder `my-final-project` in `~/Desktop/introduction-to-conda-for-data-scientists` and repeat the
+> previous exercise using this alternative syntax to install `python`, `jupyterlab`, and `matplotlib` from the
+> `conda-forge` channel and `pytorch` and `torchvision` from the `pytorch` channel.
 >
 > > ## Solution
 > > 
@@ -299,11 +306,11 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > > $ mkdir my-final-project
 > > $ cd my-final-project/
 > > $ conda create --name my-final-project \
-> >  conda-forge::python=3.6 \
-> >  conda-forge::jupyterlab=1.0 \
-> >  conda-forge::matplotlib=3.1 \
-> >  pytorch::pytorch=1.1 \
-> >  pytorch::torchvision=0.3
+> >  conda-forge::python=3.10 \
+> >  conda-forge::jupyterlab \
+> >  conda-forge::matplotlib \
+> >  pytorch::pytorch=1.13.1 \
+> >  pytorch::torchvision=0.14.1
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
@@ -311,15 +318,14 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 
 ## A Python package isn't available on any Conda channel! What should I do?
 
-If a Python package that you need isn't available on any Conda channel, then you can use 
-the default Python package manager [Pip](https://pip.pypa.io/en/stable/) to install this 
-package from [PyPI](https://pypi.org/). However, there are a few 
-[potential issues](https://www.anaconda.com/blog/using-pip-in-a-conda-environment) that 
-you should be aware of when using Pip to install Python packages when using Conda. 
+If a Python package that you need isn't available on any Conda channel, then you can use the default Python package
+manager [`pip`](https://pip.pypa.io/en/stable/) to install it  from [Python Package Index
+(PyPI)](https://pypi.org/). However, there are a few [potential
+issues](https://www.anaconda.com/blog/using-pip-in-a-conda-environment) that you should be aware of when using `pip` to
+install Python packages when using Conda.
 
-First, Pip is sometimes installed by default on operating systems where it is used to 
-manage any Python packages needed by your OS. **You do not want to use this `pip` to 
-install Python packages when using Conda environments.**
+First, `pip` is sometimes installed by default on operating systems where it is used to manage any Python packages
+needed by your OS. **You do not want to use this `pip` to install Python packages when using Conda environments.**
 
 ~~~
 (base) $ conda deactivate
@@ -330,9 +336,9 @@ $ which pip # sometimes installed as pip3
 ~~~
 {: .language-bash}
 
-Second, Pip is also included in the Miniconda installer where it is used to install and 
-manage OS specific Python packages required to setup your base Conda environment. **You 
-do not want to use this `pip` to install Python packages when using Conda environments.**
+Second, `pip` is also included in the Miniconda installer where it is used to install and manage OS specific Python
+packages required to setup your `base` Conda environment. **You do not want to use this `pip` to install Python packages
+when using Conda environments.**
 
 ~~~
 $ conda activate
@@ -345,23 +351,22 @@ $ which pip
 
 > ## Another reaon to avoid installing packages into your `base` Conda environment
 > 
-> If your `base` Conda environment becomes cluttered with a mix of Pip and Conda installed 
+> If your `base` Conda environment becomes cluttered with a mix of `pip` and Conda installed 
 > packages it may no longer function. Creating separate conda environments allows you to 
 > delete and recreate environments readily so you dont have to worry about risking your core 
 > Conda functionality when mixing packages installed with Conda and Pip.
 {: .callout}
 
-If you find yourself needing to install a Python package that is only available via Pip, then 
+If you find yourself needing to install a Python package that is only available via PyPI, then 
 you should first install `pip` into your Conda environment and then use that `pip` to install 
-the desired package. Using the `pip` installed in your Conda environment to install Python packages 
+the desired package PyPI. Using the `pip` installed in your Conda environment to install Python packages 
 not available via Conda channels will help you avoid difficult to debug issues that frequently 
 arise when using Python packages installed via a `pip` that was not installed inside you Conda 
 environment.
 
 > ## Conda (+Pip)
 >
-> Pitfalls of using Conda and Pip together can be avoided by 
-> adopting the following practices.
+> Pitfalls of using Conda and `pip` together can be avoided by adopting the following practices.
 >
 > * Always be sure your desired environment is *active* before installing anything using `pip`.
 > * Always explicitly install `pip` in *every* Python-based Conda environment (`conda install pip`).

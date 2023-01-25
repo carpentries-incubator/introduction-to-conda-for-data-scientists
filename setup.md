@@ -58,7 +58,7 @@ For convenience here are links to the 64-bit Miniconda installers.
 
 > ## Prefer Miniconda to Anaconda
 >
-> I suggest installing Miniconda which combines Conda with Python 3 (and a small number of core 
+> We suggest installing Miniconda which combines Conda with Python 3 (and a small number of core 
 > systems packages) instead of the full Anaconda distribution. Installing only Miniconda will 
 > encourage you to create separate environments for each project (and to install only those packages 
 > that you actually need for each project!). Project specific environments enhance portability and 
@@ -164,7 +164,7 @@ number. Again output should look similar to the following.
 
 ~~~
 $ conda --version
-conda 4.8.2
+conda 23.1.0
 ~~~
 {: .language-bash}
 
@@ -189,8 +189,8 @@ are specific and customized for each shell. Conda supports a number of different
 can run `conda init --help` to see the complete list.
 
 Mac OSX and Linux users will want to initialize Conda for Bash as follows. If you are installing 
-on Linux, then you may be prompted to initialize Conda for your shell when running the installation 
-script. If so, then you can safely skip this step.
+on Linux, then you may have already been prompted to initialize Conda for your shell when running 
+the installation  script. If so, then you can safely skip this step.
 
 ~~~
 $ conda init bash
@@ -248,7 +248,6 @@ the commands from the command prompt.
 > mkdir introduction-to-conda-for-data-scientists
 > cd introduction-to-conda-for-data-scientists
 ~~~
-{: .language-bash}
 
 Alternatively, you can always "right-click" and "create new folder" on your Desktop. All the 
 commands that are run during the workshop should be run in a terminal within the 
