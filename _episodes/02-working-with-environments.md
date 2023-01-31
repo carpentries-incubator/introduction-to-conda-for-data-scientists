@@ -97,7 +97,7 @@ version of Python (3.10). If you wish, you can specify a specific version of Pyt
 install when creating the environment by changing the version number in `python=3.10` e.g. to `python=3.7`.
 
 ~~~
-$ conda create --name python36-env python=3.10
+$ conda create --name python310-env python=3.10
 ~~~
 {: .language-bash}
 
