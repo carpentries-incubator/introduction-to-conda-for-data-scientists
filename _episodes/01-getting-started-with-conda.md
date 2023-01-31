@@ -37,9 +37,9 @@ When working with a programming language, such as Python, that can do almost _an
 
 ### Dependencies
 
-A bit further into your programming career you may notice/have noticed that many packages do not just do everything on their own. Instead, they _depend_ on other packages for their functionality. For example, the [`Scipy` package](https://www.scipy.org/about.html) is used for numerical routines. To not reinvent the wheel, the package makes use of other packages, such as `numpy` (numerical python) and `matplotlib` (plotting) and many more. So we say that `numpy` and `matplotlib` are *dependencies* of `Scipy`. 
+A bit further into your programming career you may notice/have noticed that many packages do not just do everything on their own. Instead, they _depend_ on other packages for their functionality. For example, the [`scipy` package](https://www.scipy.org/about.html) is used for numerical routines. To not reinvent the wheel, the package makes use of other packages, such as `numpy` (numerical python) and `matplotlib` (plotting) and many more. So we say that `numpy` and `matplotlib` are *dependencies* of `scipy`. 
 
-Many packages are being further developed all the time, generating different *versions* of packages. During development it may happen that a function call changes and/or functionalities are added or removed. If one package can depend on another, this may create issues. Therefore it is not only important to know that e.g. `Scipy` depends on `numpy` and `matplotlib`, but also could be that it depends on `numpy` version >= 1.6 and `matplotlib` version >= 1.1. `numpy` version 1.5 in this case would not be sufficient.
+Many packages are being further developed all the time, generating different *versions* of packages. During development it may happen that a function call changes and/or functionalities are added or removed. If one package can depend on another, this may create issues. Therefore it is not only important to know that e.g. `scipy` depends on `numpy` and `matplotlib`, but also could be that it depends on `numpy` version >= 1.6 and `matplotlib` version >= 1.1. `numpy` version 1.5 in this case would not be sufficient.
 
 ### Environments
 
