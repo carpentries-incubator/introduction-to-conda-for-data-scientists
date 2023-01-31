@@ -6,8 +6,7 @@ questions:
 - "What is a Conda environment?"
 - "How do I create (delete) an environment?"
 - "How do I activate (deactivate) an environment?"
-- "How do I install packages into existing environments using Conda (+pip)?"
-- "Where should I create my environments?"
+- "How do I install packages into existing environments using Conda?"
 - "How do I find out what packages have been installed in an environment?"
 - "How do I find out what environments that exist on my machine?"
 - "How do I delete an environment that I no longer need?"
@@ -15,8 +14,7 @@ objectives:
 - "Understand how Conda environments can improve your research workflow."
 - "Create a new environment."
 - "Activate (deactivate) a particular environment."
-- "Install packages into existing environments using Conda (+pip)."
-- "Specify the installation location of an environment."
+- "Install packages into existing environments using Conda."
 - "List all of the existing environments on your machine."
 - "List all of the installed packages within a particular environment."
 - "Delete an entire environment."
@@ -24,8 +22,7 @@ keypoints:
 - "A Conda environment is a directory that contains a specific collection of Conda packages that you have installed."
 - "You create (remove) a new environment using the `conda create` (`conda remove`) commands."
 - "You activate (deactivate) an environment using the `conda activate` (`conda deactivate`) commands."
-- "You install packages into environments using `conda install`; you install packages into an active environment using `pip install`."
-- "You should install each environment as a sub-directory inside its corresponding project directory"
+- "You install packages into environments `conda install`."
 - "Use the `conda env list` command to list existing environments and their respective locations."
 - "Use the `conda list` command to list all of the packages installed in an environment."
 ---
@@ -92,7 +89,7 @@ For a list of all commands, take a look at [Conda general commands](https://docs
 
 It is a good idea to give your environment a meaningful name in order to help yourself remember 
 the purpose of the environment. While naming things can be difficult, `$PROJECT_NAME-env` is a 
-good convention to follow. Sometimes also the specific version of a package why you had to create a new environment is a good name
+good convention to follow. Sometimes also the specific version of a package why you had to create a new environment is a good name.
 
 The command above will create a new Conda environment called "python3" and install the most recent 
 version of Python. If you wish, you can specify a particular version of packages for `conda` to 
@@ -103,13 +100,21 @@ $ conda create --name python36-env python=3.6
 ~~~
 {: .language-bash}
 
-> ## Always specify a version number for each package you wish to install
+> ## You can specify a version number for each package you wish to install
 >
 > In order to make your results more reproducible and to make it easier for research colleagues to 
-> recreate your Conda environments on their machines it is a "best practice" to always explicitly 
-> specify the version number for each package that you install into an environment. If you are not 
+> recreate your Conda environments on their machines it is sometimes a good practice to explicitly 
+> specify the version number for each package that you install into an environment. 
+> 
+> Many packages use [semantic versioning](https://semver.org/)
+> where there are three version numbers separated by decimal points e.g. 2.11.3. In this scheme
+> the numbers have this meaning: _major_version_._minor_version_._patch_version_. Changes to 
+> _patch_version_ are for backwards compatible bug fixes, so we often only specify the first two
+> numbers.
+>
+> If you are not 
 > sure exactly which version of a package you want to use, then you can use search to see what 
-> versions are available using the `conda search` command.
+> versions are available using the `conda search` command. 
 >
 > ~~~
 > $ conda search $PACKAGE_NAME
@@ -125,6 +130,21 @@ $ conda create --name python36-env python=3.6
 > 
 > As always you can run `conda search --help` to learn about available options.
 {: .callout}
+
+> ## Discussion
+> 
+> What are some of the _potential_ benefits of specifying versions of each package, what
+> are some of the _potential_ drawbacks.
+>
+> > ## Solution
+> > Specifying versions exactly helps make it more likely that the exact results of an analysis
+> > will be reproducible e.g. at a later time or on a different computer. However, not all versions
+> > of a package will be compatible with all versions of another, so specifying exact versions can
+> > make it harder to add or change packages in the future, limiting reusability e.g. with different
+> > data.
+> > 
+> {: .solution} 
+{: .challenge}
 
 You can create a Conda environment and install multiple packages by listing the packages 
 that you wish to install.
@@ -162,8 +182,8 @@ because it is a required dependency of at least one of the listed packages.
 > > {: .language-bash}
 > >
 > > Since no version numbers are provided for any of the Python packages, Conda will download the 
-> > most current, mutually compatible versions of the requested packages. However, since it is best 
-> > practice to always provide explicit version numbers, you should prefer the following solution.
+> > most current, mutually compatible versions of the requested packages. However, since it is sometimes good 
+> > practice to provide explicit version numbers, you may prefer the following solution.
 > > 
 > > ~~~
 > > $ conda create --name machine-learning-env \
@@ -190,7 +210,7 @@ sometimes at all!). Activation of an environment does two things.
 2. Runs any activation scripts that the environment may contain.
 
 Step 2 is particularly important as activation scripts are how packages can set arbitrary 
-environment variables that may be necessary for their operation. Aou activate the 
+environment variables that may be necessary for their operation. You activate the 
 `basic-scipy-env` environment by name using the `activate` command.
 
 ~~~
@@ -269,8 +289,8 @@ full compatibility cannot be assured, an error is reported and the environment i
 
 By default the `conda install` command will install packages into the current, active environment. 
 The following would activate the `basic-scipy-env` we created above and install 
-[Numba](https://numba.pydata.org/), an open source JIT compiler that translates a subset of Python 
-and NumPy code into fast machine code, into the active environment.
+[`Numba`](https://numba.pydata.org/), an open source JIT compiler that translates a subset of Python 
+and `numpy` code into fast machine code, into the active environment.
 
 ~~~
 $ conda activate basic-scipy-env
@@ -281,7 +301,7 @@ $ conda install numba
 As was the case when listing packages to install when using the `conda create` command, if version 
 numbers are not explicitly provided, Conda will attempt to install the newest versions of any 
 requested packages. To accomplish this, Conda may need to update some packages that are already 
-installed or install additional packages. It is always a good idea to explicitly provide version 
+installed or install additional packages. It is sometimes a good idea to explicitly provide version 
 numbers when installing packages with the `conda install` command. For example, the following would 
 install a particular version of Scikit-Learn, into the current, active environment. 
 
@@ -301,11 +321,11 @@ $ conda install scikit-learn=0.22
 
 > ## Installing a package into a specific environment
 >
-> [Dask](https://dask.org/) 
+> [`dask`](https://dask.org/) 
 > provides advanced parallelism for data science workflows enabling performance at scale for the 
-> core Python data science tools such as Numpy Pandas, and Scikit-Learn. Have a read through the 
+> core Python data science tools such as `numpy`, `pandas`, and `scikit-learn`. Have a read through the 
 > [official documentation](https://docs.conda.io/projects/conda/en/latest/commands/install.html) 
-> for the `conda install` command and see if you can figure out how to install Dask into the 
+> for the `conda install` command and see if you can figure out how to install `dask` into the 
 > `machine-learning-env` that you created in the previous challenge. 
 > 
 > > ## Solution
@@ -347,174 +367,6 @@ Running `ls` (linux) / `dir` (Windows) on your anaconda `envs/` directory will l
 > previously installed Conda environments.
 {: .callout}
 
-
-## How do I specify a location for a Conda environment?
-
-You can control where a Conda environment lives by providing a path to a target directory when 
-creating the environment. For example to following command will create  a new environment in a 
-sub-directory of the current working directory called `env`.
-
-~~~
-$ conda create --prefix ./env ipython=7.13 matplotlib=3.1 pandas=1.0 python=3.6
-~~~
-{: .language-bash}
-
-You activate an environment created with a prefix using the same command used to activate 
-environments created by name.
-
-~~~
-$ conda activate ./env
-~~~
-{: .language-bash}
-
-It is often a good idea to specify a path to a sub-directory of your project directory when 
-creating an environment. Why?
-
-1.  Makes it easy to tell if your project utilizes an isolated environment by including the 
-    environment as a sub-directory.
-2.  Makes your project more self-contained as everything *including the required software* is 
-    contained in a single project directory.
-
-An additional benefit of creating your project's environment inside a sub-directory is that you 
-can then use the same name for all your environments; if you keep all of your environments in 
-your `~/miniconda3/env/` folder, you’ll have to give each of them a different name.
-
-> ## Conda environment sub-directory naming convention
-> 
-> In order to be consistent with the convention used by tools such as `venv` and `Pipenv`, I 
-> recommend using `env` as the name of the sub-directory of your project directory that contains 
-> your Conda environment. A benefit of maintaining the convention is that your environment 
-> sub-directory will be automatically ignored by the default Python `.gitignore` file used on 
-> [GitHub](https://github.com/github/gitignore/blob/master/Python.gitignore). 
->
-> Whatever naming convention you adopt it is important to be consistent! Using the same name for 
-> all of your Conda environments allows you to use the same `activate` command as well.
-> 
-> ~~~ 
-> $ cd my-project/
-> $ conda activate ./env
-> ~~~
-> {: .language-bash}
-{: .callout}
-
-> ## Creating a new environment as a sub-directory within a project directory 
->
-> First create a project directory called `project-dir` using the following command.
-> 
-> ~~~
-> $ mkdir project-dir
-> $ cd project-dir
-> ~~~
-> {: .language-bash}
->
-> Next, create a new environment inside the newly created `project-dir` in a sub-directory called 
-> `env` an install Python 3.6, version 3.1 of Matplotlib, and version 2.0 of 
-> [TensorFlow](https://www.tensorflow.org/).
-> 
-> > ## Solution
-> > 
-> > ~~~
-> > project-dir $ conda create --prefix ./env \
-> > python=3.6 \
-> > matplotlib=3.1 \
-> > tensorflow=2.0 \
-> > ~~~
-> > {: .language-bash}
-> >
-> {: .solution}
-{: .challenge}
-
-Placing Conda environments outside of the default `~/miniconda3/envs/` folder comes with a couple 
-of minor drawbacks. First, `conda` can no longer find your environment with the `--name` flag; 
-you’ll generally need to pass the `--prefix` flag along with the environment’s full path to 
-find the environment.
-
-Second, an annoying side-effect of specifying an install path when creating your Conda 
-environments is that your command prompt is now prefixed with the active environment’s absolute 
-path rather than the environment's name. After activating an environment using its prefix your 
-prompt will look similar to the following.
-
-~~~
-(/absolute/path/to/env) $
-~~~
-
-As you can imagine, this can quickly get out of hand.
-
-~~~
-(/Users/USER_NAME/research/data-science/PROJECT_NAME/env) $
-~~~
-
-If (like me!) you find this long prefix to your shell prompt annoying, then there is a quick fix: 
-modify the `env_prompt` setting in your `.condarc` file, which you can do with the following 
-command.
-
-~~~
-$ conda config --set env_prompt '({name})'
-~~~
-{: .language-bash}
- 
-This will either edit your `~/.condarc` file if you already have one or create a `~/.condarc` file 
-if you do not. Now your command prompt will display the active environment’s generic name.
- 
-~~~
-$ cd project-directory
-$ conda activate ./env
-(env) project-directory $
-~~~
-{: .language-bash}
-
-For more on modifying your `.condarc` file, see the 
-[official Conda docs](https://docs.conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html).
-
-> ## Activate an existing environment by path
->
-> Activate the environment created in a previous challenge using the path to the 
-> environment directory.
-> 
-> > ## Solution
-> > 
-> > You can activate an existing environment by providing the path the the environment directory 
-> > instead of the environment name when using the `conda activate` command as follows.
-> > 
-> > ~~~
-> > $ conda activate ./env
-> > ~~~
-> > {: .language-bash}
-> >
-> > Note that the provided path can either be absolute or relative. If the path is a relative path 
-> > then it must start with `./` on Unix systems and `.\` when using PowerShell on Windows.
-> {: .solution}
-{: .challenge}
-
-
-> ## Conda can create environments for R projects too!
->
-> First create a project directory called `r-project-dir` using the following command.
-> 
-> ~~~
-> $ cd ~/Desktop/introduction-to-conda-for-data-scientists
-> $ mkdir r-project-dir
-> $ cd r-project-dir
-> ~~~
-> {: .language-bash}
->
-> Next, take a look through the [list of R packages](https://anaconda.org/r/repo) available by 
-> default for installation using `conda`. Create a new environment inside the newly created 
-> `r-project-dir` in a sub-directory called `env` and install `r-base`, `r-tidyverse` and `r-sparklyr`. 
-> 
-> > ## Solution
-> > 
-> > ~~~
-> > project-dir $ conda create --prefix ./env \
-> > > r-base \
-> > > r-tidyverse \
-> > > r-sparklyr \
-> > ~~~
-> > {: .language-bash}
-> >
-> {: .solution}
-{: .challenge}
-
 ## Listing existing environments
 
 Now that you have created a number of Conda environments on your local machine you have probably 
@@ -535,15 +387,6 @@ a `conda` command for listing the contents on an environment. To list the conten
 
 ~~~
 $ conda list --name basic-scipy-env
-~~~
-{: .language-bash}
-
-If you created your Conda environment using the `--prefix` option to install packages into a 
-particular directory, then you will need to use that prefix in order for `conda` to locate the 
-environment on your machine.
-
-~~~
-$ conda list --prefix /path/to/conda-env
 ~~~
 {: .language-bash}
 

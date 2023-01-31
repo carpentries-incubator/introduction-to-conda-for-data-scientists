@@ -68,8 +68,7 @@ most current and mutually compatible versions of the listed packages (including 
 dependencies). The newly created environment would be installed inside the `~/miniconda3/envs/` 
 directory, unless we specified a different path using `--prefix`.
 
-Since explicit versions numbers for all packages should be preferred a better environment 
-file would be the following.
+If you prefer to use explicit versions numbers for all packages:
 
 ~~~
 name: machine-learning-env
@@ -113,8 +112,8 @@ Once your project folder is created, create `environment.yml` using your favouri
 Finally create a new conda environment:
 
 ~~~
-$ conda env create --prefix ./env --file environment.yml
-$ conda activate ./env
+$ conda env create --name project-env --file environment.yml
+$ conda activate project-env
 ~~~
 {: .language-bash}
 
@@ -181,9 +180,7 @@ make sure to add the `--from-history` argument to the `conda env export` command
 > ~~~
 > {: .language-yaml}
 >
-> Now use this file to create a new Conda environment. Where is this new environment created? 
-> Using the same `environment.yml` file create a Conda environment as a sub-directory called 
-> `env/` inside a newly created project directory. Compare the contents of the two environments.
+> Now use this file to create a new Conda environment. Where is this new environment created?
 > 
 > > ## Solution
 > > 
@@ -198,17 +195,10 @@ make sure to add the `--from-history` argument to the `conda env export` command
 > > {: .language-bash}
 > >
 > > The above sequence of commands will create a new Conda environment inside the 
-> > `~/miniconda3/envs` directory. In order to create the Conda environment inside a sub-directory 
-> > of the project directory you need to pass the `--prefix` to the `conda env create` command as 
-> > follows.
+> > `~/miniconda3/envs` directory. 
 > > 
-> > ~~~
-> > $ conda env create --file environment.yml --prefix ./env
-> > ~~~
-> > {: .language-bash}
-> > 
-> > You can now run the `conda env list` command and see that these two environments have been 
-> > created in different locations but contain the same packages.
+> > You can now run the `conda env list` command and see that this environment has been 
+> > created.
 > {: .solution}
 {: .challenge}
 
@@ -250,7 +240,7 @@ If any of these occurs during the course of your research project, all you need 
 the contents of your `environment.yml` file accordingly and then run the following command.
 
 ~~~
-$ conda env update --prefix ./env --file environment.yml  --prune
+$ conda env update --name project-env --file environment.yml --prune
 ~~~
 {: .language-bash}
 
@@ -265,14 +255,14 @@ from the environment.
 > which will remove any existing environment directory before rebuilding it using the provided 
 > environment file. 
 > ~~~
-> $ conda env create --prefix ./env --file environment.yml --force
+> $ conda env create --name project-env --file environment.yml --force
 > ~~~
 > {: .language-bash}
 {: .callout}
 
 > ## Add Dask to the environment to scale up your analytics
 > 
-> Add to the `scikit-env` environment file and update the environment. [Dask](https://dask.org/) 
+> Add `dask` to the `scikit-env` environment file and update the environment. [Dask](https://dask.org/) 
 > provides advanced parallelism for data science workflows enabling performance at scale for the 
 > core Python data science tools such as Numpy Pandas, and Scikit-Learn.  
 >
@@ -298,14 +288,14 @@ from the environment.
 > > new Dask dependencies:
 > > 
 > > ~~~
-> > $ conda env create --prefix ./env --file environment.yml --force 
+> > $ conda env create --name project-env --file environment.yml --force 
 > > ~~~
 > > {: .language-bash}
 > > 
 > > Or, if you just want to update the environment in-place with the new Dask dependencies, you can use:
 > > 
 > > ~~~
-> > $ conda env update --prefix ./env --file environment.yml  --prune
+> > $ conda env update --name project-env --file environment.yml  --prune
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
@@ -340,7 +330,7 @@ from the environment.
 > process. Recent version of yellowbrick can also be installed using `conda` from the `conda-forge` channel.
 >
 > ~~~
-> $ conda install --channel conda-forge yellowbrick=1.2 --prefix ./env
+> $ conda install --channel conda-forge yellowbrick=1.2 --name project-env
 > ~~~
 >
 > An alternative way of installing dependencies via `pip` in your environment files is to store all the 
@@ -357,75 +347,6 @@ from the environment.
 > Conda will then install your `pip` dependencies using `python -m pip install -r requirements.txt` 
 > (after creating the Conda environment and installing all Conda installable dependencies).
 {: .callout}
-
-## Making Jupyter aware of your Conda environments
-
-Both JupyterLab and Jupyter Notebooks automatically ensure that the standard IPython kernel is 
-always available by default. However, if you want to use a kernel based on a particular Conda 
-environment from inside Jupyter (and Juptyer is *not* installed inside your environment) then will 
-need to create a 
-[kernel spec](https://jupyter-client.readthedocs.io/en/latest/kernels.html#kernelspecs) file for 
-your Conda environments manually.
-
-Before you can create a custom kernel for you Conda environment you need to make sure that the 
-[`ipykernel`](https://pypi.org/project/ipykernel/) package is installed in your Conda environment 
-as you will need to use this package to create the kernel spec file. Here is the updated `xgboost-env`
-`environment.yml` file that includes the `ipykernel` package.
-
-~~~
-name: ml-env
-
-dependencies:
-  - ipykernel=5.3
-  - ipython=7.13
-  - matplotlib=3.1
-  - pandas=1.0
-  - pip=20.0
-  - python=3.6
-  - scikit-learn=0.22
-~~~
-{: .language-yaml}
-
-Next, rebuild the Conda environment using the following command.
-
-~~~
-$ conda env create --prefix ./env --file environment.yml --force
-~~~
-
-Once the Conda environment has been re-built you can activate the environment and then create the 
-custom kernel for the activated environment.
-
-~~~
-$ conda activate ./env
-$ python -m ipykernel install --user --name xgboost-env --display-name "XGBoost"
-~~~
-
-The last command installs a kernel spec file for the current environment. Kernel spec files are 
-JSON files which can be viewed and changed with a normal text editor. The `--name` value is used 
-by Jupyter internally; `--display-name` is what you see in the JupyterLab launcher menu as well as 
-the Jupyter Notebook dropdown kernel menu. This command will overwrite any existing kernel with 
-the same name. 
-
-> ## Create a kernel for a Conda environment
->
-> Create a custom kernel for the `machine-learning-env` environment created in a previous challenge.
-> 
-> > ## Solution
-> > 
-> > In order to activate an existing environment by name you use the `conda activate` command as 
-> > follows.
-> > 
-> > ~~~
-> > $ conda activate machine-learning-env
-> > $ python -m ipykernel install --user --name machine-learning-env
-> > ~~~
-> > {: .language-bash}
-> > 
-> > Note that by leaving the `--display-name` unspecified, the display name will match the value 
-> > provided to `--name` .
-> >
-> {: .solution}
-{: .challenge}
 
 {% include links.md %}
 

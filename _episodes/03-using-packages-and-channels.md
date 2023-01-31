@@ -35,10 +35,10 @@ All conda packages have a specific sub-directory structure inside the tarball fi
 `bin` directory that contains any binaries for the package; a `lib` directory containing the 
 relevant library files (i.e., the `.py` files); and an `info` directory containing package metadata. 
 For a more details of the conda package specification, including discussions of the various 
-metadata files, see the [docs][conda-pkg-spec-docs].
+metadata files, see the [docs](https://docs.conda.io/projects/conda-build/en/latest/resources/package-spec.html).
 
 As an example of Conda package structure consider the [Conda](https://pytorch.org/) package for 
-Python 3.6 version of PyTorch targeting a 64-bit Mac OS, `pytorch-1.1.0-py3.6_0.tar.bz2`.
+Python 3.6 version of `PyTorch` targeting a 64-bit Mac OS, `pytorch-1.1.0-py3.6_0.tar.bz2`.
 
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
 ├── bin
@@ -64,7 +64,7 @@ Python 3.6 version of PyTorch targeting a 64-bit Mac OS, `pytorch-1.1.0-py3.6_0.
 </pre></div>
 </div>
 
-A complete listing of available PyTorch packages can be found on 
+A complete listing of available `PyTorch` packages can be found on 
 [Anaconda Cloud](https://anaconda.org/pytorch/pytorch/files).
 
 ## What are Conda channels?
@@ -112,8 +112,7 @@ $ conda install scipy=1.6 --channel conda-forge
 {: .language-bash}
 
 
-You can also install a package from a specific channel into a named environment (using `--name`) 
-or into an environment installed at a particular prefix (using `--prefix`). For example, the 
+You can also install a package from a specific channel into a named environment (using `--name`). For example, the 
 following command installs the `scipy` package from the `conda-forge` channel into the environment 
 called `my-first-conda-env` which we created earlier.
 
@@ -122,21 +121,10 @@ $ conda install scipy=1.6 --channel conda-forge --name machine-learning-env
 ~~~
 {: .language-bash}
 
-This command would install `tensorflow` package from `conda-forge` channel into an environment 
-installed into the `env/` sub-directory.
+This command would install `tensorflow` package from `conda-forge` channel into an environment called `machine-learning-env`.
 
 ~~~
-$ conda install tensorflow=1.14 --channel conda-forge --prefix ./env
-~~~
-{: .language-bash}
-
-Here is another example for R users. The following command would install 
-[`r-tidyverse`](https://anaconda.org/r/r-tidyverse) package from the `conda-forge` channel into an 
-environment installed into the `env/` sub-directory.
-
-~~~
-$ cd ~/Desktop/introduction-to-conda-for-data-scientists
-$ conda install r-tidyverse=1.3 --channel conda-forge --prefix ./env
+$ conda install tensorflow=1.14 --channel conda-forge --name machine-learning-env
 ~~~
 {: .language-bash}
 
@@ -170,9 +158,9 @@ following.
 2. `bioconda`: the `bioconda` channel also contains a large number of Bioinformatics curated conda packages. 
     `bioconda` channel is meant to be used with `conda-forge`, you should not worried about using the two channels
     when installing your prefered packages.
-2.  `pip`: only if a package is not otherwise available via `conda-forge` (or some 
-    domain-specific channel like `bioconda`) should a package be installed into a conda 
-    environment from PyPI using `pip`.
+3.  `pip`: if a package is not otherwise available via `conda-forge` (or some 
+    domain-specific channel like `bioconda`) a package can be installed into a conda 
+    environment from PyPI using `pip`. It's fine to just use `pip` for installing most packages.
 
 For example, [Kaggle](https://www.kaggle.com/) publishes a Python 3 API that can be used to interact with Kaggle datasets, kernels and competition submissions. You can search for the package on the `defaults` channels but you will not find it!
 
@@ -204,7 +192,7 @@ and use the search bar at the top of the page.
 {: .language-bash}
 
 The [official installation instructions](https://github.com/Kaggle/kaggle-api) suggest downloading 
-the `kaggle` package using `pip`. But since we are using `conda` we should check whether the 
+the `kaggle` package using `pip`. But since we are using `conda`, let's check whether the 
 package exists on at least `conda-forge` channel before proceeding to use `pip`.
 
 ~~~
@@ -229,7 +217,7 @@ Once we know that the `kaggle` package is available via `conda-forge` we can go 
 it.
 
 ~~~
-$ conda install --channel conda-forge kaggle=1.5.10  --prefix ./env
+$ conda install --channel conda-forge kaggle=1.5.10  --name machine-learning-env
 ~~~
 {: .language-bash}
 
@@ -248,7 +236,7 @@ conda does the following.
 3. parses repodata to search for the package
 4. once the package is found, conda pulls it down and installs
 
-The [conda documentation][conda-install-docs] has a nice decision tree that describes the package installation process.
+The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/installing-with-conda.html) has a nice decision tree that describes the package installation process.
 
 <p align="center">
     <img alt="Installing with Conda" src="../fig/installing-with-conda.png" width="250">
@@ -256,13 +244,13 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 
 > ## Specifying channels when installing packages
 >
-> Like many projects, [PyTorch](https://pytorch.org/) has its own 
+> Like many projects, [`PyTorch`](https://pytorch.org/) has its own 
 > [channel](https://anaconda.org/pytorch) on Anaconda Cloud. This channel has several interesting 
 > packages, in particular `pytorch` (PyTorch core) and `torchvision` (datasets, transforms, and 
 > models specific to computer vision).
 > 
 > Create a new directory called `my-computer-vision-project` and then create a Python 3.6 
-> environment in a sub-directory called `env/` with the two packages listed above. Also include 
+> environment called `my-computer-vision-project` with the two packages listed above. Also include 
 > the most recent version of `jupyterlab` in your environment (so you have a nice UI) and 
 > `matplotlib` (so you can make plots).
 > 
@@ -273,7 +261,7 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 > > ~~~
 > > $ mkdir my-computer-vision-project
 > > $ cd my-computer-vision-project/
-> > $ conda create --prefix ./env --channel pytorch \
+> > $ conda create --name my-computer-vision-project --channel pytorch \
 > >  python=3.6 \
 > >  jupyterlab=1.0 \
 > >  pytorch=1.1 \
@@ -294,7 +282,7 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 > more explicitly links the channel being used to install a particular package.
 > 
 > ~~~
-> $ conda install conda-forge::tensorflow  --prefix ./env
+> $ conda install conda-forge::tensorflow --name my-computer-vision-project
 > ~~~
 > {: .language-bash}
 >
@@ -310,7 +298,7 @@ The [conda documentation][conda-install-docs] has a nice decision tree that desc
 > > $ cd ~/Desktop/introduction-to-conda-for-data-scientists
 > > $ mkdir my-final-project
 > > $ cd my-final-project/
-> > $ conda create --prefix ./env \
+> > $ conda create --name my-final-project \
 > >  conda-forge::python=3.6 \
 > >  conda-forge::jupyterlab=1.0 \
 > >  conda-forge::matplotlib=3.1 \
@@ -370,17 +358,13 @@ not available via Conda channels will help you avoid difficult to debug issues t
 arise when using Python packages installed via a `pip` that was not installed inside you Conda 
 environment.
 
-> ## Conda (+Pip): Conda wherever possible; Pip only when necessary
+> ## Conda (+Pip)
 >
-> When using Conda to manage environments for your Python project it is a good idea to 
-> install packages available via both Conda and Pip using Conda; however there will 
-> always be cases where a package is only available via Pip in which case you will need to 
-> use Pip. Many of the common pitfalls of using Conda and Pip together can be avoided by 
+> Pitfalls of using Conda and Pip together can be avoided by 
 > adopting the following practices.
 >
-> * Always explicitly install `pip` in *every* Python-based Conda environment.
 > * Always be sure your desired environment is *active* before installing anything using `pip`.
-> * Prefer `python -m pip install` over `pip install`; never use `pip` with the `--user` argument.
+> * Always explicitly install `pip` in *every* Python-based Conda environment (`conda install pip`).
 {: .callout}
 
 > ## Installing packages into Conda environments using `pip`
