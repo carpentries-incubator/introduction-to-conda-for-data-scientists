@@ -113,6 +113,8 @@ rm Miniconda3-latest-Linux-x86_64.sh
 
 ## Verifying your Conda installation
 
+> On **Windows** you'll need to go to the "start" menu (or whatever it's called now) and open up the **Anaconda Powershell Prompt** before following the next instructions.
+
 In order to verify that you have installed Conda correctly run the `conda help` command. Output 
 of the command should look similar to the following.
 
