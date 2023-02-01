@@ -119,7 +119,7 @@ In order to verify that you have installed Conda correctly run the `conda help` 
 of the command should look similar to the following.
 
 ~~~
-$ conda help
+$ conda --help
 usage: conda [-h] [-V] command ...
 
 conda is a tool for managing and deploying applications, environments and packages.
