@@ -268,12 +268,7 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > > ~~~
 > > $ mkdir my-computer-vision-project
 > > $ cd my-computer-vision-project/
-> > $ conda create --name my-computer-vision-project --channel pytorch \
-> >  python=3.10 \
-> >  jupyterlab \
-> >  pytorch=1.13.1 \
-> >  torchvision=0.14.1 \
-> >  matplotlib
+> > $ conda create --name my-computer-vision-project --channel pytorch python=3.10 jupyterlab pytorch=1.13.1 torchvision=0.14.1 matplotlib
 > > ~~~
 > > {: .language-bash}
 > >
@@ -305,12 +300,7 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > > $ cd ~/Desktop/introduction-to-conda-for-data-scientists
 > > $ mkdir my-final-project
 > > $ cd my-final-project/
-> > $ conda create --name my-final-project \
-> >  conda-forge::python=3.10 \
-> >  conda-forge::jupyterlab \
-> >  conda-forge::matplotlib \
-> >  pytorch::pytorch=1.13.1 \
-> >  pytorch::torchvision=0.14.1
+> > $ conda create --name my-final-project conda-forge::python=3.10 conda-forge::jupyterlab conda-forge::matplotlib pytorch::pytorch=1.13.1  pytorch::torchvision=0.14.1
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
