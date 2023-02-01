@@ -159,6 +159,12 @@ Python is not listed as a package to install into the `basic-scipy-env` environm
 Python into the environment because it is a required dependency of at least one of the listed packages. Note if you
 wanted a specific version of Python installed you would have to explicitly state which version as you did earlier.
 
+This command will fail as the requested `scipy` and `numpy` versions are incompatible.
+
+~~~
+$ conda create --name basic-scipy-env ipython matplotlib=3.1 numpy=1.9.3 scipy=1.9.3
+~~~
+{: .language-bash}
 
 > ## Creating a new environment
 >
