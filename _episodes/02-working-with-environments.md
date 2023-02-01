@@ -231,10 +231,10 @@ To deactivate the currently active environment use the Conda `deactivate` comman
 {: .language-bash}
 
 You can see that an environment has been deactivated because the shell prompt will no longer
-include the name of the previously active environment.
+include the name of the previously active environment, but will return to `base`.
 
 ~~~
-$
+(base) $
 ~~~
 
 > ## Returning to the `base` environment
