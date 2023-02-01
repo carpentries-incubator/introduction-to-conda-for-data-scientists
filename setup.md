@@ -220,13 +220,6 @@ If you want to reverse or “undo” the changes made by `conda init`, then you 
 `conda init` command and pass the `--reverse` option. Again, in order for the reversal to take 
 effect you will likely need to close and restart your shell session.
 
-## Use of Binder instead of installing Conda (Optional)
-
-If you wish to get started with this course without installing Conda, then you can use a 
-pre-configured instance running on [Binder](https://mybinder.org/) by clicking on the link below.
-
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/carpentries-incubator/introduction-to-conda-for-data-scientists/binder?urlpath=lab)
-
 ## Workspace for Conda environments
 
 In order to maintain a consistent workspace for all your conda environment, we will create a new
