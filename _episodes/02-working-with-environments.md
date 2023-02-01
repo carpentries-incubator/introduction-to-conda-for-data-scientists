@@ -275,7 +275,7 @@ include the name of the previously active environment, but will return to `base`
 > > ~~~
 > > {: .language-bash}
 > >
-> > Or you could switch back to the `base` conda environment.
+> > Or you could switch back to the `base` conda environment this way.
 > > ~~~
 > > (active-environment-name) $ conda activate
 > > ~~~
