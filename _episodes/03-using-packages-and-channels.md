@@ -254,7 +254,7 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > more explicitly links the channel being used to install a particular package.
 >
 > ~~~
-> $ conda install conda-forge::tensorflow --name my-computer-vision-project
+> $ conda install conda-forge::pandas --name my-computer-vision-project
 > ~~~
 > {: .language-bash}
 >
