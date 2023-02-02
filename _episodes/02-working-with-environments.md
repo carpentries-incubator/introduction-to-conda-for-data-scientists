@@ -359,20 +359,6 @@ directory the absolute path to which will look something the following: `/home/$
 Running `ls` (Linux or OSX) / `dir` (Windows) on your anaconda `envs/` directory will list out the directories
 containing the existing Conda environments.
 
-> ## Location of Conda environments on Binder
->
-> If you are working through these lessons using a Binder instance, then the default location of
-> the Conda environments is slightly different.
->
-> ~~~
-> $ /srv/conda/envs
-> ~~~
-> {: .language-bash}
->
-> Running `ls /srv/conda/envs/` from a terminal will list out the directories containing any
-> previously installed Conda environments.
-{: .callout}
-
 ## Listing existing environments
 
 Now that you have created a number of Conda environments on your local machine you have probably
