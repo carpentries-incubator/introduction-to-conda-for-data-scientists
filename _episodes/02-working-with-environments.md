@@ -187,13 +187,8 @@ wanted a specific version of Python installed you would have to explicitly state
 > > practice to provide explicit version numbers, you may prefer the following solution.
 > >
 > > ~~~
-> > $ conda create --name machine-learning-env \
-> >  ipython=8.2.0 \
-> >  matplotlib=3.6.3 \
-> >  pandas=1.5.1 \
-> >  python=3.10 \
-> >  scikit-learn=1.0.2 \
-> >  numba=0.56.4
+> > $ conda create --name machine-learning-env ipython=8.8.0 matplotlib=3.6.2 pandas=1.5.2 python=3.10
+> > scikit-learn=1.2.0 numba=0.56.4
 > > ~~~
 > > {: .language-bash}
 > >
@@ -314,7 +309,7 @@ numbers when installing packages with the `conda install` command. For example, 
 install a particular version of Scikit-Learn, into the current, active environment.
 
 ~~~
-$ conda install scikit-learn=1.0.2
+$ conda install scikit-learn=1.2.0
 ~~~
 {: .language-bash}
 
@@ -340,7 +335,7 @@ $ conda install scikit-learn=1.0.2
 > >
 > > You can install Dask into `machine-learning-env` using the `conda install` command as follow.
 > > ~~~
-> > $ conda install --name machine-learning-env dask=2.16
+> > $ conda install --name machine-learning-env dask=2022.7.0
 > > ~~~
 > > {: .language-bash}
 > >
@@ -349,7 +344,7 @@ $ conda install scikit-learn=1.0.2
 > >
 > > ~~~
 > > $ conda activate machine-learning-env
-> > $ conda install dask=2023.1.0
+> > $ conda install dask=2022.7.0
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
