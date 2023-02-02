@@ -94,7 +94,7 @@ The following command would install `tensorflow` package from the `conda-forge` 
 `machine-learning-env`.
 
 ~~~
-$ conda install tensorflow=1.14 --channel conda-forge --name machine-learning-env
+$ conda install tensorflow=1.14.0 --channel conda-forge --name machine-learning-env
 ~~~
 {: .language-bash}
 
