@@ -432,14 +432,6 @@ $ conda remove --name my-first-conda-env --all
 ~~~
 {: .language-bash}
 
-If you wish to delete and environment that you created with a `--prefix` option, then you will
-need to provide the prefix again when removing the environment.
-
-~~~
-$ conda remove --prefix /path/to/conda-env/ --all
-~~~
-{: .language-bash}
-
 > ## Delete an entire environment
 >
 > Delete the entire "basic-scipy-env" environment.
