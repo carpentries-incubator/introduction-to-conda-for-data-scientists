@@ -10,7 +10,7 @@ questions:
 objectives:
 - "Install a package from a specific channel."
 keypoints:
-- "A package is a tarball containing system-level libraries, Python or other modules, executable programs and other components, and associated metadata."
+- "A package is a compressed archive file containing system-level libraries, Python or other modules, executable programs and other components, and associated metadata."
 - "A Conda channel is a URL to a directory containing a Conda package(s)."
 - "Explicitly including the channels (and their priority!) in a project's environment file is necessary for another researcher to completely re-create that project's software environment."
 - "Understand how to use Conda and Pip together effectively."
@@ -18,7 +18,7 @@ keypoints:
 
 ## What are Conda packages?
 
-A conda package is a compressed archive file (`.tar.bz2`) that contains:
+A conda package is a compressed archive file (`.tar.bz2` or `.conda`) that contains:
 
 * system-level libraries
 * Python or other modules
@@ -31,41 +31,11 @@ identical across platforms and operating systems.
 
 ### Package Structure
 
-All conda packages have a specific sub-directory structure inside the tarball file. There is a
+All conda packages have a specific sub-directory structure inside the file. There is a
 `bin` directory that contains any binaries for the package; a `lib` directory containing the
-relevant library files (i.e., the `.py` files); and an `info` directory containing package metadata.
+relevant library files (e.g., the `.py` files); and an `info` directory containing package metadata.
 For a more details of the conda package specification, including discussions of the various
 metadata files, see the [docs](https://docs.conda.io/projects/conda-build/en/latest/resources/package-spec.html).
-
-As an example of Conda package structure consider the [Conda](https://pytorch.org/) package for
-Python 3.10 version of `PyTorch` targeting a 64-bit Mac OS, `pytorch-1.13.1-py3.10_cuda11.7_cudnn8.5.0_0.tar.bz2`.
-
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
-├── bin
-│   └── convert-caffe2-to-onnx
-│   └── convert-onnx-to-caffe2
-├── info
-│   ├── LICENSE.txt
-│   ├── about.json
-│   ├── files
-│   ├── git
-│   ├── has_prefix.json
-│   ├── hash_input.json
-│   ├── index.json
-│   ├── paths.json
-│   ├── recipe/
-│   └── test/
-└── lib
-    └── python3.10
-        └── site-packages
-            ├── caffe2/
-            ├── torch/
-            └── torch-1.13.1-py3.10.egg-info/
-</pre></div>
-</div>
-
-A complete listing of available `PyTorch` packages can be found on [Anaconda
-Cloud](https://anaconda.org/pytorch/pytorch/files).
 
 ## What are Conda channels?
 
