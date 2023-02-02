@@ -335,7 +335,7 @@ $ conda install scikit-learn=1.0.2
 > >
 > > You can install Dask into `machine-learning-env` using the `conda install` command as follow.
 > > ~~~
-> > $ conda install --name machine-learning-env dask=2.16
+> > $ conda install --name machine-learning-env dask=2022.7.0
 > > ~~~
 > > {: .language-bash}
 > >
@@ -344,7 +344,7 @@ $ conda install scikit-learn=1.0.2
 > >
 > > ~~~
 > > $ conda activate machine-learning-env
-> > $ conda install dask=2023.1.0
+> > $ conda install dask=2022.7.0
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
