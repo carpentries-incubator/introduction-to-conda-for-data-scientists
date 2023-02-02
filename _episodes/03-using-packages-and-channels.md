@@ -296,6 +296,11 @@ $ which pip # sometimes installed as pip3
 ~~~
 {: .language-bash}
 
+> ## Windows users...
+>
+> You can type `where.exe` in **PowerShell** and it does the same thing as `which` in **bash**.
+{: .callout}
+
 Second, `pip` is also included in the Miniconda installer where it is used to install and manage OS specific Python
 packages required to setup your `base` Conda environment. **You do not want to use this `pip` to install Python packages
 when using Conda environments.**
