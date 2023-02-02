@@ -83,14 +83,14 @@ $ conda install scipy=1.10.0 --channel conda-forge
 
 You can also install a package from a specific channel into a named environment (using `--name`). For example, the
 following command installs the `scipy` package from the `conda-forge` channel into the environment
-called `my-first-conda-env` which we created earlier.
+called `machine-learning-env` which we created earlier.
 
 ~~~
 $ conda install scipy=1.10.0 --channel conda-forge --name machine-learning-env
 ~~~
 {: .language-bash}
 
-The following command would install `tensorflow` package from `conda-forge` channel into the environment called
+The following command would install `tensorflow` package from the `conda-forge` channel into the environment called
 `machine-learning-env`.
 
 ~~~
