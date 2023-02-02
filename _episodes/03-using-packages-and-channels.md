@@ -104,7 +104,7 @@ $ conda install tensorflow=1.14 --channel conda-forge --name machine-learning-en
 > multiple times.
 >
 > ~~~
-> $ conda install scipy=1.6 --channel conda-forge --channel bioconda
+> $ conda install scipy=1.10.0 --channel conda-forge --channel bioconda
 > ~~~
 > {: .language-bash}
 >
