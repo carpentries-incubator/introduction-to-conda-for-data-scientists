@@ -76,7 +76,7 @@ passing the `--channel` option to the `conda install` command as follows.
 
 ~~~
 $ conda activate machine-learning-env
-$ conda install scipy=1.6 --channel conda-forge
+$ conda install scipy=1.10.0 --channel conda-forge
 ~~~
 {: .language-bash}
 
@@ -86,7 +86,7 @@ following command installs the `scipy` package from the `conda-forge` channel in
 called `my-first-conda-env` which we created earlier.
 
 ~~~
-$ conda install scipy=1.6 --channel conda-forge --name machine-learning-env
+$ conda install scipy=1.10.0 --channel conda-forge --name machine-learning-env
 ~~~
 {: .language-bash}
 
