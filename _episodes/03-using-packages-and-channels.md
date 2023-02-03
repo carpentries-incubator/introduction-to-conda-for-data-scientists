@@ -300,8 +300,7 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > ~~~
 > {: .language-bash}
 >
-> Create a new folder `final-project` in `~/Desktop/introduction-to-conda-for-data-scientists` and repeat the
-> previous exercise using this alternative syntax to install `python`, `jupyterlab`, and `matplotlib` from the
+> Repeat the previous exercise using this alternative syntax to install `python`, `jupyterlab`, and `matplotlib` from the
 > `conda-forge` channel and `pytorch` and `torchvision` from the `pytorch` channel.
 >
 > > ## Solution
@@ -309,9 +308,6 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > > One possibility would be to use the `conda create` command as follows.
 > >
 > > ~~~
-> > $ cd ~/Desktop/introduction-to-conda-for-data-scientists
-> > $ mkdir final-project
-> > $ cd final-project/
 > > $ conda create --name final-project \
 > >  conda-forge::python=3.10 \
 > >  conda-forge::jupyterlab \
