@@ -134,6 +134,17 @@ environment streamed to the terminal. Recall that we only listed five packages w
 originally created `machine-learning-env` yet from the output of the `conda env export` command
 we see that these five packages result in an environment with roughly 80 dependencies!
 
+> ## What's in the exported environment.yml file
+>
+> The exported version of the file looks a bit different to the one we wrote. In addition to version
+> numbers, on some lines we've got another code in there e.g. `vs2015_runtime=14.34.31931=h4c5c07a_10`. The `h4c5c07a_10`
+> is the [build variant hash](https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#differentiating-packages-built-with-different-variants). This appears when the package is different
+> for different operating systems. The implication is that an environment file that contains a build variant
+> hash for one or more of the packages cannot be used on a different operating system to the one it
+> was created on.
+>
+{: .callout}
+
 To export this list into an environment.yml file, you can use `--file` option to directly save the
 resulting YAML environment into a file.
 
