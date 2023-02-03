@@ -9,40 +9,40 @@ objectives:
 - "Show how to use Conda to manage key GPU dependencies for you next (data) science project."
 - "Show how to identify which versions of CUDA packages are available via Conda."
 - "Understand how to write a Conda environment file for a project with GPU dependencies."
-- "Understand when you need the NVIDIA CUDA Compiler (NVCC) and how  to handle this situation." 
+- "Understand when you need the NVIDIA CUDA Compiler (NVCC) and how  to handle this situation."
 keypoints:
 - "Conda can be used to manage your key GPU dependencies."
 - "Use `conda search` to identify which version of CUDA libraries are available."
 - "For most projects you will not need NVCC and can use the `cudatoolkit` package from default channels."
-- "If your project does need NVCC, try `cudatoolkit-dev` package or `nvcc_linux-64` meta-package (requires separate NVIDIA CUDA Toolkit 
+- "If your project does need NVCC, try `cudatoolkit-dev` package or `nvcc_linux-64` meta-package (requires separate NVIDIA CUDA Toolkit
   install)."
 ---
 
 # Getting familiar with NVIDIA CUDA libraries
 
-Transitioning your (data) science projects from CPU to GPU can seem like a daunting task. 
-In particular, there is quite a bit of unfamiliar additional software, such as 
-[NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit), 
-[NVIDIA Collective Communications Library (NCCL)](https://developer.nvidia.com/nccl), 
-and [NVIDIA Deep Neural Network Library (cuDNN)](https://developer.nvidia.com/cudnn) to download 
+Transitioning your (data) science projects from CPU to GPU can seem like a daunting task.
+In particular, there is quite a bit of unfamiliar additional software, such as
+[NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit),
+[NVIDIA Collective Communications Library (NCCL)](https://developer.nvidia.com/nccl),
+and [NVIDIA Deep Neural Network Library (cuDNN)](https://developer.nvidia.com/cudnn) to download
 and install.
 
-If you go to the [NVIDIA developer](https://developer.nvidia.com/) website you will find loads of 
-documentation and instructions for how to install these libraries system wide. But then what do 
-you do if you need different versions of these new libraries for different projects? You could 
-install a bunch of different versions of NVIDIA CUDA Toolkit, NCCL, and cuDNN system wide and then 
-use environment variables to control the “active” versions for each project but this is cumbersome 
+If you go to the [NVIDIA developer](https://developer.nvidia.com/) website you will find loads of
+documentation and instructions for how to install these libraries system wide. But then what do
+you do if you need different versions of these new libraries for different projects? You could
+install a bunch of different versions of NVIDIA CUDA Toolkit, NCCL, and cuDNN system wide and then
+use environment variables to control the “active” versions for each project but this is cumbersome
 and error prone. Fortunately there are better ways!
 
-In this episode we are going to see how to manage project specific versions of the NVIDIA CUDA 
+In this episode we are going to see how to manage project specific versions of the NVIDIA CUDA
 Toolkit, NCCL, and cuDNN using Conda.
 
 ## Are NVIDIA libraries available via Conda?
 
-Yep! The most important NVIDIA CUDA library that you will need is the NVIDIA CUDA Toolkit. The 
-NVIDIA CUDA Toolkit provides a development environment for creating high performance 
-GPU-accelerated applications. The toolkit includes GPU-accelerated libraries, debugging and 
-optimization tools and a runtime library. You can use the `conda search` command to see what 
+Yep! The most important NVIDIA CUDA library that you will need is the NVIDIA CUDA Toolkit. The
+NVIDIA CUDA Toolkit provides a development environment for creating high performance
+GPU-accelerated applications. The toolkit includes GPU-accelerated libraries, debugging and
+optimization tools and a runtime library. You can use the `conda search` command to see what
 versions of the NVIDIA CUDA Toolkit are available from the default channels.
 
 ~~~
@@ -58,12 +58,14 @@ cudatoolkit                 10.1.168               0  pkgs/main
 cudatoolkit                 10.1.243      h6bb024c_0  pkgs/main
 cudatoolkit                  10.2.89      hfd86e86_0  pkgs/main
 cudatoolkit                  10.2.89      hfd86e86_1  pkgs/main
+cudatoolkit                 11.0.221      h6bb024c_0  pkgs/main
+cudatoolkit                   11.3.1      h2bc3f7f_2  pkgs/main
 ~~~
 {: .language-bash}
 
-NVIDIA actually maintains their own Conda channel and the versions of CUDA Toolkit available from 
-the default channels are the same as those you will find on the NVIDIA channel. If you are 
-interested in confirming this you can run the command 
+NVIDIA actually maintains their own Conda channel and the versions of CUDA Toolkit available from
+the default channels are the same as those you will find on the NVIDIA channel. If you are
+interested in confirming this you can run the command
 
 ~~~
 $ conda search --channel nvidia cudatoolkit
@@ -74,20 +76,20 @@ and then compare the build numbers with those listed above from the default chan
 
 > ## The CUDA Toolkit packages available from defaults do not include NVCC
 >
-> An important limitation of the versions of the NVIDIA CUDA Toolkit that are available from the 
-> either the default or NVIDIA Conda channels is that they do not include the NVIDIA CUDA Compiler 
+> An important limitation of the versions of the NVIDIA CUDA Toolkit that are available from the
+> either the default or NVIDIA Conda channels is that they do not include the NVIDIA CUDA Compiler
 > (NVCC).
 {: .callout}
 
 ### What about cuDNN?
 
-The [NVIDIA CUDA Deep Neural Network library (cuDNN)](https://developer.nvidia.com/cudnn) is a 
-GPU-accelerated library of primitives for deep neural networks. cuDNN provides highly tuned 
-implementations for standard routines such as forward and backward convolution, pooling, 
-normalization, and activation layers. 
+The [NVIDIA CUDA Deep Neural Network library (cuDNN)](https://developer.nvidia.com/cudnn) is a
+GPU-accelerated library of primitives for deep neural networks. cuDNN provides highly tuned
+implementations for standard routines such as forward and backward convolution, pooling,
+normalization, and activation layers.
 
-If you are interested in deep learning, then you will need to get your hands on cuDNN. Various 
-versions of cuDNN are available from the default channels.
+If you are interested in deep learning, then you will need to get your hands on cuDNN. Various
+versions of cuDNN are available from the default channels and more the NVIDIA channel.
 
 ~~~
 $ conda search cudnn
@@ -115,18 +117,19 @@ cudnn                          7.6.5      cuda10.1_0  pkgs/main
 cudnn                          7.6.5      cuda10.2_0  pkgs/main
 cudnn                          7.6.5       cuda9.0_0  pkgs/main
 cudnn                          7.6.5       cuda9.2_0  pkgs/main
+cudnn                          8.2.1      cuda11.3_0  pkgs/main
 ~~~
 {: .language-bash}
 
 ## What about NCCL?
 
-If you are already accelerating your (data) science workflows with a GPU, then in the near future 
-you will probably be interested in using more than one GPU. The 
-[NVIDIA Collective Communications Library (NCCL)](https://developer.nvidia.com/nccl) implements 
-multi-GPU and multi-node collective communication primitives that are performance optimized for 
+If you are already accelerating your (data) science workflows with a GPU, then in the near future
+you will probably be interested in using more than one GPU. The
+[NVIDIA Collective Communications Library (NCCL)](https://developer.nvidia.com/nccl) implements
+multi-GPU and multi-node collective communication primitives that are performance optimized for
 NVIDIA GPUs.
 
-There are some older versions of NCCL available from the default channels but these versions will 
+There are some older versions of NCCL available from the default channels but these versions will
 not be useful (unless, perhaps, you are forced to use very old versions of TensorFlow or similar).
 
 ~~~
@@ -138,28 +141,30 @@ Loading channels: done
 nccl                           1.3.5      cuda10.0_0  pkgs/main
 nccl                           1.3.5       cuda9.0_0  pkgs/main
 nccl                           1.3.5       cuda9.2_0  pkgs/main
+nccl                         2.8.3.1      h91b26fc_0  pkgs/main
+nccl                         2.8.3.1      hcaf9a05_0  pkgs/main
+nccl                         2.8.3.1      heaad284_0  pkgs/main
 ~~~
 {: .language-bash}
 
-Not to worry: Conda Forge to the rescue! [Conda Forge](https://conda-forge.org/) is a 
-community-led collection of recipes, build infrastructure and distributions for the Conda package 
-manager. I always check the `conda-forge` channel when I can’t find something I need available on 
+Not to worry: Conda Forge to the rescue! [Conda Forge](https://conda-forge.org/) is a
+community-led collection of recipes, build infrastructure and distributions for the Conda package
+manager. I always check the `conda-forge` channel when I can’t find something I need available on
 the default channels.
 
 > ## Which version of NCCL are available via Conda Forge?
-> 
-> Find out which versions of the NVIDIA Collective Communications Library (NCCL) are available via 
+>
+> Find out which versions of the NVIDIA Collective Communications Library (NCCL) are available via
 > Conda Forge?
-> 
+>
 > > ## Solution
-> > 
+> >
 > > Use the `conda search` command with the `--channel conda-forge` option.
 > >
 > > ~~~
 > > $ conda search --channel conda-forge nccl
-> > 
+> >
 > > Loading channels: done
-> > 
 > > # Name                       Version           Build  Channel
 > > nccl                           1.3.5      cuda10.0_0  pkgs/main
 > > nccl                           1.3.5       cuda9.0_0  pkgs/main
@@ -189,25 +194,132 @@ the default channels.
 > > nccl                         2.6.4.1      h7cc98d6_0  conda-forge
 > > nccl                         2.6.4.1      hc6a2c23_0  conda-forge
 > > nccl                         2.6.4.1      hd6f8bf8_0  conda-forge
+> > nccl                         2.7.3.1      h51cf6c1_0  conda-forge
+> > nccl                         2.7.3.1      h7cc98d6_0  conda-forge
+> > nccl                         2.7.3.1      hc6a2c23_0  conda-forge
+> > nccl                         2.7.3.1      hd6f8bf8_0  conda-forge
+> > nccl                         2.7.5.1      h51cf6c1_0  conda-forge
+> > nccl                         2.7.5.1      h7cc98d6_0  conda-forge
+> > nccl                         2.7.5.1      hc6a2c23_0  conda-forge
+> > nccl                         2.7.5.1      hd6f8bf8_0  conda-forge
+> > nccl                         2.7.6.1      h51cf6c1_0  conda-forge
+> > nccl                         2.7.6.1      h7cc98d6_0  conda-forge
+> > nccl                         2.7.6.1      hc6a2c23_0  conda-forge
+> > nccl                         2.7.6.1      hd6f8bf8_0  conda-forge
+> > nccl                         2.7.8.1      h4962215_1  conda-forge
+> > nccl                         2.7.8.1      h51cf6c1_0  conda-forge
+> > nccl                         2.7.8.1      h51cf6c1_1  conda-forge
+> > nccl                         2.7.8.1      h7cc98d6_0  conda-forge
+> > nccl                         2.7.8.1      h7cc98d6_1  conda-forge
+> > nccl                         2.7.8.1      hc6a2c23_0  conda-forge
+> > nccl                         2.7.8.1      hc6a2c23_1  conda-forge
+> > nccl                         2.7.8.1      hd6f8bf8_0  conda-forge
+> > nccl                         2.7.8.1      hd6f8bf8_1  conda-forge
+> > nccl                         2.8.3.1      h1a5f58c_0  conda-forge
+> > nccl                         2.8.3.1      h86b6200_0  conda-forge
+> > nccl                         2.8.3.1      h8ae4b28_0  conda-forge
+> > nccl                         2.8.3.1      h8b44402_0  conda-forge
+> > nccl                         2.8.3.1      h91b26fc_0  pkgs/main
+> > nccl                         2.8.3.1      h96e36e3_0  conda-forge
+> > nccl                         2.8.3.1      hcaf9a05_0  pkgs/main
+> > nccl                         2.8.3.1      heaad284_0  pkgs/main
+> > nccl                         2.8.4.1      h1a5f58c_0  conda-forge
+> > nccl                         2.8.4.1      h1a5f58c_1  conda-forge
+> > nccl                         2.8.4.1      h1a5f58c_2  conda-forge
+> > nccl                         2.8.4.1      h1a5f58c_3  conda-forge
+> > nccl                         2.8.4.1      h86b6200_0  conda-forge
+> > nccl                         2.8.4.1      h86b6200_3  conda-forge
+> > nccl                         2.8.4.1      h8ae4b28_0  conda-forge
+> > nccl                         2.8.4.1      h8ae4b28_3  conda-forge
+> > nccl                         2.8.4.1      h8b44402_0  conda-forge
+> > nccl                         2.8.4.1      h8b44402_3  conda-forge
+> > nccl                         2.8.4.1      h96e36e3_0  conda-forge
+> > nccl                         2.8.4.1      h96e36e3_1  conda-forge
+> > nccl                         2.8.4.1      h96e36e3_2  conda-forge
+> > nccl                         2.8.4.1      h96e36e3_3  conda-forge
+> > nccl                         2.8.4.1      h97a9cb7_1  conda-forge
+> > nccl                         2.8.4.1      h97a9cb7_2  conda-forge
+> > nccl                         2.8.4.1      h97a9cb7_3  conda-forge
+> > nccl                         2.8.4.1      hdc17891_1  conda-forge
+> > nccl                         2.8.4.1      hdc17891_2  conda-forge
+> > nccl                         2.8.4.1      hdc17891_3  conda-forge
+> > nccl                         2.9.6.1      h1a5f58c_0  conda-forge
+> > nccl                         2.9.6.1      h86b6200_0  conda-forge
+> > nccl                         2.9.6.1      h8b44402_0  conda-forge
+> > nccl                         2.9.6.1      h96e36e3_0  conda-forge
+> > nccl                         2.9.6.1      h97a9cb7_0  conda-forge
+> > nccl                         2.9.6.1      hdc17891_0  conda-forge
+> > nccl                         2.9.8.1      h1a5f58c_0  conda-forge
+> > nccl                         2.9.8.1      h86b6200_0  conda-forge
+> > nccl                         2.9.8.1      h8b44402_0  conda-forge
+> > nccl                         2.9.8.1      h96e36e3_0  conda-forge
+> > nccl                         2.9.8.1      h97a9cb7_0  conda-forge
+> > nccl                         2.9.8.1      hdc17891_0  conda-forge
+> > nccl                         2.9.9.1      h1a5f58c_0  conda-forge
+> > nccl                         2.9.9.1      h86b6200_0  conda-forge
+> > nccl                         2.9.9.1      h8b44402_0  conda-forge
+> > nccl                         2.9.9.1      h96e36e3_0  conda-forge
+> > nccl                         2.9.9.1      h97a9cb7_0  conda-forge
+> > nccl                         2.9.9.1      hdc17891_0  conda-forge
+> > nccl                        2.10.3.1      h1a5f58c_0  conda-forge
+> > nccl                        2.10.3.1      h86b6200_0  conda-forge
+> > nccl                        2.10.3.1      h8b44402_0  conda-forge
+> > nccl                        2.10.3.1      h96e36e3_0  conda-forge
+> > nccl                        2.10.3.1      h97a9cb7_0  conda-forge
+> > nccl                        2.10.3.1      hdc17891_0  conda-forge
+> > nccl                        2.11.4.1      h17a0586_1  conda-forge
+> > nccl                        2.11.4.1      h17a0586_2  conda-forge
+> > nccl                        2.11.4.1      h1a5f58c_0  conda-forge
+> > nccl                        2.11.4.1      h1a5f58c_1  conda-forge
+> > nccl                        2.11.4.1      h1a5f58c_2  conda-forge
+> > nccl                        2.11.4.1      h5c60f85_1  conda-forge
+> > nccl                        2.11.4.1      h5c60f85_2  conda-forge
+> > nccl                        2.11.4.1      h7537e88_1  conda-forge
+> > nccl                        2.11.4.1      h7537e88_2  conda-forge
+> > nccl                        2.11.4.1      h86b6200_0  conda-forge
+> > nccl                        2.11.4.1      h8b44402_0  conda-forge
+> > nccl                        2.11.4.1      h96e36e3_0  conda-forge
+> > nccl                        2.11.4.1      h97a9cb7_0  conda-forge
+> > nccl                        2.11.4.1      hdc17891_0  conda-forge
+> > nccl                        2.12.7.1      h0800d71_0  conda-forge
+> > nccl                        2.12.7.1      h12f7317_0  conda-forge
+> > nccl                        2.12.7.1      h17a0586_0  conda-forge
+> > nccl                        2.12.7.1      h1a5f58c_0  conda-forge
+> > nccl                       2.12.10.1      h0800d71_0  conda-forge
+> > nccl                       2.12.10.1      h12f7317_0  conda-forge
+> > nccl                       2.12.10.1      h17a0586_0  conda-forge
+> > nccl                       2.12.10.1      h1a5f58c_0  conda-forge
+> > nccl                       2.12.12.1      h0800d71_0  conda-forge
+> > nccl                       2.12.12.1      h12f7317_0  conda-forge
+> > nccl                       2.12.12.1      h17a0586_0  conda-forge
+> > nccl                       2.12.12.1      h1a5f58c_0  conda-forge
+> > nccl                        2.13.4.1      h0800d71_0  conda-forge
+> > nccl                        2.13.4.1      h12f7317_0  conda-forge
+> > nccl                        2.13.4.1      h17a0586_0  conda-forge
+> > nccl                        2.13.4.1      h1a5f58c_0  conda-forge
+> > nccl                        2.14.3.1      h0800d71_0  conda-forge
+> > nccl                        2.14.3.1      h12f7317_0  conda-forge
+> > nccl                        2.14.3.1      h17a0586_0  conda-forge
+> > nccl                        2.14.3.1      h1a5f58c_0  conda-forge
 > > ~~~
 > > {: .language-bash}
-> {: .solution} 
+> {: .solution}
 {: .challenge}
 
 # Some example Conda environment files
 
-Now that you know how to figure out which versions of the various NVIDIA CUDA libraries are 
-available on which channels you are ready to write your environment.yml file. In this section I 
-will provide some example Conda environment files for PyTorch, TensorFlow, and NVIDIA RAPIDS to 
+Now that you know how to figure out which versions of the various NVIDIA CUDA libraries are
+available on which channels you are ready to write your environment.yml file. In this section I
+will provide some example Conda environment files for PyTorch, TensorFlow, and NVIDIA RAPIDS to
 help get you started on your next GPU data science project.
 
 ## PyTorch
 
-[PyTorch](https://pytorch.org/) is an open source machine learning library based on the Torch 
-library, used for applications such as computer vision and natural language processing. It is 
-primarily developed by Facebook’s AI Research lab. Conda is actually the 
-[recommended way](https://pytorch.org/get-started/locally/) to install PyTorch. The official 
-PyTorch binary ships with NCCL and cuDNN so it is not necessary to include these libraries in 
+[PyTorch](https://pytorch.org/) is an open source machine learning library based on the Torch
+library, used for applications such as computer vision and natural language processing. It is
+primarily developed by Facebook’s AI Research lab. Conda is actually the
+[recommended way](https://pytorch.org/get-started/locally/) to install PyTorch. The official
+PyTorch binary ships with NCCL and cuDNN so it is not necessary to include these libraries in
 your `environment.yml` file (unless some other package also needs these libraries!).
 
 ~~~
@@ -219,62 +331,72 @@ channels:
   - defaults
 
 dependencies:
-  - cudatoolkit=10.1
-  - pip=20.0
-  - python=3.7
-  - pytorch=1.5
-  - torchvision=0.6
+  - cudatoolkit=11.3
+  - pip=22.3
+  - python=3.10
+  - pytorch=1.13
+  - torchvision=0.14
 ~~~
 {: .language-yaml}
 
 > ## Check your channel priorities!
-> 
-> Also take note of the channel priorities: the official `pytorch` channel must be given priority 
-> over `conda-forge` in order to insure that the official PyTorch binaries (the ones that include 
-> NCCL and cuDNN) will be installed (otherwise you will get some unofficial version of PyTorch 
-> available on `conda-forge`).
+>
+> Also take note of the channel priorities: the official `pytorch` channel must be given priority
+> over `conda-forge` in order to insure that the official PyTorch binaries (the ones that include
+> NCCL and cuDNN) will be installed otherwise you will get some unofficial version of PyTorch
+> available on `conda-forge` and these may not include NCCL and cuDNN.
 {: .callout}
 
 ## TensorFlow
 
-[TensorFlow](https://www.tensorflow.org/) is a free, open-source software library for dataflow and 
-differentiable programming across a range of tasks. It is a symbolic math library, and is also used 
-for machine learning applications such as neural networks. There are lots of versions and builds of 
-TensorFlow available via Conda (the output of `conda search tensorflow` is too long to share here!). 
+[TensorFlow](https://www.tensorflow.org/) is a free, open-source software library for dataflow and
+differentiable programming across a range of tasks. It is a symbolic math library, and is also used
+for machine learning applications such as neural networks. There are lots of versions and builds of
+TensorFlow available via Conda (the output of `conda search tensorflow` is too long to share here!).
 
-How do you decide which version is the “correct” version? How to make sure that you get a build 
-that includes GPU support? At this point you have seen all the Conda "tricks" required  to solve 
+How do you decide which version is the “correct” version? How to make sure that you get a build
+that includes GPU support? At this point you have seen all the Conda "tricks" required  to solve
 this one yourself!
 
 > ## Create an `environment.yml` file for TensorFlow
-> 
-> In this exercise you will create a Conda environment for TensorFlow. Important CUDA dependencies 
-> of TensorFlow are the CUDA Toolkit, cuDNN, and 
-> [CUPTI](https://docs.nvidia.com/cuda/cupti/index.html). Don't forget that if you want to train 
-> on more than one GPU, then your environment will also need NCCL and an MPI implementation.
-> 
+>
+> In this exercise you will create a Conda environment for TensorFlow. Important CUDA dependencies
+> of TensorFlow are the CUDA Toolkit (`cudatoolkit`), cuDNN (`cudnn`), and
+> [CUPTI](https://docs.nvidia.com/cuda/cupti/index.html) (`cupti`). Don't forget that if you want to train
+> on more than one GPU, then your environment will also need NCCL (`nccl`) and an MPI implementation
+> (`mpi4py`).
+>
+>
+> Create a `tensorflow-env.yml` and include the `conda-forge` and `default` channels with the former taking
+> precedence and set the packages that you wish to install.
+>
 > > ## Solution
-> > 
-> > Use the `tensorflow-gpu` meta-package to select the appropriate version and build of TensorFlow for 
+> >
+> > Use the `tensorflow-gpu` meta-package to select the appropriate version and build of TensorFlow for
 > > your OS; use [`mpi4py`](https://mpi4py.readthedocs.io/en/stable/) to get a CUDA-aware OpenMPI build.
-> > 
+> >
+> > Since yo do not know the versions available in the repositories you can use `conda search --channel
+> > conda-forge <pkgname>` to find these out before listing in your `tensorflow-env.yml`.
 > > ~~~
-> > name: null
-> > 
+> > name: tensorfloww
+> >
 > > channels:
 > >   - conda-forge
 > >   - defaults
-> > 
+> >
 > > dependencies:
-> >   - cudatoolkit=10.1
-> >   - cudnn=7.6
-> >   - cupti=10.1
-> >   - mpi4py=3.0 # installs cuda-aware openmpi
-> >   - nccl=2.4
-> >   - pip=20.0
-> >   - python=3.7
-> >   - tensorflow-gpu=2.1 # installs tensorflow=2.1=gpu_py37h7a4bb67_0
+> >   - cudatoolkit=11.8
+> >   - cudnn=8.4
+    > >   - cupti=11.3
+> >   - mpi4py=3.1 # installs cuda-aware openmpi
+> >   - nccl=2.14
+> >   - pip=22.3
+> >   - python=3.10
+> >   - tensorflow-gpu=2.11 # installs tensorflow=2.1=gpu_py37h7a4bb67_0
 > > ~~~
+> >
+> > Don't forget to add your `tensorflow-env.yml` to your Git version control so you've a record of how it has developed
+> > over time.
 > > {: .language-yaml}
-> {: .solution} 
+> {: .solution}
 {: .challenge}
