@@ -95,6 +95,15 @@ Conda environment across updates.
 > `environment.yml` files together with your project's source code means that you always know
 > which versions of which packages were used to generate your results at any particular point in
 > time.
+>
+> Version control is a system of keeping track of changes that are made to files, in this case the `environment.yml`
+> file. It's really useful to do so if for example you make a change, for example updating a specific version of a
+> package and you find it breaks something in your environment or when running your code as you then have a record of
+> what it previously was and can revert the changes.
+>
+> There are many systems for version control but the one you are most likely to encounter and we would recommend
+> learning is [Git](https://git-scm.com/). Unfortunately the topic is too broad to cover in this material but we include
+> the commands to version control your files at the command line using Git.
 {: .callout}
 
 Let's suppose that you want to use the `environment.yml` file defined above to create a Conda
@@ -137,10 +146,13 @@ we see that these five packages result in an environment with roughly 80 depende
 To export this list into an environment.yml file, you can use `--file` option to directly save the
 resulting YAML environment into a file. If the target for `--file` exists it will be over-written so make sure your
 filename is unique. So that we do not over-write `environment.yaml` we save the output to `machine-learning-env.yaml`
-instead.
+instead and add it to
 
 ~~~
 $ conda env export --name machine-learning-env --file machine-learning-env.yml
+$ git init
+$ git add machine-learning-env.yml
+$ git commit -m "Adding machine-learning-env.yml config file."
 ~~~
 {: .language-bash}
 
@@ -149,12 +161,14 @@ This exported environment file may not *consistently* produce environments that 
 across operating systems. The reason for this is, that it may include operating system specific low-level
 packages which cannot be used by other operating systems.
 
-If you need an environment file that can produce environments that are reproducibile across Mac OS, Windows,
+If you need an environment file that can produce environments that are reproducible across Mac OS, Windows,
 and Linux, then you are better off just including those packages into the environment file that you have
 specifically installed.
 
 ~~~
 $ conda env export --name machine-learning-env --from-history --file machine-learning-history-env.yml
+$ git add machine-learning-history-env.yml
+$ git commit -m "Adding machine-learning-history-env.yml based on environment history"
 ~~~
 {: .language-bash}
 
@@ -189,6 +203,9 @@ make sure to add the `--from-history` argument to the `conda env export` command
 > > $ mkdir scikit-learn-project
 > > $ cd scikit-learn-project
 > > $ conda env create --file scikit-learn-env.yml
+> > $ git init
+> > $ git add scikit-learn-env.yml
+> > $ git commit -m "Adding scikit-learn-env.yml config file"
 > > ~~~
 > > {: .language-bash}
 > >
@@ -239,6 +256,8 @@ the contents of your `environment.yml` file accordingly and then run the followi
 
 ~~~
 $ conda env update --name project-env --file environment.yml --prune
+$ git add environment.yml
+$ git commit -m "Updating environment.yml config file"
 ~~~
 {: .language-bash}
 
@@ -259,13 +278,13 @@ The `--prune` option tells Conda to remove any dependencies that are no longer r
 
 > ## Add Dask to the environment to scale up your analytics
 >
-> Add `dask` to the `scikit-env` environment file and update the environment. [Dask](https://dask.org/)
+> Add `dask` to the `scikit-learn-env.yml` environment file and update the environment. [Dask](https://dask.org/)
 > provides advanced parallelism for data science workflows enabling performance at scale for the
 > core Python data science tools such as Numpy Pandas, and Scikit-Learn.
 >
 > > ## Solution
 > >
-> > The `environment.yml` file should now look as follows.
+> > The `scikit-learn-env.yml` file should now look as follows.
 > >
 > > ~~~
 > > name: scikit-learn-env
@@ -293,6 +312,14 @@ The `--prune` option tells Conda to remove any dependencies that are no longer r
 > >
 > > ~~~
 > > $ conda env update --name project-env --file environment.yml  --prune
+> > ~~~
+> > {: .language-bash}
+> >
+> > You would then add and commit the changes to the `scikit-learn-env.yml` to Git to keep the changes under version
+> > control.
+> > ~~~
+> > $ git add scikit-learn-env.yml
+> > $ git commit -m "Updating scikit-learn-env.yml with dask"
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
@@ -347,6 +374,9 @@ The `--prune` option tells Conda to remove any dependencies that are no longer r
 > A `requirements.txt` file has a similar structure although it does not use YAML markup, instead it simply lists the
 > packages by name. If a specific version is required then as above it is specified with `==`. Remember you should not
 > include `pip` in the `requirements.txt` because this should be installed by and managed by Conda in your environment.
+>
+> If you use a `requirements.txt` file then you should add this to your Git repository so it too is maintained under
+> version control.
 >
 > ```
 > kaggle
