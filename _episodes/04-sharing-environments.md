@@ -108,7 +108,7 @@ $ cd project-dir
 ~~~
 
 Once your project folder is created, create `environment.yml` using your favourite editor for instance `nano`.
-Finally create a new conda environment:
+Finally create a new Conda environment:
 
 ~~~
 $ conda env create --name project-env --file environment.yml
@@ -135,16 +135,15 @@ originally created `machine-learning-env` yet from the output of the `conda env 
 we see that these five packages result in an environment with roughly 80 dependencies!
 
 To export this list into an environment.yml file, you can use `--file` option to directly save the
-resulting YAML environment into a file.
+resulting YAML environment into a file. If the target for `--file` exists it will be over-written so make sure your
+filename is unique. So that we do not over-write `environment.yaml` we save the output to `machine-learning-env.yaml`
+instead.
 
 ~~~
-$ conda env export --name machine-learning-env --file environment.yml
+$ conda env export --name machine-learning-env --file machine-learning-env.yml
 ~~~
 {: .language-bash}
 
-Make sure you do not have any other `environment.yml` file from before in the same directory when
-running the above command. If you do you can use an alternative destination filename, e.g. `--file
-machline-learning-env.yaml`.
 
 This exported environment file may not *consistently* produce environments that are reproducible
 across operating systems. The reason for this is, that it may include operating system specific low-level
@@ -155,7 +154,7 @@ and Linux, then you are better off just including those packages into the enviro
 specifically installed.
 
 ~~~
-$ conda env export --name machine-learning-env --from-history --file environment.yml
+$ conda env export --name machine-learning-env --from-history --file machine-learning-history-env.yml
 ~~~
 {: .language-bash}
 
@@ -187,9 +186,9 @@ make sure to add the `--from-history` argument to the `conda env export` command
 > > To create a new environment from a YAML file use the `conda env create` sub-command as follows.
 > >
 > > ~~~
-> > $ mkdir scikit-learn-project-dir
-> > $ cd scikit-learn-project-dir
-> > $ conda env create --file environment.yml
+> > $ mkdir scikit-learn-project
+> > $ cd scikit-learn-project
+> > $ conda env create --file scikit-learn-env.yml
 > > ~~~
 > > {: .language-bash}
 > >
@@ -215,7 +214,7 @@ make sure to add the `--from-history` argument to the `conda env export` command
 >   - defaults
 >
 > dependencies:
->   - pytorch=1.3
+>   - pytorch=1.13
 > ~~~
 > {: .language-yaml}
 >
