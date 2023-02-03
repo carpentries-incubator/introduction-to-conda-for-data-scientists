@@ -328,7 +328,8 @@ issues](https://www.anaconda.com/blog/using-pip-in-a-conda-environment) that you
 install Python packages when using Conda.
 
 First, `pip` is sometimes installed by default on operating systems where it is used to manage any Python packages
-needed by your OS. **You do not want to use this `pip` to install Python packages when using Conda environments.**
+needed by your OS. **You do not want to use `/usr/bin/pip` to install Python packages when using Conda
+environments.**
 
 ~~~
 (base) $ conda deactivate
@@ -340,8 +341,8 @@ $ which pip # sometimes installed as pip3
 {: .language-bash}
 
 Second, `pip` is also included in the Miniconda installer where it is used to install and manage OS specific Python
-packages required to setup your `base` Conda environment. **You do not want to use this `pip` to install Python packages
-when using Conda environments.**
+packages required to setup your `base` Conda environment. **You do not want to use this `~/miniconda3/bin/pip` to
+install Python packages when using Conda environments.**
 
 ~~~
 $ conda activate
@@ -352,18 +353,18 @@ $ which pip
 ~~~
 {: .language-bash}
 
-> ## Another reaon to avoid installing packages into your `base` Conda environment
+> ## Why should I avoid installing packages into your `base` Conda environment?
 >
 > If your `base` Conda environment becomes cluttered with a mix of `pip` and Conda installed
-> packages it may no longer function. Creating separate conda environments allows you to
+> packages it may no longer function. Creating separate Conda environments allows you to
 > delete and recreate environments readily so you dont have to worry about risking your core
 > Conda functionality when mixing packages installed with Conda and Pip.
 {: .callout}
 
 If you find yourself needing to install a Python package that is only available via PyPI, then you should first install
-`pip` into your Conda environment and then use that `pip` to install  the desired package from PyPI. Using the `pip`
+`pip` into your Conda environment and then use that `pip` to install the desired package from PyPI. Using the `pip`
 installed in your Conda environment to install Python packages not available via Conda channels will help you avoid
-difficult to debug issues that frequently  arise when using Python packages installed via a `pip` that was not installed
+difficult to debug issues that frequently arise when using Python packages installed via a `pip` that was not installed
 inside you Conda environment.
 
 > ## Conda (+Pip)
@@ -391,7 +392,7 @@ inside you Conda environment.
 > > ~~~
 > > $ conda install --name machine-learning-env pip
 > > $ conda activate machine-learning-env
-> > $ python -m pip install combo==0.1.*
+> > $ pip install combo==0.1.*
 > > ~~~
 > > {: .language-bash}
 > >
