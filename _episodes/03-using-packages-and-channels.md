@@ -106,7 +106,7 @@ passing the `--channel` option to the `conda install` command as follows.
 
 ~~~
 $ conda activate machine-learning-env
-$ conda install scipy=1.6 --channel conda-forge
+$ conda install scipy=1.10.0 --channel conda-forge
 ~~~
 {: .language-bash}
 
@@ -116,7 +116,7 @@ following command installs the `scipy` package from the `conda-forge` channel in
 called `my-first-conda-env` which we created earlier.
 
 ~~~
-$ conda install scipy=1.6 --channel conda-forge --name machine-learning-env
+$ conda install scipy=1.10.0 --channel conda-forge --name machine-learning-env
 ~~~
 {: .language-bash}
 
@@ -124,7 +124,7 @@ The following command would install `tensorflow` package from `conda-forge` chan
 `machine-learning-env`.
 
 ~~~
-$ conda install tensorflow=1.14 --channel conda-forge --name machine-learning-env
+$ conda install tensorflow=2.10.0 --channel conda-forge --name machine-learning-env
 ~~~
 {: .language-bash}
 
@@ -134,7 +134,7 @@ $ conda install tensorflow=1.14 --channel conda-forge --name machine-learning-en
 > multiple times.
 >
 > ~~~
-> $ conda install scipy=1.6 --channel conda-forge --channel bioconda
+> $ conda install scipy=1.10.0 --channel conda-forge --channel bioconda
 > ~~~
 > {: .language-bash}
 >
@@ -149,11 +149,11 @@ $ conda install tensorflow=1.14 --channel conda-forge --name machine-learning-en
 
 ## My package isn't available on the `defaults` channel! What should I do?
 
-It may very well be the case that packages (or often more recent versions of packages!) that you need to
+You may find that packages (or often more recent versions of packages!) that you need to
 install for your project are not available on the `defaults` channel.  In this case you should try the
 following.
 
-1.  `conda-forge`: the `conda-forge` channel contains a large number of community curated conda
+1.  `conda-forge`: the `conda-forge` channel contains a large number of community curated Conda
     packages. Typically the most recent versions of packages that are generally available via the
     `defaults` channel are available on `conda-forge` first.
 2. `bioconda`: the `bioconda` channel also contains a large number of Bioinformatics curated conda packages.
@@ -163,7 +163,9 @@ following.
     domain-specific channel like `bioconda`) a package can be installed into a conda
     environment from PyPI using `pip`. It's fine to just use `pip` for installing most packages.
 
-For example, [Kaggle](https://www.kaggle.com/) publishes a Python 3 API that can be used to interact with Kaggle datasets, kernels and competition submissions. You can search for the package on the `defaults` channels but you will not find it!
+For example, [Kaggle](https://www.kaggle.com/) publishes a Python 3 API that can be used to interact with Kaggle
+datasets, kernels and competition submissions. You can search for the package on the `defaults` channels but you will
+not find it!
 
 ~~~
 $ conda search kaggle
@@ -256,18 +258,23 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > packages, in particular `pytorch` (PyTorch core) and `torchvision` (datasets, transforms, and
 > models specific to computer vision).
 >
-> Create a new directory called `my-computer-vision-project` and then create a Python 3.10
-> environment called `my-computer-vision-project` with the two packages listed above. Also include
-> the most recent version of `jupyterlab` in your environment (so you have a nice UI) and
-> `matplotlib` (so you can make plots).
+> Create a new directory called `my-computer-vision-project` and then create a Python 3.10 environment called
+> `my-computer-vision-project` with the two packages listed above. Also include the most recent versions of `jupyterlab`
+> (so you have a nice UI) and `matplotlib` (so you can make plots) in your environment .
 >
 > > ## Solution
 > >
-> > In order to create a new environment you use the `conda create` command as follows.
+> > In order to create a new environment you use the `conda create` command as follows. After making the directory we
+> check what versions of `pytorch` and `torchvision` are available so you can install explicit versions of these. This
+> is done using the `base` Conda environment. Then you can create a new Conda environment with the versions of Python,
+> and packages required
 > >
 > > ~~~
 > > $ mkdir my-computer-vision-project
 > > $ cd my-computer-vision-project/
+> > # Check available versions of pytorch and torchvision on the pytorch channel
+> > $ conda search --channel pytorch pytorch
+> > $ conda search --channel pytorch torchvision
 > > $ conda create --name my-computer-vision-project --channel pytorch \
 > >  python=3.10 \
 > >  jupyterlab \
