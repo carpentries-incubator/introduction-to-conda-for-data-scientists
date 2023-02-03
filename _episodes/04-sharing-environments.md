@@ -271,7 +271,7 @@ The `--prune` option tells Conda to remove any dependencies that are no longer r
 > > name: scikit-learn-env
 > >
 > > dependencies:
-> >   - dask=2023.1
+> >   - dask=2022.7
 > >   - dask-ml=2022.5
 > >   - ipython=8.8
 > >   - matplotlib=3.6
@@ -313,18 +313,18 @@ The `--prune` option tells Conda to remove any dependencies that are no longer r
 >  - matplotlib=3.1
 >  - pandas=0.24
 >  - scikit-learn=0.21
->  - pip=19.1
+>  - pip=22.3
 >  - pip:
 >    - kaggle==1.5
 >    - yellowbrick==1.5
 > ~~~
 >
 > Note the double '==' instead of '=' for the `pip` installation and that you should include `pip` itself
-> as a Conda dependency and then a subsection denoting those packages to be installed via `pip`. Also in case
+> as a Conda dependency and then a subsection denoting those packages to be installed via `pip`. In case
 > you are wondering, the [Yellowbrick](https://www.scikit-yb.org/en/latest/) package is a suite of
 > visual diagnostic tools called “Visualizers” that extend the
 > [Scikit-Learn](https://scikit-learn.org/stable/) API to allow human steering of the model selection
-> process. Recent version of yellowbrick can also be installed using `conda` from the `conda-forge` channel.
+> process. Recent version of Yellowbrick can also be installed using `conda` from the `conda-forge` channel.
 >
 > ~~~
 > $ conda install --channel conda-forge yellowbrick=1.2 --name project-env
@@ -343,6 +343,15 @@ The `--prune` option tells Conda to remove any dependencies that are no longer r
 >
 > Conda will then install your `pip` dependencies using `python -m pip install -r requirements.txt`
 > (after creating the Conda environment and installing all Conda installable dependencies).
+>
+> A `requirements.txt` file has a similar structure although it does not use YAML markup, instead it simply lists the
+> packages by name. If a specific version is required then as above it is specified with `==`. Remember you should not
+> include `pip` in the `requirements.txt` because this should be installed by and managed by Conda in your environment.
+>
+> ```
+> kaggle
+> yellowbrick==1.5
+> ```
 {: .callout}
 
 {% include links.md %}
