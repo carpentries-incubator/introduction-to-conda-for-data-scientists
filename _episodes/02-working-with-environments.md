@@ -428,7 +428,7 @@ longer need an existing environment and just want to get rid of cruft on your ma
 the reason, the command to delete an environment is the following.
 
 ~~~
-$ conda remove --name my-first-conda-env --all
+$ conda remove --name first-conda-env --all
 ~~~
 {: .language-bash}
 

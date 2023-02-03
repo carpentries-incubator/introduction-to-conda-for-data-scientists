@@ -113,7 +113,7 @@ $ conda install scipy=1.10.0 --channel conda-forge
 
 You can also install a package from a specific channel into a named environment (using `--name`). For example, the
 following command installs the `scipy` package from the `conda-forge` channel into the environment
-called `my-first-conda-env` which we created earlier.
+called `first-conda-env` which we created earlier.
 
 ~~~
 $ conda install scipy=1.10.0 --channel conda-forge --name machine-learning-env
@@ -258,8 +258,8 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > packages, in particular `pytorch` (PyTorch core) and `torchvision` (datasets, transforms, and
 > models specific to computer vision).
 >
-> Create a new directory called `my-computer-vision-project` and then create a Python 3.10 environment called
-> `my-computer-vision-project` with the two packages listed above. Also include the most recent versions of `jupyterlab`
+> Create a new directory called `computer-vision-project` and then create a Python 3.10 environment called
+> `computer-vision-project` with the two packages listed above. Also include the most recent versions of `jupyterlab`
 > (so you have a nice UI) and `matplotlib` (so you can make plots) in your environment .
 >
 > > ## Solution
@@ -270,12 +270,12 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > and packages required
 > >
 > > ~~~
-> > $ mkdir my-computer-vision-project
-> > $ cd my-computer-vision-project/
+> > $ mkdir computer-vision-project
+> > $ cd computer-vision-project/
 > > # Check available versions of pytorch and torchvision on the pytorch channel
 > > $ conda search --channel pytorch pytorch
 > > $ conda search --channel pytorch torchvision
-> > $ conda create --name my-computer-vision-project --channel pytorch \
+> > $ conda create --name computer-vision-project --channel pytorch \
 > >  python=3.10 \
 > >  jupyterlab \
 > >  pytorch=1.13.1 \
@@ -296,11 +296,11 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > more explicitly links the channel being used to install a particular package.
 >
 > ~~~
-> $ conda install conda-forge::tensorflow --name my-computer-vision-project
+> $ conda install conda-forge::tensorflow --name computer-vision-project
 > ~~~
 > {: .language-bash}
 >
-> Create a new folder `my-final-project` in `~/Desktop/introduction-to-conda-for-data-scientists` and repeat the
+> Create a new folder `final-project` in `~/Desktop/introduction-to-conda-for-data-scientists` and repeat the
 > previous exercise using this alternative syntax to install `python`, `jupyterlab`, and `matplotlib` from the
 > `conda-forge` channel and `pytorch` and `torchvision` from the `pytorch` channel.
 >
@@ -310,9 +310,9 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > >
 > > ~~~
 > > $ cd ~/Desktop/introduction-to-conda-for-data-scientists
-> > $ mkdir my-final-project
-> > $ cd my-final-project/
-> > $ conda create --name my-final-project \
+> > $ mkdir final-project
+> > $ cd final-project/
+> > $ conda create --name final-project \
 > >  conda-forge::python=3.10 \
 > >  conda-forge::jupyterlab \
 > >  conda-forge::matplotlib \
