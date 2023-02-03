@@ -67,7 +67,7 @@ most current and mutually compatible versions of the listed packages (including 
 dependencies). The newly created environment would be installed inside the `~/miniconda3/envs/`
 directory, unless we specified a different path using `--prefix`.
 
-If you prefer to use explicit versions numbers for all packages:
+If you prefer you can use explicit versions numbers for all packages:
 
 ~~~
 name: machine-learning-env
