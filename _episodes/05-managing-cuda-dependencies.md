@@ -211,7 +211,7 @@ PyTorch binary ships with NCCL and cuDNN so it is not necessary to include these
 your `environment.yml` file (unless some other package also needs these libraries!).
 
 ~~~
-name: null
+name: pytorch-gpu
 
 channels:
   - pytorch
@@ -259,7 +259,7 @@ this one yourself!
 > > your OS; use [`mpi4py`](https://mpi4py.readthedocs.io/en/stable/) to get a CUDA-aware OpenMPI build.
 > > 
 > > ~~~
-> > name: null
+> > name: tensorflow-gpu
 > > 
 > > channels:
 > >   - conda-forge
