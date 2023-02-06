@@ -181,3 +181,15 @@ We might want to check this has worked:
 ```
 python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
 ```
+
+> ## Environment variables
+> Your install instructions might include a line like this:
+> 
+> ```
+> export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/
+> ```
+> 
+> This line sets an "environment variable", which is a way of making a small piece of
+> information available to your software. These are often set for the entire operating system,
+>  but Conda lets us set them differently in different environments. 
+{: .callout}
