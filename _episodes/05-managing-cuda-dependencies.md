@@ -147,7 +147,7 @@ conda env export
 We might want to check this has worked:
 
 ```
-python -c "import pytorch; print(torch.cuda.is_available())"
+python -c "import torch; print(torch.cuda.is_available())"
 ```
 
 ## TensorFlow
