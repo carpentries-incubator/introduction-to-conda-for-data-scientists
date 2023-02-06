@@ -271,7 +271,7 @@ The `--prune` option tells Conda to remove any dependencies that are no longer r
 
 > ## Add Dask to the environment to scale up your analytics
 >
-> Add `dask` to the `scikit-env` environment file and update the environment. [Dask](https://dask.org/)
+> Add `dask` to the `scikit-learn-env` environment file and update the environment. [Dask](https://dask.org/)
 > provides advanced parallelism for data science workflows enabling performance at scale for the
 > core Python data science tools such as Numpy Pandas, and Scikit-Learn.
 >
