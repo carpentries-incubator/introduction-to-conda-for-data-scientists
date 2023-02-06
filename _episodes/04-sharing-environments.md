@@ -11,9 +11,8 @@ objectives:
 - "Create an environment based on exact package versions."
 - "Create a custom kernel for a Conda environment for use inside JupyterLab and Jupyter notebooks."
 keypoints:
-- "Sharing Conda environments with other researchers facilitates the reprodicibility of your research."
+- "Sharing Conda environments with other researchers facilitates the reproducibility of your research."
 - "Create an`environment.yml` file that describes your project's software environment."
-- "Creating custom kernels enables you to connect your Conda environments to an existing JupterLab install."
 ---
 
 ## Working with environment files
@@ -283,8 +282,8 @@ The `--prune` option tells Conda to remove any dependencies that are no longer r
 > > name: scikit-learn-env
 > >
 > > dependencies:
-> >   - dask=2023.1
-> >   - dask-ml=2022.5
+> >   - dask=2022.7.0
+> >   - dask-ml=2022.5.27
 > >   - ipython=8.8
 > >   - matplotlib=3.6
 > >   - pandas=1.5
