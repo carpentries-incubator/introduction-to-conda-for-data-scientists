@@ -1,21 +1,16 @@
 ---
-title: "Managing GPU dependencies"
+title: "Managing packages with GPU dependencies"
 teaching: 45
 exercises: 15
 questions:
-- "Which NVIDIA libraries are available via Conda?"
-- "What do you do when you need the NVIDIA CUDA Compiler (NVCC) for your project?"
+- "What packages have GPU dependencies?"
 objectives:
 - "Show how to use Conda to manage key GPU dependencies for you next (data) science project."
-- "Show how to identify which versions of CUDA packages are available via Conda."
-- "Understand how to write a Conda environment file for a project with GPU dependencies."
-- "Understand when you need the NVIDIA CUDA Compiler (NVCC) and how  to handle this situation." 
+- "Install `pytorch` with GPU support."
+- "Install `TensorFlow` with GPU support."
 keypoints:
 - "Conda can be used to manage your key GPU dependencies."
-- "Use `conda search` to identify which version of CUDA libraries are available."
-- "For most projects you will not need NVCC and can use the `cudatoolkit` package from default channels."
-- "If your project does need NVCC, try `cudatoolkit-dev` package or `nvcc_linux-64` meta-package (requires separate NVIDIA CUDA Toolkit 
-  install)."
+- "Conda can be used to install `pytorch` and `TensorFlow`."
 ---
 
 # Getting familiar with NVIDIA CUDA libraries
@@ -34,8 +29,7 @@ install a bunch of different versions of NVIDIA CUDA Toolkit, NCCL, and cuDNN sy
 use environment variables to control the “active” versions for each project but this is cumbersome 
 and error prone. Fortunately there are better ways!
 
-In this episode we are going to see how to manage project specific versions of the NVIDIA CUDA 
-Toolkit, NCCL, and cuDNN using Conda.
+In this episode we are going to see how to manage project specific versions of the NVIDIA packages using Conda.
 
 ## Are NVIDIA libraries available via Conda?
 
@@ -86,7 +80,7 @@ GPU-accelerated library of primitives for deep neural networks. cuDNN provides h
 implementations for standard routines such as forward and backward convolution, pooling, 
 normalization, and activation layers. 
 
-If you are interested in deep learning, then you will need to get your hands on cuDNN. Various 
+If you are interested in deep learning, then you may need to get your hands on cuDNN. Various 
 versions of cuDNN are available from the default channels.
 
 ~~~
@@ -118,163 +112,72 @@ cudnn                          7.6.5       cuda9.2_0  pkgs/main
 ~~~
 {: .language-bash}
 
-## What about NCCL?
+# Environments with `pytorch` and `TensorFlow`
 
-If you are already accelerating your (data) science workflows with a GPU, then in the near future 
-you will probably be interested in using more than one GPU. The 
-[NVIDIA Collective Communications Library (NCCL)](https://developer.nvidia.com/nccl) implements 
-multi-GPU and multi-node collective communication primitives that are performance optimized for 
-NVIDIA GPUs.
-
-There are some older versions of NCCL available from the default channels but these versions will 
-not be useful (unless, perhaps, you are forced to use very old versions of TensorFlow or similar).
-
-~~~
-$ conda search nccl
-
-Loading channels: done
-
-# Name                       Version           Build  Channel
-nccl                           1.3.5      cuda10.0_0  pkgs/main
-nccl                           1.3.5       cuda9.0_0  pkgs/main
-nccl                           1.3.5       cuda9.2_0  pkgs/main
-~~~
-{: .language-bash}
-
-Not to worry: Conda Forge to the rescue! [Conda Forge](https://conda-forge.org/) is a 
-community-led collection of recipes, build infrastructure and distributions for the Conda package 
-manager. I always check the `conda-forge` channel when I can’t find something I need available on 
-the default channels.
-
-> ## Which version of NCCL are available via Conda Forge?
-> 
-> Find out which versions of the NVIDIA Collective Communications Library (NCCL) are available via 
-> Conda Forge?
-> 
-> > ## Solution
-> > 
-> > Use the `conda search` command with the `--channel conda-forge` option.
-> >
-> > ~~~
-> > $ conda search --channel conda-forge nccl
-> > 
-> > Loading channels: done
-> > 
-> > # Name                       Version           Build  Channel
-> > nccl                           1.3.5      cuda10.0_0  pkgs/main
-> > nccl                           1.3.5       cuda9.0_0  pkgs/main
-> > nccl                           1.3.5       cuda9.2_0  pkgs/main
-> > nccl                         2.4.6.1      h51cf6c1_0  conda-forge
-> > nccl                         2.4.6.1      h7cc98d6_0  conda-forge
-> > nccl                         2.4.6.1      hc6a2c23_0  conda-forge
-> > nccl                         2.4.6.1      hd6f8bf8_0  conda-forge
-> > nccl                         2.4.7.1      h51cf6c1_0  conda-forge
-> > nccl                         2.4.7.1      h7cc98d6_0  conda-forge
-> > nccl                         2.4.7.1      hd6f8bf8_0  conda-forge
-> > nccl                         2.4.8.1      h51cf6c1_0  conda-forge
-> > nccl                         2.4.8.1      h51cf6c1_1  conda-forge
-> > nccl                         2.4.8.1      h7cc98d6_0  conda-forge
-> > nccl                         2.4.8.1      h7cc98d6_1  conda-forge
-> > nccl                         2.4.8.1      hd6f8bf8_0  conda-forge
-> > nccl                         2.4.8.1      hd6f8bf8_1  conda-forge
-> > nccl                         2.5.6.1      h51cf6c1_0  conda-forge
-> > nccl                         2.5.6.1      h7cc98d6_0  conda-forge
-> > nccl                         2.5.6.1      hc6a2c23_0  conda-forge
-> > nccl                         2.5.6.1      hd6f8bf8_0  conda-forge
-> > nccl                         2.5.7.1      h51cf6c1_0  conda-forge
-> > nccl                         2.5.7.1      h7cc98d6_0  conda-forge
-> > nccl                         2.5.7.1      hc6a2c23_0  conda-forge
-> > nccl                         2.5.7.1      hd6f8bf8_0  conda-forge
-> > nccl                         2.6.4.1      h51cf6c1_0  conda-forge
-> > nccl                         2.6.4.1      h7cc98d6_0  conda-forge
-> > nccl                         2.6.4.1      hc6a2c23_0  conda-forge
-> > nccl                         2.6.4.1      hd6f8bf8_0  conda-forge
-> > ~~~
-> > {: .language-bash}
-> {: .solution} 
-{: .challenge}
-
-# Some example Conda environment files
-
-Now that you know how to figure out which versions of the various NVIDIA CUDA libraries are 
-available on which channels you are ready to write your environment.yml file. In this section I 
-will provide some example Conda environment files for PyTorch, TensorFlow, and NVIDIA RAPIDS to 
-help get you started on your next GPU data science project.
+Both `pytorch` and `TensorFlow` provide installation options using Conda.
 
 ## PyTorch
 
 [PyTorch](https://pytorch.org/) is an open source machine learning library based on the Torch 
 library, used for applications such as computer vision and natural language processing. It is 
-primarily developed by Facebook’s AI Research lab. Conda is actually the 
-[recommended way](https://pytorch.org/get-started/locally/) to install PyTorch. The official 
-PyTorch binary ships with NCCL and cuDNN so it is not necessary to include these libraries in 
-your `environment.yml` file (unless some other package also needs these libraries!).
+primarily developed by Facebook’s AI Research lab.
 
-~~~
-name: pytorch-gpu
+PyTorch has a [handy tool to help you figure out what commands to run](https://pytorch.org/) to install on your platform. First, we'll make an empty Conda environment and activate it:
 
-channels:
-  - pytorch
-  - conda-forge
-  - defaults
+```
+conda create --name pytorch-with-gpu
+conda activate pytorch-with-gpu
+```
 
-dependencies:
-  - cudatoolkit=10.1
-  - pip=20.0
-  - python=3.7
-  - pytorch=1.5
-  - torchvision=0.6
-~~~
-{: .language-yaml}
+Then we'll run the command recommended for our platform e.g. Windows 10:
 
-> ## Check your channel priorities!
-> 
-> Also take note of the channel priorities: the official `pytorch` channel must be given priority 
-> over `conda-forge` in order to insure that the official PyTorch binaries (the ones that include 
-> NCCL and cuDNN) will be installed (otherwise you will get some unofficial version of PyTorch 
-> available on `conda-forge`).
-{: .callout}
+```
+conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
+```
+
+From what we've learned, we can see that the **pytorch** channel will be used at the
+first priority, then the **nvidia** channel.
+
+We can check what packages have been installed using:
+
+```
+conda env export
+```
+
+We might want to check this has worked:
+
+```
+python -c "import pytorch; print(torch.cuda.is_available())"
+```
 
 ## TensorFlow
 
-[TensorFlow](https://www.tensorflow.org/) is a free, open-source software library for dataflow and 
+[TensorFlow](https://www.TensorFlow.org/) is a free, open-source software library for dataflow and 
 differentiable programming across a range of tasks. It is a symbolic math library, and is also used 
-for machine learning applications such as neural networks. There are lots of versions and builds of 
-TensorFlow available via Conda (the output of `conda search tensorflow` is too long to share here!). 
+for machine learning applications such as neural networks.
 
-How do you decide which version is the “correct” version? How to make sure that you get a build 
-that includes GPU support? At this point you have seen all the Conda "tricks" required  to solve 
-this one yourself!
+TensorFlow [recommend using `pip` to install](https://www.TensorFlow.org/install/pip), even if you're using Conda.
 
-> ## Create an `environment.yml` file for TensorFlow
-> 
-> In this exercise you will create a Conda environment for TensorFlow. Important CUDA dependencies 
-> of TensorFlow are the CUDA Toolkit, cuDNN, and 
-> [CUPTI](https://docs.nvidia.com/cuda/cupti/index.html). Don't forget that if you want to train 
-> on more than one GPU, then your environment will also need NCCL and an MPI implementation.
-> 
-> > ## Solution
-> > 
-> > Use the `tensorflow-gpu` meta-package to select the appropriate version and build of TensorFlow for 
-> > your OS; use [`mpi4py`](https://mpi4py.readthedocs.io/en/stable/) to get a CUDA-aware OpenMPI build.
-> > 
-> > ~~~
-> > name: tensorflow-gpu
-> > 
-> > channels:
-> >   - conda-forge
-> >   - defaults
-> > 
-> > dependencies:
-> >   - cudatoolkit=10.1
-> >   - cudnn=7.6
-> >   - cupti=10.1
-> >   - mpi4py=3.0 # installs cuda-aware openmpi
-> >   - nccl=2.4
-> >   - pip=20.0
-> >   - python=3.7
-> >   - tensorflow-gpu=2.1 # installs tensorflow=2.1=gpu_py37h7a4bb67_0
-> > ~~~
-> > {: .language-yaml}
-> {: .solution} 
-{: .challenge}
+As with pytorch, we'll make and activate a new environment:
+
+```
+conda create --name tf-with-gpu
+conda activate tf-with-gpu
+```
+
+Then follow the instructions to install TensorFlow e.g. on Windows 10:
+
+```
+conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
+# Anything above 2.10 is not supported on the GPU on Windows Native
+python3 -m pip install "tensorflow<2.11"
+```
+
+Note the lack of support for recent versions on Windows. The [Windows Subsystem for Linux](https://learn.microsoft.com/en-gb/windows/wsl/install)
+is a good choice for installing later versions.
+
+We might want to check this has worked:
+
+```
+python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
+```
