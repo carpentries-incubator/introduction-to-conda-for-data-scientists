@@ -160,7 +160,7 @@ This exported environment file may not *consistently* produce environments that 
 across operating systems. The reason for this is, that it may include operating system specific low-level
 packages which cannot be used by other operating systems.
 
-If you need an environment file that can produce environments that are reproducibile across Mac OS, Windows,
+If you need an environment file that can produce environments that are reproducible across Mac OS, Windows,
 and Linux, then you are better off just including those packages into the environment file that you have
 specifically installed.
 
