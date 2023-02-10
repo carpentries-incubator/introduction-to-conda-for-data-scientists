@@ -10,15 +10,14 @@ questions:
 objectives:
 - "Install a package from a specific channel."
 keypoints:
-- "A package is a tarball containing system-level libraries, Python or other modules, executable programs and other components, and associated metadata."
+- "A package is a compressed archive file containing system-level libraries, Python or other modules, executable programs and other components, and associated metadata."
 - "A Conda channel is a URL to a directory containing a Conda package(s)."
-- "Explicitly including the channels (and their priority!) in a project's environment file is necessary for another researcher to completely re-create that project's software environment."
 - "Understand how to use Conda and Pip together effectively."
 ---
 
 ## What are Conda packages?
 
-A conda package is a compressed archive file (`.tar.bz2`) that contains:
+A conda package is a compressed archive file (`.tar.bz2` or `.conda`) that contains:
 
 * system-level libraries
 * Python or other modules
@@ -31,41 +30,11 @@ identical across platforms and operating systems.
 
 ### Package Structure
 
-All conda packages have a specific sub-directory structure inside the tarball file. There is a
+All conda packages have a specific sub-directory structure inside the file. There is a
 `bin` directory that contains any binaries for the package; a `lib` directory containing the
-relevant library files (i.e., the `.py` files); and an `info` directory containing package metadata.
+relevant library files (e.g., the `.py` files); and an `info` directory containing package metadata.
 For a more details of the conda package specification, including discussions of the various
 metadata files, see the [docs](https://docs.conda.io/projects/conda-build/en/latest/resources/package-spec.html).
-
-As an example of Conda package structure consider the [Conda](https://pytorch.org/) package for
-Python 3.10 version of `PyTorch` targeting a 64-bit Mac OS, `pytorch-1.13.1-py3.10_cuda11.7_cudnn8.5.0_0.tar.bz2`.
-
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
-├── bin
-│   └── convert-caffe2-to-onnx
-│   └── convert-onnx-to-caffe2
-├── info
-│   ├── LICENSE.txt
-│   ├── about.json
-│   ├── files
-│   ├── git
-│   ├── has_prefix.json
-│   ├── hash_input.json
-│   ├── index.json
-│   ├── paths.json
-│   ├── recipe/
-│   └── test/
-└── lib
-    └── python3.10
-        └── site-packages
-            ├── caffe2/
-            ├── torch/
-            └── torch-1.13.1-py3.10.egg-info/
-</pre></div>
-</div>
-
-A complete listing of available `PyTorch` packages can be found on [Anaconda
-Cloud](https://anaconda.org/pytorch/pytorch/files).
 
 ## What are Conda channels?
 
@@ -106,25 +75,25 @@ passing the `--channel` option to the `conda install` command as follows.
 
 ~~~
 $ conda activate machine-learning-env
-$ conda install scipy=1.6 --channel conda-forge
+$ conda install scipy=1.10.0 --channel conda-forge
 ~~~
 {: .language-bash}
 
 
 You can also install a package from a specific channel into a named environment (using `--name`). For example, the
 following command installs the `scipy` package from the `conda-forge` channel into the environment
-called `my-first-conda-env` which we created earlier.
+called `machine-learning-env` which we created earlier.
 
 ~~~
-$ conda install scipy=1.6 --channel conda-forge --name machine-learning-env
+$ conda install scipy=1.10.0 --channel conda-forge --name machine-learning-env
 ~~~
 {: .language-bash}
 
-The following command would install `tensorflow` package from `conda-forge` channel into the environment called
+The following command would install `tensorflow` package from the `conda-forge` channel into the environment called
 `machine-learning-env`.
 
 ~~~
-$ conda install tensorflow=1.14 --channel conda-forge --name machine-learning-env
+$ conda install tensorflow=1.14.0 --channel conda-forge --name machine-learning-env
 ~~~
 {: .language-bash}
 
@@ -134,7 +103,7 @@ $ conda install tensorflow=1.14 --channel conda-forge --name machine-learning-en
 > multiple times.
 >
 > ~~~
-> $ conda install scipy=1.6 --channel conda-forge --channel bioconda
+> $ conda install scipy=1.10.0 --channel conda-forge --channel bioconda
 > ~~~
 > {: .language-bash}
 >
@@ -268,12 +237,7 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > > ~~~
 > > $ mkdir my-computer-vision-project
 > > $ cd my-computer-vision-project/
-> > $ conda create --name my-computer-vision-project --channel pytorch \
-> >  python=3.10 \
-> >  jupyterlab \
-> >  pytorch=1.13.1 \
-> >  torchvision=0.14.1 \
-> >  matplotlib
+> > $ conda create --name my-computer-vision-project --channel pytorch python=3.10 jupyterlab pytorch=1.13.1 torchvision=0.14.1 matplotlib
 > > ~~~
 > > {: .language-bash}
 > >
@@ -289,7 +253,7 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > more explicitly links the channel being used to install a particular package.
 >
 > ~~~
-> $ conda install conda-forge::tensorflow --name my-computer-vision-project
+> $ conda install conda-forge::pandas --name my-computer-vision-project
 > ~~~
 > {: .language-bash}
 >
@@ -305,12 +269,7 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > > $ cd ~/Desktop/introduction-to-conda-for-data-scientists
 > > $ mkdir my-final-project
 > > $ cd my-final-project/
-> > $ conda create --name my-final-project \
-> >  conda-forge::python=3.10 \
-> >  conda-forge::jupyterlab \
-> >  conda-forge::matplotlib \
-> >  pytorch::pytorch=1.13.1 \
-> >  pytorch::torchvision=0.14.1
+> > $ conda create --name my-final-project conda-forge::python=3.10 conda-forge::jupyterlab conda-forge::matplotlib pytorch::pytorch=1.13.1  pytorch::torchvision=0.14.1
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
@@ -335,6 +294,11 @@ $ which pip # sometimes installed as pip3
 /usr/bin/pip
 ~~~
 {: .language-bash}
+
+> ## Windows users...
+>
+> You can type `where.exe` in **PowerShell** and it does the same thing as `which` in **bash**.
+{: .callout}
 
 Second, `pip` is also included in the Miniconda installer where it is used to install and manage OS specific Python
 packages required to setup your `base` Conda environment. **You do not want to use this `pip` to install Python packages

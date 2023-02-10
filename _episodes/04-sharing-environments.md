@@ -11,9 +11,8 @@ objectives:
 - "Create an environment based on exact package versions."
 - "Create a custom kernel for a Conda environment for use inside JupyterLab and Jupyter notebooks."
 keypoints:
-- "Sharing Conda environments with other researchers facilitates the reprodicibility of your research."
+- "Sharing Conda environments with other researchers facilitates the reproducibility of your research."
 - "Create an`environment.yml` file that describes your project's software environment."
-- "Creating custom kernels enables you to connect your Conda environments to an existing JupterLab install."
 ---
 
 ## Working with environment files
@@ -134,6 +133,17 @@ environment streamed to the terminal. Recall that we only listed five packages w
 originally created `machine-learning-env` yet from the output of the `conda env export` command
 we see that these five packages result in an environment with roughly 80 dependencies!
 
+> ## What's in the exported environment.yml file
+>
+> The exported version of the file looks a bit different to the one we wrote. In addition to version
+> numbers, on some lines we've got another code in there e.g. `vs2015_runtime=14.34.31931=h4c5c07a_10`. The `h4c5c07a_10`
+> is the [build variant hash](https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#differentiating-packages-built-with-different-variants). This appears when the package is different
+> for different operating systems. The implication is that an environment file that contains a build variant
+> hash for one or more of the packages cannot be used on a different operating system to the one it
+> was created on.
+>
+{: .callout}
+
 To export this list into an environment.yml file, you can use `--file` option to directly save the
 resulting YAML environment into a file.
 
@@ -150,9 +160,9 @@ This exported environment file may not *consistently* produce environments that 
 across operating systems. The reason for this is, that it may include operating system specific low-level
 packages which cannot be used by other operating systems.
 
-If you need an environment file that can produce environments that are reproducibile across Mac OS, Windows,
+**If you need an environment file that can produce environments that are reproducible across Mac OS, Windows,
 and Linux, then you are better off just including those packages into the environment file that you have
-specifically installed.
+specifically installed.**
 
 ~~~
 $ conda env export --name machine-learning-env --from-history --file environment.yml
@@ -160,7 +170,9 @@ $ conda env export --name machine-learning-env --from-history --file environment
 {: .language-bash}
 
 In short: to make sure others can reproduce your environment independent of the operating system they use,
-make sure to add the `--from-history` argument to the `conda env export` command.
+make sure to add the `--from-history` argument to the `conda env export` command, without `--from-history`
+the output may on some occasions include the build variant hash (which can alternatively be removed by 
+editing the environment file).
 
 > ## Create a new environment from a YAML file.
 >
@@ -260,7 +272,7 @@ The `--prune` option tells Conda to remove any dependencies that are no longer r
 
 > ## Add Dask to the environment to scale up your analytics
 >
-> Add `dask` to the `scikit-env` environment file and update the environment. [Dask](https://dask.org/)
+> Add `dask` to the `scikit-learn-env` environment file and update the environment. [Dask](https://dask.org/)
 > provides advanced parallelism for data science workflows enabling performance at scale for the
 > core Python data science tools such as Numpy Pandas, and Scikit-Learn.
 >
@@ -272,8 +284,8 @@ The `--prune` option tells Conda to remove any dependencies that are no longer r
 > > name: scikit-learn-env
 > >
 > > dependencies:
-> >   - dask=2023.1
-> >   - dask-ml=2022.5
+> >   - dask=2022.7.0
+> >   - dask-ml=2022.5.27
 > >   - ipython=8.8
 > >   - matplotlib=3.6
 > >   - pandas=1.5

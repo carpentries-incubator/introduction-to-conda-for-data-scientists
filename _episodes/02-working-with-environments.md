@@ -150,7 +150,7 @@ You can create a Conda environment and install multiple packages by listing the 
 optionally including the version you wish to use.
 
 ~~~
-$ conda create --name basic-scipy-env ipython matplotlib=3.1 numpy=1.24.1 scipy=1.10.0
+$ conda create --name basic-scipy-env ipython matplotlib=3.1 numpy=1.23.5 scipy=1.9.3
 ~~~
 {: .language-bash}
 
@@ -159,6 +159,12 @@ Python is not listed as a package to install into the `basic-scipy-env` environm
 Python into the environment because it is a required dependency of at least one of the listed packages. Note if you
 wanted a specific version of Python installed you would have to explicitly state which version as you did earlier.
 
+This command will fail as the requested `scipy` and `numpy` versions are incompatible.
+
+~~~
+$ conda create --name basic-scipy-env ipython matplotlib=3.1 numpy=1.9.3 scipy=1.9.3
+~~~
+{: .language-bash}
 
 > ## Creating a new environment
 >
@@ -172,13 +178,7 @@ wanted a specific version of Python installed you would have to explicitly state
 > > In order to create a new environment you use the `conda create` command as follows.
 > >
 > > ~~~
-> > $ conda create --name machine-learning-env \
-> >  ipython \
-> >  matplotlib \
-> >  pandas \
-> >  python \
-> >  scikit-learn \
-> >  numba
+> > $ conda create --name machine-learning-env ipython matplotlib pandas python scikit-learn numba
 > > ~~~
 > > {: .language-bash}
 > >
@@ -187,13 +187,8 @@ wanted a specific version of Python installed you would have to explicitly state
 > > practice to provide explicit version numbers, you may prefer the following solution.
 > >
 > > ~~~
-> > $ conda create --name machine-learning-env \
-> >  ipython=8.2.0 \
-> >  matplotlib=3.6.3 \
-> >  pandas=1.5.1 \
-> >  python=3.10 \
-> >  scikit-learn=1.0.2 \
-> >  numba=0.56.4
+> > $ conda create --name machine-learning-env ipython=8.2.0 matplotlib=3.6.3 pandas=1.5.1 python=3.10
+> >  scikit-learn=1.0.2 numba=0.56.4
 > > ~~~
 > > {: .language-bash}
 > >
@@ -236,10 +231,10 @@ To deactivate the currently active environment use the Conda `deactivate` comman
 {: .language-bash}
 
 You can see that an environment has been deactivated because the shell prompt will no longer
-include the name of the previously active environment.
+include the name of the previously active environment, but will return to `base`.
 
 ~~~
-$
+(base) $
 ~~~
 
 > ## Returning to the `base` environment
@@ -280,7 +275,7 @@ $
 > > ~~~
 > > {: .language-bash}
 > >
-> > Or you could switch back to the `base` conda environment.
+> > Or you could switch back to the `base` conda environment this way.
 > > ~~~
 > > (active-environment-name) $ conda activate
 > > ~~~
@@ -340,7 +335,7 @@ $ conda install scikit-learn=1.0.2
 > >
 > > You can install Dask into `machine-learning-env` using the `conda install` command as follow.
 > > ~~~
-> > $ conda install --name machine-learning-env dask=2.16
+> > $ conda install --name machine-learning-env dask=2022.7.0
 > > ~~~
 > > {: .language-bash}
 > >
@@ -349,7 +344,7 @@ $ conda install scikit-learn=1.0.2
 > >
 > > ~~~
 > > $ conda activate machine-learning-env
-> > $ conda install dask=2023.1.0
+> > $ conda install dask=2022.7.0
 > > ~~~
 > > {: .language-bash}
 > {: .solution}
@@ -359,23 +354,23 @@ $ conda install scikit-learn=1.0.2
 
 Environments created with `conda`, by default, live in the `envs/` folder of your `miniconda3` (or `anaconda3`)
 directory the absolute path to which will look something the following: `/home/$USERNAME/miniconda3/envs` (Linux),
-`/Users/$USERNAME/miniconda3/envs` (OSX) or `C:\Users\$USERNAME\Anaconda3` (Windows).
+`/Users/$USERNAME/miniconda3/envs` (OSX) or `C:\Users\$USERNAME\Anaconda3` (Windows). It's also been spotted in
+`C:\ProgramData\miniconda3\envs`.
 
 Running `ls` (Linux or OSX) / `dir` (Windows) on your anaconda `envs/` directory will list out the directories
 containing the existing Conda environments.
 
-> ## Location of Conda environments on Binder
+> ## Finding Conda
 >
-> If you are working through these lessons using a Binder instance, then the default location of
-> the Conda environments is slightly different.
->
+> If you're not sure where your Conda environments are stored, activate an environment, launch Python, then run
+> the following:
+> ```
+> import sys                   
+> sys.executable
 > ~~~
-> $ /srv/conda/envs
-> ~~~
-> {: .language-bash}
+> {: .language-python}
 >
-> Running `ls /srv/conda/envs/` from a terminal will list out the directories containing any
-> previously installed Conda environments.
+> This will tell you where the python executable for the environment is stored e.g. `/home/neil/miniconda3/bin/python`.
 {: .callout}
 
 ## Listing existing environments
@@ -434,14 +429,6 @@ the reason, the command to delete an environment is the following.
 
 ~~~
 $ conda remove --name my-first-conda-env --all
-~~~
-{: .language-bash}
-
-If you wish to delete and environment that you created with a `--prefix` option, then you will
-need to provide the prefix again when removing the environment.
-
-~~~
-$ conda remove --prefix /path/to/conda-env/ --all
 ~~~
 {: .language-bash}
 

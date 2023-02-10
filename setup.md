@@ -113,11 +113,13 @@ rm Miniconda3-latest-Linux-x86_64.sh
 
 ## Verifying your Conda installation
 
+> On **Windows** you'll need to go to the "start" menu (or whatever it's called now) and open up the **Anaconda Powershell Prompt** before following the next instructions.
+
 In order to verify that you have installed Conda correctly run the `conda help` command. Output 
 of the command should look similar to the following.
 
 ~~~
-$ conda help
+$ conda --help
 usage: conda [-h] [-V] command ...
 
 conda is a tool for managing and deploying applications, environments and packages.
@@ -217,13 +219,6 @@ $ source ~/.bashrc
 If you want to reverse or “undo” the changes made by `conda init`, then you can re-run the 
 `conda init` command and pass the `--reverse` option. Again, in order for the reversal to take 
 effect you will likely need to close and restart your shell session.
-
-## Use of Binder instead of installing Conda (Optional)
-
-If you wish to get started with this course without installing Conda, then you can use a 
-pre-configured instance running on [Binder](https://mybinder.org/) by clicking on the link below.
-
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/carpentries-incubator/introduction-to-conda-for-data-scientists/binder?urlpath=lab)
 
 ## Workspace for Conda environments
 
