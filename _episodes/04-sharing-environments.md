@@ -160,9 +160,9 @@ This exported environment file may not *consistently* produce environments that 
 across operating systems. The reason for this is, that it may include operating system specific low-level
 packages which cannot be used by other operating systems.
 
-If you need an environment file that can produce environments that are reproducible across Mac OS, Windows,
+**If you need an environment file that can produce environments that are reproducible across Mac OS, Windows,
 and Linux, then you are better off just including those packages into the environment file that you have
-specifically installed.
+specifically installed.**
 
 ~~~
 $ conda env export --name machine-learning-env --from-history --file environment.yml
@@ -170,7 +170,9 @@ $ conda env export --name machine-learning-env --from-history --file environment
 {: .language-bash}
 
 In short: to make sure others can reproduce your environment independent of the operating system they use,
-make sure to add the `--from-history` argument to the `conda env export` command.
+make sure to add the `--from-history` argument to the `conda env export` command, without `--from-history`
+the output may on some occasions include the build variant hash (which can alternatively be removed by 
+editing the environment file).
 
 > ## Create a new environment from a YAML file.
 >
