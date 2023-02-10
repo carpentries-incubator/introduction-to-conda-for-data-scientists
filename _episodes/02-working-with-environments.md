@@ -370,7 +370,7 @@ containing the existing Conda environments.
 > ~~~
 > {: .language-python}
 >
-> This will tell you where the python executable for the environment is stored.
+> This will tell you where the python executable for the environment is stored e.g. `/home/neil/miniconda3/bin/python`.
 {: .callout}
 
 ## Listing existing environments
