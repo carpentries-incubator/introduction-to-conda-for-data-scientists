@@ -144,7 +144,8 @@ We can check what packages have been installed using:
 conda env export
 ```
 
-We might want to check this has worked:
+We might want to check this has worked by running some Python code to import the `torch` module
+and output to the screen the results of a check to see if CUDA is working:
 
 ```
 python -c "import torch; print(torch.cuda.is_available())"
@@ -176,7 +177,9 @@ python3 -m pip install "tensorflow<2.11"
 Note the lack of support for recent versions on Windows. The [Windows Subsystem for Linux](https://learn.microsoft.com/en-gb/windows/wsl/install)
 is a good choice for installing later versions.
 
-We might want to check this has worked:
+We might want to check this has workedby running some Python code to import the `tensorflow` module
+and output to the screen the results of a check to see if CUDA is working by listing available GPU
+devices:
 
 ```
 python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
