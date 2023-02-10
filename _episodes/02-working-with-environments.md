@@ -187,8 +187,8 @@ $ conda create --name basic-scipy-env ipython matplotlib=3.1 numpy=1.9.3 scipy=1
 > > practice to provide explicit version numbers, you may prefer the following solution.
 > >
 > > ~~~
-> > $ conda create --name machine-learning-env ipython=8.2.0 matplotlib=3.6.3 pandas=1.5.1 python=3.10
-> >  scikit-learn=1.0.2 numba=0.56.4
+> > $ conda create --name machine-learning-env ipython=8.8.0 matplotlib=3.6.2 pandas=1.5.2 python=3.10
+> > scikit-learn=1.2.0 numba=0.56.4
 > > ~~~
 > > {: .language-bash}
 > >
@@ -309,7 +309,7 @@ numbers when installing packages with the `conda install` command. For example, 
 install a particular version of Scikit-Learn, into the current, active environment.
 
 ~~~
-$ conda install scikit-learn=1.0.2
+$ conda install scikit-learn=1.2.0
 ~~~
 {: .language-bash}
 
@@ -428,7 +428,7 @@ longer need an existing environment and just want to get rid of cruft on your ma
 the reason, the command to delete an environment is the following.
 
 ~~~
-$ conda remove --name my-first-conda-env --all
+$ conda remove --name first-conda-env --all
 ~~~
 {: .language-bash}
 

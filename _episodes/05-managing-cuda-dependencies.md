@@ -6,6 +6,7 @@ questions:
 - "What packages have GPU dependencies?"
 objectives:
 - "Show how to use Conda to manage key GPU dependencies for you next (data) science project."
+
 - "Install `pytorch` with GPU support."
 - "Install `TensorFlow` with GPU support."
 keypoints:
@@ -15,28 +16,29 @@ keypoints:
 
 # Getting familiar with NVIDIA CUDA libraries
 
-Transitioning your (data) science projects from CPU to GPU can seem like a daunting task. 
-In particular, there is quite a bit of unfamiliar additional software, such as 
-[NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit), 
-[NVIDIA Collective Communications Library (NCCL)](https://developer.nvidia.com/nccl), 
-and [NVIDIA Deep Neural Network Library (cuDNN)](https://developer.nvidia.com/cudnn) to download 
+Transitioning your (data) science projects from CPU to GPU can seem like a daunting task.
+In particular, there is quite a bit of unfamiliar additional software, such as
+[NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit),
+[NVIDIA Collective Communications Library (NCCL)](https://developer.nvidia.com/nccl),
+and [NVIDIA Deep Neural Network Library (cuDNN)](https://developer.nvidia.com/cudnn) to download
 and install.
 
-If you go to the [NVIDIA developer](https://developer.nvidia.com/) website you will find loads of 
-documentation and instructions for how to install these libraries system wide. But then what do 
-you do if you need different versions of these new libraries for different projects? You could 
-install a bunch of different versions of NVIDIA CUDA Toolkit, NCCL, and cuDNN system wide and then 
-use environment variables to control the “active” versions for each project but this is cumbersome 
+If you go to the [NVIDIA developer](https://developer.nvidia.com/) website you will find loads of
+documentation and instructions for how to install these libraries system wide. But then what do
+you do if you need different versions of these new libraries for different projects? You could
+install a bunch of different versions of NVIDIA CUDA Toolkit, NCCL, and cuDNN system wide and then
+use environment variables to control the “active” versions for each project but this is cumbersome
 and error prone. Fortunately there are better ways!
+
 
 In this episode we are going to see how to manage project specific versions of the NVIDIA packages using Conda.
 
 ## Are NVIDIA libraries available via Conda?
 
-Yep! The most important NVIDIA CUDA library that you will need is the NVIDIA CUDA Toolkit. The 
-NVIDIA CUDA Toolkit provides a development environment for creating high performance 
-GPU-accelerated applications. The toolkit includes GPU-accelerated libraries, debugging and 
-optimization tools and a runtime library. You can use the `conda search` command to see what 
+Yep! The most important NVIDIA CUDA library that you will need is the NVIDIA CUDA Toolkit. The
+NVIDIA CUDA Toolkit provides a development environment for creating high performance
+GPU-accelerated applications. The toolkit includes GPU-accelerated libraries, debugging and
+optimization tools and a runtime library. You can use the `conda search` command to see what
 versions of the NVIDIA CUDA Toolkit are available from the default channels.
 
 ~~~
@@ -52,12 +54,14 @@ cudatoolkit                 10.1.168               0  pkgs/main
 cudatoolkit                 10.1.243      h6bb024c_0  pkgs/main
 cudatoolkit                  10.2.89      hfd86e86_0  pkgs/main
 cudatoolkit                  10.2.89      hfd86e86_1  pkgs/main
+cudatoolkit                 11.0.221      h6bb024c_0  pkgs/main
+cudatoolkit                   11.3.1      h2bc3f7f_2  pkgs/main
 ~~~
 {: .language-bash}
 
-NVIDIA actually maintains their own Conda channel and the versions of CUDA Toolkit available from 
-the default channels are the same as those you will find on the NVIDIA channel. If you are 
-interested in confirming this you can run the command 
+NVIDIA actually maintains their own Conda channel and the versions of CUDA Toolkit available from
+the default channels are the same as those you will find on the NVIDIA channel. If you are
+interested in confirming this you can run the command
 
 ~~~
 $ conda search --channel nvidia cudatoolkit
@@ -68,17 +72,17 @@ and then compare the build numbers with those listed above from the default chan
 
 > ## The CUDA Toolkit packages available from defaults do not include NVCC
 >
-> An important limitation of the versions of the NVIDIA CUDA Toolkit that are available from the 
-> either the default or NVIDIA Conda channels is that they do not include the NVIDIA CUDA Compiler 
+> An important limitation of the versions of the NVIDIA CUDA Toolkit that are available from the
+> either the default or NVIDIA Conda channels is that they do not include the NVIDIA CUDA Compiler
 > (NVCC).
 {: .callout}
 
 ### What about cuDNN?
 
-The [NVIDIA CUDA Deep Neural Network library (cuDNN)](https://developer.nvidia.com/cudnn) is a 
-GPU-accelerated library of primitives for deep neural networks. cuDNN provides highly tuned 
-implementations for standard routines such as forward and backward convolution, pooling, 
-normalization, and activation layers. 
+The [NVIDIA CUDA Deep Neural Network library (cuDNN)](https://developer.nvidia.com/cudnn) is a
+GPU-accelerated library of primitives for deep neural networks. cuDNN provides highly tuned
+implementations for standard routines such as forward and backward convolution, pooling,
+normalization, and activation layers.
 
 If you are interested in deep learning, then you may need to get your hands on cuDNN. Various 
 versions of cuDNN are available from the default channels.
@@ -109,10 +113,12 @@ cudnn                          7.6.5      cuda10.1_0  pkgs/main
 cudnn                          7.6.5      cuda10.2_0  pkgs/main
 cudnn                          7.6.5       cuda9.0_0  pkgs/main
 cudnn                          7.6.5       cuda9.2_0  pkgs/main
+cudnn                          8.2.1      cuda11.3_0  pkgs/main
 ~~~
 {: .language-bash}
 
 # Environments with `pytorch` and `TensorFlow`
+
 
 Both `pytorch` and `TensorFlow` provide installation options using Conda.
 
@@ -123,6 +129,7 @@ library, used for applications such as computer vision and natural language proc
 primarily developed by Facebook’s AI Research lab.
 
 PyTorch has a [handy tool to help you figure out what commands to run](https://pytorch.org/) to install on your platform. First, we'll make an empty Conda environment and activate it:
+
 
 ```
 conda create --name pytorch-with-gpu
@@ -137,6 +144,7 @@ conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvi
 
 From what we've learned, we can see that the **pytorch** channel will be used at the
 first priority, then the **nvidia** channel.
+
 
 We can check what packages have been installed using:
 

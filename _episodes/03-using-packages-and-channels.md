@@ -93,7 +93,7 @@ The following command would install `tensorflow` package from the `conda-forge` 
 `machine-learning-env`.
 
 ~~~
-$ conda install tensorflow=1.14.0 --channel conda-forge --name machine-learning-env
+$ conda install tensorflow=2.11.0 --channel conda-forge --name machine-learning-env
 ~~~
 {: .language-bash}
 
@@ -118,11 +118,11 @@ $ conda install tensorflow=1.14.0 --channel conda-forge --name machine-learning-
 
 ## My package isn't available on the `defaults` channel! What should I do?
 
-It may very well be the case that packages (or often more recent versions of packages!) that you need to
+You may find that packages (or often more recent versions of packages!) that you need to
 install for your project are not available on the `defaults` channel.  In this case you should try the
 following.
 
-1.  `conda-forge`: the `conda-forge` channel contains a large number of community curated conda
+1.  `conda-forge`: the `conda-forge` channel contains a large number of community curated Conda
     packages. Typically the most recent versions of packages that are generally available via the
     `defaults` channel are available on `conda-forge` first.
 2. `bioconda`: the `bioconda` channel also contains a large number of Bioinformatics curated conda packages.
@@ -132,7 +132,9 @@ following.
     domain-specific channel like `bioconda`) a package can be installed into a conda
     environment from PyPI using `pip`. It's fine to just use `pip` for installing most packages.
 
-For example, [Kaggle](https://www.kaggle.com/) publishes a Python 3 API that can be used to interact with Kaggle datasets, kernels and competition submissions. You can search for the package on the `defaults` channels but you will not find it!
+For example, [Kaggle](https://www.kaggle.com/) publishes a Python 3 API that can be used to interact with Kaggle
+datasets, kernels and competition submissions. You can search for the package on the `defaults` channels but you will
+not find it!
 
 ~~~
 $ conda search kaggle
@@ -225,14 +227,16 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > packages, in particular `pytorch` (PyTorch core) and `torchvision` (datasets, transforms, and
 > models specific to computer vision).
 >
-> Create a new directory called `my-computer-vision-project` and then create a Python 3.10
-> environment called `my-computer-vision-project` with the two packages listed above. Also include
-> the most recent version of `jupyterlab` in your environment (so you have a nice UI) and
-> `matplotlib` (so you can make plots).
+> Create a new directory called `computer-vision-project` and then create a Python 3.10 environment called
+> `computer-vision-project` with the two packages listed above. Also include the most recent versions of `jupyterlab`
+> (so you have a nice UI) and `matplotlib` (so you can make plots) in your environment .
 >
 > > ## Solution
 > >
-> > In order to create a new environment you use the `conda create` command as follows.
+> > In order to create a new environment you use the `conda create` command as follows. After making the directory we
+> check what versions of `pytorch` and `torchvision` are available so you can install explicit versions of these. This
+> is done using the `base` Conda environment. Then you can create a new Conda environment with the versions of Python,
+> and packages required
 > >
 > > ~~~
 > > $ mkdir my-computer-vision-project
@@ -253,12 +257,11 @@ The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-gu
 > more explicitly links the channel being used to install a particular package.
 >
 > ~~~
-> $ conda install conda-forge::pandas --name my-computer-vision-project
+> $ conda install conda-forge::tensorflow --name computer-vision-project
 > ~~~
 > {: .language-bash}
 >
-> Create a new folder `my-final-project` in `~/Desktop/introduction-to-conda-for-data-scientists` and repeat the
-> previous exercise using this alternative syntax to install `python`, `jupyterlab`, and `matplotlib` from the
+> Repeat the previous exercise using this alternative syntax to install `python`, `jupyterlab`, and `matplotlib` from the
 > `conda-forge` channel and `pytorch` and `torchvision` from the `pytorch` channel.
 >
 > > ## Solution
@@ -284,7 +287,8 @@ issues](https://www.anaconda.com/blog/using-pip-in-a-conda-environment) that you
 install Python packages when using Conda.
 
 First, `pip` is sometimes installed by default on operating systems where it is used to manage any Python packages
-needed by your OS. **You do not want to use this `pip` to install Python packages when using Conda environments.**
+needed by your OS. **You do not want to use `/usr/bin/pip` to install Python packages when using Conda
+environments.**
 
 ~~~
 (base) $ conda deactivate
@@ -301,8 +305,8 @@ $ which pip # sometimes installed as pip3
 {: .callout}
 
 Second, `pip` is also included in the Miniconda installer where it is used to install and manage OS specific Python
-packages required to setup your `base` Conda environment. **You do not want to use this `pip` to install Python packages
-when using Conda environments.**
+packages required to setup your `base` Conda environment. **You do not want to use this `~/miniconda3/bin/pip` to
+install Python packages when using Conda environments.**
 
 ~~~
 $ conda activate
@@ -313,18 +317,18 @@ $ which pip
 ~~~
 {: .language-bash}
 
-> ## Another reaon to avoid installing packages into your `base` Conda environment
+> ## Why should I avoid installing packages into your `base` Conda environment?
 >
 > If your `base` Conda environment becomes cluttered with a mix of `pip` and Conda installed
-> packages it may no longer function. Creating separate conda environments allows you to
+> packages it may no longer function. Creating separate Conda environments allows you to
 > delete and recreate environments readily so you dont have to worry about risking your core
 > Conda functionality when mixing packages installed with Conda and Pip.
 {: .callout}
 
 If you find yourself needing to install a Python package that is only available via PyPI, then you should first install
-`pip` into your Conda environment and then use that `pip` to install  the desired package from PyPI. Using the `pip`
+`pip` into your Conda environment and then use that `pip` to install the desired package from PyPI. Using the `pip`
 installed in your Conda environment to install Python packages not available via Conda channels will help you avoid
-difficult to debug issues that frequently  arise when using Python packages installed via a `pip` that was not installed
+difficult to debug issues that frequently arise when using Python packages installed via a `pip` that was not installed
 inside you Conda environment.
 
 > ## Conda (+Pip)
@@ -352,7 +356,7 @@ inside you Conda environment.
 > > ~~~
 > > $ conda install --name machine-learning-env pip
 > > $ conda activate machine-learning-env
-> > $ python -m pip install combo==0.1.*
+> > $ pip install combo==0.1.*
 > > ~~~
 > > {: .language-bash}
 > >

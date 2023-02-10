@@ -66,7 +66,7 @@ most current and mutually compatible versions of the listed packages (including 
 dependencies). The newly created environment would be installed inside the `~/miniconda3/envs/`
 directory, unless we specified a different path using `--prefix`.
 
-If you prefer to use explicit versions numbers for all packages:
+If you prefer you can use explicit versions numbers for all packages:
 
 ~~~
 name: machine-learning-env
@@ -94,6 +94,15 @@ Conda environment across updates.
 > `environment.yml` files together with your project's source code means that you always know
 > which versions of which packages were used to generate your results at any particular point in
 > time.
+>
+> Version control is a system of keeping track of changes that are made to files, in this case the `environment.yml`
+> file. It's really useful to do so if for example you make a change, for example updating a specific version of a
+> package and you find it breaks something in your environment or when running your code as you then have a record of
+> what it previously was and can revert the changes.
+>
+> There are many systems for version control but the one you are most likely to encounter and we would recommend
+> learning is [Git](https://git-scm.com/). Unfortunately the topic is too broad to cover in this material but we include
+> the commands to version control your files at the command line using Git.
 {: .callout}
 
 Let's suppose that you want to use the `environment.yml` file defined above to create a Conda
@@ -107,7 +116,7 @@ $ cd project-dir
 ~~~
 
 Once your project folder is created, create `environment.yml` using your favourite editor for instance `nano`.
-Finally create a new conda environment:
+Finally create a new Conda environment:
 
 ~~~
 $ conda env create --name project-env --file environment.yml
@@ -145,16 +154,18 @@ we see that these five packages result in an environment with roughly 80 depende
 {: .callout}
 
 To export this list into an environment.yml file, you can use `--file` option to directly save the
-resulting YAML environment into a file.
+resulting YAML environment into a file. If the target for `--file` exists it will be over-written so make sure your
+filename is unique. So that we do not over-write `environment.yaml` we save the output to `machine-learning-env.yaml`
+instead and add it to
 
 ~~~
-$ conda env export --name machine-learning-env --file environment.yml
+$ conda env export --name machine-learning-env --file machine-learning-env.yml
+$ git init
+$ git add machine-learning-env.yml
+$ git commit -m "Adding machine-learning-env.yml config file."
 ~~~
 {: .language-bash}
 
-Make sure you do not have any other `environment.yml` file from before in the same directory when
-running the above command. If you do you can use an alternative destination filename, e.g. `--file
-machline-learning-env.yaml`.
 
 This exported environment file may not *consistently* produce environments that are reproducible
 across operating systems. The reason for this is, that it may include operating system specific low-level
@@ -165,7 +176,9 @@ and Linux, then you are better off just including those packages into the enviro
 specifically installed.**
 
 ~~~
-$ conda env export --name machine-learning-env --from-history --file environment.yml
+$ conda env export --name machine-learning-env --from-history --file machine-learning-history-env.yml
+$ git add machine-learning-history-env.yml
+$ git commit -m "Adding machine-learning-history-env.yml based on environment history"
 ~~~
 {: .language-bash}
 
@@ -199,9 +212,12 @@ editing the environment file).
 > > To create a new environment from a YAML file use the `conda env create` sub-command as follows.
 > >
 > > ~~~
-> > $ mkdir scikit-learn-project-dir
-> > $ cd scikit-learn-project-dir
-> > $ conda env create --file environment.yml
+> > $ mkdir scikit-learn-project
+> > $ cd scikit-learn-project
+> > $ conda env create --file scikit-learn-env.yml
+> > $ git init
+> > $ git add scikit-learn-env.yml
+> > $ git commit -m "Adding scikit-learn-env.yml config file"
 > > ~~~
 > > {: .language-bash}
 > >
@@ -227,7 +243,7 @@ editing the environment file).
 >   - defaults
 >
 > dependencies:
->   - pytorch=1.3
+>   - pytorch=1.13
 > ~~~
 > {: .language-yaml}
 >
@@ -252,6 +268,8 @@ the contents of your `environment.yml` file accordingly and then run the followi
 
 ~~~
 $ conda env update --name project-env --file environment.yml --prune
+$ git add environment.yml
+$ git commit -m "Updating environment.yml config file"
 ~~~
 {: .language-bash}
 
@@ -272,20 +290,20 @@ The `--prune` option tells Conda to remove any dependencies that are no longer r
 
 > ## Add Dask to the environment to scale up your analytics
 >
-> Add `dask` to the `scikit-learn-env` environment file and update the environment. [Dask](https://dask.org/)
+> Add `dask` to the `scikit-learn-env.yml` environment file and update the environment. [Dask](https://dask.org/)
 > provides advanced parallelism for data science workflows enabling performance at scale for the
 > core Python data science tools such as Numpy Pandas, and Scikit-Learn.
 >
 > > ## Solution
 > >
-> > The `environment.yml` file should now look as follows.
+> > The `scikit-learn-env.yml` file should now look as follows.
 > >
 > > ~~~
 > > name: scikit-learn-env
 > >
 > > dependencies:
-> >   - dask=2022.7.0
-> >   - dask-ml=2022.5.27
+> >   - dask=2022.7
+> >   - dask-ml=2022.5
 > >   - ipython=8.8
 > >   - matplotlib=3.6
 > >   - pandas=1.5
@@ -308,6 +326,14 @@ The `--prune` option tells Conda to remove any dependencies that are no longer r
 > > $ conda env update --name project-env --file environment.yml  --prune
 > > ~~~
 > > {: .language-bash}
+> >
+> > You would then add and commit the changes to the `scikit-learn-env.yml` to Git to keep the changes under version
+> > control.
+> > ~~~
+> > $ git add scikit-learn-env.yml
+> > $ git commit -m "Updating scikit-learn-env.yml with dask"
+> > ~~~
+> > {: .language-bash}
 > {: .solution}
 {: .challenge}
 
@@ -326,18 +352,18 @@ The `--prune` option tells Conda to remove any dependencies that are no longer r
 >  - matplotlib=3.1
 >  - pandas=0.24
 >  - scikit-learn=0.21
->  - pip=19.1
+>  - pip=22.3
 >  - pip:
 >    - kaggle==1.5
 >    - yellowbrick==1.5
 > ~~~
 >
 > Note the double '==' instead of '=' for the `pip` installation and that you should include `pip` itself
-> as a Conda dependency and then a subsection denoting those packages to be installed via `pip`. Also in case
+> as a Conda dependency and then a subsection denoting those packages to be installed via `pip`. In case
 > you are wondering, the [Yellowbrick](https://www.scikit-yb.org/en/latest/) package is a suite of
 > visual diagnostic tools called “Visualizers” that extend the
 > [Scikit-Learn](https://scikit-learn.org/stable/) API to allow human steering of the model selection
-> process. Recent version of yellowbrick can also be installed using `conda` from the `conda-forge` channel.
+> process. Recent version of Yellowbrick can also be installed using `conda` from the `conda-forge` channel.
 >
 > ~~~
 > $ conda install --channel conda-forge yellowbrick=1.2 --name project-env
@@ -356,6 +382,18 @@ The `--prune` option tells Conda to remove any dependencies that are no longer r
 >
 > Conda will then install your `pip` dependencies using `python -m pip install -r requirements.txt`
 > (after creating the Conda environment and installing all Conda installable dependencies).
+>
+> A `requirements.txt` file has a similar structure although it does not use YAML markup, instead it simply lists the
+> packages by name. If a specific version is required then as above it is specified with `==`. Remember you should not
+> include `pip` in the `requirements.txt` because this should be installed by and managed by Conda in your environment.
+>
+> If you use a `requirements.txt` file then you should add this to your Git repository so it too is maintained under
+> version control.
+>
+> ```
+> kaggle
+> yellowbrick==1.5
+> ```
 {: .callout}
 
 {% include links.md %}
