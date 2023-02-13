@@ -182,10 +182,13 @@ $ git commit -m "Adding machine-learning-history-env.yml based on environment hi
 ~~~
 {: .language-bash}
 
-In short: to make sure others can reproduce your environment independent of the operating system they use,
-make sure to add the `--from-history` argument to the `conda env export` command, without `--from-history`
-the output may on some occasions include the build variant hash (which can alternatively be removed by 
-editing the environment file).
+> ## Excluding build variant hash
+>
+> In short: to make sure others can reproduce your environment independent of the operating system they use,
+> make sure to add the `--from-history` argument to the `conda env export` command, without `--from-history`
+> the output may on some occasions include the build variant hash (which can alternatively be removed by
+> editing the environment file).
+{: .callout}
 
 > ## Create a new environment from a YAML file.
 >
