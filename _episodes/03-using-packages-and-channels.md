@@ -214,7 +214,8 @@ conda does the following.
 3. parses repodata to search for the package
 4. once the package is found, conda pulls it down and installs
 
-The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/installing-with-conda.html) has a nice decision tree that describes the package installation process.
+The [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/installing-with-conda.html)
+has a nice decision tree that describes the package installation process.
 
 <p align="center">
     <img alt="Installing with Conda" src="../fig/installing-with-conda.png" width="250">
@@ -317,7 +318,7 @@ $ which pip
 ~~~
 {: .language-bash}
 
-> ## Why should I avoid installing packages into your `base` Conda environment?
+> ## Why should I avoid installing packages into the `base` Conda environment?
 >
 > If your `base` Conda environment becomes cluttered with a mix of `pip` and Conda installed
 > packages it may no longer function. Creating separate Conda environments allows you to
@@ -325,18 +326,17 @@ $ which pip
 > Conda functionality when mixing packages installed with Conda and Pip.
 {: .callout}
 
-If you find yourself needing to install a Python package that is only available via PyPI, then you should first install
-`pip` into your Conda environment and then use that `pip` to install the desired package from PyPI. Using the `pip`
-installed in your Conda environment to install Python packages not available via Conda channels will help you avoid
-difficult to debug issues that frequently arise when using Python packages installed via a `pip` that was not installed
-inside you Conda environment.
+If you find yourself needing to install a Python package that is only available via PyPI, then you should use that
+`pip`, which is installed automatically when you create a Conda environment with Python, to install the desired package
+from PyPI. Using the `pip` installed in your Conda environment to install Python packages not available via Conda
+channels will help you avoid difficult to debug issues that frequently arise when using Python packages installed via a
+`pip` that was not installed inside you Conda environment.
 
 > ## Conda (+Pip)
 >
 > Pitfalls of using Conda and `pip` together can be avoided by adopting the following practices.
 >
 > * Always be sure your desired environment is *active* before installing anything using `pip`.
-> * Always explicitly install `pip` in *every* Python-based Conda environment (`conda install pip`).
 {: .callout}
 
 > ## Installing packages into Conda environments using `pip`
@@ -351,10 +351,9 @@ inside you Conda environment.
 >
 > > ## Solution
 > >
-> > The following commands will activate the `basic-scipy-env` and install `combo`.
+> > The following commands will activate the `machine-learning-env` and install `combo`.
 > >
 > > ~~~
-> > $ conda install --name machine-learning-env pip
 > > $ conda activate machine-learning-env
 > > $ pip install combo==0.1.*
 > > ~~~
