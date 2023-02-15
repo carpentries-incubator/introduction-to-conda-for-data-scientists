@@ -326,7 +326,8 @@ $ which pip
 > Conda functionality when mixing packages installed with Conda and Pip.
 {: .callout}
 
-If you find yourself needing to install a Python package that is only available via PyPI, then you should use that
+If you find yourself needing to install a Python package that is only available via PyPI, then you should use the
+
 `pip`, which is installed automatically when you create a Conda environment with Python, to install the desired package
 from PyPI. Using the `pip` installed in your Conda environment to install Python packages not available via Conda
 channels will help you avoid difficult to debug issues that frequently arise when using Python packages installed via a
