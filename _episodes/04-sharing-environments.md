@@ -195,6 +195,8 @@ $ git commit -m "Adding machine-learning-history-env.yml based on environment hi
 > Without `--from-history` the output may on some occasions include the build variant hash (which can alternatively be
 > removed by editing the environment file). These are often specific to the operating system and including them in your
 > environment file means it will not necessarily work if someone is using a different operating system.
+>
+> **Be aware that `--from-history` will omit any packages you have installed using `pip`. This may be [addressed in future releases](https://github.com/conda/conda/pull/11532). In the meantime, editing your exported environment files by hand is sometimes the best option.**
 {: .callout}
 
 > ## Create a new environment from a YAML file.
