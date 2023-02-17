@@ -182,10 +182,22 @@ $ git commit -m "Adding machine-learning-history-env.yml based on environment hi
 ~~~
 {: .language-bash}
 
-In short: to make sure others can reproduce your environment independent of the operating system they use,
-make sure to add the `--from-history` argument to the `conda env export` command, without `--from-history`
-the output may on some occasions include the build variant hash (which can alternatively be removed by 
-editing the environment file).
+> ## Excluding build variant hash
+>
+> In short: to make sure others can reproduce your environment independent of the operating system they use,
+> make sure to add the `--from-history` argument to the `conda env export` command. This will **only** include the
+> packages you explicitly installed and the version you requested to be installed. For example if you installed
+> `numpy-1.24` this will be listed, but if you installed `pandas` without a version and therefore installed the latest
+> then `pandas` will be listed in your environment file without a version number so anyone using your environment file
+> will get the latest version which may not match the version you used. This is one reason to explicitly state the
+> version of a package you wish to install.
+>
+> Without `--from-history` the output may on some occasions include the build variant hash (which can alternatively be
+> removed by editing the environment file). These are often specific to the operating system and including them in your
+> environment file means it will not necessarily work if someone is using a different operating system.
+>
+> **Be aware that `--from-history` will omit any packages you have installed using `pip`. This may be [addressed in future releases](https://github.com/conda/conda/pull/11532). In the meantime, editing your exported environment files by hand is sometimes the best option.**
+{: .callout}
 
 > ## Create a new environment from a YAML file.
 >
