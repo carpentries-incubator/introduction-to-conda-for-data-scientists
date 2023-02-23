@@ -75,6 +75,14 @@ For convenience here are links to the 64-bit Miniconda installers.
 > We will discuss the above command in great depth in the workshop.
 {: .callout}
 
+> ## Verify downloaded executables
+> 
+> You should verify the files that you download by comparing their SHA-256
+> hash to the expected value. The Conda website provides instructions for
+> [cryptographic hash verification](https://conda.io/projects/conda/en/stable/user-guide/install/download.html#cryptographic-hash-verification) on all platforms, where
+> [hashes](https://docs.conda.io/en/latest/miniconda.html) are published.
+{: .callout}
+
 ### Windows installation
 
 After you downloaded the [Windows GUI installer](https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe), double click on it and follow the instructions (accept license, etc.).
