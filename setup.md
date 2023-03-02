@@ -58,7 +58,7 @@ For convenience here are links to the 64-bit Miniconda installers.
 
 > ## Prefer Miniconda to Anaconda
 >
-> I suggest installing Miniconda which combines Conda with Python 3 (and a small number of core 
+> We suggest installing Miniconda which combines Conda with Python 3 (and a small number of core 
 > systems packages) instead of the full Anaconda distribution. Installing only Miniconda will 
 > encourage you to create separate environments for each project (and to install only those packages 
 > that you actually need for each project!). Project specific environments enhance portability and 
@@ -73,6 +73,14 @@ For convenience here are links to the 64-bit Miniconda installers.
 > {: .language-bash}
 >
 > We will discuss the above command in great depth in the workshop.
+{: .callout}
+
+> ## Verify downloaded executables
+> 
+> You should verify the files that you download by comparing their SHA-256
+> hash to the expected value. The Conda website provides instructions for
+> [cryptographic hash verification](https://conda.io/projects/conda/en/stable/user-guide/install/download.html#cryptographic-hash-verification) on all platforms, where
+> [hashes](https://docs.conda.io/en/latest/miniconda.html) are published.
 {: .callout}
 
 ### Windows installation
@@ -113,11 +121,13 @@ rm Miniconda3-latest-Linux-x86_64.sh
 
 ## Verifying your Conda installation
 
+> On **Windows** you'll need to go to the "start" menu (or whatever it's called now) and open up the **Anaconda Powershell Prompt** before following the next instructions.
+
 In order to verify that you have installed Conda correctly run the `conda help` command. Output 
 of the command should look similar to the following.
 
 ~~~
-$ conda help
+$ conda --help
 usage: conda [-h] [-V] command ...
 
 conda is a tool for managing and deploying applications, environments and packages.
@@ -164,7 +174,7 @@ number. Again output should look similar to the following.
 
 ~~~
 $ conda --version
-conda 4.8.2
+conda 23.1.0
 ~~~
 {: .language-bash}
 
@@ -189,8 +199,8 @@ are specific and customized for each shell. Conda supports a number of different
 can run `conda init --help` to see the complete list.
 
 Mac OSX and Linux users will want to initialize Conda for Bash as follows. If you are installing 
-on Linux, then you may be prompted to initialize Conda for your shell when running the installation 
-script. If so, then you can safely skip this step.
+on Linux, then you may have already been prompted to initialize Conda for your shell when running 
+the installation  script. If so, then you can safely skip this step.
 
 ~~~
 $ conda init bash
@@ -218,13 +228,6 @@ If you want to reverse or “undo” the changes made by `conda init`, then you 
 `conda init` command and pass the `--reverse` option. Again, in order for the reversal to take 
 effect you will likely need to close and restart your shell session.
 
-## Use of Binder instead of installing Conda (Optional)
-
-If you wish to get started with this course without installing Conda, then you can use a 
-pre-configured instance running on [Binder](https://mybinder.org/) by clicking on the link below.
-
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/carpentries-incubator/introduction-to-conda-for-data-scientists/binder?urlpath=lab)
-
 ## Workspace for Conda environments
 
 In order to maintain a consistent workspace for all your conda environment, we will create a new
@@ -248,7 +251,6 @@ the commands from the command prompt.
 > mkdir introduction-to-conda-for-data-scientists
 > cd introduction-to-conda-for-data-scientists
 ~~~
-{: .language-bash}
 
 Alternatively, you can always "right-click" and "create new folder" on your Desktop. All the 
 commands that are run during the workshop should be run in a terminal within the 

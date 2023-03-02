@@ -93,6 +93,8 @@ defaults:
 
 # Files and directories that are not to be copied.
 exclude:
+  - tmp/
+  - vendor/
   - Makefile
   - bin/
   - .Rproj.user/
