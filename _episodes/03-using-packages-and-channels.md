@@ -34,7 +34,7 @@ All conda packages have a specific sub-directory structure inside the file. Ther
 `bin` directory that contains any binaries for the package; a `lib` directory containing the
 relevant library files (e.g., the `.py` files); and an `info` directory containing package metadata.
 For a more details of the conda package specification, including discussions of the various
-metadata files, see the [docs](https://docs.conda.io/projects/conda-build/en/latest/resources/package-spec.html).
+metadata files, see the [docs](https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/packages.html#package-structure).
 
 ## What are Conda channels?
 
