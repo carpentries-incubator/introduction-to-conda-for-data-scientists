@@ -210,7 +210,7 @@ For example, when you `conda install` a package that exists in a channel and has
 conda does the following.
 
 1. looks at your configured channels (in priority)
-2. reaches out to the repodata associated with your channels/platform
+2. reaches out to the repodata (repodata is a type of file available at the conda channel URL) associated with your channels/platform
 3. parses repodata to search for the package
 4. once the package is found, conda pulls it down and installs
 
